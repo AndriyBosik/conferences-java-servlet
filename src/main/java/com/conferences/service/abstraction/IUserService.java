@@ -1,0 +1,9 @@
+package com.conferences.service.abstraction;
+
+import com.conferences.model.User;
+
+public interface IUserService {
+
+    User getByLoginAndPasswordWithRole(String login, String password);
+
+}
