@@ -2,12 +2,12 @@ package com.conferences.helper;
 
 import com.conferences.config.Defaults;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class LangHelper {
 
-    public String getLangFromSession(HttpServletRequest request) {
-        String sessionLang = (String) request.getSession().getAttribute("lang");
+    public String getLangFromSession(HttpSession session) {
+        String sessionLang = (String) session.getAttribute("lang");
         if (sessionLang != null) {
             return sessionLang;
         }

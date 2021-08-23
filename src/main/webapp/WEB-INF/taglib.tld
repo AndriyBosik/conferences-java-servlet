@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
 
     <tlib-version>1.0</tlib-version>
-    <short-name>ctg</short-name>
+    <short-name>taglib</short-name>
     <uri>tags</uri>
     <tag>
         <name>message</name>
@@ -13,6 +13,16 @@
         <body-content>empty</body-content>
         <attribute>
             <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>linkTo</name>
+        <tag-class>com.conferences.tag.LinkToTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>href</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

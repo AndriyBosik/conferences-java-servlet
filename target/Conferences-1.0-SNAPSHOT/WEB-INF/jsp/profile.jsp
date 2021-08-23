@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="tags" prefix="taglib" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,13 +24,13 @@
                                 <a href="#" class="brand-logo">Logo</a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li>
-                                        <a href="/profile"><i class="material-icons left">person</i> Profile</a>
+                                        <a href="<taglib:linkTo href="/profile" />"><i class="material-icons left">person</i> Profile</a>
                                     </li>
                                     <li>
-                                        <a href="/conferences"><i class="material-icons left">people</i> Conferences</a>
+                                        <a href="<taglib:linkTo href="/conferences" />"><i class="material-icons left">people</i> Conferences</a>
                                     </li>
                                     <li>
-                                        <a href="/logout"><i class="material-icons left">exit_to_app</i> Logout</a>
+                                        <a href="<taglib:linkTo href="/logout" />"><i class="material-icons left">exit_to_app</i> Logout</a>
                                     </li>
                                 </ul>
                             </div>

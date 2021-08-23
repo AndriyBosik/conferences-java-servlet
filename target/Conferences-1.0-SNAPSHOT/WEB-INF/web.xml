@@ -27,11 +27,11 @@
 
 
     <filter> <!-- This filter must came last!!! -->
-        <filter-name>ResourcesFilter</filter-name>
-        <filter-class>com.conferences.filter.ResourcesFilter</filter-class>
+        <filter-name>UrlModifierFilter</filter-name>
+        <filter-class>com.conferences.filter.UrlModifierFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>ResourcesFilter</filter-name>
+        <filter-name>UrlModifierFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -48,7 +48,7 @@
     <jsp-config>
         <taglib>
             <taglib-uri>tags</taglib-uri>
-            <taglib-location>/WEB-INF/tags/message.tld</taglib-location>
+            <taglib-location>/WEB-INF/taglib.tld</taglib-location>
         </taglib>
     </jsp-config>
 

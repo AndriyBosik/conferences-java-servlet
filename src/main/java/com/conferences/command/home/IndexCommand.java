@@ -4,6 +4,7 @@ import com.conferences.command.FrontCommand;
 import com.conferences.config.HttpMethods;
 import com.conferences.config.Pages;
 import com.conferences.helper.LangHelper;
+import com.conferences.helper.LinkHelper;
 import com.conferences.helper.PropertiesHelper;
 import com.conferences.model.User;
 import com.conferences.service.abstraction.IUserService;
@@ -17,11 +18,13 @@ public class IndexCommand extends FrontCommand {
     private IUserService userService;
     private PropertiesHelper propertiesHelper;
     private LangHelper langHelper;
+    private LinkHelper linkHelper;
 
     public IndexCommand() {
         this.userService = new UserService();
-        propertiesHelper = new PropertiesHelper();
-        langHelper = new LangHelper();
+        this.propertiesHelper = new PropertiesHelper();
+        this.langHelper = new LangHelper();
+        this.linkHelper = new LinkHelper();
     }
 
     @Override
@@ -38,6 +41,8 @@ public class IndexCommand extends FrontCommand {
         if (!request.getMethod().equals("POST")) {
             return;
         }
+        String lang = langHelper.getLangFromSession(request.getSession());
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
@@ -47,9 +52,9 @@ public class IndexCommand extends FrontCommand {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.sendRedirect(Pages.PROFILE.toString());
+            response.sendRedirect(linkHelper.addLangToUrl(Pages.PROFILE.toString(), lang));
         } else {
-            request.setAttribute("errorMessage", propertiesHelper.getPropertyValue("messages", langHelper.getLangFromSession(request), "errors.invalid_login_or_password"));
+            request.setAttribute("errorMessage", propertiesHelper.getPropertyValue("messages", lang, "errors.invalid_login_or_password"));
 
             forward("login");
         }

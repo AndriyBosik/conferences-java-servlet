@@ -3,6 +3,7 @@ package com.conferences.controller;
 import com.conferences.command.CommandInfo;
 import com.conferences.command.FrontCommand;
 import com.conferences.command.UnknownCommand;
+import com.conferences.config.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,10 @@ public class FrontController extends HttpServlet {
         if (contextPathLength != request.getRequestURI().length()) {
             contextPathLength++;
         }
+
+        request.setAttribute("languages", Constants.LANGUAGES);
+        request.setAttribute("currentLanguage", request.getSession().getAttribute("lang"));
+
         String path = request.getPathInfo().substring(contextPathLength);
         CommandInfo commandInfo = getCommandInfo(path);
         FrontCommand command = getCommand(commandInfo);
