@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="tags" prefix="taglib" %>
 
@@ -12,13 +11,13 @@
                             <a href="#" class="brand-logo">Logo</a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li>
-                                    <a href="<taglib:linkTo href="/profile" />"><i class="material-icons left">person</i> <taglib:message value="navbar.link.profile" /></a>
+                                    <a href="<taglib:linkTo href="/profile" />"><i class="material-icons left">person</i> <taglib:message value="header.profile" /></a>
                                 </li>
                                 <li>
-                                    <a href="<taglib:linkTo href="/conferences" />"><i class="material-icons left">people</i> <taglib:message value="navbar.link.conferences" /></a>
+                                    <a href="<taglib:linkTo href="/conferences" />"><i class="material-icons left">people</i> <taglib:message value="header.conferences" /></a>
                                 </li>
                                 <li>
-                                    <a href="<taglib:linkTo href="/logout" />"><i class="material-icons left">exit_to_app</i> <taglib:message value="navbar.link.logout" /></a>
+                                    <a href="<taglib:linkTo href="/logout" />"><i class="material-icons left">exit_to_app</i> <taglib:message value="header.logout" /></a>
                                 </li>
                             </ul>
                         </div>

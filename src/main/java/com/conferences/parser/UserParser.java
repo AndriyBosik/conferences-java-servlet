@@ -15,6 +15,8 @@ public class UserParser implements IParser<User> {
     public User parseToModel(ResultSet result, String prefix) throws SQLException {
         User user = new User();
         user.setId(result.getInt(prefix + "id"));
+        user.setSurname(result.getString(prefix + "surname"));
+        user.setName(result.getString(prefix + "name"));
         user.setLogin(result.getString(prefix + "login"));
         user.setPassword(result.getString(prefix + "password"));
         user.setRoleId(result.getInt(prefix + "role_id"));
