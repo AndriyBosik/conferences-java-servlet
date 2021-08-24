@@ -3,9 +3,10 @@
 <%@ taglib uri="tags" prefix="taglib" %>
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
     <head>
         <meta content="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title><taglib:message value="page.title.login" /></title>
 
@@ -22,7 +23,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12 m4 push-m4">
-                        <jsp:include page="components/languages.jsp">
+                        <jsp:include page="/WEB-INF/jsp/components/languages.jsp">
                             <jsp:param name="class" value="s-hflex-end login-page-lang-list" />
                         </jsp:include>
                         <div class="px10 radius-4 z-depth-1">

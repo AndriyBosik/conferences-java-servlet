@@ -1,0 +1,34 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="tags" prefix="taglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html>
+    <head>
+        <title><taglib:message value="page.title.${view}" /></title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/resources/css/site.css" rel="stylesheet" />
+        <link href="/resources/css/common.css" rel="stylesheet" />
+        <link href="/resources/css/indentations.css" rel="stylesheet" />
+        <link href="/resources/css/materialize.min.css" rel="stylesheet" />
+
+        <c:catch>
+            <jsp:include page="/WEB-INF/jsp/views/${view}/styles.jsp" />
+        </c:catch>
+    </head>
+    <body>
+        <jsp:include page="/WEB-INF/jsp/components/navbar.jsp" />
+
+        <main>
+            <jsp:include page="/WEB-INF/jsp/views/${view}/content.jsp" />
+        </main>
+
+        <jsp:include page="/WEB-INF/jsp/components/footer.jsp" />
+
+        <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+
+        <c:catch>
+            <jsp:include page="/WEB-INF/jsp/views/${view}/scripts.jsp" />
+        </c:catch>
+    </body>
+</html>
