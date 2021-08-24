@@ -7,7 +7,7 @@
     <head>
         <meta content="content-type" content="text/html; charset=utf-8">
 
-        <title>List test</title>
+        <title><taglib:message value="page.title.login" /></title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/resources/css/site.css" rel="stylesheet" />

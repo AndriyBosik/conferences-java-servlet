@@ -1,7 +1,7 @@
 package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.config.HttpMethods;
+import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.helper.LangHelper;
 import com.conferences.helper.LinkHelper;
@@ -30,9 +30,9 @@ public class IndexCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         String requestMethod = request.getMethod();
-        if (requestMethod.equals(HttpMethods.GET.toString())) {
+        if (requestMethod.equals(HttpMethod.GET.toString())) {
             forward("login");
-        } else if (requestMethod.equals(HttpMethods.POST.toString())) {
+        } else if (requestMethod.equals(HttpMethod.POST.toString())) {
             processLogin();
         }
     }
