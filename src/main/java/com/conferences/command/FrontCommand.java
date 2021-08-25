@@ -5,12 +5,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class FrontCommand {
 
     protected ServletContext context;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
+    protected List<String> urlParams;
 
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         this.context = context;

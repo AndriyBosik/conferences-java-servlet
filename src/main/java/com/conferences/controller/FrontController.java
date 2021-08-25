@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FrontController extends HttpServlet {
 
@@ -43,8 +45,13 @@ public class FrontController extends HttpServlet {
     private FrontCommand getCommand(CommandInfo commandInfo) {
         try {
             Class type = Class.forName(String.format("com.conferences.command.%s.%sCommand", commandInfo.getPackageName(), commandInfo.getCommandName()));
-            return (FrontCommand) type.asSubclass(FrontCommand.class).newInstance();
+            if (commandInfo.getUrlParams().isEmpty()) {
+                return (FrontCommand) type.asSubclass(FrontCommand.class).newInstance();
+            } else {
+                return (FrontCommand) type.asSubclass(FrontCommand.class).getConstructor(List.class).newInstance(commandInfo.getUrlParams());
+            }
         } catch (Exception exception) {
+            exception.printStackTrace();
             return new UnknownCommand();
         }
     }
@@ -57,6 +64,11 @@ public class FrontController extends HttpServlet {
         if (parts.length == 1) {
             return new CommandInfo("home", parts[0]);
         }
-        return new CommandInfo(parts[0], parts[1]);
+
+        List<String> urlParams = new ArrayList<>();
+        for (int i = 2; i < parts.length; i++) {
+            urlParams.add(parts[i]);
+        }
+        return new CommandInfo(parts[0], parts[1], urlParams);
     }
 }
