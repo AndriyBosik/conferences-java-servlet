@@ -4,6 +4,9 @@
 
 <html>
     <head>
+        <meta content="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title><taglib:message value="page.title.${view}" /></title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,6 +14,7 @@
         <link href="/resources/css/common.css" rel="stylesheet" />
         <link href="/resources/css/indentations.css" rel="stylesheet" />
         <link href="/resources/css/materialize.min.css" rel="stylesheet" />
+        <link href="/resources/css/materialize-extensions.css" rel="stylesheet" />
 
         <c:catch>
             <jsp:include page="/WEB-INF/jsp/views/${view}/styles.jsp" />
@@ -26,6 +30,7 @@
         <jsp:include page="/WEB-INF/jsp/components/footer.jsp" />
 
         <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+        <script type="text/javascript" src="/resources/js/materialize-initializer.js"></script>
 
         <c:catch>
             <jsp:include page="/WEB-INF/jsp/views/${view}/scripts.jsp" />

@@ -1,4 +1,4 @@
-package com.conferences.model;
+package com.conferences.entity;
 
 import java.io.Serializable;
 

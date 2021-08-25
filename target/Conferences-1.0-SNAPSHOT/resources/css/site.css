@@ -14,3 +14,11 @@ ul.languages-list li {
     padding-right: 5px;
     font-weight: 500;
 }
+
+.meeting-card .card-image {
+    height: 200px;
+}
+
+.meeting-card .date-divider {
+    margin-top: 20px;
+}

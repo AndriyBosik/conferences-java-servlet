@@ -2,9 +2,10 @@ package com.conferences.config;
 
 public enum Pages {
     HOME("/"),
-    LOGIN("/login"),
-    LOGOUT("/logout"),
-    PROFILE("/profile");
+    LOGIN("/home/login"),
+    LOGOUT("/home/logout"),
+    PROFILE("/home/profile"),
+    CONFERENCES_LIST("/meetings/all");
 
     private final String url;
 

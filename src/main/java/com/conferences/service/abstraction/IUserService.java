@@ -1,6 +1,6 @@
 package com.conferences.service.abstraction;
 
-import com.conferences.model.User;
+import com.conferences.entity.User;
 
 public interface IUserService {
 

@@ -6,7 +6,7 @@ import com.conferences.config.Pages;
 import com.conferences.helper.LangHelper;
 import com.conferences.helper.LinkHelper;
 import com.conferences.helper.PropertiesHelper;
-import com.conferences.model.User;
+import com.conferences.entity.User;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
 

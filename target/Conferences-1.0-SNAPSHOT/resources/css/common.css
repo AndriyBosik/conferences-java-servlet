@@ -59,6 +59,35 @@
     font-weight: 500;
 }
 
+.weight-slight {
+    font-weight: 400;
+}
+
+.translucent {
+    opacity: 0.5;
+}
+
+.translucent-2p {
+    opacity: 0.7;
+}
+
+.translucent-3p {
+    opacity: 0.8;
+}
+
+.translucent-2n {
+    opacity: 0.3;
+}
+
+.translucent-3n {
+    opacity: 0.2;
+}
+
+.stretch-background {
+    background-size: cover;
+    background-position: center center;
+}
+
 /* RESPONSIVE FLEXBOX */
 /* Small screen */
 @media only screen and (min-width: 0px) {

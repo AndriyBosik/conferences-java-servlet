@@ -1,6 +1,6 @@
 package com.conferences.dao.abstraction;
 
-import com.conferences.model.Role;
+import com.conferences.entity.Role;
 
 public interface IRoleDao extends IDao<Integer, Role> {
 }

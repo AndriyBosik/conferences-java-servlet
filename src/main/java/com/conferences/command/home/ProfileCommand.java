@@ -1,9 +1,7 @@
 package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.model.User;
-import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.UserService;
+import com.conferences.entity.User;
 
 import javax.servlet.ServletException;
 import java.io.IOException;

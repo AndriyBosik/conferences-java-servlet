@@ -1,6 +1,6 @@
 package com.conferences.parser;
 
-import com.conferences.model.User;
+import com.conferences.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

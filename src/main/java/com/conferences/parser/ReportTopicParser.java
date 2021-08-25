@@ -1,6 +1,6 @@
 package com.conferences.parser;
 
-import com.conferences.model.ReportTopic;
+import com.conferences.entity.ReportTopic;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

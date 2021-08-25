@@ -5,7 +5,7 @@ import com.conferences.config.Pages;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 import com.conferences.helper.PermissionsHelper;
-import com.conferences.model.User;
+import com.conferences.entity.User;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
                 .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString())
                     .withMethods(HttpMethod.GET, HttpMethod.POST)
                         .allowAllRoles()
-                .controlUrls(Pages.PROFILE.toString())
+                .controlUrls(Pages.PROFILE.toString(), Pages.CONFERENCES_LIST.toString())
                         .allowAnyRoleOf("moderator", "speaker", "user")
                 .build();
     }

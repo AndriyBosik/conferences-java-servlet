@@ -1,4 +1,4 @@
-package com.conferences.model;
+package com.conferences.entity;
 
 public class ReportTopic {
     private int id;

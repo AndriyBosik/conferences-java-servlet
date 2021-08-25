@@ -1,11 +1,12 @@
-package com.conferences.model;
+package com.conferences.entity;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Meeting {
+public class Role implements Serializable {
+    private static final long serialVersionUID = 324582034705235L;
+
     private int id;
     private String title;
-    private Date date;
 
     public int getId() {
         return id;
@@ -21,13 +22,5 @@ public class Meeting {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

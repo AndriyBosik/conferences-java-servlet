@@ -2,7 +2,7 @@ package com.conferences.dao.implementation;
 
 import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IMeetingDao;
-import com.conferences.model.Meeting;
+import com.conferences.entity.Meeting;
 import com.conferences.parser.IParser;
 import com.conferences.parser.MeetingParser;
 

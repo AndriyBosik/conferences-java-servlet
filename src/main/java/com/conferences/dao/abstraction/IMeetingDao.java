@@ -1,6 +1,6 @@
 package com.conferences.dao.abstraction;
 
-import com.conferences.model.Meeting;
+import com.conferences.entity.Meeting;
 
 public interface IMeetingDao extends IDao<Integer, Meeting> {
 }

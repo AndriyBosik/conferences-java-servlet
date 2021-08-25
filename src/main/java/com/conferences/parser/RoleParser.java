@@ -1,6 +1,6 @@
 package com.conferences.parser;
 
-import com.conferences.model.Role;
+import com.conferences.entity.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

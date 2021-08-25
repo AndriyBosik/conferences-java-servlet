@@ -2,7 +2,7 @@ package com.conferences.service.implementation;
 
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.dao.implementation.UserDao;
-import com.conferences.model.User;
+import com.conferences.entity.User;
 import com.conferences.service.abstraction.IUserService;
 
 public class UserService implements IUserService {

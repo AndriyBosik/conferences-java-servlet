@@ -2,7 +2,7 @@ package com.conferences.dao.implementation;
 
 import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IRoleDao;
-import com.conferences.model.Role;
+import com.conferences.entity.Role;
 import com.conferences.parser.IParser;
 import com.conferences.parser.RoleParser;
 

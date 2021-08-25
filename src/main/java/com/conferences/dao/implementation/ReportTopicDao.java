@@ -2,7 +2,7 @@ package com.conferences.dao.implementation;
 
 import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IReportTopicDao;
-import com.conferences.model.ReportTopic;
+import com.conferences.entity.ReportTopic;
 import com.conferences.parser.IParser;
 import com.conferences.parser.ReportTopicParser;
 

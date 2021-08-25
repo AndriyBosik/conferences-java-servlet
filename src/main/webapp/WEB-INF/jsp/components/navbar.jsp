@@ -11,13 +11,13 @@
                             <a href="#" class="brand-logo">Logo</a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li>
-                                    <a href="<taglib:linkTo href="/profile" />"><i class="material-icons left">person</i> <taglib:message value="header.profile" /></a>
+                                    <a href="<taglib:linkTo href="/home/profile" />"><i class="material-icons left">person</i> <taglib:message value="header.profile" /></a>
                                 </li>
                                 <li>
-                                    <a href="<taglib:linkTo href="/conferences" />"><i class="material-icons left">people</i> <taglib:message value="header.conferences" /></a>
+                                    <a href="<taglib:linkTo href="/meetings/all" />"><i class="material-icons left">people</i> <taglib:message value="header.meetings" /></a>
                                 </li>
                                 <li>
-                                    <a href="<taglib:linkTo href="/logout" />"><i class="material-icons left">exit_to_app</i> <taglib:message value="header.logout" /></a>
+                                    <a href="<taglib:linkTo href="/home/logout" />"><i class="material-icons left">exit_to_app</i> <taglib:message value="header.logout" /></a>
                                 </li>
                             </ul>
                         </div>

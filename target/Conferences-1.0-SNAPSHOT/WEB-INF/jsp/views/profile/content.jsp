@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h4 class="grey-text text-darken-2"><taglib:message value="header.profile" /></h4>
+            <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.profile" /></h4>
             <hr />
         </div>
         <form action="" method="post" class="col s12">
@@ -21,15 +21,15 @@
                 <label for="name"><taglib:message value="name" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="old-password" type="text" name="old-password" />
+                <input id="old-password" type="password" name="old-password" />
                 <label for="old-password"><taglib:message value="old_password" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="new-password" type="text" name="new-password" />
+                <input id="new-password" type="password" name="new-password" />
                 <label for="new-password"><taglib:message value="new_password" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="confirm-password" type="text" name="confirm-password" />
+                <input id="confirm-password" type="password" name="confirm-password" />
                 <label for="confirm-password"><taglib:message value="confirm_password" /></label>
             </div>
             <div class="full-width s-hflex-end">
