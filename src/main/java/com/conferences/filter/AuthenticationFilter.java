@@ -25,7 +25,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
                 .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString())
                     .withMethods(HttpMethod.GET, HttpMethod.POST)
                         .allowAllRoles()
-                .controlUrls(Pages.PROFILE.toString(), Pages.CONFERENCES_LIST.toString())
+                .controlUrls(Pages.PROFILE.toString(), Pages.MEETINGS_LIST.toString(), Pages.MEETING.toString())
                         .allowAnyRoleOf("moderator", "speaker", "user")
                 .build();
     }

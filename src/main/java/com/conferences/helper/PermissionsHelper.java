@@ -2,6 +2,9 @@ package com.conferences.helper;
 
 import com.conferences.config.HttpMethod;
 
+import java.nio.file.FileSystems;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class PermissionsHelper {
@@ -22,9 +25,10 @@ public class PermissionsHelper {
         if (!allowed.containsKey(role) || !allowed.get(role).containsKey(method)) {
             return false;
         }
-        List<String> allowedUrls = allowed.get(role).get(method);
-        for (String allowedUrl: allowedUrls) {
-            if (url.equals(allowedUrl)) {
+        List<String> allowedUrlPatterns = allowed.get(role).get(method);
+        for (String pattern: allowedUrlPatterns) {
+            PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
+            if (matcher.matches(Paths.get(url))) {
                 return true;
             }
         }
@@ -35,11 +39,11 @@ public class PermissionsHelper {
 
         private PermissionsHelper helper;
 
-        private final List<String> urls;
+        private final List<String> urlPatterns;
         private final List<HttpMethod> httpMethods;
 
         public Builder() {
-            urls = new ArrayList<>();
+            urlPatterns = new ArrayList<>();
             httpMethods = new ArrayList<>();
         }
 
@@ -50,7 +54,7 @@ public class PermissionsHelper {
         }
 
         public Builder controlUrls(String... urls) {
-            this.urls.addAll(Arrays.asList(urls));
+            this.urlPatterns.addAll(Arrays.asList(urls));
             return this;
         }
 
@@ -79,7 +83,7 @@ public class PermissionsHelper {
         }
 
         private void initData() {
-            urls.clear();
+            urlPatterns.clear();
             httpMethods.clear();
         }
 
@@ -97,7 +101,7 @@ public class PermissionsHelper {
                     helper.allowed.get(role).put(method, new ArrayList<>());
                 }
 
-                for (String url: urls) {
+                for (String url: urlPatterns) {
                     helper.allowed.get(role).get(method).add(url);
                 }
             }

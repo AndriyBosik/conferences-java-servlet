@@ -21,10 +21,14 @@
         <div class="meetings-list-area row">
             <c:forEach items="${meetings}" var="meeting">
                 <div class="col s12 m4">
-                    <div class="card hoverable clickable meeting-card">
+                    <div class="card hoverable meeting-card">
                         <div class="card-image stretch-background" style="background-image: url('/resources/images/${meeting.imagePath}')">
-                            <a href="/meetings/${meeting.id}" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="edit" />">
-                                <i class="material-icons">edit</i>
+                            <a href="<taglib:linkTo href="/meetings/edit/${meeting.id}" />" class="tooltipped waves-light blue-text text-darken-3 top-right-element text-hoverable" data-position="right" data-tooltip="<taglib:message value="edit" />">
+                                <i class="material-icons small">edit</i>
+                            </a>
+
+                            <a href="<taglib:linkTo href="/meetings/show/${meeting.id}" />" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="view" />">
+                                <i class="material-icons">arrow_forward</i>
                             </a>
                         </div>
                         <div class="card-content">
