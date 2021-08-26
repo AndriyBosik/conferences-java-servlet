@@ -59,7 +59,7 @@
 
                 <c:otherwise>
                     <p class="center-align translucent large-text">
-                        <taglib:message value="no_meetings" />
+                        <taglib:message value="page_not_found" />
                     </p>
                 </c:otherwise>
 
