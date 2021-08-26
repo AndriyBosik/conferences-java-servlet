@@ -5,7 +5,8 @@
         <div class="meeting-container s-vflex">
             <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/${meeting.imagePath}')"></div>
 
-            <p class="meeting-title weight-slight m0 py15">${meeting.title}</p>
+            <p class="meeting-title weight-slight m0 pt15">${meeting.title}</p>
+            <div class="separator mb10"></div>
 
             <p class="meeting-description translucent-2p m0">
                 ${meeting.description}
@@ -13,9 +14,11 @@
 
             <c:choose>
                 <c:when test="${not empty meeting.reportTopics}">
-                    <p class="meeting-title weight-slight m0 py15"><taglib:message value="topics" /></p>
+                    <p class="meeting-title weight-slight m0 pt15"><taglib:message value="topics" /></p>
+                    <div class="separator mb10"></div>
+
                     <c:forEach items="${meeting.reportTopics}" var="topic">
-                        <h6>${topic.title}</h6>
+                        <h6>${topic.title}(${topic.speaker.name} ${topic.speaker.surname})</h6>
                         <br />
                     </c:forEach>
                 </c:when>

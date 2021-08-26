@@ -1,14 +1,30 @@
 package com.conferences.entity;
 
+import com.conferences.annotation.Column;
+import com.conferences.annotation.Key;
+import com.conferences.annotation.Table;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Table(name = "meetings")
 public class Meeting {
+
+    @Key
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "image_path")
     private String imagePath;
+
+    @Column(name = "date")
     private Date date;
 
     private List<ReportTopic> reportTopics;

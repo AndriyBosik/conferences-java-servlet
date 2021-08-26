@@ -4,6 +4,6 @@ import com.conferences.entity.Meeting;
 
 public interface IMeetingDao extends IDao<Integer, Meeting> {
 
-    Meeting findByKeyWithReportTopics(Integer key);
+    Meeting findByKeyWithReportTopicsAndSpeakers(Integer key);
 
 }

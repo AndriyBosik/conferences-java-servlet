@@ -1,11 +1,20 @@
 package com.conferences.entity;
 
+import com.conferences.annotation.Column;
+import com.conferences.annotation.Key;
+import com.conferences.annotation.Table;
+
 import java.io.Serializable;
 
+@Table(name = "roles")
 public class Role implements Serializable {
     private static final long serialVersionUID = 324582034705235L;
 
+    @Key
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "title")
     private String title;
 
     public int getId() {

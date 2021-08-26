@@ -21,8 +21,8 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public Meeting getMeetingWithTopics(int id) {
-        return meetingDao.findByKeyWithReportTopics(id);
+    public Meeting getMeetingWithTopicsAndSpeakers(int id) {
+        return meetingDao.findByKeyWithReportTopicsAndSpeakers(id);
     }
 
 }

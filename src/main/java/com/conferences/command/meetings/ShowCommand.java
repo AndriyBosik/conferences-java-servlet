@@ -1,8 +1,6 @@
 package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.dao.abstraction.IMeetingDao;
-import com.conferences.dao.implementation.MeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.implementation.MeetingService;
@@ -23,7 +21,7 @@ public class ShowCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        Meeting meeting = meetingService.getMeetingWithTopics(id);
+        Meeting meeting = meetingService.getMeetingWithTopicsAndSpeakers(id);
         request.setAttribute("meeting", meeting);
 
         forwardPartial("meeting");
