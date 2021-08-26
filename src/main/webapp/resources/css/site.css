@@ -22,3 +22,11 @@ ul.languages-list li {
 .meeting-card .date-divider {
     margin-top: 20px;
 }
+
+.meeting-container .meeting-title {
+    font-size: 30px;
+}
+
+.meeting-container .meeting-description {
+    font-size: 17px;
+}

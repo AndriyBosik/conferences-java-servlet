@@ -20,4 +20,9 @@ public class MeetingService implements IMeetingService {
         return meetingDao.findAll();
     }
 
+    @Override
+    public Meeting getMeetingWithTopics(int id) {
+        return meetingDao.findByKeyWithReportTopics(id);
+    }
+
 }

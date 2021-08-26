@@ -1,6 +1,8 @@
 package com.conferences.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Meeting {
     private int id;
@@ -8,6 +10,12 @@ public class Meeting {
     private String description;
     private String imagePath;
     private Date date;
+
+    private List<ReportTopic> reportTopics;
+
+    public Meeting() {
+        reportTopics = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
@@ -47,5 +55,13 @@ public class Meeting {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public List<ReportTopic> getReportTopics() {
+        return reportTopics;
+    }
+
+    public void setReportTopics(List<ReportTopic> reportTopics) {
+        this.reportTopics = reportTopics;
     }
 }

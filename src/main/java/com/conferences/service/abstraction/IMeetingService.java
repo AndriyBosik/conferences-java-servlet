@@ -8,4 +8,6 @@ public interface IMeetingService {
 
     List<Meeting> getAllMeetings();
 
+    Meeting getMeetingWithTopics(int id);
+
 }
