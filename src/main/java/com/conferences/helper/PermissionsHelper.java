@@ -22,6 +22,7 @@ public class PermissionsHelper {
     }
 
     private boolean checkForRole(String role, HttpMethod method, String url) {
+        role = role.toLowerCase();
         if (!allowed.containsKey(role) || !allowed.get(role).containsKey(method)) {
             return false;
         }
@@ -67,9 +68,9 @@ public class PermissionsHelper {
             if (httpMethods.isEmpty()) {
                 addAllHttpMethods();
             }
-            for (String role: roles) {
-                addForRole(role);
-            }
+            Arrays.stream(roles)
+                .map(role -> role.toLowerCase())
+                .forEach(this::addForRole);
             initData();
             return this;
         }

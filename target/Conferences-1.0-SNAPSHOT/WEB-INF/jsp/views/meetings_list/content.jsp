@@ -34,7 +34,7 @@
                                             <i class="material-icons small">edit</i>
                                         </a>
                                     </tf:forRoles>
-                                    
+
                                     <a href="<taglib:linkTo href="/meetings/show/${meeting.id}" />" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="view" />">
                                         <i class="material-icons">arrow_forward</i>
                                     </a>
