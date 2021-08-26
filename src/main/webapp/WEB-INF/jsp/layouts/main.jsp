@@ -30,7 +30,7 @@
         <jsp:include page="/WEB-INF/jsp/components/footer.jsp" />
 
         <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-        <script type="text/javascript" src="/resources/js/materialize-initializer.js"></script>
+        <script type="text/javascript" src="/resources/js/startup.js"></script>
 
         <c:catch>
             <jsp:include page="/WEB-INF/jsp/views/${view}/scripts.jsp" />

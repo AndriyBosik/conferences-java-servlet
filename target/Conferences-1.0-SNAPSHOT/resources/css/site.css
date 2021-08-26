@@ -1,3 +1,7 @@
+:root {
+    --user-avatar-size: 50px;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -29,4 +33,14 @@ ul.languages-list li {
 
 .meeting-container .meeting-description {
     font-size: 17px;
+}
+
+.user-avatar {
+    width: var(--user-avatar-size);
+    height: var(--user-avatar-size);
+    border-radius: 50%;
+}
+
+.no-topics-message {
+    font-size: 50px;
 }

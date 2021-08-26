@@ -33,7 +33,9 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
                 dbTable.getName() + ".*," +
                 entityProcessor.getEntityFieldsWithPrefixes(ReportTopic.class, "rt.", "report_topic_") + "," +
                 entityProcessor.getEntityFieldsWithPrefixes(User.class, "u.", "user_") + " " +
-                "FROM " + dbTable.getName() + " LEFT JOIN report_topics rt ON " + dbTable.getName() + ".id = rt.meeting_id LEFT JOIN users u ON rt.speaker_id=u.id WHERE " + dbTable.getName() + ".id=?";
+                "FROM " + dbTable.getName() + " LEFT JOIN report_topics rt ON " + dbTable.getName() + ".id = rt.meeting_id LEFT JOIN users u ON rt.speaker_id=u.id " +
+                "WHERE " + dbTable.getName() + ".id=? " +
+                "ORDER BY rt." + entityProcessor.getEntityFieldsList(ReportTopic.class).getKey();
         try (Connection connection = DbManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 

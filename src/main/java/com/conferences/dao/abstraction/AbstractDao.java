@@ -90,7 +90,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
     @Override
     public List<T> findAll() {
         List<T> collection = new ArrayList<>();
-        String selectSql = "SELECT * FROM " + dbTable.getName();
+        String selectSql = "SELECT * FROM " + dbTable.getName() + " ORDER BY " + dbTable.getKey();
         try (Connection connection = DbManager.getConnection();
              Statement statement = connection.createStatement()) {
 

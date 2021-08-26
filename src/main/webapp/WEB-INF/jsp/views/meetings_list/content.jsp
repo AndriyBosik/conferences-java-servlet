@@ -22,7 +22,7 @@
             <c:forEach items="${meetings}" var="meeting">
                 <div class="col s12 m4">
                     <div class="card hoverable meeting-card">
-                        <div class="card-image stretch-background" style="background-image: url('/resources/images/${meeting.imagePath}')">
+                        <div class="card-image stretch-background" style="background-image: url('/resources/images/meetings/${meeting.imagePath}')">
                             <a href="<taglib:linkTo href="/meetings/edit/${meeting.id}" />" class="tooltipped waves-light blue-text text-darken-3 top-right-element text-hoverable" data-position="right" data-tooltip="<taglib:message value="edit" />">
                                 <i class="material-icons small">edit</i>
                             </a>

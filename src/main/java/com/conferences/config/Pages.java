@@ -6,7 +6,8 @@ public enum Pages {
     LOGOUT("/home/logout"),
     PROFILE("/home/profile"),
     MEETINGS_LIST("/meetings/all"),
-    MEETING("/meetings/show/*");
+    MEETING("/meetings/show/*"),
+    TOPIC("/topics/show/*");
 
     private final String url;
 
