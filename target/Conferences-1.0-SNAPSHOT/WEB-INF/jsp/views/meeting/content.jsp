@@ -56,7 +56,7 @@
                         </tbody>
                     </table>
 
-                    <tf:pagination currentPage="1" pagesCount="7"/>
+                    <tf:pagination currentPage="1" pagesCount="7" />
 
                 </c:when>
 
