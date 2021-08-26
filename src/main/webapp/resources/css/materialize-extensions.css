@@ -24,3 +24,7 @@
 .truncate-5 {
     -webkit-line-clamp: 5;
 }
+
+.modal.datepicker-modal.open {
+    width: auto !important;
+}

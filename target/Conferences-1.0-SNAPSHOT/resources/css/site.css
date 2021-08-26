@@ -44,3 +44,12 @@ ul.languages-list li {
 .no-topics-message {
     font-size: 50px;
 }
+
+.time-divider {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+#meeting-form .modal.datepicker-modal {
+    top: 3% !important;
+}

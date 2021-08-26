@@ -28,6 +28,7 @@
         </main>
 
         <jsp:include page="/WEB-INF/jsp/components/footer.jsp" />
+        <jsp:include page="/WEB-INF/jsp/components/i18n-js.jsp" />
 
         <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
         <script type="text/javascript" src="/resources/js/startup.js"></script>

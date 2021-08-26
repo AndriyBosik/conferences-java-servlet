@@ -1,10 +1,8 @@
 package com.conferences.tag;
 
-import com.conferences.config.Defaults;
 import com.conferences.helper.LangHelper;
 import com.conferences.helper.LinkHelper;
 
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
@@ -23,7 +21,7 @@ public class LinkToTag extends TagSupport {
 
     @Override
     public int doStartTag() {
-        String lang = langHelper.getLangFromSession(pageContext.getSession());
+        String lang = langHelper.getLang(pageContext.getSession());
 
         JspWriter out = pageContext.getOut();
 

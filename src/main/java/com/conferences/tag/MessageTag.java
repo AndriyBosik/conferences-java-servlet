@@ -21,7 +21,7 @@ public class MessageTag extends TagSupport {
         Properties properties = new Properties();
         try {
             properties.load(new InputStreamReader(MessageTag.class.getClassLoader().getResourceAsStream(propertiesFilename), "UTF-8"));
-            out.println(properties.getProperty(value));
+            out.print(properties.getProperty(value));
         } catch (IOException exception) {
             exception.printStackTrace();
         }

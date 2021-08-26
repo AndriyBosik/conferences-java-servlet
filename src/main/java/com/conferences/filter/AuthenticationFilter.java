@@ -30,7 +30,11 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.MEETINGS_LIST.toString(),
                     Pages.MEETING.toString(),
                     Pages.TOPIC.toString())
-                        .allowAnyRoleOf("moderator", "speaker", "user")
+                        .withMethods(HttpMethod.GET)
+                            .allowAnyRoleOf("moderator", "speaker", "user")
+                .controlUrls(Pages.MEETINGS_LIST.toString())
+                    .withMethods(HttpMethod.POST)
+                        .allowAnyRoleOf("moderator")
                 .build();
     }
 

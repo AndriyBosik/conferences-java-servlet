@@ -10,12 +10,14 @@
                 <div class="equal-flex">
                     <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.meetings" /></h4>
                 </div>
-                <div class="s-vflex-end">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        <taglib:message value="add" />
-                        <i class="material-icons right">add</i>
-                    </button>
-                </div>
+                <c:if test="${sessionScope.user.role.title == 'moderator'}">
+                    <div class="s-vflex-end">
+                        <a href="#meeting-form" class="btn waves-effect waves-light modal-trigger">
+                            <taglib:message value="add" />
+                            <i class="material-icons right">add</i>
+                        </a>
+                    </div>
+                </c:if>
             </div>
             <hr />
         </div>
@@ -53,3 +55,7 @@
 
     </div>
 </div>
+
+<c:if test="${sessionScope.user.role.title == 'moderator'}">
+    <jsp:include page="/WEB-INF/jsp/components/modals/new-meeting-form.jsp" />
+</c:if>

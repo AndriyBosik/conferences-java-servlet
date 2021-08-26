@@ -41,7 +41,7 @@ public class IndexCommand extends FrontCommand {
         if (!request.getMethod().equals("POST")) {
             return;
         }
-        String lang = langHelper.getLangFromSession(request.getSession());
+        String lang = langHelper.getLang(request.getSession());
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
