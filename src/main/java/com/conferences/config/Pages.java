@@ -6,6 +6,7 @@ public enum Pages {
     LOGOUT("/home/logout"),
     PROFILE("/home/profile"),
     MEETINGS_LIST("/meetings/all"),
+    MEETINGS_LIST_PAGE("/meetings/all/*"),
     MEETING("/meetings/show/*"),
     TOPIC("/topics/show/*");
 

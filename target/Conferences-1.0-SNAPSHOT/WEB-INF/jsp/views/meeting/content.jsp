@@ -61,7 +61,7 @@
                 </c:when>
 
                 <c:otherwise>
-                    <p class="center-align translucent no-topics-message">
+                    <p class="center-align translucent large-text">
                         <taglib:message value="no_topics" />
                     </p>
                 </c:otherwise>

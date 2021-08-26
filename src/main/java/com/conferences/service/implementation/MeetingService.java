@@ -3,6 +3,7 @@ package com.conferences.service.implementation;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.dao.implementation.MeetingDao;
 import com.conferences.entity.Meeting;
+import com.conferences.model.Page;
 import com.conferences.service.abstraction.IMeetingService;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public List<Meeting> getAllMeetings() {
-        return meetingDao.findAll();
+    public List<Meeting> getAllMeetingsByPage(Page page) {
+        return meetingDao.findAllPage(page).getItem();
     }
 
     @Override

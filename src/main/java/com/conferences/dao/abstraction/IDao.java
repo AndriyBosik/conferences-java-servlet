@@ -14,4 +14,6 @@ public interface IDao<K, T> {
 
     List<T> findAll();
 
+    int getRecordsCount();
+
 }

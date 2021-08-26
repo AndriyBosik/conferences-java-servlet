@@ -6,11 +6,15 @@ import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
+import com.conferences.model.Page;
+import com.conferences.model.PageResponse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetingDao {
     private static final String ID = "id";
@@ -57,6 +61,40 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
             return meeting;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PageResponse<List<Meeting>> findAllPage(Page page) {
+        final int offset = (page.getPageNumber() - 1)*page.getItemsCount();
+        String sql = "SELECT * FROM " + dbTable.getName() + " ORDER BY " + dbTable.getKey() + " OFFSET ? LIMIT ?";
+
+        PageResponse<List<Meeting>> answer = new PageResponse<>();
+
+        try (Connection connection = DbManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, offset);
+            statement.setInt(2, page.getItemsCount());
+
+            ResultSet result = statement.executeQuery();
+            List<Meeting> meetings = new ArrayList<>();
+            while (result.next()) {
+                meetings.add(entityParser.parseToEntity(Meeting.class, result));
+            }
+
+            answer.setItem(meetings);
+
+            int totalRecords = getRecordsCount();
+            answer.setPagesCount(
+                totalRecords / page.getItemsCount() +
+                (totalRecords % page.getItemsCount() > 0 ? 1 : 0)
+            );
+
+            return answer;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
         return null;
     }

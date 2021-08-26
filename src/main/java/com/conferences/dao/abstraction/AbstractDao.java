@@ -103,4 +103,20 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
         }
         return collection;
     }
+
+    @Override
+    public int getRecordsCount() {
+        String sql = "SELECT COUNT(" + dbTable.getKey() + ") AS count FROM " + dbTable.getName();
+        try (Connection connection = DbManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return result.getInt("count");
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return 0;
+    }
 }

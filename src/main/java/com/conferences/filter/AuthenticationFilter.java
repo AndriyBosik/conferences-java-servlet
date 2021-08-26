@@ -28,6 +28,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
                 .controlUrls(
                     Pages.PROFILE.toString(),
                     Pages.MEETINGS_LIST.toString(),
+                    Pages.MEETINGS_LIST_PAGE.toString(),
                     Pages.MEETING.toString(),
                     Pages.TOPIC.toString())
                         .withMethods(HttpMethod.GET)
