@@ -1,7 +1,9 @@
-package com.conferences.util.reflection;
+package com.conferences.util.reflection.implementation;
 
 import com.conferences.annotation.Column;
 import com.conferences.model.DbTable;
+import com.conferences.util.reflection.abstraction.IEntityParser;
+import com.conferences.util.reflection.abstraction.IEntityProcessor;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
@@ -9,11 +11,18 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class EntityParser {
+public class EntityParser implements IEntityParser {
 
-    public static <T> T parseToEntity(Class<T> entityClass, ResultSet result, String columnPrefix) throws SQLException {
+    private IEntityProcessor entityProcessor;
+
+    public EntityParser() {
+        entityProcessor = new EntityProcessor();
+    }
+
+    @Override
+    public <T> T parseToEntity(Class<T> entityClass, ResultSet result, String columnPrefix) throws SQLException {
         try {
-            DbTable dbTable = EntityReflectionHelper.getEntityFieldsList(entityClass);
+            DbTable dbTable = entityProcessor.getEntityFieldsList(entityClass);
             T entity = (T) Class.forName(entityClass.getName()).newInstance();
 
             Field[] fields = entity.getClass().getDeclaredFields();
@@ -35,7 +44,8 @@ public class EntityParser {
         return null;
     }
 
-    public static <T> T parseToEntity(Class<T> entityClass, ResultSet result) throws SQLException {
+    @Override
+    public <T> T parseToEntity(Class<T> entityClass, ResultSet result) throws SQLException {
         return parseToEntity(entityClass, result, "");
     }
 

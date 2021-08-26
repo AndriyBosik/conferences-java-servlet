@@ -2,8 +2,10 @@ package com.conferences.dao.abstraction;
 
 import com.conferences.config.DbManager;
 import com.conferences.model.DbTable;
-import com.conferences.util.reflection.EntityParser;
-import com.conferences.util.reflection.EntityReflectionHelper;
+import com.conferences.util.reflection.abstraction.IEntityProcessor;
+import com.conferences.util.reflection.implementation.EntityParser;
+import com.conferences.util.reflection.implementation.EntityProcessor;
+import com.conferences.util.reflection.abstraction.IEntityParser;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.*;
@@ -14,12 +16,16 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
     private Class<T> entityClass;
 
+    protected IEntityParser entityParser;
+    protected IEntityProcessor entityProcessor;
     protected DbTable dbTable;
 
     public AbstractDao() {
         entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 
-        dbTable = EntityReflectionHelper.getEntityFieldsList(entityClass);
+        entityParser = new EntityParser();
+        entityProcessor = new EntityProcessor();
+        dbTable = entityProcessor.getEntityFieldsList(entityClass);
     }
 
     protected abstract PreparedStatement getInsertStatement(Connection connection, T model) throws SQLException;
@@ -45,7 +51,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
             ResultSet result = statement.executeQuery(selectSql);
             if (result.next()) {
-                return EntityParser.parseToEntity(entityClass, result);
+                return entityParser.parseToEntity(entityClass, result);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -90,8 +96,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
             ResultSet result = statement.executeQuery(selectSql);
             while (result.next()) {
-//                collection.add(getParser().parseToModel(result));
-                collection.add(EntityParser.parseToEntity(entityClass, result));
+                collection.add(entityParser.parseToEntity(entityClass, result));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

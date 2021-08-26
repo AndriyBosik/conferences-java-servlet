@@ -5,7 +5,6 @@ import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
-import com.conferences.util.reflection.EntityParser;
 
 import java.sql.*;
 
@@ -17,7 +16,9 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
 
     @Override
     public User findByLoginAndPasswordWithRole(String login, String password) {
-        String sql = "SELECT " + dbTable.getName() + ".*, r.id AS roles_id, r.title AS roles_title FROM " + dbTable.getName() + " LEFT JOIN roles r on r.id=" + dbTable.getName() + ".role_id WHERE " + dbTable.getName() + ".login=? AND " + dbTable.getName() + ".password=?";
+        String sql = "SELECT " + dbTable.getName() + ".*," +
+                entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
+                "FROM " + dbTable.getName() + " LEFT JOIN roles r on r.id=" + dbTable.getName() + ".role_id WHERE " + dbTable.getName() + ".login=? AND " + dbTable.getName() + ".password=?";
         try (Connection connection = DbManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -27,8 +28,8 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                User user = EntityParser.parseToEntity(User.class, result);
-                user.setRole(EntityParser.parseToEntity(Role.class, result, "roles_"));
+                User user = entityParser.parseToEntity(User.class, result);
+                user.setRole(entityParser.parseToEntity(Role.class, result, "role_"));
                 return user;
             }
         } catch (SQLException ex) {
