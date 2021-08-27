@@ -9,10 +9,7 @@ import com.conferences.entity.User;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +17,18 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
     private static final String ID = "id";
     private static final String TITLE = "title";
     private static final String DATE = "date";
+    private static final String DESCRIPTION = "description";
+    private static final String IMAGE_PATH = "image_path";
 
     @Override
     protected PreparedStatement getInsertStatement(Connection connection, Meeting model) throws SQLException {
-        return null;
+        String sql = "INSERT INTO " + dbTable.getName() + "(" + TITLE + ", " + DATE + ", " + DESCRIPTION + ", " + IMAGE_PATH + ") VALUES(?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql, new String[]{ dbTable.getKey() });
+        statement.setString(1, model.getTitle());
+        statement.setTimestamp(2, new Timestamp(model.getDate().getTime()));
+        statement.setString(3, model.getDescription());
+        statement.setString(4, model.getImagePath());
+        return statement;
     }
 
     @Override

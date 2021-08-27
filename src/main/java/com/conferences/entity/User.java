@@ -1,7 +1,6 @@
 package com.conferences.entity;
 
 import com.conferences.annotation.Column;
-import com.conferences.annotation.Key;
 import com.conferences.annotation.Table;
 
 import java.io.Serializable;
@@ -10,8 +9,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID = 3241341243L;
 
-    @Key
-    @Column(name = "id")
+    @Column(name = "id", key = true)
     private int id;
 
     @Column(name = "surname")

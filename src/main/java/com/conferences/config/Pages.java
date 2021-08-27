@@ -7,13 +7,22 @@ public enum Pages {
     PROFILE("/home/profile"),
     MEETINGS_LIST("/meetings/all"),
     MEETINGS_LIST_PAGE("/meetings/all/*"),
-    MEETING("/meetings/show/*"),
+    MEETING("/meetings/show/"){
+        @Override
+        public String toString() {
+            return url + "*";
+        }
+    },
     TOPIC("/topics/show/*");
 
-    private final String url;
+    protected final String url;
 
     Pages(String url) {
         this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     @Override

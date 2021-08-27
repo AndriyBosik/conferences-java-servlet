@@ -36,7 +36,15 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
         int numberOfInsertedRows = 0;
         try (Connection connection = DbManager.getConnection();
              PreparedStatement statement = getInsertStatement(connection, model)) {
+
             numberOfInsertedRows = statement.executeUpdate();
+
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    entityProcessor.setEntityGeneratedFields(model, resultSet);
+                }
+            }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

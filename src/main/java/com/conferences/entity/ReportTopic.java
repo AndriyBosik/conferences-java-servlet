@@ -1,14 +1,12 @@
 package com.conferences.entity;
 
 import com.conferences.annotation.Column;
-import com.conferences.annotation.Key;
 import com.conferences.annotation.Table;
 
 @Table(name = "report_topics")
 public class ReportTopic {
 
-    @Key
-    @Column(name = "id")
+    @Column(name = "id", key = true)
     private int id;
 
     @Column(name = "title")

@@ -7,5 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 public @interface Column {
 
     String name();
+    boolean key() default false;
 
 }

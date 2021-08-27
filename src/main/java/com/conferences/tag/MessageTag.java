@@ -15,7 +15,7 @@ public class MessageTag extends TagSupport {
     @Override
     public int doStartTag() {
         String lang = (String) pageContext.getSession().getAttribute("lang");
-        lang = lang == null ? Defaults.LANG.toString() : lang;
+        lang = lang == null ? Defaults.DEFAULT_LANG.toString() : lang;
         String propertiesFilename = "messages_" + lang + ".properties";
         JspWriter out = pageContext.getOut();
         Properties properties = new Properties();

@@ -11,4 +11,6 @@ public interface IMeetingService {
 
     Meeting getMeetingWithTopicsAndSpeakers(int id);
 
+    boolean saveMeeting(Meeting meeting);
+
 }

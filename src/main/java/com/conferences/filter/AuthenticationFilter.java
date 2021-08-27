@@ -4,7 +4,7 @@ import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
-import com.conferences.helper.PermissionsHelper;
+import com.conferences.handler.PermissionsHandler;
 import com.conferences.entity.User;
 
 import javax.servlet.*;
@@ -15,12 +15,12 @@ public class AuthenticationFilter extends UrlDividerFilter {
 
     private static final String GUEST_USER = "guest";
 
-    private PermissionsHelper permissionsHelper;
+    private PermissionsHandler permissionsHandler;
 
     @Override
     public void init(FilterConfig filterConfig) {
-        PermissionsHelper.Builder builder = new PermissionsHelper.Builder();
-        permissionsHelper = builder
+        PermissionsHandler.Builder builder = new PermissionsHandler.Builder();
+        permissionsHandler = builder
                 .init()
                 .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString())
                     .withMethods(HttpMethod.GET, HttpMethod.POST)
@@ -50,7 +50,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
             userRole = user.getRole().getTitle();
         }
 
-        if (permissionsHelper.isAllowed(userRole, HttpMethod.fromString(httpMethod), url)) {
+        if (permissionsHandler.isAllowed(userRole, HttpMethod.fromString(httpMethod), url)) {
             filterChain.doFilter(servletData.getServletRequest(), servletData.getServletResponse());
             return;
         }

@@ -1,7 +1,6 @@
 package com.conferences.entity;
 
 import com.conferences.annotation.Column;
-import com.conferences.annotation.Key;
 import com.conferences.annotation.Table;
 
 import java.util.ArrayList;
@@ -11,8 +10,7 @@ import java.util.List;
 @Table(name = "meetings")
 public class Meeting {
 
-    @Key
-    @Column(name = "id")
+    @Column(name = "id", key = true)
     private int id;
 
     @Column(name = "title")
@@ -79,5 +77,16 @@ public class Meeting {
 
     public void setReportTopics(List<ReportTopic> reportTopics) {
         this.reportTopics = reportTopics;
+    }
+
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

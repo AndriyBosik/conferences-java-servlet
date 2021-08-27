@@ -1,7 +1,7 @@
 <%@ taglib uri="tags" prefix="taglib" %>
 
 <div id="meeting-form" class="modal">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="modal-content">
             <h5><taglib:message value="create_meeting" /></h5>
 
@@ -26,7 +26,7 @@
                     <div class="file-field input-field" style="margin: 0px;">
                         <div class="btn">
                             <span><taglib:message value="photo" /></span>
-                            <input type="file" name="image-path" />
+                            <input type="file" name="image_path" accept="image/*" />
                         </div>
                         <div class="file-path-wrapper">
                             <input type="text" class="file-path validate" />

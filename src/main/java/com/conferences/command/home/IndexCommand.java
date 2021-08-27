@@ -3,9 +3,9 @@ package com.conferences.command.home;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
-import com.conferences.helper.LangHelper;
-import com.conferences.helper.LinkHelper;
-import com.conferences.helper.PropertiesHelper;
+import com.conferences.handler.LangHandler;
+import com.conferences.handler.LinkHandler;
+import com.conferences.handler.PropertiesHandler;
 import com.conferences.entity.User;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
@@ -16,15 +16,15 @@ import java.io.IOException;
 
 public class IndexCommand extends FrontCommand {
     private IUserService userService;
-    private PropertiesHelper propertiesHelper;
-    private LangHelper langHelper;
-    private LinkHelper linkHelper;
+    private PropertiesHandler propertiesHandler;
+    private LangHandler langHandler;
+    private LinkHandler linkHandler;
 
     public IndexCommand() {
         this.userService = new UserService();
-        this.propertiesHelper = new PropertiesHelper();
-        this.langHelper = new LangHelper();
-        this.linkHelper = new LinkHelper();
+        this.propertiesHandler = new PropertiesHandler();
+        this.langHandler = new LangHandler();
+        this.linkHandler = new LinkHandler();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class IndexCommand extends FrontCommand {
         if (!request.getMethod().equals("POST")) {
             return;
         }
-        String lang = langHelper.getLang(request.getSession());
+        String lang = langHandler.getLang(request.getSession());
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -52,9 +52,9 @@ public class IndexCommand extends FrontCommand {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.sendRedirect(linkHelper.addLangToUrl(Pages.PROFILE.toString(), lang));
+            response.sendRedirect(linkHandler.addLangToUrl(Pages.PROFILE.toString(), lang));
         } else {
-            request.setAttribute("errorMessage", propertiesHelper.getPropertyValue("messages", lang, "errors.invalid_login_or_password"));
+            request.setAttribute("errorMessage", propertiesHandler.getPropertyValue("messages", lang, "errors.invalid_login_or_password"));
 
             forward("login");
         }

@@ -10,9 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Locale;
 
 public abstract class UrlDividerFilter extends DispatcherFilter {
     @Override
@@ -22,6 +20,8 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         UrlData urlData = extractLanguage(request.getRequestURI().substring(request.getContextPath().length()));
 
+        request.setAttribute(Defaults.CURRENT_LANG.toString(), urlData.getLang());
+
         handleFilter(servletData, urlData, filterChain);
     }
 
@@ -29,10 +29,12 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
 
     private UrlData extractLanguage(String currentUrl) {
         if (Pages.HOME.toString().equals(currentUrl)) {
-            return new UrlData(Defaults.LANG.toString(), currentUrl);
+            return new UrlData(Defaults.DEFAULT_LANG.toString(), currentUrl);
         }
 
-        currentUrl = currentUrl.substring(1);
+        if (currentUrl.startsWith("/")) {
+            currentUrl = currentUrl.substring(1);
+        }
 
         StringBuilder url = new StringBuilder();
 

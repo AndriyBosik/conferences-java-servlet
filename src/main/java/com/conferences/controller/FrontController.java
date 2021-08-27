@@ -6,6 +6,7 @@ import com.conferences.command.UnknownCommand;
 import com.conferences.config.Constants;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024 * 1,
+    maxFileSize = 1024 * 1024 * 10,
+    maxRequestSize = 1024 * 1024 * 100
+)
 public class FrontController extends HttpServlet {
 
     @Override
