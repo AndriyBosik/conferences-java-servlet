@@ -21,6 +21,10 @@
                 <label for="name"><taglib:message value="name" /></label>
             </div>
             <div class="full-width input-field">
+                <input id="email" type="email" name="email" value="${user.email}" />
+                <label for="email"><taglib:message value="email" /></label>
+            </div>
+            <div class="full-width input-field">
                 <input id="old-password" type="password" name="old-password" />
                 <label for="old-password"><taglib:message value="old_password" /></label>
             </div>
