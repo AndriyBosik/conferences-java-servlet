@@ -1,6 +1,8 @@
 package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.dao.implementation.ReportTopicDao;
+import com.conferences.entity.ReportTopic;
 
 import javax.servlet.ServletException;
 import java.io.IOException;

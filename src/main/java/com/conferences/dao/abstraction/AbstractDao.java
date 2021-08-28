@@ -14,13 +14,13 @@ import java.util.List;
 
 public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
-    private Class<T> entityClass;
+    private final Class<T> entityClass;
 
     protected IEntityParser entityParser;
     protected IEntityProcessor entityProcessor;
     protected DbTable dbTable;
 
-    public AbstractDao() {
+    protected AbstractDao() {
         entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 
         entityParser = new EntityParser();
@@ -28,14 +28,11 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
         dbTable = entityProcessor.getEntityFieldsList(entityClass);
     }
 
-    protected abstract PreparedStatement getInsertStatement(Connection connection, T model) throws SQLException;
-    protected abstract PreparedStatement getUpdateStatement(Connection connection, K key, T model) throws SQLException;
-
     @Override
     public boolean create(T model) {
         int numberOfInsertedRows = 0;
         try (Connection connection = DbManager.getConnection();
-             PreparedStatement statement = getInsertStatement(connection, model)) {
+             PreparedStatement statement = entityProcessor.prepareInsertStatement(connection, model)) {
 
             numberOfInsertedRows = statement.executeUpdate();
 
@@ -68,10 +65,10 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
     }
 
     @Override
-    public boolean update(K key, T model) {
+    public boolean update(T model) {
         int numberOfUpdatedRows = 0;
         try (Connection connection = DbManager.getConnection();
-             PreparedStatement statement = getUpdateStatement(connection, key, model)) {
+             PreparedStatement statement = entityProcessor.prepareUpdateStatement(connection, model)) {
 
             numberOfUpdatedRows = statement.executeUpdate();
 
@@ -116,7 +113,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
     public int getRecordsCount() {
         String sql = "SELECT COUNT(" + dbTable.getKey() + ") AS count FROM " + dbTable.getName();
         try (Connection connection = DbManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection != null ? connection.prepareStatement(sql) : null) {
 
             ResultSet result = statement.executeQuery();
             if (result.next()) {

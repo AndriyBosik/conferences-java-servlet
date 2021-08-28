@@ -8,7 +8,7 @@ public interface IDao<K, T> {
 
     T find(K key);
 
-    boolean update(K key, T model);
+    boolean update(T model);
 
     boolean delete(K key);
 

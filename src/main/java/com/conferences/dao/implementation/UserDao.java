@@ -38,25 +38,4 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
         return null;
     }
 
-    @Override
-    protected PreparedStatement getInsertStatement(Connection connection, User model) throws SQLException {
-        String sql = "INSERT INTO " + dbTable.getName() + "(" + LOGIN + ", " + PASSWORD + ", " + ROLE_ID + ") VALUES(?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, model.getLogin());
-        statement.setString(2, model.getPassword());
-        statement.setInt(3, model.getRoleId());
-        return statement;
-    }
-
-    @Override
-    protected PreparedStatement getUpdateStatement(Connection connection, Integer key, User model) throws SQLException {
-        String sql = "UPDATE " + dbTable.getName() + " SET " + LOGIN + "=?, " + PASSWORD + "=?, " + ROLE_ID + "=? WHERE " + dbTable.getKey() + "=?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, model.getLogin());
-        statement.setString(2, model.getPassword());
-        statement.setInt(3, model.getRoleId());
-        statement.setInt(4, key);
-        return statement;
-    }
-
 }
