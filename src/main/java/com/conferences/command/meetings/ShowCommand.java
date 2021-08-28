@@ -1,6 +1,7 @@
 package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
@@ -31,8 +32,12 @@ public class ShowCommand extends FrontCommand {
 
         List<User> speakers = userService.getUsersByRoleTitleWithRole("speaker");
 
+        User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
+        boolean isJoined = meetingService.hasJoinedUser(id, user.getId());
+
         request.setAttribute("meeting", meeting);
         request.setAttribute("speakers", speakers);
+        request.setAttribute("isJoined", isJoined);
 
         forwardPartial("meeting");
     }

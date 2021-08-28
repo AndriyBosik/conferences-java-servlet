@@ -6,22 +6,57 @@
 <div class="container py20">
     <div class="row">
         <div class="meeting-container s-vflex">
+            <div class="s-hflex full-width">
+                <p class="meeting-title weight-slight m0 equal-flex truncate">${meeting.title}</p>
+
+                <tf:forRoles roles="${['user']}">
+                    <div class="s-hflex-end">
+                        <c:choose>
+                            <c:when test="${not isJoined}">
+                                <form class="m0" action="<taglib:linkTo href="/meetings/join-user" />" method="post">
+                                    <input type="hidden" name="meeting_id" value="${meeting.id}">
+                                    <button type="submit" class="btn waves-effect waves-light light-blue darken-4">
+                                        <taglib:message value="join" />
+                                        <i class="material-icons right">person_add</i>
+                                    </button>
+                                </form>
+                            </c:when>
+
+                            <c:otherwise>
+                                <div class="weight-strong translucent uppercase s-hflex uppercase">
+                                    <i class="material-icons s-vflex-center px5 weight-strong">check</i>
+                                    <span class="s-vflex-center"><taglib:message value="joined" /></span>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </tf:forRoles>
+            </div>
+
+            <div class="separator mb10"></div>
+
             <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/${meeting.imagePath}')"></div>
 
-            <div class="s-hflex pt15">
-                <p class="meeting-title weight-slight m0 equal-flex">${meeting.title}</p>
-                <p class="meeting-title translucent m0 s-hflex-center">
-                    <span>
+            <div class="full-width py15 meeting-additional-data">
+                <div class="meeting-where s-hflex my5">
+                    <span class="weight-strong s-hflex">
+                        <i class="material-icons pr5 float-left">location_on</i>
+                        <taglib:message value="where" />:
+                    </span>
+                    <span class="translucent-3p px5">
+                        ${meeting.address}
+                    </span>
+                </div>
+                <div class="meeting-when s-hflex my5">
+                    <span class="weight-strong s-hflex">
+                        <i class="material-icons pr5 float-left">access_time</i>
+                        <taglib:message value="when" />:
+                    </span>
+                    <span class="translucent-3p px5">
                         <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
                     </span>
-                    <span class="s-vflex-center">
-                        <i class="material-icons small ml5">
-                            access_time
-                        </i>
-                    </span>
-                </p>
+                </div>
             </div>
-            <div class="separator mb10"></div>
 
             <p class="meeting-description translucent-2p m0">
                 ${meeting.description}

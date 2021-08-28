@@ -13,4 +13,8 @@ public interface IMeetingService {
 
     boolean saveMeeting(Meeting meeting);
 
+    boolean joinUser(int meetingId, int userId);
+
+    boolean hasJoinedUser(int meetingId, int userId);
+
 }

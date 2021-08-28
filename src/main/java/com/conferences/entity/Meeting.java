@@ -19,6 +19,9 @@ public class Meeting {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "image_path")
     private String imagePath;
 
@@ -53,6 +56,14 @@ public class Meeting {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getImagePath() {

@@ -62,3 +62,7 @@ ul.languages-list li {
     background-color: rgba(255, 255, 255, 0.5);
     z-index: 100;
 }
+
+.meeting-additional-data {
+    font-size: 18px;
+}

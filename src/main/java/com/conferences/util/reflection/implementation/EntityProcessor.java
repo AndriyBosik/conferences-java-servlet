@@ -156,9 +156,7 @@ public class EntityProcessor implements IEntityProcessor {
                 .append("=?")
                 .toString();
 
-        System.out.println(sql);
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
         setValuesForPreparedStatement(preparedStatement, entity, entityFields);
         setPreparedStatementValue(preparedStatement, toModify + 1, entity, keyField);

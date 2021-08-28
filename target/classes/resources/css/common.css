@@ -1,3 +1,15 @@
+.uppercase {
+    text-transform: uppercase;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
 .hidden {
     display: none !important;
 }

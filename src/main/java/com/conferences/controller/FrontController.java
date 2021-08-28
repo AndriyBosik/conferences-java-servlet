@@ -41,6 +41,7 @@ public class FrontController extends HttpServlet {
 
         String path = request.getPathInfo().substring(contextPathLength);
         CommandInfo commandInfo = getCommandInfo(path);
+
         FrontCommand command = getCommand(commandInfo);
 
         command.init(getServletContext(), request, response);
@@ -49,11 +50,11 @@ public class FrontController extends HttpServlet {
 
     private FrontCommand getCommand(CommandInfo commandInfo) {
         try {
-            Class type = Class.forName(String.format("com.conferences.command.%s.%sCommand", commandInfo.getPackageName(), commandInfo.getCommandName()));
+            Class<?> type = Class.forName(String.format("com.conferences.command.%s.%sCommand", commandInfo.getPackageName(), mapToClassName(commandInfo.getCommandName())));
             if (commandInfo.getUrlParams().isEmpty()) {
-                return (FrontCommand) type.asSubclass(FrontCommand.class).newInstance();
+                return type.asSubclass(FrontCommand.class).newInstance();
             } else {
-                return (FrontCommand) type.asSubclass(FrontCommand.class).getConstructor(List.class).newInstance(commandInfo.getUrlParams());
+                return type.asSubclass(FrontCommand.class).getConstructor(List.class).newInstance(commandInfo.getUrlParams());
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -75,5 +76,27 @@ public class FrontController extends HttpServlet {
             urlParams.add(parts[i]);
         }
         return new CommandInfo(parts[0], parts[1], urlParams);
+    }
+
+    private String mapToClassName(String commandName) {
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        while (index < commandName.length()) {
+            char character = commandName.charAt(index);
+            if (character != '-') {
+                sb.append(character);
+            } else {
+                if (index + 1 < commandName.length()) {
+                    sb.append(Character.toUpperCase(commandName.charAt(index + 1)));
+                }
+                index++;
+            }
+            index++;
+        }
+        if (sb.length() > 0) {
+            char firstCharUppercase = Character.toUpperCase(sb.charAt(0));
+            sb.setCharAt(0, firstCharUppercase);
+        }
+        return sb.toString();
     }
 }
