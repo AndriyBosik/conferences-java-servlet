@@ -27,6 +27,7 @@ public class CreateCommand extends FrontCommand {
         ReportTopic reportTopic = new ReportTopic();
         reportTopic.setTitle(request.getParameter("title"));
         reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
+        reportTopic.setSpeakerId(Integer.parseInt(request.getParameter("speaker_id")));
 
         if (reportTopicService.save(reportTopic)) {
             redirect(Pages.MEETING.getUrl() + reportTopic.getMeetingId());

@@ -96,5 +96,6 @@
 <tf:forRoles roles="${['moderator']}">
     <jsp:include page="/WEB-INF/jsp/components/modals/new-topic-form.jsp">
         <jsp:param name="meeting" value="${meeting}" />
+        <jsp:param name="speakers" value="${speakers}" />
     </jsp:include>
 </tf:forRoles>

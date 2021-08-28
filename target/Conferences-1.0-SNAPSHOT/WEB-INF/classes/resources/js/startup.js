@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let modals = document.querySelectorAll(".modal");
     M.Modal.init(modals);
 
+    let selects = document.querySelectorAll("select");
+    M.FormSelect.init(selects);
+
     let datePickers = document.querySelectorAll(".date-picker");
     let weekdaysShort = WEEKDAYS.map(weekday => weekday.substr(0, 3));
     M.Datepicker.init(datePickers, {
