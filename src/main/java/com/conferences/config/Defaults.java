@@ -2,7 +2,7 @@ package com.conferences.config;
 
 public enum Defaults {
     DEFAULT_LANG("en"),
-    CURRENT_LANG("__current_lang__"),
+    CURRENT_LANG("currentLanguage"),
     DATE_FORMAT("dd-MM-yyyy HH:mm:ss");
 
     private String defaultValue;

@@ -1,5 +1,6 @@
 package com.conferences.tag;
 
+import com.conferences.config.Defaults;
 import com.conferences.handler.LangHandler;
 import com.conferences.handler.LinkHandler;
 
@@ -21,7 +22,7 @@ public class LinkToTag extends TagSupport {
 
     @Override
     public int doStartTag() {
-        String lang = langHandler.getLang(pageContext.getSession());
+        String lang = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LANG.toString());
 
         JspWriter out = pageContext.getOut();
 

@@ -38,7 +38,6 @@ public class FrontController extends HttpServlet {
         }
 
         request.setAttribute("languages", Constants.LANGUAGES);
-        request.setAttribute("currentLanguage", request.getSession().getAttribute("lang"));
 
         String path = request.getPathInfo().substring(contextPathLength);
         CommandInfo commandInfo = getCommandInfo(path);

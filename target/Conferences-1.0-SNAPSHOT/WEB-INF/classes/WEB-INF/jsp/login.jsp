@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="tags" prefix="taglib" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +24,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12 m4 push-m4">
-                        <jsp:include page="/WEB-INF/jsp/components/languages.jsp">
-                            <jsp:param name="class" value="s-hflex-end login-page-lang-list" />
-                        </jsp:include>
+
+                        <tf:languagesList className="my10 s-hflex-end login-page-lang-list" />
+
                         <div class="px10 radius-4 z-depth-1">
                             <form action="" method="post" class="auto-height">
                                 <div class="full-width input-field col s12">

@@ -12,10 +12,13 @@ main {
     flex: 1 0 auto;
 }
 
-ul.languages-list li {
-    text-transform: uppercase;
+ul.languages-list.login-page-lang-list li {
     padding-left: 5px;
     padding-right: 5px;
+}
+
+ul.languages-list li {
+    text-transform: uppercase;
     font-weight: 500;
 }
 
