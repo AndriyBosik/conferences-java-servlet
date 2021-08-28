@@ -29,8 +29,10 @@
 
         <jsp:include page="/WEB-INF/jsp/components/footer.jsp" />
         <jsp:include page="/WEB-INF/jsp/components/i18n-js.jsp" />
+        <jsp:include page="/WEB-INF/jsp/components/constants-js.jsp" />
 
         <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+        <script type="text/javascript" src="/resources/js/materialize-extensions.js"></script>
         <script type="text/javascript" src="/resources/js/startup.js"></script>
 
         <c:catch>

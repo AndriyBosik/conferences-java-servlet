@@ -6,4 +6,6 @@ public interface IReportTopicService {
 
     boolean save(ReportTopic reportTopic);
 
+    boolean update(ReportTopic reportTopic);
+
 }

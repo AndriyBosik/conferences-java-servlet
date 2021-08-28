@@ -32,7 +32,7 @@
 
                 <tf:forRoles roles="${['moderator']}">
                     <div class="s-vflex-end">
-                        <a href="#topic-form" class="btn waves-effect waves-light modal-trigger">
+                        <a href="#topic-form" class="btn waves-effect waves-light modal-trigger createTopicFormTrigger">
                             <taglib:message value="add" />
                             <i class="material-icons right">add</i>
                         </a>
@@ -54,12 +54,12 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${meeting.reportTopics}" var="topic" varStatus="loopStatus">
-                                <tr class="clickable topic-item" data-href="<taglib:linkTo href="/topics/show/${topic.id}" />">
+                                <tr class="clickable topic-item topicTrigger modal-trigger" data-target="topic-form" data-topic-id="${topic.id}">
                                     <td class="center-align">${loopStatus.index + 1}</td>
                                     <td>
                                         <c:choose>
                                             <c:when test="${not empty topic.speaker}">
-                                                <div class="s-hflex">
+                                                <div class="s-hflex" data-speaker-id="${topic.speakerId}">
                                                     <div class="z-depth-1 user-avatar stretch-background" style="background-image: url('/resources/images/avatars/${topic.speaker.login}.png')"></div>
                                                     <div class="s-vflex-center px10 weight-normal">
                                                             ${topic.speaker.name} ${topic.speaker.surname}
@@ -73,7 +73,9 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td>${topic.title}</td>
+                                    <td>
+                                        <span data-title>${topic.title}</span>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

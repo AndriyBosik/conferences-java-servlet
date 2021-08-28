@@ -1,7 +1,6 @@
 package com.conferences.tag;
 
 import com.conferences.config.Defaults;
-import com.conferences.handler.LangHandler;
 import com.conferences.handler.LinkHandler;
 
 import javax.servlet.jsp.JspWriter;
@@ -12,11 +11,9 @@ public class LinkToTag extends TagSupport {
 
     private String href;
 
-    private LangHandler langHandler;
-    private LinkHandler linkHandler;
+    private final LinkHandler linkHandler;
 
     public LinkToTag() {
-        this.langHandler = new LangHandler();
         this.linkHandler = new LinkHandler();
     }
 

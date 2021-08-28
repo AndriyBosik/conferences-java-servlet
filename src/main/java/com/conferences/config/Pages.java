@@ -14,7 +14,8 @@ public enum Pages {
         }
     },
     TOPIC("/topics/show/*"),
-    CREATE_TOPIC("/topics/create");
+    CREATE_TOPIC("/topics/create"),
+    UPDATE_TOPIC("/topics/update");
 
     protected final String url;
 

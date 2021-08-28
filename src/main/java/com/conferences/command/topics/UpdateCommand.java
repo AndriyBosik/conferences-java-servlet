@@ -10,11 +10,11 @@ import com.conferences.service.implementation.ReportTopicService;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-public class CreateCommand extends FrontCommand {
+public class UpdateCommand extends FrontCommand {
 
-    private IReportTopicService reportTopicService;
+    private final IReportTopicService reportTopicService;
 
-    public CreateCommand() {
+    public UpdateCommand() {
         reportTopicService = new ReportTopicService();
     }
 
@@ -25,16 +25,17 @@ public class CreateCommand extends FrontCommand {
         }
 
         ReportTopic reportTopic = new ReportTopic();
+        reportTopic.setId(Integer.parseInt(request.getParameter("id")));
         reportTopic.setTitle(request.getParameter("title"));
         reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
         if (request.getParameter("speaker_id") != null) {
             reportTopic.setSpeakerId(Integer.parseInt(request.getParameter("speaker_id")));
         }
 
-        if (reportTopicService.save(reportTopic)) {
+        if (reportTopicService.update(reportTopic)) {
             redirect(Pages.MEETING.getUrl() + reportTopic.getMeetingId());
         } else {
-            // Process saving error
+            // Process request error
         }
     }
 }

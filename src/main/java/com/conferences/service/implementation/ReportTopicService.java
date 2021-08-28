@@ -24,4 +24,12 @@ public class ReportTopicService implements IReportTopicService {
         }
         return false;
     }
+
+    @Override
+    public boolean update(ReportTopic reportTopic) {
+        if (reportTopicValidator.isValid(reportTopic)) {
+            return reportTopicDao.update(reportTopic);
+        }
+        return false;
+    }
 }

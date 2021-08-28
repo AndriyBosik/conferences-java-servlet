@@ -56,3 +56,9 @@ ul.languages-list li {
 #meeting-form .modal.datepicker-modal {
     top: 3% !important;
 }
+
+.preloader-background {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 100;
+}
