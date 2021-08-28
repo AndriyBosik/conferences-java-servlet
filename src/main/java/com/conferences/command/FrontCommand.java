@@ -1,5 +1,8 @@
 package com.conferences.command;
 
+import com.conferences.config.Defaults;
+import com.conferences.handler.LinkHandler;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +16,15 @@ public abstract class FrontCommand {
     protected ServletContext context;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
-    protected List<String> urlParams;
+    protected LinkHandler linkHandler;
+    protected String currentLang;
 
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         this.context = context;
         this.request = request;
         this.response = response;
+        this.linkHandler = new LinkHandler();
+        this.currentLang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
     }
 
     public abstract void process() throws ServletException, IOException;
@@ -35,6 +41,11 @@ public abstract class FrontCommand {
     protected void forwardPartial(String view) throws ServletException, IOException {
         request.setAttribute("view", view);
         forward("layouts/" + getLayout());
+    }
+
+    protected void redirect(String url) throws IOException {
+        String link = linkHandler.addLangToUrl(url, currentLang);
+        response.sendRedirect(link);
     }
 
 }

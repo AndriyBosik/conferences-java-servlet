@@ -27,10 +27,22 @@
                 ${meeting.description}
             </p>
 
+            <div class="s-hflex">
+                <p class="meeting-title weight-slight m0 pt15 equal-flex"><taglib:message value="topics" /></p>
+
+                <tf:forRoles roles="${['moderator']}">
+                    <div class="s-vflex-end">
+                        <a href="#topic-form" class="btn waves-effect waves-light modal-trigger">
+                            <taglib:message value="add" />
+                            <i class="material-icons right">add</i>
+                        </a>
+                    </div>
+                </tf:forRoles>
+            </div>
+            <div class="separator mb10 mt5"></div>
+
             <c:choose>
                 <c:when test="${not empty meeting.reportTopics}">
-                    <p class="meeting-title weight-slight m0 pt15"><taglib:message value="topics" /></p>
-                    <div class="separator mb10"></div>
 
                     <table class="striped highlight z-depth-1">
                         <thead>
@@ -45,10 +57,21 @@
                                 <tr class="clickable topic-item" data-href="<taglib:linkTo href="/topics/show/${topic.id}" />">
                                     <td class="center-align">${loopStatus.index + 1}</td>
                                     <td>
-                                        <div class="s-hflex">
-                                            <div class="z-depth-1 user-avatar stretch-background" style="background-image: url('/resources/images/avatars/${topic.speaker.login}.png')"></div>
-                                            <div class="s-vflex-center px10 weight-normal">${topic.speaker.name} ${topic.speaker.surname}</div>
-                                        </div>
+                                        <c:choose>
+                                            <c:when test="${not empty topic.speaker}">
+                                                <div class="s-hflex">
+                                                    <div class="z-depth-1 user-avatar stretch-background" style="background-image: url('/resources/images/avatars/${topic.speaker.login}.png')"></div>
+                                                    <div class="s-vflex-center px10 weight-normal">
+                                                            ${topic.speaker.name} ${topic.speaker.surname}
+                                                    </div>
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="red-text weight-strong">
+                                                    <taglib:message value="no_speaker" />
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td>${topic.title}</td>
                                 </tr>
@@ -69,3 +92,9 @@
         </div>
     </div>
 </div>
+
+<tf:forRoles roles="${['moderator']}">
+    <jsp:include page="/WEB-INF/jsp/components/modals/new-topic-form.jsp">
+        <jsp:param name="meeting" value="${meeting}" />
+    </jsp:include>
+</tf:forRoles>

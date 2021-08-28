@@ -42,8 +42,11 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
                     meeting = entityParser.parseToEntity(Meeting.class, result);
                 }
                 ReportTopic reportTopic = entityParser.parseToEntity(ReportTopic.class, result, "report_topic_");
-                if (reportTopic.getId() != 0) {
-                    reportTopic.setSpeaker(entityParser.parseToEntity(User.class, result, "user_"));
+                if (reportTopic != null) {
+                    User speaker = entityParser.parseToEntity(User.class, result, "user_");
+                    if (speaker != null) {
+                        reportTopic.setSpeaker(speaker);
+                    }
                     meeting.getReportTopics().add(reportTopic);
                 }
             }

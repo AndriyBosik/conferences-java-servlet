@@ -26,6 +26,10 @@ public class EntityParser implements IEntityParser {
 
                 field.setAccessible(true);
 
+                if (column.key() && result.getObject(columnPrefix + column.name()) == null) {
+                    return null;
+                }
+
                 setValueForField(field, entity, result, columnPrefix + column.name());
             }
 

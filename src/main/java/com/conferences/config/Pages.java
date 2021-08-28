@@ -13,7 +13,8 @@ public enum Pages {
             return url + "*";
         }
     },
-    TOPIC("/topics/show/*");
+    TOPIC("/topics/show/*"),
+    CREATE_TOPIC("/topics/create");
 
     protected final String url;
 

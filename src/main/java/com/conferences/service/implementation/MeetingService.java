@@ -33,8 +33,7 @@ public class MeetingService implements IMeetingService {
     @Override
     public boolean saveMeeting(Meeting meeting) {
         if (meetingValidator.isValid(meeting)) {
-            meetingDao.create(meeting);
-            return true;
+            return meetingDao.create(meeting);
         }
         return false;
     }

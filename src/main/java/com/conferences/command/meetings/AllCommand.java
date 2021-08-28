@@ -31,15 +31,13 @@ public class AllCommand extends FrontCommand {
     private static final int ITEMS_COUNT = 12;
     private static final String MEETINGS_IMAGES = "/resources/images/meetings/";
 
-    private IMeetingService meetingService;
-    private IFileHandler fileHandler;
-    private LinkHandler linkHandler;
-    private Page page;
+    private final IMeetingService meetingService;
+    private final IFileHandler fileHandler;
+    private final Page page;
 
     public AllCommand() {
         this.meetingService = new MeetingService();
         this.fileHandler = new FileHandler();
-        this.linkHandler = new LinkHandler();
 
         this.page = new Page(ITEMS_COUNT, 1);
     }
@@ -80,10 +78,7 @@ public class AllCommand extends FrontCommand {
             meeting.setDate(date);
 
             if (meetingService.saveMeeting(meeting)) {
-                String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
-                String url = linkHandler.addLangToUrl(Pages.MEETING.getUrl() + meeting.getId(), lang);
-
-                response.sendRedirect(url);
+                redirect(Pages.MEETING.getUrl() + meeting.getId());
             } else {
                 // fill cookies with inputted data and redirect with error message
             }

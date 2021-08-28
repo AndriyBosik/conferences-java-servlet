@@ -18,7 +18,7 @@ public class ReportTopic {
     @Column(name = "speaker_id")
     private Integer speakerId;
 
-    private User Speaker;
+    private User speaker;
 
     public int getId() {
         return id;
@@ -53,10 +53,11 @@ public class ReportTopic {
     }
 
     public User getSpeaker() {
-        return Speaker;
+        return speaker;
     }
 
     public void setSpeaker(User speaker) {
-        Speaker = speaker;
+        setSpeakerId(speaker.getId());
+        this.speaker = speaker;
     }
 }

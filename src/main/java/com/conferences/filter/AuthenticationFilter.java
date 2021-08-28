@@ -33,7 +33,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.TOPIC.toString())
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf("moderator", "speaker", "user")
-                .controlUrls(Pages.MEETINGS_LIST.toString())
+                .controlUrls(Pages.MEETINGS_LIST.toString(), Pages.CREATE_TOPIC.toString())
                     .withMethods(HttpMethod.POST)
                         .allowAnyRoleOf("moderator")
                 .build();
