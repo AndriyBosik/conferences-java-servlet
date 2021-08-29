@@ -12,45 +12,74 @@ import java.sql.SQLException;
 public class ReportTopicDao extends AbstractDao<Integer, ReportTopic> implements IReportTopicDao {
 
     @Override
-    public boolean updateSpeakerIdForTopic(int topicId, int speakerId) {
-        String updateSql = "UPDATE report_topics SET speaker_id=? WHERE id=?";
-        String deleteSql = "DELETE FROM speaker_proposals WHERE speaker_id=? AND report_topic_id=?";
-
+    public boolean updateWithSpeaker(ReportTopic reportTopic) {
         Connection connection = null;
+        PreparedStatement reportTopicSpeakerStatement = null;
+        PreparedStatement reportTopicStatement = null;
         try {
             connection = DbManager.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            PreparedStatement updateStatement = connection.prepareStatement(updateSql);
-            updateStatement.setInt(1, speakerId);
-            updateStatement.setInt(2, topicId);
-            updateStatement.executeUpdate();
+            if (reportTopic.getReportTopicSpeaker() == null) {
+                String deleteSql = "DELETE FROM report_topics_speakers WHERE report_topic_id=?";
+                reportTopicSpeakerStatement = connection.prepareStatement(deleteSql);
+                reportTopicSpeakerStatement.setInt(1, reportTopic.getId());
+            } else if (reportTopic.getReportTopicSpeaker().getId() != null){
+                reportTopicSpeakerStatement = entityProcessor.prepareUpdateStatement(connection, reportTopic.getReportTopicSpeaker());
+            } else {
+                reportTopicSpeakerStatement = entityProcessor.prepareInsertStatement(connection, reportTopic.getReportTopicSpeaker());
+            }
+            reportTopicSpeakerStatement.executeUpdate();
 
-            PreparedStatement deleteStatement = connection.prepareStatement(deleteSql);
-            deleteStatement.setInt(1, speakerId);
-            deleteStatement.setInt(2, topicId);
-            deleteStatement.executeUpdate();
+            reportTopicStatement = entityProcessor.prepareUpdateStatement(connection, reportTopic);
+            reportTopicStatement.executeUpdate();
 
             connection.commit();
-
             return true;
         } catch (SQLException exception) {
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+            exception.printStackTrace();
+            transactionHandler.rollbackTransaction(connection);
+        } finally {
+            transactionHandler.setAutoCommit(connection, true);
+
+            transactionHandler.closeResource(reportTopicSpeakerStatement);
+            transactionHandler.closeResource(reportTopicStatement);
+            transactionHandler.closeResource(connection);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean saveWithSpeaker(ReportTopic reportTopic) {
+        Connection connection = null;
+        PreparedStatement insertReportTopicStatement = null;
+        PreparedStatement insertReportTopicSpeakerStatement = null;
+        try {
+            connection = DbManager.getInstance().getConnection();
+            connection.setAutoCommit(false);
+
+            insertReportTopicStatement = entityProcessor.prepareInsertStatement(connection, reportTopic);
+            insertReportTopicStatement.executeUpdate();
+            setGeneratedFields(insertReportTopicStatement, reportTopic);
+
+            if (reportTopic.getReportTopicSpeaker() != null) {
+                reportTopic.getReportTopicSpeaker().setReportTopicId(reportTopic.getId());
+                insertReportTopicSpeakerStatement = entityProcessor.prepareInsertStatement(connection, reportTopic.getReportTopicSpeaker());
+                insertReportTopicSpeakerStatement.executeUpdate();
+                setGeneratedFields(insertReportTopicSpeakerStatement, reportTopic.getReportTopicSpeaker());
             }
+
+            connection.commit();
+            return true;
+        } catch (SQLException exception) {
+            transactionHandler.rollbackTransaction(connection);
             exception.printStackTrace();
         } finally {
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-            }
+            transactionHandler.setAutoCommit(connection, true);
+
+            transactionHandler.closeResource(connection);
+            transactionHandler.closeResource(insertReportTopicStatement);
+            transactionHandler.closeResource(insertReportTopicSpeakerStatement);
         }
         return false;
     }

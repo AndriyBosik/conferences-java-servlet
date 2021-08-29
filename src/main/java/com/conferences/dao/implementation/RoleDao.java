@@ -15,7 +15,7 @@ public class RoleDao extends AbstractDao<Integer, Role> implements IRoleDao {
 
     @Override
     public Role findByTitle(String title) {
-        String sql = "SELECT * FROM " + dbTable.getName() + " WHERE title=?";
+        String sql = "SELECT * FROM roles WHERE title=?";
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 

@@ -9,7 +9,8 @@
     const INITIAL_TOPIC_STATE = {
         id: "",
         title: "",
-        speaker_id: ""
+        speaker_id: "",
+        report_topic_speaker_id: ""
     };
 
     const HIDDEN_CLASS = "hidden";

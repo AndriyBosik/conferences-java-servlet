@@ -15,10 +15,7 @@ public class ReportTopic {
     @Column(name = "meeting_id")
     private int meetingId;
 
-    @Column(name = "speaker_id")
-    private Integer speakerId;
-
-    private User speaker;
+    private ReportTopicSpeaker reportTopicSpeaker;
 
     public int getId() {
         return id;
@@ -44,20 +41,14 @@ public class ReportTopic {
         this.meetingId = meetingId;
     }
 
-    public int getSpeakerId() {
-        return speakerId;
+    public ReportTopicSpeaker getReportTopicSpeaker() {
+        return reportTopicSpeaker;
     }
 
-    public void setSpeakerId(Integer speakerId) {
-        this.speakerId = speakerId;
-    }
-
-    public User getSpeaker() {
-        return speaker;
-    }
-
-    public void setSpeaker(User speaker) {
-        setSpeakerId(speaker.getId());
-        this.speaker = speaker;
+    public void setReportTopicSpeaker(ReportTopicSpeaker reportTopicSpeaker) {
+        if (reportTopicSpeaker != null) {
+            reportTopicSpeaker.setReportTopicId(getId());
+        }
+        this.reportTopicSpeaker = reportTopicSpeaker;
     }
 }

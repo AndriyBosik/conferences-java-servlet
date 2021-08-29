@@ -1,6 +1,7 @@
 package com.conferences.dao.abstraction;
 
 import com.conferences.config.DbManager;
+import com.conferences.handler.TransactionHandler;
 import com.conferences.model.DbTable;
 import com.conferences.util.reflection.abstraction.IEntityProcessor;
 import com.conferences.util.reflection.implementation.EntityParser;
@@ -18,6 +19,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
     protected IEntityParser entityParser;
     protected IEntityProcessor entityProcessor;
+    protected TransactionHandler transactionHandler;
     protected DbTable dbTable;
 
     protected AbstractDao() {
@@ -25,6 +27,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
         entityParser = new EntityParser();
         entityProcessor = new EntityProcessor();
+        transactionHandler = new TransactionHandler();
         dbTable = entityProcessor.getEntityFieldsList(entityClass);
     }
 
@@ -36,11 +39,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
             numberOfInsertedRows = statement.executeUpdate();
 
-            try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    entityProcessor.setEntityGeneratedFields(model, resultSet);
-                }
-            }
+            setGeneratedFields(statement, model);
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -123,5 +122,13 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
             exception.printStackTrace();
         }
         return 0;
+    }
+
+    protected void setGeneratedFields(Statement statement, Object entity) throws SQLException {
+        try (ResultSet resultSet = statement.getGeneratedKeys()) {
+            if (resultSet.next()) {
+                entityProcessor.setEntityGeneratedFields(entity, resultSet);
+            }
+        }
     }
 }

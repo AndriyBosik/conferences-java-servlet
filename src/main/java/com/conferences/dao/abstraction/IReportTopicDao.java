@@ -4,6 +4,8 @@ import com.conferences.entity.ReportTopic;
 
 public interface IReportTopicDao extends IDao<Integer, ReportTopic> {
 
-    boolean updateSpeakerIdForTopic(int topicId, int speakerId);
+    boolean updateWithSpeaker(ReportTopic reportTopic);
+
+    boolean saveWithSpeaker(ReportTopic reportTopic);
 
 }

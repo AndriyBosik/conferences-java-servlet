@@ -164,6 +164,21 @@ public class EntityProcessor implements IEntityProcessor {
         return preparedStatement;
     }
 
+    @Override
+    public PreparedStatement prepareDeleteStatement(Connection connection, Object entity) throws SQLException {
+        DbTable dbTable = getEntityFieldsList(entity.getClass());
+        List<EntityFieldData> entityFields = getEntityFieldsByClass(entity.getClass());
+        String sql = "DELETE * FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + "=?";
+        for (EntityFieldData entityField: entityFields) {
+            if (entityField.column.key()) {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                setPreparedStatementValue(statement, 1, entity, entityField.field);
+                return statement;
+            }
+        }
+        return null;
+    }
+
     private <T> void setValuesForPreparedStatement(PreparedStatement preparedStatement, T entity, List<EntityFieldData> entityFields) throws SQLException {
         int number = 1;
         for (EntityFieldData entityField: entityFields) {
@@ -219,5 +234,4 @@ public class EntityProcessor implements IEntityProcessor {
             this.field = field;
         }
     }
-
 }

@@ -14,7 +14,7 @@ public class UserMeetingDao extends AbstractDao<Integer, UserMeeting> implements
 
     @Override
     public UserMeeting findByUserIdAndMeetingId(int userId, int meetingId) {
-        String sql = "SELECT * FROM " + dbTable.getName() + " WHERE user_id=? AND meeting_id=?";
+        String sql = "SELECT * FROM users_meetings WHERE user_id=? AND meeting_id=?";
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 

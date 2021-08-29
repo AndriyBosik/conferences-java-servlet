@@ -5,6 +5,7 @@ import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.ReportTopic;
+import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.entity.User;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
@@ -23,11 +24,15 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
     @Override
     public Meeting findByKeyWithReportTopicsAndSpeakers(Integer key) {
         String sql = "SELECT " +
-                dbTable.getName() + ".*," +
+                "meetings.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(ReportTopic.class, "rt.", "report_topic_") + "," +
+                entityProcessor.getEntityFieldsWithPrefixes(ReportTopicSpeaker.class, "rts.", "report_topic_speaker_") + "," +
                 entityProcessor.getEntityFieldsWithPrefixes(User.class, "u.", "user_") + " " +
-                "FROM " + dbTable.getName() + " LEFT JOIN report_topics rt ON " + dbTable.getName() + ".id = rt.meeting_id LEFT JOIN users u ON rt.speaker_id=u.id " +
-                "WHERE " + dbTable.getName() + ".id=? " +
+                "FROM meetings " +
+                "LEFT JOIN report_topics rt ON meetings.id = rt.meeting_id " +
+                "LEFT JOIN report_topics_speakers rts ON rts.report_topic_id=rt.id " +
+                "LEFT JOIN users u ON u.id=rts.speaker_id " +
+                "WHERE meetings.id=? " +
                 "ORDER BY rt." + entityProcessor.getEntityFieldsList(ReportTopic.class).getKey();
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -43,10 +48,12 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
                 }
                 ReportTopic reportTopic = entityParser.parseToEntity(ReportTopic.class, result, "report_topic_");
                 if (reportTopic != null) {
-                    User speaker = entityParser.parseToEntity(User.class, result, "user_");
-                    if (speaker != null) {
-                        reportTopic.setSpeaker(speaker);
+                    ReportTopicSpeaker reportTopicSpeaker = entityParser.parseToEntity(ReportTopicSpeaker.class, result, "report_topic_speaker_");
+                    if (reportTopicSpeaker != null) {
+                        User speaker = entityParser.parseToEntity(User.class, result, "user_");
+                        reportTopicSpeaker.setSpeaker(speaker);
                     }
+                    reportTopic.setReportTopicSpeaker(reportTopicSpeaker);
                     meeting.getReportTopics().add(reportTopic);
                 }
             }

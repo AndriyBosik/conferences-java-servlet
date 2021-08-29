@@ -43,7 +43,7 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
 
     @Override
     public User findByLoginOrEmail(String login, String email) {
-        String sql = "SELECT * FROM " + dbTable.getName() + " WHERE login=? OR email=?";
+        String sql = "SELECT * FROM users WHERE login=? OR email=?";
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 

@@ -19,4 +19,6 @@ public interface IEntityProcessor {
 
     PreparedStatement prepareUpdateStatement(Connection connection, Object entity) throws SQLException;
 
+    PreparedStatement prepareDeleteStatement(Connection connection, Object entity) throws SQLException;
+
 }

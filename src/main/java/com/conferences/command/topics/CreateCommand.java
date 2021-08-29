@@ -4,18 +4,24 @@ import com.conferences.command.FrontCommand;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.entity.ReportTopic;
+import com.conferences.entity.ReportTopicSpeaker;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToReportTopicWithSpeakerMapper;
 import com.conferences.service.abstraction.IReportTopicService;
 import com.conferences.service.implementation.ReportTopicService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class CreateCommand extends FrontCommand {
 
-    private IReportTopicService reportTopicService;
+    private final IReportTopicService reportTopicService;
+    private final IMapper<HttpServletRequest, ReportTopic> mapper;
 
     public CreateCommand() {
         reportTopicService = new ReportTopicService();
+        mapper = new RequestToReportTopicWithSpeakerMapper();
     }
 
     @Override
@@ -24,21 +30,12 @@ public class CreateCommand extends FrontCommand {
             return;
         }
 
-        String speakerIdParameter = request.getParameter("speaker_id");
+        ReportTopic reportTopic = mapper.map(request);
 
-        ReportTopic reportTopic = new ReportTopic();
-        reportTopic.setTitle(request.getParameter("title"));
-        reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
-        if (speakerIdParameter != null && !speakerIdParameter.trim().isEmpty()) {
-            reportTopic.setSpeakerId(Integer.parseInt(speakerIdParameter.trim()));
-        } else {
-            reportTopic.setSpeakerId(null);
-        }
-
-        if (reportTopicService.save(reportTopic)) {
+        if (reportTopicService.saveWithSpeaker(reportTopic)) {
             redirect(Pages.MEETING.getUrl() + reportTopic.getMeetingId());
         } else {
-            // Process saving error
+            // TODO(Process saving error)
         }
     }
 }

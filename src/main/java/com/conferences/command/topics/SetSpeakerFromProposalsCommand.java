@@ -2,6 +2,7 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Pages;
+import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.service.abstraction.IReportTopicService;
 import com.conferences.service.implementation.ReportTopicService;
 
@@ -22,7 +23,10 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
         int topicId = Integer.parseInt(request.getParameter("topic_id"));
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));
 
-        if (reportTopicService.setSpeakerForTopic(topicId, speakerId)) {
+        ReportTopicSpeaker reportTopicSpeaker = new ReportTopicSpeaker();
+        reportTopicSpeaker.setReportTopicId(topicId);
+        reportTopicSpeaker.setSpeakerId(speakerId);
+        if (reportTopicService.setSpeakerForTopic(reportTopicSpeaker)) {
             redirect(Pages.MEETING.getUrl() + meetingId);
         } else {
             // TODO

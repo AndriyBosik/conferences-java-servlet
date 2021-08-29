@@ -23,6 +23,7 @@
 
     <form id="new-topic-form" action="<tags:linkTo href="/topics/create" />" method="post" class="s-vflex full-height m0">
         <input type="hidden" name="id" value="" />
+        <input type="hidden" name="report_topic_speaker_id" value="" />
         <input type="hidden" name="meeting_id" value="${meeting.id}" />
 
         <div class="modal-content row full-width">
