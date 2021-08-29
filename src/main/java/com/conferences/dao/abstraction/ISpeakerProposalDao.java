@@ -7,4 +7,7 @@ import java.util.List;
 public interface ISpeakerProposalDao extends IDao<Integer, SpeakerProposal> {
 
     List<SpeakerProposal> findAllByTopicIdWithSpeaker(int topicId);
+
+    List<Integer> findAllSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId);
+
 }

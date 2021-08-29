@@ -6,8 +6,10 @@ import com.conferences.entity.Meeting;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
 import com.conferences.service.abstraction.IMeetingService;
+import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.MeetingService;
+import com.conferences.service.implementation.SpeakerProposalService;
 import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
@@ -19,11 +21,13 @@ public class ShowCommand extends FrontCommand {
     private final int id;
     private final IMeetingService meetingService;
     private final IUserService userService;
+    private final ISpeakerProposalService speakerProposalService;
 
     public ShowCommand(List<String> urlParams) {
         id = Integer.parseInt(urlParams.get(0));
         meetingService = new MeetingService();
         userService = new UserService();
+        speakerProposalService = new SpeakerProposalService();
     }
 
     @Override
@@ -38,6 +42,9 @@ public class ShowCommand extends FrontCommand {
         request.setAttribute("meeting", meeting);
         request.setAttribute("speakers", speakers);
         request.setAttribute("isJoined", isJoined);
+        if ("speaker".equals(user.getRole().getTitle())) {
+            request.setAttribute("proposedTopicIds", speakerProposalService.getSpeakerProposedTopicIdsForMeeting(meeting.getId(), user.getId()));
+        }
 
         forwardPartial("meeting");
     }

@@ -8,4 +8,6 @@ public interface ISpeakerProposalService {
 
     List<SpeakerProposal> getTopicProposals(int topicId);
 
+    List<Integer> getSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId);
+
 }

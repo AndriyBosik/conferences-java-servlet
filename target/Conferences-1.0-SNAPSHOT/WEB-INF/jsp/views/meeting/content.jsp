@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div class="container py20">
     <div class="row">
@@ -105,19 +106,28 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <div class="red-text weight-strong s-hflex">
-                                                    <tf:forRoles roles="${['speaker']}">
-                                                        <form action="<taglib:linkTo href="/topics/propose-speaker" />" method="post" class="m0">
-                                                            <input type="hidden" name="meeting_id" value="${meeting.id}" />
-                                                            <input type="hidden" name="report_topic_id" value="${topic.id}" />
-                                                            <button type="submit" class="btn-floating orange tooltipped" data-position="left" data-tooltip="<taglib:message value="propose_me" />">
-                                                                <i class="material-icons">assignment_ind</i>
-                                                            </button>
-                                                        </form>
-                                                    </tf:forRoles>
-
                                                     <span class="px10 s-vflex-center">
                                                         <taglib:message value="no_speaker" />
                                                     </span>
+
+                                                    <tf:forRoles roles="${['speaker']}">
+                                                        <c:choose>
+                                                            <c:when test="${fn:contains(proposedTopicIds, topic.id)}">
+                                                                <span class="grey-text text-lighten-1 weight-normal">
+                                                                    <taglib:message value="you_proposed_yourself" />
+                                                                </span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <form action="<taglib:linkTo href="/topics/propose-speaker" />" method="post" class="m0">
+                                                                    <input type="hidden" name="meeting_id" value="${meeting.id}" />
+                                                                    <input type="hidden" name="report_topic_id" value="${topic.id}" />
+                                                                    <button type="submit" class="btn-floating orange tooltipped" data-position="left" data-tooltip="<taglib:message value="propose_me" />">
+                                                                        <i class="material-icons">assignment_ind</i>
+                                                                    </button>
+                                                                </form>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </tf:forRoles>
 
                                                     <tf:forRoles roles="${['moderator']}">
                                                         <a href="#topic-proposals-form" class="modal-trigger proposalsSearchTrigger weight-slight" data-topic-id="${topic.id}">

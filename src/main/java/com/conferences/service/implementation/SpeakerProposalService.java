@@ -19,4 +19,9 @@ public class SpeakerProposalService implements ISpeakerProposalService {
     public List<SpeakerProposal> getTopicProposals(int topicId) {
         return speakerProposalDao.findAllByTopicIdWithSpeaker(topicId);
     }
+
+    @Override
+    public List<Integer> getSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId) {
+        return speakerProposalDao.findAllSpeakerProposedTopicIdsForMeeting(meetingId, speakerId);
+    }
 }
