@@ -1,6 +1,8 @@
 package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.config.Defaults;
+import com.conferences.config.Errors;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.handler.LangHandler;
@@ -16,15 +18,9 @@ import java.io.IOException;
 
 public class IndexCommand extends FrontCommand {
     private IUserService userService;
-    private PropertiesHandler propertiesHandler;
-    private LangHandler langHandler;
-    private LinkHandler linkHandler;
 
     public IndexCommand() {
         this.userService = new UserService();
-        this.propertiesHandler = new PropertiesHandler();
-        this.langHandler = new LangHandler();
-        this.linkHandler = new LinkHandler();
     }
 
     @Override
@@ -41,7 +37,7 @@ public class IndexCommand extends FrontCommand {
         if (!request.getMethod().equals("POST")) {
             return;
         }
-        String lang = langHandler.getLang(request.getSession());
+        String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -50,11 +46,11 @@ public class IndexCommand extends FrontCommand {
 
         if (user != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute(Defaults.USER.toString(), user);
 
-            response.sendRedirect(linkHandler.addLangToUrl(Pages.PROFILE.toString(), lang));
+            redirect(Pages.PROFILE.toString());
         } else {
-            request.setAttribute("errorMessage", propertiesHandler.getPropertyValue("messages", lang, "errors.invalid_login_or_password"));
+            request.setAttribute("errorMessage", Errors.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
 
             forward("login");
         }

@@ -7,10 +7,10 @@
 <c:set var="basicLinkClass" value="${(empty basicLinkClass) ? 'teal-text text-lighten-1' : basicLinkClass}" />
 <c:set var="activeLinkClass" value="${(empty activeLinkClass) ? 'red-text' : activeLinkClass}" />
 
-<ul class="languages-list ${className}">
+<ul class="uppercase weight-normal ${className}">
     <c:forEach items="${requestScope.languages}" var="language">
         <li>
-            <a href="/${language}" class="${requestScope.currentLanguage.equals(language) ? activeLinkClass : basicLinkClass}">${language}</a>
+            <a href="/${language}" class="${requestScope.currentLanguage.equals(language) ? activeLinkClass : basicLinkClass} px5">${language}</a>
         </li>
     </c:forEach>
 </ul>

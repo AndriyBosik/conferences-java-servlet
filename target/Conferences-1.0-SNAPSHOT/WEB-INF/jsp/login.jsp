@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col s12 m4 push-m4">
 
-                        <tf:languagesList className="my10 s-hflex-end login-page-lang-list" />
+                        <tf:languagesList className="my10 s-hflex-end" />
 
                         <div class="px10 radius-4 z-depth-1">
                             <form action="" method="post" class="auto-height">
@@ -47,9 +47,9 @@
                                     </div>
                                 </c:if>
                                 <div class="col s6 pr5">
-                                    <button class="full-width btn waves-effect waves-light red" type="button">
+                                    <a href="<taglib:linkTo href="/users/sign-up" />" class="full-width btn waves-effect waves-light red" type="button">
                                         <taglib:message value="sign_up" /> <i class="material-icons right">supervisor_account</i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="col s6 pl5">
                                     <button class="full-width btn waves-effect waves-light" type="submit">

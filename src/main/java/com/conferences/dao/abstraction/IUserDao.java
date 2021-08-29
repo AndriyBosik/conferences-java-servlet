@@ -8,5 +8,7 @@ public interface IUserDao extends IDao<Integer, User> {
 
     User findByLoginAndPasswordWithRole(String login, String password);
 
+    User findByLoginOrEmail(String login, String email);
+
     List<User> findAllByRole(String role);
 }

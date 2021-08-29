@@ -16,7 +16,8 @@ public enum Pages {
     TOPIC("/topics/show/*"),
     CREATE_TOPIC("/topics/create"),
     UPDATE_TOPIC("/topics/update"),
-    JOIN_USER_TO_MEETING("/meetings/join-user");
+    JOIN_USER_TO_MEETING("/meetings/join-user"),
+    SIGN_UP_USER("/users/sign-up");
 
     protected final String url;
 

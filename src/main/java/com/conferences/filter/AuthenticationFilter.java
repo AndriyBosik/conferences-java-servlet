@@ -22,7 +22,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
         PermissionsHandler.Builder builder = new PermissionsHandler.Builder();
         permissionsHandler = builder
                 .init()
-                .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString())
+                .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString(), Pages.SIGN_UP_USER.toString())
                     .withMethods(HttpMethod.GET, HttpMethod.POST)
                         .allowAllRoles()
                 .controlUrls(

@@ -10,4 +10,6 @@ public interface IUserService {
 
     List<User> getUsersByRoleTitleWithRole(String roleTitle);
 
+    boolean signUpUser(User user);
+
 }

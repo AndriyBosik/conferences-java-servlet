@@ -42,6 +42,28 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
     }
 
     @Override
+    public User findByLoginOrEmail(String login, String email) {
+        String sql = "SELECT * FROM " + dbTable.getName() + " WHERE login=? OR email=?";
+        try (Connection connection = DbManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, login);
+            statement.setString(2, email);
+
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                return entityParser.parseToEntity(User.class, result);
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public List<User> findAllByRole(String role) {
         String sql = "SELECT " + dbTable.getName() + ".*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
