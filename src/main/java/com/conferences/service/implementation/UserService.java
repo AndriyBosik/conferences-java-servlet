@@ -13,8 +13,8 @@ import java.util.List;
 
 public class UserService implements IUserService {
 
-    private IUserDao userDao;
-    private IValidator<User> userValidator;
+    private final IUserDao userDao;
+    private final IValidator<User> userValidator;
 
     public UserService() {
         userDao = new UserDao();
@@ -33,13 +33,6 @@ public class UserService implements IUserService {
 
     @Override
     public boolean signUpUser(User user) {
-        System.out.println(user.getLogin());
-        System.out.println(user.getPassword());
-        System.out.println(user.getSurname());
-        System.out.println(user.getName());
-        System.out.println(user.getEmail());
-
-
         User dbUser = userDao.findByLoginOrEmail(user.getLogin(), user.getEmail());
         if (!userValidator.isValid(user) || dbUser != null || !hasAllowedRole(user)) {
             return false;

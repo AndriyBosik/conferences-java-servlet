@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+    updateErrorImages();
+    updateDataSubmitComponents();
+
     let tooltipped = document.querySelectorAll(".tooltipped");
     M.Tooltip.init(tooltipped);
 

@@ -2,6 +2,7 @@ package com.conferences.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DbManager {
 
@@ -18,15 +19,11 @@ public class DbManager {
         return instance;
     }
 
-    public static Connection getConnection() {
-        try {
-            if (!org.postgresql.Driver.isRegistered()) {
-                org.postgresql.Driver.register();
-            }
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/conferences", "postgres", "postgres");
-        } catch (Exception exception) {
-            return null;
+    public Connection getConnection() throws SQLException {
+        if (!org.postgresql.Driver.isRegistered()) {
+            org.postgresql.Driver.register();
         }
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/conferences", "postgres", "postgres");
     }
 
 }

@@ -24,12 +24,16 @@ public class UpdateCommand extends FrontCommand {
             return;
         }
 
+        String speakerIdParameter = request.getParameter("speaker_id");
+
         ReportTopic reportTopic = new ReportTopic();
         reportTopic.setId(Integer.parseInt(request.getParameter("id")));
         reportTopic.setTitle(request.getParameter("title"));
         reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
-        if (request.getParameter("speaker_id") != null) {
+        if (speakerIdParameter != null && !speakerIdParameter.trim().isEmpty()) {
             reportTopic.setSpeakerId(Integer.parseInt(request.getParameter("speaker_id")));
+        } else {
+            reportTopic.setSpeakerId(null);
         }
 
         if (reportTopicService.update(reportTopic)) {

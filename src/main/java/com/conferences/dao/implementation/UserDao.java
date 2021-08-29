@@ -22,7 +22,7 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
         String sql = "SELECT " + dbTable.getName() + ".*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
                 "FROM " + dbTable.getName() + " LEFT JOIN roles r ON r.id=" + dbTable.getName() + ".role_id WHERE " + dbTable.getName() + ".login=? AND " + dbTable.getName() + ".password=?";
-        try (Connection connection = DbManager.getConnection();
+        try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, login);
@@ -44,7 +44,7 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
     @Override
     public User findByLoginOrEmail(String login, String email) {
         String sql = "SELECT * FROM " + dbTable.getName() + " WHERE login=? OR email=?";
-        try (Connection connection = DbManager.getConnection();
+        try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, login);
@@ -69,7 +69,7 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
                 "FROM " + dbTable.getName() + " LEFT JOIN roles r ON r.id=" + dbTable.getName() + ".role_id WHERE r.title=?";
 
-        try (Connection connection = DbManager.getConnection();
+        try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, role);

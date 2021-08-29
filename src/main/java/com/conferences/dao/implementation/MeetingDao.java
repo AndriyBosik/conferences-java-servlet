@@ -29,7 +29,7 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
                 "FROM " + dbTable.getName() + " LEFT JOIN report_topics rt ON " + dbTable.getName() + ".id = rt.meeting_id LEFT JOIN users u ON rt.speaker_id=u.id " +
                 "WHERE " + dbTable.getName() + ".id=? " +
                 "ORDER BY rt." + entityProcessor.getEntityFieldsList(ReportTopic.class).getKey();
-        try (Connection connection = DbManager.getConnection();
+        try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, key);
@@ -64,7 +64,7 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
 
         PageResponse<List<Meeting>> answer = new PageResponse<>();
 
-        try (Connection connection = DbManager.getConnection();
+        try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, offset);

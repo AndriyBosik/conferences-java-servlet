@@ -35,7 +35,7 @@
 
             <div class="input-field col m6 s12">
                 <select name="speaker_id" class="icons">
-                    <option value="" disabled selected>Choose speaker</option>
+                    <option value="" selected>Choose speaker</option>
                     <c:forEach items="${speakers}" var="speaker">
                         <option value="${speaker.id}" data-icon="/resources/images/avatars/${speaker.login}.png">
                             ${speaker.name} ${speaker.surname}

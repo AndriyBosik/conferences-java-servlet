@@ -15,9 +15,9 @@ import java.util.List;
 
 public class MeetingService implements IMeetingService {
 
-    private IMeetingDao meetingDao;
-    private IUserMeetingDao userMeetingDao;
-    private IValidator<Meeting> meetingValidator;
+    private final IMeetingDao meetingDao;
+    private final IUserMeetingDao userMeetingDao;
+    private final IValidator<Meeting> meetingValidator;
 
     public MeetingService() {
         this.meetingDao = new MeetingDao();

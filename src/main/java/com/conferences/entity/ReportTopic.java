@@ -48,7 +48,7 @@ public class ReportTopic {
         return speakerId;
     }
 
-    public void setSpeakerId(int speakerId) {
+    public void setSpeakerId(Integer speakerId) {
         this.speakerId = speakerId;
     }
 

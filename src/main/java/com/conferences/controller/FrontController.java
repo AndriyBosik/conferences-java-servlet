@@ -75,7 +75,7 @@ public class FrontController extends HttpServlet {
         for (int i = 2; i < parts.length; i++) {
             urlParams.add(parts[i]);
         }
-        return new CommandInfo(parts[0], parts[1], urlParams);
+        return new CommandInfo(parts[0].replace("-", "."), parts[1], urlParams);
     }
 
     private String mapToClassName(String commandName) {

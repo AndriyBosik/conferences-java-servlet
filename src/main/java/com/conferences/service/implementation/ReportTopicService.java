@@ -9,8 +9,8 @@ import com.conferences.validator.ReportTopicValidator;
 
 public class ReportTopicService implements IReportTopicService {
 
-    private IReportTopicDao reportTopicDao;
-    private IValidator<ReportTopic> reportTopicValidator;
+    private final IReportTopicDao reportTopicDao;
+    private final IValidator<ReportTopic> reportTopicValidator;
 
     public ReportTopicService() {
         reportTopicDao = new ReportTopicDao();
@@ -31,5 +31,10 @@ public class ReportTopicService implements IReportTopicService {
             return reportTopicDao.update(reportTopic);
         }
         return false;
+    }
+
+    @Override
+    public boolean setSpeakerForTopic(int topicId, int speakerId) {
+        return reportTopicDao.updateSpeakerIdForTopic(topicId, speakerId);
     }
 }

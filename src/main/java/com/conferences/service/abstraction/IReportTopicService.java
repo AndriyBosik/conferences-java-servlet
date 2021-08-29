@@ -8,4 +8,6 @@ public interface IReportTopicService {
 
     boolean update(ReportTopic reportTopic);
 
+    boolean setSpeakerForTopic(int topicId, int speakerId);
+
 }

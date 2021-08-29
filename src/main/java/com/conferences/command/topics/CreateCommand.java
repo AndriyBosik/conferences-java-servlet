@@ -24,11 +24,15 @@ public class CreateCommand extends FrontCommand {
             return;
         }
 
+        String speakerIdParameter = request.getParameter("speaker_id");
+
         ReportTopic reportTopic = new ReportTopic();
         reportTopic.setTitle(request.getParameter("title"));
         reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
-        if (request.getParameter("speaker_id") != null) {
-            reportTopic.setSpeakerId(Integer.parseInt(request.getParameter("speaker_id")));
+        if (speakerIdParameter != null && !speakerIdParameter.trim().isEmpty()) {
+            reportTopic.setSpeakerId(Integer.parseInt(speakerIdParameter.trim()));
+        } else {
+            reportTopic.setSpeakerId(null);
         }
 
         if (reportTopicService.save(reportTopic)) {

@@ -95,15 +95,35 @@
                                         <c:choose>
                                             <c:when test="${not empty topic.speaker}">
                                                 <div class="s-hflex" data-speaker-id="${topic.speakerId}">
-                                                    <div class="z-depth-1 user-avatar stretch-background" style="background-image: url('/resources/images/avatars/${topic.speaker.login}.png')"></div>
+                                                    <div class="z-depth-1 user-avatar stretch-background">
+                                                        <img src="/resources/images/avatars/${topic.speaker.login}.png" alt="" class="full-width full-height" data-error="avatarDefault" />
+                                                    </div>
                                                     <div class="s-vflex-center px10 weight-normal">
-                                                            ${topic.speaker.name} ${topic.speaker.surname}
+                                                        ${topic.speaker.name} ${topic.speaker.surname}
                                                     </div>
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
-                                                <div class="red-text weight-strong">
-                                                    <taglib:message value="no_speaker" />
+                                                <div class="red-text weight-strong s-hflex">
+                                                    <tf:forRoles roles="${['speaker']}">
+                                                        <form action="<taglib:linkTo href="/topics/propose-speaker" />" method="post" class="m0">
+                                                            <input type="hidden" name="meeting_id" value="${meeting.id}" />
+                                                            <input type="hidden" name="report_topic_id" value="${topic.id}" />
+                                                            <button type="submit" class="btn-floating orange tooltipped" data-position="left" data-tooltip="<taglib:message value="propose_me" />">
+                                                                <i class="material-icons">assignment_ind</i>
+                                                            </button>
+                                                        </form>
+                                                    </tf:forRoles>
+
+                                                    <span class="px10 s-vflex-center">
+                                                        <taglib:message value="no_speaker" />
+                                                    </span>
+
+                                                    <tf:forRoles roles="${['moderator']}">
+                                                        <a href="#topic-proposals-form" class="modal-trigger proposalsSearchTrigger weight-slight" data-topic-id="${topic.id}">
+                                                            (<taglib:message value="select_from_proposals" />)
+                                                        </a>
+                                                    </tf:forRoles>
                                                 </div>
                                             </c:otherwise>
                                         </c:choose>
@@ -115,8 +135,6 @@
                             </c:forEach>
                         </tbody>
                     </table>
-
-                    <tf:pagination currentPage="1" pagesCount="7" />
 
                 </c:when>
 
@@ -135,4 +153,5 @@
         <jsp:param name="meeting" value="${meeting}" />
         <jsp:param name="speakers" value="${speakers}" />
     </jsp:include>
+    <jsp:include page="/WEB-INF/jsp/components/modals/topic-proposals-form.jsp" />
 </tf:forRoles>
