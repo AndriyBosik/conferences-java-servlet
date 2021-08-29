@@ -7,6 +7,7 @@ import com.conferences.dao.implementation.UserMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.UserMeeting;
 import com.conferences.model.Page;
+import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.validator.IValidator;
 import com.conferences.validator.MeetingValidator;
@@ -26,8 +27,12 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public List<Meeting> getAllMeetingsByPage(Page page) {
-        return meetingDao.findAllPage(page).getItem();
+    public PageResponse<List<Meeting>> getAllMeetingsByPage(Page page) {
+        PageResponse<List<Meeting>> pageResponse = new PageResponse();
+        pageResponse.setItem(meetingDao.findAllPage(page).getItem());
+        double items = meetingDao.getRecordsCount();
+        pageResponse.setPagesCount((int) Math.ceil(items / page.getItemsCount()));
+        return pageResponse;
     }
 
     @Override

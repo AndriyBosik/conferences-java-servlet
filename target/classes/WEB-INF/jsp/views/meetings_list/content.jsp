@@ -55,7 +55,10 @@
                         </div>
                     </c:forEach>
 
-                    <tf:pagination currentPage="1" pagesCount="7" paginationClass="col s12" />
+                    <tf:pagination
+                            currentPage="${currentPage}"
+                            pagesLinks="${pagesLinks}"
+                            paginationClass="col s12" />
 
                 </c:when>
 

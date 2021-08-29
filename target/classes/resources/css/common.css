@@ -1,3 +1,8 @@
+a.deactivate {
+    pointer-events: none;
+    cursor: default;
+}
+
 .required-field:after {
     content: " *";
     color: red;

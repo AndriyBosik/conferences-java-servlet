@@ -9,6 +9,7 @@ import com.conferences.handler.LinkHandler;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
 import com.conferences.model.Page;
+import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.implementation.MeetingService;
 import com.conferences.validator.IValidator;
@@ -55,7 +56,11 @@ public class AllCommand extends FrontCommand {
             return;
         }
 
-        request.setAttribute("meetings", meetingService.getAllMeetingsByPage(page));
+        PageResponse<List<Meeting>> meetingsPage = meetingService.getAllMeetingsByPage(page);
+
+        request.setAttribute("meetings", meetingsPage.getItem());
+        request.setAttribute("currentPage", page.getPageNumber());
+        request.setAttribute("pagesLinks", getLinkToMeetingsPages(meetingsPage.getPagesCount()));
         forwardPartial("meetings_list");
     }
 
@@ -80,12 +85,20 @@ public class AllCommand extends FrontCommand {
             if (meetingService.saveMeeting(meeting)) {
                 redirect(Pages.MEETING.getUrl() + meeting.getId());
             } else {
-                // fill cookies with inputted data and redirect with error message
+                // TODO(fill cookies with inputted data and redirect with error message)
             }
         } else {
-            // Bad request
+            // TODO(Bad request)
         }
 
 //        response.sendRedirect(Pages.MEETINGS_LIST.toString());
+    }
+
+    private List<String> getLinkToMeetingsPages(int pagesCount) {
+        List<String> links = new ArrayList<>();
+        for (int i = 1; i <= pagesCount; i++) {
+            links.add(Pages.MEETINGS_LIST + "/" + i);
+        }
+        return links;
     }
 }

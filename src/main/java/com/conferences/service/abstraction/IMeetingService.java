@@ -2,12 +2,13 @@ package com.conferences.service.abstraction;
 
 import com.conferences.entity.Meeting;
 import com.conferences.model.Page;
+import com.conferences.model.PageResponse;
 
 import java.util.List;
 
 public interface IMeetingService {
 
-    List<Meeting> getAllMeetingsByPage(Page page);
+    PageResponse<List<Meeting>> getAllMeetingsByPage(Page page);
 
     Meeting getMeetingWithTopicsAndSpeakers(int id);
 

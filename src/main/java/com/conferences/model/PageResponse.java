@@ -1,8 +1,5 @@
 package com.conferences.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PageResponse<T> {
 
     private T item;
