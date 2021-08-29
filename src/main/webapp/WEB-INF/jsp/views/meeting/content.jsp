@@ -14,13 +14,16 @@
                     <div class="s-hflex-end">
                         <c:choose>
                             <c:when test="${not isJoined}">
-                                <form class="m0" action="<taglib:linkTo href="/meetings/join-user" />" method="post">
-                                    <input type="hidden" name="meeting_id" value="${meeting.id}">
-                                    <button type="submit" class="btn waves-effect waves-light light-blue darken-4">
-                                        <taglib:message value="join" />
-                                        <i class="material-icons right">person_add</i>
-                                    </button>
-                                </form>
+                                <jsp:useBean id="now" class="java.util.Date" />
+                                <c:if test="${meeting.date gt now}">
+                                    <form class="m0" action="<taglib:linkTo href="/meetings/join-user" />" method="post">
+                                        <input type="hidden" name="meeting_id" value="${meeting.id}">
+                                        <button type="submit" class="btn waves-effect waves-light light-blue darken-4">
+                                            <taglib:message value="join" />
+                                            <i class="material-icons right">person_add</i>
+                                        </button>
+                                    </form>
+                                </c:if>
                             </c:when>
 
                             <c:otherwise>

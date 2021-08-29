@@ -18,4 +18,6 @@ public interface IMeetingService {
 
     boolean hasJoinedUser(int meetingId, int userId);
 
+    Meeting getMeetingById(int meetingId);
+
 }

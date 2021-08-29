@@ -60,4 +60,9 @@ public class MeetingService implements IMeetingService {
     public boolean hasJoinedUser(int meetingId, int userId) {
         return userMeetingDao.findByUserIdAndMeetingId(userId, meetingId) != null;
     }
+
+    @Override
+    public Meeting getMeetingById(int meetingId) {
+        return meetingDao.find(meetingId);
+    }
 }
