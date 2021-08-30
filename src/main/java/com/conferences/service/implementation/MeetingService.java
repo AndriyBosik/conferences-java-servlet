@@ -27,17 +27,17 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public PageResponse<List<Meeting>> getAllMeetingsByPage(Page page) {
-        PageResponse<List<Meeting>> pageResponse = new PageResponse();
-        pageResponse.setItem(meetingDao.findAllPage(page).getItem());
+    public PageResponse<List<Meeting>> getAllMeetingsByPageWithUsersCountAndTopicsCount(Page page) {
+        PageResponse<List<Meeting>> pageResponse = new PageResponse<>();
+        pageResponse.setItem(meetingDao.findAllPageWithUsersCountAndTopicsCount(page));
         double items = meetingDao.getRecordsCount();
         pageResponse.setPagesCount((int) Math.ceil(items / page.getItemsCount()));
         return pageResponse;
     }
 
     @Override
-    public Meeting getMeetingWithTopicsAndSpeakers(int id) {
-        return meetingDao.findByKeyWithReportTopicsAndSpeakers(id);
+    public Meeting getMeetingWithTopicsAndSpeakersAndUsersCount(int id) {
+        return meetingDao.findByKeyWithReportTopicsAndSpeakersAndUsersCount(id);
     }
 
     @Override

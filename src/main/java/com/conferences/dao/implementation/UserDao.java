@@ -5,17 +5,12 @@ import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
-import com.conferences.model.DbTable;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
-    private static final String ID = "id";
-    private static final String ROLE_ID = "role_id";
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
 
     @Override
     public User findByLoginAndPasswordWithRole(String login, String password) {

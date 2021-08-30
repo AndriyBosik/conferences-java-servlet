@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IMeetingService {
 
-    PageResponse<List<Meeting>> getAllMeetingsByPage(Page page);
+    PageResponse<List<Meeting>> getAllMeetingsByPageWithUsersCountAndTopicsCount(Page page);
 
-    Meeting getMeetingWithTopicsAndSpeakers(int id);
+    Meeting getMeetingWithTopicsAndSpeakersAndUsersCount(int id);
 
     boolean saveMeeting(Meeting meeting);
 

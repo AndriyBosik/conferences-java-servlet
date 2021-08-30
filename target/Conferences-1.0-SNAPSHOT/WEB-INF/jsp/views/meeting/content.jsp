@@ -60,6 +60,24 @@
                         <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
                     </span>
                 </div>
+                <div class="meeting-where s-hflex my5">
+                    <span class="weight-strong s-hflex">
+                        <i class="material-icons pr5 float-left">title</i>
+                        <taglib:message value="topics" />:
+                    </span>
+                    <span class="translucent-3p px5">
+                        ${meeting.reportTopicsCount}
+                    </span>
+                </div>
+                <div class="meeting-where s-hflex my5">
+                    <span class="weight-strong s-hflex">
+                        <i class="material-icons pr5 float-left">people</i>
+                        <taglib:message value="participants" />:
+                    </span>
+                    <span class="translucent-3p px5">
+                        ${meeting.usersCount}
+                    </span>
+                </div>
             </div>
 
             <p class="meeting-description translucent-2p m0">

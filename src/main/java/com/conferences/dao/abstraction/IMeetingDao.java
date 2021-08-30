@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IMeetingDao extends IDao<Integer, Meeting> {
 
-    Meeting findByKeyWithReportTopicsAndSpeakers(Integer key);
+    Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key);
 
-    PageResponse<List<Meeting>> findAllPage(Page page);
+    List<Meeting> findAllPageWithUsersCountAndTopicsCount(Page page);
 
 }

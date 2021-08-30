@@ -28,6 +28,10 @@ public class Meeting {
     @Column(name = "date")
     private Date date;
 
+    private int reportTopicsCount;
+
+    private int usersCount;
+
     private List<ReportTopic> reportTopics;
 
     public Meeting() {
@@ -82,11 +86,28 @@ public class Meeting {
         this.date = date;
     }
 
+    public int getReportTopicsCount() {
+        return reportTopicsCount;
+    }
+
+    public void setReportTopicsCount(int reportTopicsCount) {
+        this.reportTopicsCount = reportTopicsCount;
+    }
+
+    public int getUsersCount() {
+        return usersCount;
+    }
+
+    public void setUsersCount(int usersCount) {
+        this.usersCount = usersCount;
+    }
+
     public List<ReportTopic> getReportTopics() {
         return reportTopics;
     }
 
     public void setReportTopics(List<ReportTopic> reportTopics) {
+        this.reportTopicsCount = reportTopics.size();
         this.reportTopics = reportTopics;
     }
 

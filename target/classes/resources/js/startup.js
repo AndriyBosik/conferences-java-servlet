@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     M.Modal.init(modals);
 
     let selects = document.querySelectorAll("select");
+    for (let select of selects) {
+        initSelectedOption(select);
+    }
     M.FormSelect.init(selects);
 
     let datePickers = document.querySelectorAll(".date-picker");
@@ -35,3 +38,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+function initSelectedOption(select) {
+    let option = select.querySelector(`option[value='${select.getAttribute("initial-value")}']`);
+    if (option == null) {
+        option = select.querySelector("option");
+    }
+    if (option != null) {
+        option.setAttribute("selected", "selected");
+    }
+}

@@ -3,7 +3,6 @@ package com.conferences.command.meetings;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
-import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
@@ -32,7 +31,7 @@ public class ShowCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        Meeting meeting = meetingService.getMeetingWithTopicsAndSpeakers(id);
+        Meeting meeting = meetingService.getMeetingWithTopicsAndSpeakersAndUsersCount(id);
 
         List<User> speakers = userService.getUsersByRoleTitleWithRole("speaker");
 

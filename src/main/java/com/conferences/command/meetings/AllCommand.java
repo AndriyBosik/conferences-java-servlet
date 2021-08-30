@@ -1,28 +1,18 @@
 package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.config.Defaults;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.entity.Meeting;
-import com.conferences.handler.LinkHandler;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.implementation.MeetingService;
-import com.conferences.validator.IValidator;
-import com.conferences.validator.MeetingValidator;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -56,8 +46,13 @@ public class AllCommand extends FrontCommand {
             return;
         }
 
-        PageResponse<List<Meeting>> meetingsPage = meetingService.getAllMeetingsByPage(page);
+        String sortByOption = request.getParameter("sort-by");
+        String sortOrderOption = request.getParameter("sort-order");
 
+        PageResponse<List<Meeting>> meetingsPage = meetingService.getAllMeetingsByPageWithUsersCountAndTopicsCount(page);
+
+        request.setAttribute("sortByOption", sortByOption);
+        request.setAttribute("sortOrderOption", sortOrderOption);
         request.setAttribute("meetings", meetingsPage.getItem());
         request.setAttribute("currentPage", page.getPageNumber());
         request.setAttribute("pagesLinks", getLinkToMeetingsPages(meetingsPage.getPagesCount()));
