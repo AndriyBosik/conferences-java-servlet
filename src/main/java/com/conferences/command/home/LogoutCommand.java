@@ -9,6 +9,6 @@ public class LogoutCommand extends FrontCommand {
     @Override
     public void process() throws IOException {
         request.getSession().invalidate();
-        response.sendRedirect(Pages.HOME.toString());
+        redirect(Pages.HOME.toString());
     }
 }

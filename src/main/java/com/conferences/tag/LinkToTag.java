@@ -44,13 +44,19 @@ public class LinkToTag extends TagSupport {
             exception.printStackTrace();
         }
 
+        resetData();
+
         return SKIP_BODY;
     }
 
     private void initToLang() {
-        if (toLang == null) {
+        if (toLang == null || "".equals(toLang)) {
             toLang = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LANG.toString());
         }
+    }
+
+    private void resetData() {
+        setToLang(null);
     }
 
     public void setToLang(String toLang) {
