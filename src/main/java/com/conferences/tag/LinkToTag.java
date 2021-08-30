@@ -25,21 +25,23 @@ public class LinkToTag extends TagSupport {
 
         JspWriter out = pageContext.getOut();
 
-        String url = "";
+        String url;
         if ("".equals(href)) {
-            HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            String queryString = request.getQueryString();
-            String currentLink = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LINK.toString());
-            if (queryString != null && !queryString.isEmpty()) {
-                currentLink += "?" + queryString;
-            }
-            url = linkHandler.addLangToUrl(currentLink, toLang);
+            url = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LINK.toString());
         } else {
-            url = linkHandler.addLangToUrl(href, toLang);
+            url = href;
         }
 
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        String queryString = request.getQueryString();
+        if (queryString != null && !queryString.isEmpty()) {
+            url += "?" + queryString;
+        }
+
+        String link = linkHandler.addLangToUrl(url, toLang);
+
         try {
-            out.print(url);
+            out.print(link);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
