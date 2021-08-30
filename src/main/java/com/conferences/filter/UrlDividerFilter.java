@@ -20,8 +20,6 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         UrlData urlData = extractLanguage(request.getRequestURI().substring(request.getContextPath().length()));
 
-        request.setAttribute(Defaults.CURRENT_LANG.toString(), urlData.getLang());
-
         handleFilter(servletData, urlData, filterChain);
     }
 

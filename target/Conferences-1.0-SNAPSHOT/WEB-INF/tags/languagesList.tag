@@ -1,5 +1,6 @@
 <%@ tag %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="taglib" uri="tags" %>
 <%@ attribute name="className" type="java.lang.String" %>
 <%@ attribute name="basicLinkClass" type="java.lang.String" %>
 <%@ attribute name="activeLinkClass" type="java.lang.String" %>
@@ -10,7 +11,7 @@
 <ul class="uppercase weight-normal ${className}">
     <c:forEach items="${requestScope.languages}" var="language">
         <li>
-            <a href="/${language}" class="${requestScope.currentLanguage.equals(language) ? activeLinkClass : basicLinkClass} px5">${language}</a>
+            <a href="<taglib:linkTo href="" toLang="${language}" />" class="${requestScope.currentLanguage.equals(language) ? activeLinkClass : basicLinkClass} px5">${language}</a>
         </li>
     </c:forEach>
 </ul>

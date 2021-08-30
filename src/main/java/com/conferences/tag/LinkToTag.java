@@ -3,6 +3,7 @@ package com.conferences.tag;
 import com.conferences.config.Defaults;
 import com.conferences.handler.LinkHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 public class LinkToTag extends TagSupport {
 
     private String href;
+    private String toLang;
 
     private final LinkHandler linkHandler;
 
@@ -19,11 +21,22 @@ public class LinkToTag extends TagSupport {
 
     @Override
     public int doStartTag() {
-        String lang = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LANG.toString());
+        initToLang();
 
         JspWriter out = pageContext.getOut();
 
-        String url = linkHandler.addLangToUrl(href, lang);
+        String url = "";
+        if ("".equals(href)) {
+            HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+            String queryString = request.getQueryString();
+            String currentLink = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LINK.toString());
+            if (queryString != null && !queryString.isEmpty()) {
+                currentLink += "?" + queryString;
+            }
+            url = linkHandler.addLangToUrl(currentLink, toLang);
+        } else {
+            url = linkHandler.addLangToUrl(href, toLang);
+        }
 
         try {
             out.print(url);
@@ -32,6 +45,16 @@ public class LinkToTag extends TagSupport {
         }
 
         return SKIP_BODY;
+    }
+
+    private void initToLang() {
+        if (toLang == null) {
+            toLang = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LANG.toString());
+        }
+    }
+
+    public void setToLang(String toLang) {
+        this.toLang = toLang;
     }
 
     public void setHref(String href) {
