@@ -1,6 +1,7 @@
 package com.conferences.dao.abstraction;
 
 import com.conferences.entity.Meeting;
+import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 
@@ -10,6 +11,6 @@ public interface IMeetingDao extends IDao<Integer, Meeting> {
 
     Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key);
 
-    List<Meeting> findAllPageWithUsersCountAndTopicsCount(Page page);
+    PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter);
 
 }

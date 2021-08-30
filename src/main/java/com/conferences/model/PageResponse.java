@@ -1,23 +1,38 @@
 package com.conferences.model;
 
+import java.util.List;
+
 public class PageResponse<T> {
 
-    private T item;
-    private int pagesCount;
-
-    public T getItem() {
-        return item;
-    }
-
-    public void setItem(T item) {
-        this.item = item;
-    }
+    private List<T> items;
+    private int pageSize;
+    private int totalItems;
 
     public int getPagesCount() {
-        return pagesCount;
+        return (int) Math.ceil((double) totalItems / pageSize);
     }
 
-    public void setPagesCount(int pagesCount) {
-        this.pagesCount = pagesCount;
+    public List<T> getItems() {
+        return items;
+    }
+
+    public void setItems(List<T> items) {
+        this.items = items;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
     }
 }

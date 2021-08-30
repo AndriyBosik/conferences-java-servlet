@@ -1,6 +1,7 @@
 package com.conferences.service.abstraction;
 
 import com.conferences.entity.Meeting;
+import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface IMeetingService {
 
-    PageResponse<List<Meeting>> getAllMeetingsByPageWithUsersCountAndTopicsCount(Page page);
+    PageResponse<Meeting> getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter);
 
     Meeting getMeetingWithTopicsAndSpeakersAndUsersCount(int id);
 

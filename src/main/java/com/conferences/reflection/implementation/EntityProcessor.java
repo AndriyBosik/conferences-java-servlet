@@ -1,10 +1,10 @@
-package com.conferences.util.reflection.implementation;
+package com.conferences.reflection.implementation;
 
 import com.conferences.annotation.Column;
 import com.conferences.annotation.Table;
 import com.conferences.model.DbTable;
-import com.conferences.util.reflection.abstraction.IEntityParser;
-import com.conferences.util.reflection.abstraction.IEntityProcessor;
+import com.conferences.reflection.abstraction.IEntityParser;
+import com.conferences.reflection.abstraction.IEntityProcessor;
 
 import java.lang.reflect.Field;
 import java.sql.*;

@@ -1,7 +1,7 @@
-package com.conferences.util.reflection.implementation;
+package com.conferences.reflection.implementation;
 
 import com.conferences.annotation.Column;
-import com.conferences.util.reflection.abstraction.IEntityParser;
+import com.conferences.reflection.abstraction.IEntityParser;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;

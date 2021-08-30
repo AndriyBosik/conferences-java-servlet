@@ -39,7 +39,14 @@
                             <option value="desc"><taglib:message value="descending" /></option>
                         </select>
                     </div>
-                    <div class="s-vflex-center">
+                    <div class="input-field">
+                        <select id="select-option" name="filter-selector" initial-value="${filterSelector}">
+                            <option value="all" selected><taglib:message value="all" /></option>
+                            <option value="past"><taglib:message value="past" /></option>
+                            <option value="future"><taglib:message value="future" /></option>
+                        </select>
+                    </div>
+                    <div class="s-vflex-center mx10">
                         <button type="submit" class="btn waves-effect orange">
                             <taglib:message value="confirm" />
                         </button>

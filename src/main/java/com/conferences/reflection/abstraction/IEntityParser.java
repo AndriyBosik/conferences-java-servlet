@@ -1,4 +1,4 @@
-package com.conferences.util.reflection.abstraction;
+package com.conferences.reflection.abstraction;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;

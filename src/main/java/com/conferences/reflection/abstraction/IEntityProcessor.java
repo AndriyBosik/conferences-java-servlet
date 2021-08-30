@@ -1,4 +1,4 @@
-package com.conferences.util.reflection.abstraction;
+package com.conferences.reflection.abstraction;
 
 import com.conferences.model.DbTable;
 

@@ -6,12 +6,16 @@ import com.conferences.config.Pages;
 import com.conferences.entity.Meeting;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToMeetingSorterMapper;
+import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.implementation.MeetingService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,11 +28,13 @@ public class AllCommand extends FrontCommand {
 
     private final IMeetingService meetingService;
     private final IFileHandler fileHandler;
+    private final IMapper<HttpServletRequest, MeetingSorter> mapper;
     private final Page page;
 
     public AllCommand() {
         this.meetingService = new MeetingService();
         this.fileHandler = new FileHandler();
+        this.mapper = new RequestToMeetingSorterMapper();
 
         this.page = new Page(ITEMS_COUNT, 1);
     }
@@ -48,12 +54,15 @@ public class AllCommand extends FrontCommand {
 
         String sortByOption = request.getParameter("sort-by");
         String sortOrderOption = request.getParameter("sort-order");
+        String filterSelector = request.getParameter("filter-selector");
 
-        PageResponse<List<Meeting>> meetingsPage = meetingService.getAllMeetingsByPageWithUsersCountAndTopicsCount(page);
+        MeetingSorter meetingSorter = mapper.map(request);
+        PageResponse<Meeting> meetingsPage = meetingService.getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(page, meetingSorter);
 
         request.setAttribute("sortByOption", sortByOption);
         request.setAttribute("sortOrderOption", sortOrderOption);
-        request.setAttribute("meetings", meetingsPage.getItem());
+        request.setAttribute("filterSelector", filterSelector);
+        request.setAttribute("meetings", meetingsPage.getItems());
         request.setAttribute("currentPage", page.getPageNumber());
         request.setAttribute("pagesLinks", getLinkToMeetingsPages(meetingsPage.getPagesCount()));
         forwardPartial("meetings_list");

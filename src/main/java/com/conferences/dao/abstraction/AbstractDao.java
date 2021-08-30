@@ -3,10 +3,10 @@ package com.conferences.dao.abstraction;
 import com.conferences.config.DbManager;
 import com.conferences.handler.TransactionHandler;
 import com.conferences.model.DbTable;
-import com.conferences.util.reflection.abstraction.IEntityProcessor;
-import com.conferences.util.reflection.implementation.EntityParser;
-import com.conferences.util.reflection.implementation.EntityProcessor;
-import com.conferences.util.reflection.abstraction.IEntityParser;
+import com.conferences.reflection.abstraction.IEntityProcessor;
+import com.conferences.reflection.implementation.EntityParser;
+import com.conferences.reflection.implementation.EntityProcessor;
+import com.conferences.reflection.abstraction.IEntityParser;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.*;
@@ -110,13 +110,19 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
     @Override
     public int getRecordsCount() {
-        String sql = "SELECT COUNT(" + dbTable.getKey() + ") AS count FROM " + dbTable.getName();
+        return getRecordsCountBySql(
+            "SELECT COUNT(" + dbTable.getKey() + ") AS count FROM " + dbTable.getName(),
+                "count");
+
+    }
+
+    protected int getRecordsCountBySql(String sql, String resultColumn) {
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                return result.getInt("count");
+                return result.getInt(resultColumn);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
