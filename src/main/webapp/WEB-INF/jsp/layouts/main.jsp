@@ -32,6 +32,7 @@
         <jsp:include page="/WEB-INF/jsp/components/constants-js.jsp" />
         <jsp:include page="/WEB-INF/jsp/components/default-js.jsp" />
 
+        <script type="text/javascript" src="/resources/js/moment.min.js"></script>
         <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
         <script type="text/javascript" src="/resources/js/helper-functions.js"></script>
         <script type="text/javascript" src="/resources/js/updaters.js"></script>

@@ -60,18 +60,21 @@
 
                 <c:when test="${not empty meetings}">
                     <c:forEach items="${meetings}" var="meeting">
-                        <div class="col s12 m6 l4">
+                        <div class="col s12 m6 l4 meetingContainer" data-id="${meeting.id}">
                             <div class="card hoverable meeting-card">
                                 <div class="card-header">
-                                    <h6 class="py5 px10 translucent truncate">
+                                    <h6 class="py5 px10 translucent truncate" data-address>
                                         ${meeting.address}
                                     </h6>
                                 </div>
                                 <div class="card-image stretch-background" style="background-image: url('/resources/images/meetings/${meeting.imagePath}')">
                                     <tf:forRoles roles="${['moderator']}">
-                                        <a href="<taglib:linkTo href="/meetings/edit/${meeting.id}" />" class="tooltipped waves-light blue-text text-darken-3 top-right-element text-hoverable" data-position="right" data-tooltip="<taglib:message value="edit" />">
-                                            <i class="material-icons small">edit</i>
-                                        </a>
+                                        <jsp:useBean id="now" class="java.util.Date" />
+                                        <c:if test="${meeting.date gt now}">
+                                            <div class="clickable tooltipped waves-light blue-text text-darken-3 top-right-element text-hoverable modal-trigger" data-position="right" data-tooltip="<taglib:message value="edit" />" data-target="edit-meeting-modal">
+                                                <i class="material-icons small">edit</i>
+                                            </div>
+                                        </c:if>
                                     </tf:forRoles>
 
                                     <a href="<taglib:linkTo href="/meetings/show/${meeting.id}" />" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="view" />">
@@ -97,9 +100,9 @@
                                     </p>
                                     <hr class="date-divider" />
                                     <div class="s-hflex-end">
-                                <span class="translucent">
-                                    <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
-                                </span>
+                                        <span class="translucent" data-date>
+                                            <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -127,4 +130,5 @@
 
 <tf:forRoles roles="${['moderator']}">
     <jsp:include page="/WEB-INF/jsp/components/modals/new-meeting-form.jsp" />
+    <jsp:include page="/WEB-INF/jsp/components/modals/edit-meeting-form.jsp" />
 </tf:forRoles>

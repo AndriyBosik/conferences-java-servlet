@@ -62,4 +62,9 @@ public class MeetingService implements IMeetingService {
     public Meeting getMeetingById(int meetingId) {
         return meetingDao.find(meetingId);
     }
+
+    @Override
+    public boolean updateMeetingEditableData(Meeting meeting) {
+        return meetingDao.updateMeetingEditableData(meeting);
+    }
 }

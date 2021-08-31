@@ -7,6 +7,7 @@ public enum Pages {
     PROFILE("/home/profile"),
     MEETINGS_LIST("/meetings/all"),
     MEETINGS_LIST_PAGE("/meetings/all/*"),
+    MEETING_EDIT("/meetings/edit"),
     MEETING("/meetings/show/") {
         @Override
         public String toString() {

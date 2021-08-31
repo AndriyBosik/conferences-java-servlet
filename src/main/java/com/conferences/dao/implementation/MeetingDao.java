@@ -110,6 +110,24 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
         return pageResponse;
     }
 
+    @Override
+    public boolean updateMeetingEditableData(Meeting meeting) {
+        String sql = "UPDATE meetings SET address=?, date=? WHERE id=?";
+        try (Connection connection = DbManager.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, meeting.getAddress());
+            statement.setTimestamp(2, new Timestamp(meeting.getDate().getTime()));
+            statement.setInt(3, meeting.getId());
+            statement.executeUpdate();
+
+            return true;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return false;
+    }
+
     private Map<String, String> getMeetingPageColumns() {
         Map<String, String> columns = new HashMap<>();
         columns.put(MeetingSorterQueryBuilderFactory.MEETINGS_KEY, "meetings.");

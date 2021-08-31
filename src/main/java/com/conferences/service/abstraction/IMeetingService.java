@@ -21,4 +21,6 @@ public interface IMeetingService {
 
     Meeting getMeetingById(int meetingId);
 
+    boolean updateMeetingEditableData(Meeting meeting);
+
 }
