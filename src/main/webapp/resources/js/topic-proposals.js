@@ -27,7 +27,6 @@ function getTopicProposalComponent(topicProposal) {
     let layout = `<form action="${SET_TOPIC_SPEAKER_FROM_PROPOSALS_ACTION}" method="post" class="col s6 m3 my5">
                 <input type="hidden" name="speaker_id" value="${topicProposal.speaker.id}" />
                 <input type="hidden" name="topic_id" value="${topicProposal.reportTopicId}">
-                <input type="hidden" name="meeting_id" value="${MEETING_ID}">
                 <div class="proposal full-width clickable" data-submit-action>
                     <div class="z-depth-1">
                         <div class="s-hflex">

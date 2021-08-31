@@ -3,6 +3,7 @@ package com.conferences.service.implementation;
 import com.conferences.dao.abstraction.ISpeakerProposalDao;
 import com.conferences.dao.implementation.SpeakerProposalDao;
 import com.conferences.entity.SpeakerProposal;
+import com.conferences.entity.custom.ProposalData;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 
 import java.util.List;

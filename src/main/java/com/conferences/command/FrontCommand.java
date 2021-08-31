@@ -48,4 +48,12 @@ public abstract class FrontCommand {
         response.sendRedirect(link);
     }
 
+    protected void redirectBack() {
+        try {
+            response.sendRedirect(request.getHeader("referer"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
 }

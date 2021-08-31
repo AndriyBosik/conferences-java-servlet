@@ -4,6 +4,6 @@ import com.conferences.entity.ReportTopicSpeaker;
 
 public interface IReportTopicSpeakerDao {
 
-    boolean saveWithDeletionFromSpeakerProposalsTable(ReportTopicSpeaker reportTopicSpeaker);
+    boolean saveWithProposalsDeletionTable(ReportTopicSpeaker reportTopicSpeaker);
 
 }

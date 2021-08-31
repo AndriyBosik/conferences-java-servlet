@@ -19,7 +19,7 @@ public class EntityProcessor implements IEntityProcessor {
     private static final Map<Class<?>, DbTable> dbTables = new ConcurrentHashMap<>();
     private static final Map<Class<?>, List<EntityFieldData>> entityFieldsData = new ConcurrentHashMap<>();
 
-    private IEntityParser entityParser;
+    private final IEntityParser entityParser;
 
     public EntityProcessor() {
         entityParser = new EntityParser();
@@ -101,14 +101,7 @@ public class EntityProcessor implements IEntityProcessor {
         columns.deleteCharAt(columns.length() - 1);
         values.deleteCharAt(values.length() - 1);
 
-        String sql = new StringBuilder("INSERT INTO ")
-                .append(dbTable.getName())
-                .append("(")
-                .append(columns)
-                .append(") VALUES (")
-                .append(values)
-                .append(")")
-                .toString();
+        String sql = "INSERT INTO " + dbTable.getName() + "(" + columns + ") VALUES (" +values + ")";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql, keys.toArray(new String[0]));
 
@@ -147,14 +140,7 @@ public class EntityProcessor implements IEntityProcessor {
 
         sqlBody.deleteCharAt(sqlBody.length() - 1);
 
-        String sql = new StringBuilder("UPDATE ")
-                .append(dbTable.getName())
-                .append(" SET ")
-                .append(sqlBody)
-                .append(" WHERE ")
-                .append(dbTable.getKey())
-                .append("=?")
-                .toString();
+        String sql = "UPDATE " + dbTable.getName() + " SET " + sqlBody + " WHERE " + dbTable.getKey() + "=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 

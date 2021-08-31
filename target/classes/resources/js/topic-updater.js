@@ -12,16 +12,18 @@ document.addEventListener("DOMContentLoaded", function() {
         topicTrigger.addEventListener("click", function() {
             TOPIC_PRELOADER.classList.remove(HIDDEN_CLASS);
 
+            const tr = topicTrigger.closest("tr");
+
             TOPIC_FORM.action = UPDATE_TOPIC_ACTION;
             let topicData = {
-                id: topicTrigger.getAttribute(TOPIC_DATA_TOPIC_ID_ATTRIBUTE),
+                id: tr.getAttribute(TOPIC_DATA_TOPIC_ID_ATTRIBUTE),
                 report_topic_speaker_id: null,
-                title: topicTrigger.querySelector(`[${TOPIC_DATA_TITLE_ATTRIBUTE}]`).innerHTML,
+                title: tr.querySelector(`[${TOPIC_DATA_TITLE_ATTRIBUTE}]`).innerHTML,
                 speaker_id: null
             };
 
-            let speakerIdElement = topicTrigger.querySelector(`[${TOPIC_DATA_SPEAKER_ID_ATTRIBUTE}]`);
-            let reportTopicSpeakerId = topicTrigger.getAttribute(TOPIC_DATA_REPORT_TOPIC_SPEAKER_ID_ATTRIBUTE);
+            let speakerIdElement = tr.querySelector(`[${TOPIC_DATA_SPEAKER_ID_ATTRIBUTE}]`);
+            let reportTopicSpeakerId = tr.getAttribute(TOPIC_DATA_REPORT_TOPIC_SPEAKER_ID_ATTRIBUTE);
             if (speakerIdElement != null) {
                 Object.assign(topicData, {
                     speaker_id: speakerIdElement.getAttribute(TOPIC_DATA_SPEAKER_ID_ATTRIBUTE)

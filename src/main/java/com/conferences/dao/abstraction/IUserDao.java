@@ -11,4 +11,6 @@ public interface IUserDao extends IDao<Integer, User> {
     User findByLoginOrEmail(String login, String email);
 
     List<User> findAllByRole(String role);
+
+    List<User> findAvailableSpeakersForProposalByTopic(int topicId);
 }

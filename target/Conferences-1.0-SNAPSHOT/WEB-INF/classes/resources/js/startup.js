@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let modals = document.querySelectorAll(".modal");
     M.Modal.init(modals);
 
+    let tabs = document.querySelectorAll(".tabs");
+    M.Tabs.init(tabs);
+
     let selects = document.querySelectorAll("select");
     for (let select of selects) {
         initSelectedOption(select);

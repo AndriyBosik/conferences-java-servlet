@@ -2,6 +2,7 @@ package com.conferences.filter;
 
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
+import com.conferences.config.Roles;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 import com.conferences.handler.PermissionsHandler;
@@ -32,23 +33,33 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.MEETING.toString(),
                     Pages.TOPIC.toString())
                         .withMethods(HttpMethod.GET)
-                            .allowAnyRoleOf("moderator", "speaker", "user")
+                            .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
                     Pages.MEETINGS_LIST.toString(),
                     Pages.CREATE_TOPIC.toString(),
                     Pages.UPDATE_TOPIC.toString(),
-                    Pages.SET_SPEAKER_FROM_PROPOSALS.toString())
+                    Pages.API_TOPIC_PROPOSE_FOR_USER.toString())
                         .withMethods(HttpMethod.POST)
-                            .allowAnyRoleOf("moderator")
-                .controlUrls(Pages.API_TOPIC_PROPOSALS.toString())
-                    .withMethods(HttpMethod.GET)
-                        .allowAnyRoleOf("moderator")
+                            .allowAnyRoleOf(Roles.MODERATOR.toString())
+                .controlUrls(Pages.SET_SPEAKER_FROM_PROPOSALS.toString())
+                    .withMethods(HttpMethod.POST)
+                        .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString())
+                .controlUrls(
+                    Pages.API_TOPIC_PROPOSALS.toString(),
+                    Pages.API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL.toString())
+                        .withMethods(HttpMethod.GET)
+                            .allowAnyRoleOf(Roles.MODERATOR.toString())
                 .controlUrls(Pages.JOIN_USER_TO_MEETING.toString())
                     .withMethods(HttpMethod.POST)
-                        .allowAnyRoleOf("user")
+                        .allowAnyRoleOf(Roles.USER.toString())
                 .controlUrls(Pages.PROPOSE_SPEAKER_TO_TOPIC.toString())
                     .withMethods(HttpMethod.POST)
-                        .allowAnyRoleOf("speaker")
+                        .allowAnyRoleOf(Roles.SPEAKER.toString())
+                .controlUrls(Pages.SPEAKER_PROPOSALS_PAGE.toString())
+                    .allowAnyRoleOf(Roles.SPEAKER.toString())
+                .controlUrls(Pages.REJECT_PROPOSAL.toString())
+                    .withMethods(HttpMethod.POST)
+                        .allowAnyRoleOf(Roles.SPEAKER.toString())
                 .build();
     }
 

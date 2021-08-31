@@ -64,6 +64,8 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
                 "FROM " + dbTable.getName() + " LEFT JOIN roles r ON r.id=" + dbTable.getName() + ".role_id WHERE r.title=?";
 
+        List<User> users = new ArrayList<>();
+
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -71,19 +73,39 @@ public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
 
             ResultSet result = statement.executeQuery();
 
-            List<User> users = new ArrayList<>();
-
             while (result.next()) {
                 User user = entityParser.parseToEntity(User.class, result);
                 user.setRole(entityParser.parseToEntity(Role.class, result, "role_"));
                 users.add(user);
             }
-            return users;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return null;
+        return users;
+    }
+
+    @Override
+    public List<User> findAvailableSpeakersForProposalByTopic(int topicId) {
+        String sql = "SELECT users.* FROM users WHERE NOT EXISTS " +
+                "(SELECT NULL FROM moderator_proposals mp WHERE mp.speaker_id=users.id AND mp.report_topic_id=?)" +
+                "AND EXISTS" +
+                "(SELECT NULL FROM roles r WHERE r.title='speaker' AND r.id=users.role_id)";
+        List<User> speakers = new ArrayList<>();
+        try (Connection connection = DbManager.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, topicId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                speakers.add(entityParser.parseToEntity(User.class, resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return speakers;
     }
 
 }

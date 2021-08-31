@@ -28,3 +28,11 @@
 .modal.datepicker-modal.open {
     width: auto !important;
 }
+
+.tabs a.active.blue-text {
+    background-color: #e3f2fd !important;
+}
+
+.tabs.m-blue.m-darken-3 .indicator {
+    background-color: #1565c0 !important;
+}

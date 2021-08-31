@@ -5,6 +5,7 @@ import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.ISpeakerProposalDao;
 import com.conferences.entity.SpeakerProposal;
 import com.conferences.entity.User;
+import com.conferences.entity.custom.ProposalData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -20,6 +20,13 @@
                                         <i class="material-icons">people</i>
                                     </a>
                                 </li>
+                                <tf:forRoles roles="${['speaker']}">
+                                    <li>
+                                        <a href="<taglib:linkTo href="/home/proposals" />" class="tooltipped" data-position="bottom" data-tooltip="<taglib:message value="proposals" />">
+                                            <i class="material-icons">local_offer</i>
+                                        </a>
+                                    </li>
+                                </tf:forRoles>
                                 <li>
                                     <a href="<taglib:linkTo href="/home/logout" />" class="tooltipped" data-position="bottom" data-tooltip="<taglib:message value="header.logout" />">
                                         <i class="material-icons">exit_to_app</i>

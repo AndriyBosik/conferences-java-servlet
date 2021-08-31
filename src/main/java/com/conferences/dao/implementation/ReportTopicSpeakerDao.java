@@ -12,10 +12,11 @@ import java.sql.SQLException;
 public class ReportTopicSpeakerDao extends AbstractDao<Integer, ReportTopicSpeaker> implements IReportTopicSpeakerDao {
 
     @Override
-    public boolean saveWithDeletionFromSpeakerProposalsTable(ReportTopicSpeaker reportTopicSpeaker) {
+    public boolean saveWithProposalsDeletionTable(ReportTopicSpeaker reportTopicSpeaker) {
         Connection connection = null;
         PreparedStatement insertStatement = null;
-        PreparedStatement deleteStatement = null;
+        PreparedStatement speakerProposalsDeleteStatement = null;
+        PreparedStatement moderatorProposalsDeleteStatement = null;
         try {
             connection = DbManager.getInstance().getConnection();
             connection.setAutoCommit(false);
@@ -23,11 +24,17 @@ public class ReportTopicSpeakerDao extends AbstractDao<Integer, ReportTopicSpeak
             insertStatement.executeUpdate();
             setGeneratedFields(insertStatement, reportTopicSpeaker);
 
-            String deleteSql = "DELETE FROM speaker_proposals WHERE speaker_id=? AND report_topic_id=?";
-            deleteStatement = connection.prepareStatement(deleteSql);
-            deleteStatement.setInt(1, reportTopicSpeaker.getSpeakerId());
-            deleteStatement.setInt(2, reportTopicSpeaker.getReportTopicId());
-            deleteStatement.executeUpdate();
+            String speakerProposalsDeleteQuery = "DELETE FROM speaker_proposals WHERE speaker_id=? AND report_topic_id=?";
+            speakerProposalsDeleteStatement = connection.prepareStatement(speakerProposalsDeleteQuery);
+            speakerProposalsDeleteStatement.setInt(1, reportTopicSpeaker.getSpeakerId());
+            speakerProposalsDeleteStatement.setInt(2, reportTopicSpeaker.getReportTopicId());
+            speakerProposalsDeleteStatement.executeUpdate();
+
+            String moderatorProposalsDeleteQuery = "DELETE FROM moderator_proposals WHERE speaker_id=? AND report_topic_id=?";
+            moderatorProposalsDeleteStatement = connection.prepareStatement(moderatorProposalsDeleteQuery);
+            moderatorProposalsDeleteStatement.setInt(1, reportTopicSpeaker.getSpeakerId());
+            moderatorProposalsDeleteStatement.setInt(2, reportTopicSpeaker.getReportTopicId());
+            moderatorProposalsDeleteStatement.executeUpdate();
 
             connection.commit();
 
@@ -38,8 +45,9 @@ public class ReportTopicSpeakerDao extends AbstractDao<Integer, ReportTopicSpeak
         } finally {
             transactionHandler.setAutoCommit(connection, true);
 
+            transactionHandler.closeResource(moderatorProposalsDeleteStatement);
+            transactionHandler.closeResource(speakerProposalsDeleteStatement);
             transactionHandler.closeResource(insertStatement);
-            transactionHandler.closeResource(deleteStatement);
             transactionHandler.closeResource(connection);
         }
         return false;

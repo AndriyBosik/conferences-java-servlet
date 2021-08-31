@@ -1,6 +1,7 @@
 package com.conferences.service.abstraction;
 
 import com.conferences.entity.SpeakerProposal;
+import com.conferences.entity.custom.ProposalData;
 
 import java.util.List;
 

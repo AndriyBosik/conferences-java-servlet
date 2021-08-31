@@ -71,3 +71,7 @@ ul.languages-list li {
 .proposal .username {
     font-size: 20px;
 }
+
+.speaker-proposals-collection .topic-title {
+    font-size: 18px;
+}

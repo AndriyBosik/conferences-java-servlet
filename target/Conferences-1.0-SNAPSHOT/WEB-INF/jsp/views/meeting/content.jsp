@@ -107,11 +107,14 @@
                                 <th class="center-align">#</th>
                                 <th><taglib:message value="speaker" /></th>
                                 <th><taglib:message value="topic" /></th>
+                                <tf:forRoles roles="${['moderator']}">
+                                    <th></th>
+                                </tf:forRoles>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${meeting.reportTopics}" var="topic" varStatus="loopStatus">
-                                <tr class="clickable topic-item topicTrigger modal-trigger" data-target="topic-form" data-topic-id="${topic.id}" data-report-topic-speaker-id="${not empty topic.reportTopicSpeaker ? topic.reportTopicSpeaker.id : ''}">
+                                <tr class="topic-item" data-topic-id="${topic.id}" data-report-topic-speaker-id="${not empty topic.reportTopicSpeaker ? topic.reportTopicSpeaker.id : ''}">
                                     <td class="center-align">${loopStatus.index + 1}</td>
                                     <td>
                                         <c:choose>
@@ -162,6 +165,20 @@
                                     <td>
                                         <span data-title>${topic.title}</span>
                                     </td>
+                                    <tf:forRoles roles="${['moderator']}">
+                                        <td class="px20">
+                                            <div class="s-hflex-end">
+                                                <c:if test="${empty topic.reportTopicSpeaker}">
+                                                    <span class="clickable proposalTrigger modal-trigger tooltipped px5" data-target="propose-to-speakers-form" data-position="bottom" data-tooltip="<taglib:message value="propose_to_speakers" />">
+                                                        <i class="material-icons orange-text">person_add</i>
+                                                    </span>
+                                                </c:if>
+                                                <span class="clickable topicTrigger modal-trigger blue-text text-darken-3 tooltipped" data-target="topic-form" data-position="bottom" data-tooltip="<taglib:message value="edit" />">
+                                                    <i class="material-icons">edit</i>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tf:forRoles>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -184,5 +201,8 @@
         <jsp:param name="meeting" value="${meeting}" />
         <jsp:param name="speakers" value="${speakers}" />
     </jsp:include>
+
+    <jsp:include page="/WEB-INF/jsp/components/modals/propose-to-speakers-form.jsp" />
+
     <jsp:include page="/WEB-INF/jsp/components/modals/topic-proposals-form.jsp" />
 </tf:forRoles>

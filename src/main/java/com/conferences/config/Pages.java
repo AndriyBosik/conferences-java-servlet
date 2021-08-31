@@ -20,12 +20,21 @@ public enum Pages {
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),
     JOIN_USER_TO_MEETING("/meetings/join-user"),
     SIGN_UP_USER("/users/sign-up"),
+    SPEAKER_PROPOSALS_PAGE("/home/proposals"),
     API_TOPIC_PROPOSALS("/topics-api/get-topic-proposals/") {
         @Override
         public String toString() {
             return url + "*";
         }
-    };
+    },
+    API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL("/topics-api/get-available-speakers-for-proposal/") {
+        @Override
+        public String toString() {
+            return url + "*";
+        }
+    },
+    API_TOPIC_PROPOSE_FOR_USER("/topics-api/propose-topic-for-user"),
+    REJECT_PROPOSAL("/proposals/reject-proposal");
 
     protected final String url;
 
