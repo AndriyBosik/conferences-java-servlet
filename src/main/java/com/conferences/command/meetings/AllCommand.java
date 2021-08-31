@@ -6,6 +6,7 @@ import com.conferences.config.Pages;
 import com.conferences.entity.Meeting;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
+import com.conferences.mapper.FormDataToMeetingMapper;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToMeetingSorterMapper;
 import com.conferences.model.MeetingSorter;
@@ -28,13 +29,15 @@ public class AllCommand extends FrontCommand {
 
     private final IMeetingService meetingService;
     private final IFileHandler fileHandler;
-    private final IMapper<HttpServletRequest, MeetingSorter> mapper;
+    private final IMapper<HttpServletRequest, MeetingSorter> meetingSorterMapper;
+    private final IMapper<Map<String, String>, Meeting> meetingMapper;
     private final Page page;
 
     public AllCommand() {
         this.meetingService = new MeetingService();
         this.fileHandler = new FileHandler();
-        this.mapper = new RequestToMeetingSorterMapper();
+        this.meetingSorterMapper = new RequestToMeetingSorterMapper();
+        this.meetingMapper = new FormDataToMeetingMapper();
 
         this.page = new Page(ITEMS_COUNT, 1);
     }
@@ -56,7 +59,7 @@ public class AllCommand extends FrontCommand {
         String sortOrderOption = request.getParameter("sort-order");
         String filterSelector = request.getParameter("filter-selector");
 
-        MeetingSorter meetingSorter = mapper.map(request);
+        MeetingSorter meetingSorter = meetingSorterMapper.map(request);
         PageResponse<Meeting> meetingsPage = meetingService.getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(page, meetingSorter);
 
         request.setAttribute("sortByOption", sortByOption);
@@ -71,20 +74,7 @@ public class AllCommand extends FrontCommand {
     private void addMeeting() throws IOException {
         Map<String, String> formData = fileHandler.saveFile(request, context.getRealPath(MEETINGS_IMAGES));
         if (formData != null) {
-            String strDate = formData.get("date") + " " + formData.get("hours") + ":" + formData.get("minutes");
-            Date date = null;
-            try {
-                date = new SimpleDateFormat("dd-MM-yyyy HH:mm").parse(strDate);
-            } catch (ParseException exception) {
-                exception.printStackTrace();
-            }
-
-            Meeting meeting = new Meeting();
-
-            meeting.setTitle(formData.get("title"));
-            meeting.setDescription(formData.get("description"));
-            meeting.setImagePath(formData.get("image_path"));
-            meeting.setDate(date);
+            Meeting meeting = meetingMapper.map(formData);
 
             if (meetingService.saveMeeting(meeting)) {
                 redirect(Pages.MEETING.getUrl() + meeting.getId());

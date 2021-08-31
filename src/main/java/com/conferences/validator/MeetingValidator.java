@@ -8,8 +8,9 @@ public class MeetingValidator implements IValidator<Meeting> {
 
     @Override
     public boolean isValid(Meeting model) {
-        return  model.getTitle() != null && model.getTitle().length() >= 5 &&
-                model.getDescription() != null && model.getDescription().length() >= 10 &&
+        return  model.getTitle() != null && model.getTitle().trim().length() >= 5 &&
+                model.getDescription() != null && model.getDescription().trim().length() >= 10 &&
+                model.getAddress() != null && model.getAddress().trim().length() >= 5 &&
                 model.getDate() != null && model.getDate().after(new Date()) &&
                 model.getImagePath() != null && model.getImagePath().length() > 0;
     }
