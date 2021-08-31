@@ -19,17 +19,17 @@
     <div id="${paginationId}" class="pages-area ${paginationClass}">
         <ul class="pagination center-align">
             <li class="${currentPage == 1 ? "disabled" : "waves-effect"}">
-                <a href="<taglib:linkTo href="${previousPage}" />" class="${previousPage == emptyLink ? 'deactivate' : ''}"><i class="material-icons">chevron_left</i></a>
+                <a href="<taglib:linkTo href="${previousPage}" saveQueryString="true" />" class="${previousPage == emptyLink ? 'deactivate' : ''}"><i class="material-icons">chevron_left</i></a>
             </li>
 
             <c:forEach begin="1" end="${pagesLinks.size()}" varStatus="status">
                 <li class="${status.index == currentPage ? "active ".concat(pageColor) : "waves-effect"}">
-                    <a href="<taglib:linkTo href="${pagesLinks.get(status.index - 1)}" />">${status.index}</a>
+                    <a href="<taglib:linkTo href="${pagesLinks.get(status.index - 1)}" saveQueryString="true" />">${status.index}</a>
                 </li>
             </c:forEach>
 
             <li class="${currentPage == pagesLinks.size() ? "disabled" : "waves-effect"}">
-                <a href="<taglib:linkTo href="${nextPage}" />" class="${nextPage == emptyLink ? 'deactivate' : ''}"><i class="material-icons">chevron_right</i></a>
+                <a href="<taglib:linkTo href="${nextPage}" saveQueryString="true" />" class="${nextPage == emptyLink ? 'deactivate' : ''}"><i class="material-icons">chevron_right</i></a>
             </li>
         </ul>
     </div>

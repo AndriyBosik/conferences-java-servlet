@@ -12,6 +12,7 @@ public class LinkToTag extends TagSupport {
 
     private String href;
     private String toLang;
+    private Boolean saveQueryString;
 
     private final LinkHandler linkHandler;
 
@@ -22,6 +23,7 @@ public class LinkToTag extends TagSupport {
     @Override
     public int doStartTag() {
         initToLang();
+        initSaveQueryString();
 
         JspWriter out = pageContext.getOut();
 
@@ -32,11 +34,7 @@ public class LinkToTag extends TagSupport {
             url = href;
         }
 
-        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        String queryString = request.getQueryString();
-        if (queryString != null && !queryString.isEmpty()) {
-            url += "?" + queryString;
-        }
+        url = addQueryStringIfNecessary(url);
 
         String link = linkHandler.addLangToUrl(url, toLang);
 
@@ -57,8 +55,27 @@ public class LinkToTag extends TagSupport {
         }
     }
 
+    private void initSaveQueryString() {
+        if (saveQueryString == null) {
+            saveQueryString = false;
+        }
+    }
+
+    private String addQueryStringIfNecessary(String url) {
+        if (!saveQueryString) {
+            return url;
+        }
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        String queryString = request.getQueryString();
+        if (queryString != null && !queryString.isEmpty()) {
+            return url + "?" + queryString;
+        }
+        return url;
+    }
+
     private void resetData() {
         setToLang(null);
+        setSaveQueryString(null);
     }
 
     public void setToLang(String toLang) {
@@ -67,5 +84,13 @@ public class LinkToTag extends TagSupport {
 
     public void setHref(String href) {
         this.href = href;
+    }
+
+    public Boolean getSaveQueryString() {
+        return saveQueryString;
+    }
+
+    public void setSaveQueryString(Boolean saveQueryString) {
+        this.saveQueryString = saveQueryString;
     }
 }
