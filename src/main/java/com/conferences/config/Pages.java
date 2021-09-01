@@ -20,6 +20,7 @@ public enum Pages {
     },
     CREATE_TOPIC("/topics/create"),
     UPDATE_TOPIC("/topics/update"),
+    PROPOSE_TOPIC("/topics/propose"),
     PROPOSE_SPEAKER_TO_TOPIC("/topics/propose-speaker"),
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),
     SIGN_UP_USER("/users/sign-up"),

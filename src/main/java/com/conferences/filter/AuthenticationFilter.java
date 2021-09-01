@@ -55,7 +55,8 @@ public class AuthenticationFilter extends UrlDividerFilter {
                         .allowAnyRoleOf(Roles.USER.toString())
                 .controlUrls(
                     Pages.PROPOSE_SPEAKER_TO_TOPIC.toString(),
-                    Pages.REJECT_PROPOSAL.toString())
+                    Pages.REJECT_PROPOSAL.toString(),
+                    Pages.PROPOSE_TOPIC.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.SPEAKER.toString())
                 .controlUrls(

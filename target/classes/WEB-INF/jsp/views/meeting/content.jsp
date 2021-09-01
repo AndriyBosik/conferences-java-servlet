@@ -87,14 +87,20 @@
             <div class="s-hflex">
                 <p class="meeting-title weight-slight m0 pt15 equal-flex"><taglib:message value="topics" /></p>
 
-                <tf:forRoles roles="${['moderator']}">
-                    <div class="s-vflex-end">
+                <div class="s-vflex-end">
+                    <tf:forRoles roles="${['moderator']}">
                         <a href="#topic-form" class="btn waves-effect waves-light modal-trigger createTopicFormTrigger">
                             <taglib:message value="add" />
                             <i class="material-icons right">add</i>
                         </a>
-                    </div>
-                </tf:forRoles>
+                    </tf:forRoles>
+                    <tf:forRoles roles="${['speaker']}">
+                        <a href="#topic-proposal" class="btn waves-effect waves-light modal-trigger">
+                            <taglib:message value="propose" />
+                            <i class="material-icons right">local_offer</i>
+                        </a>
+                    </tf:forRoles>
+                </div>
             </div>
             <div class="separator mb10 mt5"></div>
 
@@ -205,4 +211,8 @@
     <jsp:include page="/WEB-INF/jsp/components/modals/propose-to-speakers-form.jsp" />
 
     <jsp:include page="/WEB-INF/jsp/components/modals/topic-proposals-form.jsp" />
+</tf:forRoles>
+
+<tf:forRoles roles="${['speaker']}">
+    <jsp:include page="/WEB-INF/jsp/components/modals/add-topic-proposal-form.jsp" />
 </tf:forRoles>

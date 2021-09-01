@@ -86,6 +86,10 @@ public class Meeting {
         this.date = date;
     }
 
+    public boolean isOutdated() {
+        return date == null || new Date().after(date);
+    }
+
     public int getReportTopicsCount() {
         return reportTopicsCount;
     }
