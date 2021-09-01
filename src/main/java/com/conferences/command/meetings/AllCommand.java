@@ -55,16 +55,10 @@ public class AllCommand extends FrontCommand {
             return;
         }
 
-        String sortByOption = request.getParameter("sort-by");
-        String sortOrderOption = request.getParameter("sort-order");
-        String filterSelector = request.getParameter("filter-selector");
-
         MeetingSorter meetingSorter = meetingSorterMapper.map(request);
         PageResponse<Meeting> meetingsPage = meetingService.getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(page, meetingSorter);
 
-        request.setAttribute("sortByOption", sortByOption);
-        request.setAttribute("sortOrderOption", sortOrderOption);
-        request.setAttribute("filterSelector", filterSelector);
+        initPageFilters(meetingSorter);
         request.setAttribute("meetings", meetingsPage.getItems());
         request.setAttribute("currentPage", page.getPageNumber());
         request.setAttribute("pagesLinks", getLinkToMeetingsPages(meetingsPage.getPagesCount()));
@@ -94,5 +88,11 @@ public class AllCommand extends FrontCommand {
             links.add(Pages.MEETINGS_LIST + "/" + i);
         }
         return links;
+    }
+
+    private void initPageFilters(MeetingSorter sorter) {
+        request.setAttribute("sortByOption", sorter.getSortOption().toString().toLowerCase());
+        request.setAttribute("sortOrderOption", sorter.getSortOrder().toString().toLowerCase());
+        request.setAttribute("filterSelector", sorter.getFilterSelector().toString().toLowerCase());
     }
 }

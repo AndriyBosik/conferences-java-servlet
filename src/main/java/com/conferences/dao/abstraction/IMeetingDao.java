@@ -13,6 +13,8 @@ public interface IMeetingDao extends IDao<Integer, Meeting> {
 
     PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter);
 
+    PageResponse<Meeting> findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter, int speakerId);
+
     boolean updateMeetingEditableData(Meeting meeting);
 
 }

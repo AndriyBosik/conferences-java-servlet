@@ -21,13 +21,9 @@ public class RejectProposalCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        int speakerId = Integer.parseInt(request.getParameter("speaker_id"));
+        User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());
+        int speakerId = speaker.getId();
         int topicId = Integer.parseInt(request.getParameter("topic_id"));
-
-        if (!validSpeaker(speakerId)) {
-            // TODO(speaker tries to reject proposal of another speaker)
-            return;
-        }
 
         ModeratorProposal moderatorProposal = new ModeratorProposal();
         moderatorProposal.setReportTopicId(topicId);
@@ -38,10 +34,5 @@ public class RejectProposalCommand extends FrontCommand {
         } else {
             // TODO(bad request)
         }
-    }
-
-    private boolean validSpeaker(int speakerId) {
-        User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());
-        return speaker.getId() == speakerId;
     }
 }

@@ -1,5 +1,6 @@
 package com.conferences.service.implementation;
 
+import com.conferences.config.MeetingFilterSelector;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.dao.abstraction.IUserMeetingDao;
 import com.conferences.dao.implementation.MeetingDao;
@@ -66,5 +67,10 @@ public class MeetingService implements IMeetingService {
     @Override
     public boolean updateMeetingEditableData(Meeting meeting) {
         return meetingDao.updateMeetingEditableData(meeting);
+    }
+
+    @Override
+    public PageResponse<Meeting> getSpeakerMeetings(Page page, MeetingSorter sorter, int speakerId) {
+        return meetingDao.findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(page, sorter, speakerId);
     }
 }

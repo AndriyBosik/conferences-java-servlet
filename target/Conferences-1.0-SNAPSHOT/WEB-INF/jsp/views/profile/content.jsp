@@ -1,10 +1,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="tags" prefix="taglib" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.profile" /></h4>
+            <div class="s-hflex">
+                <div class="equal-flex">
+                    <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.profile" /></h4>
+                </div>
+                <tf:forRoles roles="${['speaker']}">
+                    <div class="s-vflex-end">
+                        <a href="<taglib:linkTo href="/home/speaker-meetings" />" class="btn waves-effect waves-light modal-trigger">
+                            <taglib:message value="my_meetings" />
+                            <i class="material-icons right">visibility</i>
+                        </a>
+                    </div>
+                </tf:forRoles>
+            </div>
             <hr />
         </div>
         <form action="" method="post" class="col s12">

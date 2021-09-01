@@ -30,7 +30,7 @@ public class MeetingFutureSelectorQueryBuilderDecorator implements IQueryBuilder
 
     @Override
     public IQueryBuilder where(String condition) {
-        wrapped.where(and(meetingsTablePrefix + "date > current_timestamp"));
+        wrapped.where(and(meetingsTablePrefix + "date > current_timestamp", condition));
         return this;
     }
 

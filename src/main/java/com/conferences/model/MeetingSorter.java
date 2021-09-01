@@ -10,6 +10,12 @@ public class MeetingSorter {
     private SortOrder sortOrder;
     private MeetingFilterSelector filterSelector;
 
+    public MeetingSorter() {
+        sortOption = MeetingSortOption.NOTHING;
+        sortOrder = SortOrder.ASC;
+        filterSelector = MeetingFilterSelector.ALL;
+    }
+
     public MeetingSortOption getSortOption() {
         return sortOption;
     }

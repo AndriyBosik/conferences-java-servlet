@@ -21,11 +21,3 @@ function updateDataSubmitComponents() {
         });
     }
 }
-
-function updateSelects() {
-    let selects = document.querySelector("select");
-    for (let select of selects) {
-        select.value = select.getAttribute("value");
-    }
-    M.FormSelect.init(selects);
-}

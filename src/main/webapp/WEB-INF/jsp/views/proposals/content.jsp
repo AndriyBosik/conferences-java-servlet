@@ -87,7 +87,6 @@
                             <span class="secondary-content s-vflex-center">
                                 <div class="s-hflex">
                                     <form action="<taglib:linkTo href="/topics/set-speaker-from-proposals" />" method="post" class="m0">
-                                        <input type="hidden" name="speaker_id" value="${sessionScope.user.id}" />
                                         <input type="hidden" name="topic_id" value="${proposal.reportTopicId}" />
                                         <button type="submit" class="btn waves-effect waves-light mx10">
                                             <span><taglib:message value="accept"/></span>
@@ -95,7 +94,6 @@
                                         </button>
                                     </form>
                                     <form action="<taglib:linkTo href="/proposals/reject-proposal" />" method="post" class="m0">
-                                        <input type="hidden" name="speaker_id" value="${sessionScope.user.id}" />
                                         <input type="hidden" name="topic_id" value="${proposal.reportTopicId}" />
                                         <button type="submit" class="btn waves-effect waves-light red">
                                             <span><taglib:message value="reject" /></span>

@@ -5,8 +5,12 @@ public enum Pages {
     LOGIN("/home/login"),
     LOGOUT("/home/logout"),
     PROFILE("/home/profile"),
+    SPEAKER_PROPOSALS_PAGE("/home/proposals"),
+    SPEAKER_MEETINGS_DEFAULT_PAGE("/home/speaker-meetings"),
+    SPEAKER_MEETINGS("/home/speaker-meetings/*"),
     MEETINGS_LIST("/meetings/all"),
     MEETINGS_LIST_PAGE("/meetings/all/*"),
+    JOIN_USER_TO_MEETING("/meetings/join-user"),
     MEETING_EDIT("/meetings/edit"),
     MEETING("/meetings/show/") {
         @Override
@@ -14,14 +18,11 @@ public enum Pages {
             return url + "*";
         }
     },
-    TOPIC("/topics/show/*"),
     CREATE_TOPIC("/topics/create"),
     UPDATE_TOPIC("/topics/update"),
     PROPOSE_SPEAKER_TO_TOPIC("/topics/propose-speaker"),
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),
-    JOIN_USER_TO_MEETING("/meetings/join-user"),
     SIGN_UP_USER("/users/sign-up"),
-    SPEAKER_PROPOSALS_PAGE("/home/proposals"),
     API_TOPIC_PROPOSALS("/topics-api/get-topic-proposals/") {
         @Override
         public String toString() {

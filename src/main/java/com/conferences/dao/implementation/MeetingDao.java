@@ -75,6 +75,45 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
 
     @Override
     public PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter) {
+        return findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(page, sorter, "");
+    }
+
+    @Override
+    public PageResponse<Meeting> findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter, int speakerId) {
+        final String OPEN_EXISTS = "EXISTS (";
+        final String CLOSE_EXISTS = ")";
+        String filterCondition =
+            OPEN_EXISTS +
+                "SELECT 1 FROM users WHERE id=" + speakerId + " AND " +
+                    OPEN_EXISTS +
+                        "SELECT 1 FROM report_topics_speakers rts WHERE rts.speaker_id=" + speakerId + " AND " +
+                            OPEN_EXISTS +
+                                "SELECT 1 FROM report_topics rt WHERE rt.meeting_id=meetings.id AND rt.id=rts.report_topic_id" +
+                            CLOSE_EXISTS +
+                    CLOSE_EXISTS +
+            CLOSE_EXISTS;
+        return findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(page, sorter, filterCondition);
+    }
+
+    @Override
+    public boolean updateMeetingEditableData(Meeting meeting) {
+        String sql = "UPDATE meetings SET address=?, date=? WHERE id=?";
+        try (Connection connection = DbManager.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, meeting.getAddress());
+            statement.setTimestamp(2, new Timestamp(meeting.getDate().getTime()));
+            statement.setInt(3, meeting.getId());
+            statement.executeUpdate();
+
+            return true;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return false;
+    }
+
+    private PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(Page page, MeetingSorter sorter, String filterCondition) {
         PageResponse<Meeting> pageResponse = new PageResponse<>();
         pageResponse.setPageSize(page.getItemsCount());
         final int offset = (page.getPageNumber() - 1)*page.getItemsCount();
@@ -82,12 +121,12 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
         IQueryBuilder queryBuilder = MeetingSorterQueryBuilderFactory.getInstance().getQueryBuilder(sorter, getMeetingPageColumns());
         queryBuilder = MeetingSelectorQueryBuilderFactory.getInstance().getDecorator(queryBuilder, sorter.getFilterSelector());
 
-        int itemsCount = getItemsCount(queryBuilder);
+        int itemsCount = getItemsCount(queryBuilder, filterCondition);
         pageResponse.setTotalItems(itemsCount);
 
         queryBuilder = new MeetingPageQueryBuilderDecorator(queryBuilder);
 
-        String sql = buildMeetingPageSqlQuery(queryBuilder);
+        String sql = buildMeetingPageSqlQuery(queryBuilder, filterCondition);
 
         List<Meeting> meetings = new ArrayList<>();
         try (Connection connection = DbManager.getInstance().getConnection();
@@ -110,24 +149,6 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
         return pageResponse;
     }
 
-    @Override
-    public boolean updateMeetingEditableData(Meeting meeting) {
-        String sql = "UPDATE meetings SET address=?, date=? WHERE id=?";
-        try (Connection connection = DbManager.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, meeting.getAddress());
-            statement.setTimestamp(2, new Timestamp(meeting.getDate().getTime()));
-            statement.setInt(3, meeting.getId());
-            statement.executeUpdate();
-
-            return true;
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        return false;
-    }
-
     private Map<String, String> getMeetingPageColumns() {
         Map<String, String> columns = new HashMap<>();
         columns.put(MeetingSorterQueryBuilderFactory.MEETINGS_KEY, "meetings.");
@@ -136,25 +157,23 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
         return columns;
     }
 
-    private int getItemsCount(IQueryBuilder queryBuilder) {
+    private int getItemsCount(IQueryBuilder queryBuilder, String filterCondition) {
         String sql = queryBuilder
                 .select("COUNT(meetings.id) AS meetings_count")
                 .from("meetings")
-                .where(null)
+                .where(filterCondition)
                 .generateQuery();
         return getRecordsCountBySql(sql, "meetings_count");
     }
 
-    private String buildMeetingPageSqlQuery(IQueryBuilder queryBuilder) {
+    private String buildMeetingPageSqlQuery(IQueryBuilder queryBuilder, String filterCondition) {
         return queryBuilder
                 .select(
                         "meetings.*",
-                        "COUNT (DISTINCT rt.id) AS topics_count",
-                        "COUNT (DISTINCT um.id) AS users_count")
+                        "(SELECT COUNT(id) FROM report_topics WHERE meeting_id=meetings.id) AS topics_count",
+                        "(SELECT COUNT(id) FROM users_meetings WHERE meeting_id=meetings.id) AS users_count")
                 .from("meetings")
-                .leftJoin("report_topics rt", "rt.meeting_id=meetings.id")
-                .leftJoin("users_meetings um", "um.meeting_id=meetings.id")
-                .where(null)
+                .where(filterCondition)
                 .groupBy("meetings.id")
                 .orderBy("meetings.id")
                 .generateQuery();

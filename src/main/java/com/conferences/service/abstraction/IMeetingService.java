@@ -1,5 +1,6 @@
 package com.conferences.service.abstraction;
 
+import com.conferences.config.MeetingFilterSelector;
 import com.conferences.entity.Meeting;
 import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
@@ -22,5 +23,7 @@ public interface IMeetingService {
     Meeting getMeetingById(int meetingId);
 
     boolean updateMeetingEditableData(Meeting meeting);
+
+    PageResponse<Meeting> getSpeakerMeetings(Page page, MeetingSorter sorter, int speakerId);
 
 }

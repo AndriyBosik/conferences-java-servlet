@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function initSelectedOption(select) {
-    let option = select.querySelector(`option[value='${select.getAttribute("initial-value")}']`);
+    let option = select.querySelector(`option[value='${select.getAttribute("initial-value").toLowerCase()}']`);
     if (option == null) {
         option = select.querySelector("option");
     }

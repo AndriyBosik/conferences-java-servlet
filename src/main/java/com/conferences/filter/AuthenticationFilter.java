@@ -30,8 +30,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.PROFILE.toString(),
                     Pages.MEETINGS_LIST.toString(),
                     Pages.MEETINGS_LIST_PAGE.toString(),
-                    Pages.MEETING.toString(),
-                    Pages.TOPIC.toString())
+                    Pages.MEETING.toString())
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
@@ -54,13 +53,15 @@ public class AuthenticationFilter extends UrlDividerFilter {
                 .controlUrls(Pages.JOIN_USER_TO_MEETING.toString())
                     .withMethods(HttpMethod.POST)
                         .allowAnyRoleOf(Roles.USER.toString())
-                .controlUrls(Pages.PROPOSE_SPEAKER_TO_TOPIC.toString())
-                    .withMethods(HttpMethod.POST)
-                        .allowAnyRoleOf(Roles.SPEAKER.toString())
-                .controlUrls(Pages.SPEAKER_PROPOSALS_PAGE.toString())
-                    .allowAnyRoleOf(Roles.SPEAKER.toString())
-                .controlUrls(Pages.REJECT_PROPOSAL.toString())
-                    .withMethods(HttpMethod.POST)
+                .controlUrls(
+                    Pages.PROPOSE_SPEAKER_TO_TOPIC.toString(),
+                    Pages.REJECT_PROPOSAL.toString())
+                        .withMethods(HttpMethod.POST)
+                            .allowAnyRoleOf(Roles.SPEAKER.toString())
+                .controlUrls(
+                    Pages.SPEAKER_PROPOSALS_PAGE.toString(),
+                    Pages.SPEAKER_MEETINGS_DEFAULT_PAGE.toString(),
+                    Pages.SPEAKER_MEETINGS.toString())
                         .allowAnyRoleOf(Roles.SPEAKER.toString())
                 .build();
     }
