@@ -10,7 +10,6 @@ import com.conferences.service.abstraction.ITopicProposalService;
 import com.conferences.validator.IValidator;
 import com.conferences.validator.ReportTopicValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TopicProposalService implements ITopicProposalService {
@@ -34,17 +33,22 @@ public class TopicProposalService implements ITopicProposalService {
     }
 
     @Override
-    public boolean rejectTopicProposal(TopicProposal topicProposal) {
-        return topicProposalDao.delete(topicProposal.getId());
+    public boolean rejectTopicProposal(int topicProposalId) {
+        return topicProposalDao.delete(topicProposalId);
     }
 
     @Override
-    public boolean acceptTopicProposal(TopicProposal topicProposal) {
-        return topicProposalDao.createReportTopicWithProposalDeletion(topicProposal);
+    public boolean acceptTopicProposal(int topicProposalId) {
+        return topicProposalDao.createReportTopicWithProposalDeletion(topicProposalId);
     }
 
     @Override
     public List<TopicProposal> getAllByMeetingWithSpeakers(int meetingId) {
         return topicProposalDao.findAllByMeetingIdWithSpeakers(meetingId);
+    }
+
+    @Override
+    public int getProposedTopicsCount() {
+        return topicProposalDao.getRecordsCount();
     }
 }

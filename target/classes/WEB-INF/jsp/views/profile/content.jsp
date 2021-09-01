@@ -9,14 +9,26 @@
                 <div class="equal-flex">
                     <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.profile" /></h4>
                 </div>
-                <tf:forRoles roles="${['speaker']}">
-                    <div class="s-vflex-end">
+                <div class="s-vflex-end">
+                    <tf:forRoles roles="${['speaker']}">
                         <a href="<taglib:linkTo href="/home/speaker-meetings" />" class="btn waves-effect waves-light modal-trigger">
                             <taglib:message value="my_meetings" />
                             <i class="material-icons right">visibility</i>
                         </a>
-                    </div>
-                </tf:forRoles>
+                    </tf:forRoles>
+                    <tf:forRoles roles="${['moderator']}">
+                        <a href="<taglib:linkTo href="/topics/speaker-proposed" />" class="btn waves-effect waves-light modal-trigger">
+                            <div class="s-hflex">
+                                <span><taglib:message value="proposed_topics" /></span>
+                                <c:if test="${proposedTopicsCount > 0}">
+                                    <div class="s-vflex-center">
+                                        <span class="new badge orange" data-badge-caption="" style="padding-left: 10px; padding-right: 10px; min-width: auto;">${proposedTopicsCount}</span>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </a>
+                    </tf:forRoles>
+                </div>
             </div>
             <hr />
         </div>

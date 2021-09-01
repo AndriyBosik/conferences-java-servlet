@@ -8,5 +8,5 @@ public interface ITopicProposalDao extends IDao<Integer, TopicProposal> {
 
     List<TopicProposal> findAllByMeetingIdWithSpeakers(int meetingId);
 
-    boolean createReportTopicWithProposalDeletion(TopicProposal topicProposal);
+    boolean createReportTopicWithProposalDeletion(int topicProposalId);
 }

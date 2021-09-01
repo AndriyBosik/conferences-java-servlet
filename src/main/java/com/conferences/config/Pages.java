@@ -22,6 +22,9 @@ public enum Pages {
     UPDATE_TOPIC("/topics/update"),
     PROPOSE_TOPIC("/topics/propose"),
     PROPOSE_SPEAKER_TO_TOPIC("/topics/propose-speaker"),
+    PROPOSED_TOPICS("/topics/speaker-proposed"),
+    ACCEPT_PROPOSED_TOPIC("/topics/accept-proposed"),
+    REJECT_PROPOSED_TOPIC("/topics/reject-proposed"),
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),
     SIGN_UP_USER("/users/sign-up"),
     API_TOPIC_PROPOSALS("/topics-api/get-topic-proposals/") {

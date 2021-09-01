@@ -8,10 +8,12 @@ public interface ITopicProposalService {
 
     boolean addTopicProposal(TopicProposal topicProposal);
 
-    boolean rejectTopicProposal(TopicProposal topicProposal);
+    boolean rejectTopicProposal(int topicProposalId);
 
-    boolean acceptTopicProposal(TopicProposal topicProposal);
+    boolean acceptTopicProposal(int topicProposalId);
 
     List<TopicProposal> getAllByMeetingWithSpeakers(int meetingId);
+
+    int getProposedTopicsCount();
 
 }

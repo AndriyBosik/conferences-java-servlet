@@ -79,7 +79,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
 
     @Override
     public boolean delete(K key) {
-        String deleteSql = "DELETE * FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + " = " + key;
+        String deleteSql = "DELETE FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + " = " + key;
         int numberOfDeletedRows = 0;
         try (Connection connection = DbManager.getInstance().getConnection();
              Statement statement = connection.createStatement()) {

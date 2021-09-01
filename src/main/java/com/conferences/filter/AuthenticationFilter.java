@@ -37,7 +37,9 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.MEETINGS_LIST.toString(),
                     Pages.CREATE_TOPIC.toString(),
                     Pages.UPDATE_TOPIC.toString(),
-                    Pages.API_TOPIC_PROPOSE_FOR_USER.toString())
+                    Pages.API_TOPIC_PROPOSE_FOR_USER.toString(),
+                    Pages.ACCEPT_PROPOSED_TOPIC.toString(),
+                    Pages.REJECT_PROPOSED_TOPIC.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString())
                 .controlUrls(
@@ -47,7 +49,8 @@ public class AuthenticationFilter extends UrlDividerFilter {
                         .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString())
                 .controlUrls(
                     Pages.API_TOPIC_PROPOSALS.toString(),
-                    Pages.API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL.toString())
+                    Pages.API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL.toString(),
+                    Pages.PROPOSED_TOPICS.toString())
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf(Roles.MODERATOR.toString())
                 .controlUrls(Pages.JOIN_USER_TO_MEETING.toString())

@@ -16,6 +16,10 @@ a.deactivate {
     text-transform: uppercase;
 }
 
+.lowercase {
+    text-transform: lowercase;
+}
+
 .float-left {
     float: left;
 }
