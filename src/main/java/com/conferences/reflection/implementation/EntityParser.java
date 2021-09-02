@@ -27,6 +27,10 @@ public class EntityParser implements IEntityParser {
 
                 field.setAccessible(true);
 
+                if (!columnExists(result, columnPrefix + column.name())) {
+                    continue;
+                }
+
                 if (column.key() && result.getObject(columnPrefix + column.name()) == null) {
                     return null;
                 }
@@ -63,6 +67,16 @@ public class EntityParser implements IEntityParser {
         } catch (SQLException | IllegalAccessException exception) {
             exception.printStackTrace();
         }
+    }
+
+    private boolean columnExists(ResultSet result, String columnName) {
+        try {
+            result.findColumn(columnName);
+            return true;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return false;
     }
 
 }
