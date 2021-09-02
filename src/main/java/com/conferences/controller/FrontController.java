@@ -36,9 +36,6 @@ public class FrontController extends HttpServlet {
         if (contextPathLength != request.getRequestURI().length()) {
             contextPathLength++;
         }
-
-        request.setAttribute("languages", Constants.LANGUAGES);
-
         String path = request.getPathInfo().substring(contextPathLength);
         CommandInfo commandInfo = getCommandInfo(path);
 

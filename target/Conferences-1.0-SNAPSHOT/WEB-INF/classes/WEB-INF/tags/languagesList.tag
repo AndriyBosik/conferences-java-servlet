@@ -9,7 +9,7 @@
 <c:set var="activeLinkClass" value="${(empty activeLinkClass) ? 'red-text' : activeLinkClass}" />
 
 <ul class="uppercase weight-normal ${className}">
-    <c:forEach items="${requestScope.languages}" var="language">
+    <c:forEach items="${applicationScope.languages}" var="language">
         <li>
             <a href="<taglib:linkTo href="" toLang="${language}" />" class="${requestScope.currentLanguage.equals(language) ? activeLinkClass : basicLinkClass} px5">${language}</a>
         </li>

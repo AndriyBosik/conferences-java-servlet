@@ -4,6 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <context-param>
+        <param-name>languages</param-name>
+        <param-value>en ru uk</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>com.conferences.listener.AppContextListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>com.conferences.filter.AuthenticationFilter</filter-class>
