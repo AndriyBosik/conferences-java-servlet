@@ -2,16 +2,21 @@ package com.conferences.mapper;
 
 import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
+import com.conferences.handler.abstraction.IEncodingHandler;
+import com.conferences.handler.implementation.EncodingHandler;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
 public class FormDataToMeetingMapper implements IMapper<Map<String, String>, Meeting> {
+
+    private final IEncodingHandler encodingHandler;
+
+    public FormDataToMeetingMapper() {
+        encodingHandler = new EncodingHandler();
+    }
 
     @Override
     public Meeting map(Map<String, String> formData) {
@@ -21,10 +26,10 @@ public class FormDataToMeetingMapper implements IMapper<Map<String, String>, Mee
 
         Meeting meeting = new Meeting();
 
-        meeting.setTitle(formData.get("title"));
-        meeting.setDescription(formData.get("description"));
-        meeting.setAddress(formData.get("address"));
-        meeting.setImagePath(formData.get("image_path"));
+        meeting.setTitle(encodingHandler.getUTF8ValueFromFormDataMap(formData, "title"));
+        meeting.setDescription(encodingHandler.getUTF8ValueFromFormDataMap(formData, "description"));
+        meeting.setAddress(encodingHandler.getUTF8ValueFromFormDataMap(formData, "address"));
+        meeting.setImagePath(encodingHandler.getUTF8ValueFromFormDataMap(formData, "image_path"));
         meeting.setDate(date);
 
         return meeting;

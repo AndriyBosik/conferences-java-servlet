@@ -184,7 +184,8 @@ public class EntityProcessor implements IEntityProcessor {
             } else if (field.getType().equals(int.class)) {
                 preparedStatement.setInt(number, field.getInt(entity));
             } else if (field.getType().equals(String.class)) {
-                preparedStatement.setString(number, (String) field.get(entity));
+                String value = (String) field.get(entity);
+                preparedStatement.setString(number, value);
             } else if (field.getType().equals(LocalDateTime.class)) {
                 LocalDateTime date = (LocalDateTime) field.get(entity);
                 preparedStatement.setTimestamp(number, Timestamp.valueOf(date));

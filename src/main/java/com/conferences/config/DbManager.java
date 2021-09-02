@@ -21,7 +21,7 @@ public class DbManager {
         if (!org.postgresql.Driver.isRegistered()) {
             org.postgresql.Driver.register();
         }
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/conferences", "postgres", "postgres");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/conferences?useUnicode=true&characterEncoding=UTF-8&client_encoding=UTF8", "postgres", "postgres");
     }
 
 }

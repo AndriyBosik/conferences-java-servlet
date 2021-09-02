@@ -6,22 +6,28 @@ import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToSignUpDataMapper;
+import com.conferences.model.SignUpData;
 import com.conferences.service.abstraction.IRoleService;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.RoleService;
 import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class SignUpCommand extends FrontCommand {
 
-    private IUserService userService;
-    private IRoleService roleService;
+    private final IUserService userService;
+    private final IRoleService roleService;
+    private final IMapper<HttpServletRequest, SignUpData> mapper;
 
     public SignUpCommand() {
         userService = new UserService();
         roleService = new RoleService();
+        mapper = new RequestToSignUpDataMapper();
     }
 
     @Override
@@ -37,15 +43,15 @@ public class SignUpCommand extends FrontCommand {
         User user = new User();
         Role role = roleService.getRoleByTitle(request.getParameter("role"));
 
-        user.setLogin(request.getParameter("login"));
-        user.setPassword(request.getParameter("password"));
-        user.setSurname(request.getParameter("surname"));
-        user.setName(request.getParameter("name"));
-        user.setEmail(request.getParameter("email"));
+        SignUpData data = mapper.map(request);
+        user.setLogin(data.getLogin());
+        user.setPassword(data.getPassword());
+        user.setSurname(data.getSurname());
+        user.setName(data.getName());
+        user.setEmail(data.getEmail());
         user.setRole(role);
 
-        String confirmedPassword = request.getParameter("confirm_password");
-        if (!confirmedPassword.equals(user.getPassword())) {
+        if (!data.getConfirmPassword().equals(user.getPassword())) {
             redirect(Pages.SIGN_UP_USER.toString());
             return;
         }

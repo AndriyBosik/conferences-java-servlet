@@ -6,18 +6,25 @@ import com.conferences.config.Errors;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.entity.User;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToLoginDataMapper;
+import com.conferences.model.LoginData;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class IndexCommand extends FrontCommand {
-    private IUserService userService;
+
+    private final IUserService userService;
+    private final IMapper<HttpServletRequest, LoginData> mapper;
 
     public IndexCommand() {
         this.userService = new UserService();
+        this.mapper = new RequestToLoginDataMapper();
     }
 
     @Override
@@ -36,10 +43,9 @@ public class IndexCommand extends FrontCommand {
         }
         String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        LoginData loginData = mapper.map(request);
 
-        User user = userService.getByLoginAndPasswordWithRole(login, password);
+        User user = userService.getByLoginAndPasswordWithRole(loginData.getLogin(), loginData.getPassword());
 
         if (user != null) {
             HttpSession session = request.getSession();
