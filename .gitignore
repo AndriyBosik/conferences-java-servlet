@@ -3,3 +3,4 @@
 target
 target/*
 Conferences.iml
+src/main/resources/application.properties
