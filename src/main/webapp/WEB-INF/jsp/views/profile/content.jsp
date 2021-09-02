@@ -51,7 +51,7 @@
             </div>
             <hr />
         </div>
-        <form action="" method="post" class="col s12">
+        <form action="<taglib:linkTo href="/users/update-profile" />" method="post" class="col s12">
             <div class="full-width input-field">
                 <input id="login" type="text" name="login" value="${user.login}" />
                 <label for="login"><taglib:message value="login" /></label>
@@ -69,8 +69,8 @@
                 <label for="email"><taglib:message value="email" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="old-password" type="password" name="old-password" />
-                <label for="old-password"><taglib:message value="old_password" /></label>
+                <input id="password" type="password" name="password" />
+                <label for="password"><taglib:message value="old_password" /></label>
             </div>
             <div class="full-width input-field">
                 <input id="new-password" type="password" name="new-password" />

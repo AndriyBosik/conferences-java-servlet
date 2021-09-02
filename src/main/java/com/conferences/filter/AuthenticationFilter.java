@@ -36,7 +36,8 @@ public class AuthenticationFilter extends UrlDividerFilter {
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
-                    Pages.CHANGE_USER_AVATAR.toString())
+                    Pages.CHANGE_USER_AVATAR.toString(),
+                    Pages.UPDATE_USER_PROFILE.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(

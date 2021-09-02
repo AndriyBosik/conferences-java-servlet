@@ -7,8 +7,8 @@ import com.conferences.config.Pages;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToSignUpDataMapper;
-import com.conferences.model.SignUpData;
+import com.conferences.mapper.RequestToUserDataMapper;
+import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IRoleService;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.RoleService;
@@ -22,12 +22,12 @@ public class SignUpCommand extends FrontCommand {
 
     private final IUserService userService;
     private final IRoleService roleService;
-    private final IMapper<HttpServletRequest, SignUpData> mapper;
+    private final IMapper<HttpServletRequest, UserData> mapper;
 
     public SignUpCommand() {
         userService = new UserService();
         roleService = new RoleService();
-        mapper = new RequestToSignUpDataMapper();
+        mapper = new RequestToUserDataMapper();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SignUpCommand extends FrontCommand {
         User user = new User();
         Role role = roleService.getRoleByTitle(request.getParameter("role"));
 
-        SignUpData data = mapper.map(request);
+        UserData data = mapper.map(request);
         user.setLogin(data.getLogin());
         user.setPassword(data.getPassword());
         user.setSurname(data.getSurname());

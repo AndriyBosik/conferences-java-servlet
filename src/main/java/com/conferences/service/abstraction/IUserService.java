@@ -14,4 +14,6 @@ public interface IUserService {
 
     boolean updateUserImagePath(User user);
 
+    boolean updateUser(User user);
+
 }

@@ -2,21 +2,21 @@ package com.conferences.mapper;
 
 import com.conferences.handler.abstraction.IEncodingHandler;
 import com.conferences.handler.implementation.EncodingHandler;
-import com.conferences.model.SignUpData;
+import com.conferences.model.UserData;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RequestToSignUpDataMapper implements IMapper<HttpServletRequest, SignUpData> {
+public class RequestToUserDataMapper implements IMapper<HttpServletRequest, UserData> {
 
     private final IEncodingHandler encodingHandler;
 
-    public RequestToSignUpDataMapper() {
+    public RequestToUserDataMapper() {
         encodingHandler = new EncodingHandler();
     }
 
     @Override
-    public SignUpData map(HttpServletRequest request) {
-        SignUpData data = new SignUpData();
+    public UserData map(HttpServletRequest request) {
+        UserData data = new UserData();
 
         data.setLogin(encodingHandler.getUTF8ValueFromRequest(request, "login"));
         data.setPassword(encodingHandler.getUTF8ValueFromRequest(request, "password"));

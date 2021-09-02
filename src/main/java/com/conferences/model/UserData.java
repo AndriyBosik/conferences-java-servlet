@@ -1,6 +1,6 @@
 package com.conferences.model;
 
-public class SignUpData {
+public class UserData {
 
     private String login;
 
