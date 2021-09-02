@@ -46,18 +46,14 @@
                                         </p>
                                     </div>
                                 </c:if>
-                                <div class="col s6 pr5">
-                                    <a href="<taglib:linkTo href="/users/sign-up" />" class="full-width btn waves-effect waves-light red" type="button">
-                                        <taglib:message value="sign_up" /> <i class="material-icons right">supervisor_account</i>
-                                    </a>
-                                </div>
-                                <div class="col s6 pl5">
+                                <div class="col s12">
                                     <button class="full-width btn waves-effect waves-light" type="submit">
-                                        <taglib:message value="login" /> <i class="material-icons right">send</i>
+                                        <taglib:message value="login" />
                                     </button>
                                 </div>
-                                <div class="col s12 center-align my10">
-                                    <a href="<taglib:linkTo href="/restore-password" />"><taglib:message value="forgot_password" /></a>
+                                <div class="col s12 my15 weight-normal center-align">
+                                    <span class="translucent-3p"><taglib:message value="dont_have_account" /> </span>
+                                    <a href="<taglib:linkTo href="/users/sign-up" />"><taglib:message value="sign_up" /></a>
                                 </div>
                             </form>
                         </div>
