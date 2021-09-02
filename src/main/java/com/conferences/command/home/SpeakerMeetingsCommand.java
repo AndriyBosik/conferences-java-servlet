@@ -47,9 +47,6 @@ public class SpeakerMeetingsCommand extends FrontCommand {
         User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());
 
         MeetingSorter sorter = mapper.map(request);
-        if (sorter.getFilterSelector() == MeetingFilterSelector.ALL) {
-            sorter.setFilterSelector(MeetingFilterSelector.FUTURE);
-        }
         PageResponse<Meeting> meetingsPage = meetingService.getSpeakerMeetings(page, sorter, speaker.getId());
 
         request.setAttribute("meetings", meetingsPage.getItems());
@@ -62,7 +59,7 @@ public class SpeakerMeetingsCommand extends FrontCommand {
     private List<String> getLinkToMeetingsPages(int pagesCount) {
         List<String> links = new ArrayList<>();
         for (int i = 1; i <= pagesCount; i++) {
-            links.add(Pages.SPEAKER_MEETINGS_DEFAULT_PAGE.toString() + "/" + i);
+            links.add(Pages.SPEAKER_MEETINGS_DEFAULT_PAGE + "/" + i);
         }
         return links;
     }
