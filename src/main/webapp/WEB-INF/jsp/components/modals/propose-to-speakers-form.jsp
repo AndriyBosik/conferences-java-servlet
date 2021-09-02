@@ -18,10 +18,10 @@
                 <c:forEach items="${speakers}" var="speaker">
                     <li class="collection-item s-hflex">
                         <div class="z-depth-1 user-avatar stretch-background">
-                            <img src="/resources/images/avatars/${speaker.imagePath}" alt="" class="circle full-width full-height" data-error="avatarDefault" />
+                            <img src="/resources/images/avatars/<c:out value="${speaker.imagePath}" />" alt="" class="circle full-width full-height" data-error="avatarDefault" />
                         </div>
                         <span class="title weight-normal s-vflex-center mx10 equal-flex">
-                            ${speaker.name} ${speaker.surname}
+                            <c:out value="${speaker.name}" /> <c:out value="${speaker.surname}" />
                         </span>
                         <span class="secondary-content s-vflex-center">
                             <form action="<taglib:linkTo href="/topics/propose-speakers" />" method="post" class="m0 proposalForm">

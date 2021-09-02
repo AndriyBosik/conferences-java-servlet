@@ -22,10 +22,10 @@
                         <li class="collection-item s-hflex">
                             <a href="<taglib:linkTo href="/meetings/show/${topic.meetingId}" />" class="full-width s-hflex grey-text text-darken-3">
                                 <div class="s-vflex-center">
-                                    <span class="weight-normal" style="font-size: 22px;">${topic.meetingTitle}</span>
+                                    <span class="weight-normal" style="font-size: 22px;"><c:out value="${topic.meetingTitle}" /></span>
                                 </div>
                                 <div class="s-vflex-center mx10">
-                                    <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/${topic.meetingImagePath}')"></div>
+                                    <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/<c:out value="${topic.meetingImagePath}" />')"></div>
                                 </div>
                                 <div class="translucent s-hflex-end equal-flex">
                                     <div class="s-vflex-center fs20">
@@ -38,14 +38,14 @@
 
                     <li class="collection-item s-hflex">
                         <div class="z-depth-1 user-avatar stretch-background">
-                            <img src="/resources/images/avatars/${topic.speakerImagePath}" alt="" class="circle full-width full-height" />
+                            <img src="/resources/images/avatars/<c:out value="${topic.speakerImagePath}" />" alt="" class="circle full-width full-height" />
                         </div>
                         <div class="collection-content mx20 equal-flex s-vflex-center py10">
                             <div class="s-hflex">
                                 <span><taglib:message value="speaker" /></span>
-                                <span class="topic-title weight-normal px5">${topic.speakerName} ${topic.speakerSurname}</span>
+                                <span class="topic-title weight-normal px5"><c:out value="${topic.speakerName}" /> <c:out value="${topic.speakerSurname}" /></span>
                                 <span class="lowercase"><taglib:message value="speaker_proposed_topic" /></span>
-                                <span class="topic-title weight-normal px5">${topic.proposedTopicTitle}</span>
+                                <span class="topic-title weight-normal px5"><c:out value="${topic.proposedTopicTitle}" /></span>
                             </div>
                         </div>
                         <div class="secondary-content s-vflex-center">

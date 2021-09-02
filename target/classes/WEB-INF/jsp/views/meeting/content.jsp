@@ -8,7 +8,7 @@
     <div class="row">
         <div class="meeting-container s-vflex">
             <div class="s-hflex full-width">
-                <p class="meeting-title weight-slight m0 equal-flex truncate">${meeting.title}</p>
+                <p class="meeting-title weight-slight m0 equal-flex truncate"><c:out value="${meeting.title}" /></p>
 
                 <tf:forRoles roles="${['user']}">
                     <div class="s-hflex-end">
@@ -63,7 +63,7 @@
                 </div>
             </tf:forRoles>
 
-            <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/${meeting.imagePath}')"></div>
+            <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/<c:out value="${meeting.imagePath}" />')"></div>
 
             <div class="full-width py15 meeting-additional-data">
                 <div class="meeting-where s-hflex my5">
@@ -72,7 +72,7 @@
                         <taglib:message value="where" />:
                     </span>
                     <span class="translucent-3p px5">
-                        ${meeting.address}
+                        <c:out value="${meeting.address}" />
                     </span>
                 </div>
                 <div class="meeting-when s-hflex my5">
@@ -90,7 +90,7 @@
                         <taglib:message value="topics" />:
                     </span>
                     <span class="translucent-3p px5">
-                        ${meeting.reportTopicsCount}
+                        <c:out value="${meeting.reportTopicsCount}" />
                     </span>
                 </div>
                 <div class="meeting-where s-hflex my5">
@@ -105,7 +105,7 @@
             </div>
 
             <p class="meeting-description translucent-2p m0">
-                ${meeting.description}
+                <c:out value="${meeting.description}" />
             </p>
 
             <div class="s-hflex">
@@ -151,10 +151,10 @@
                                             <c:when test="${not empty topic.reportTopicSpeaker}">
                                                 <div class="s-hflex" data-speaker-id="${topic.reportTopicSpeaker.speakerId}">
                                                     <div class="z-depth-1 user-avatar stretch-background">
-                                                        <img src="/resources/images/avatars/${topic.reportTopicSpeaker.speaker.imagePath}" alt="" class="full-width full-height" data-error="avatarDefault" />
+                                                        <img src="/resources/images/avatars/<c:out value="${topic.reportTopicSpeaker.speaker.imagePath}" />" alt="" class="full-width full-height" data-error="avatarDefault" />
                                                     </div>
                                                     <div class="s-vflex-center px10 weight-normal">
-                                                        ${topic.reportTopicSpeaker.speaker.name} ${topic.reportTopicSpeaker.speaker.surname}
+                                                        <c:out value="${topic.reportTopicSpeaker.speaker.name}" /> <c:out value="${topic.reportTopicSpeaker.speaker.surname}" />
                                                     </div>
                                                 </div>
                                             </c:when>
@@ -193,7 +193,7 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <span data-title>${topic.title}</span>
+                                        <span data-title><c:out value="${topic.title}" /></span>
                                     </td>
                                     <tf:forRoles roles="${['moderator']}">
                                         <td class="px20">

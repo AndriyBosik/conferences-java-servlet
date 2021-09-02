@@ -26,7 +26,7 @@
                     <option value="" selected><taglib:message value="choose_speaker" /></option>
                     <c:forEach items="${speakers}" var="speaker">
                         <option value="${speaker.id}" data-icon="/resources/images/avatars/${speaker.imagePath}">
-                            ${speaker.name} ${speaker.surname}
+                            <c:out value="${speaker.name}" /> <c:out value="${speaker.surname}" />
                         </option>
                     </c:forEach>
                 </select>

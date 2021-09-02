@@ -53,19 +53,19 @@
         </div>
         <form action="<taglib:linkTo href="/users/update-profile" />" method="post" class="col s12">
             <div class="full-width input-field">
-                <input id="login" type="text" name="login" value="${user.login}" />
+                <input id="login" type="text" name="login" value="<c:out value="${user.login}" />" />
                 <label for="login"><taglib:message value="login" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="surname" type="text" name="surname" value="${user.surname}" />
+                <input id="surname" type="text" name="surname" value="<c:out value="${user.surname}" />" />
                 <label for="surname"><taglib:message value="surname" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="name" type="text" name="name" value="${user.name}" />
+                <input id="name" type="text" name="name" value="<c:out value="${user.name}" />" />
                 <label for="name"><taglib:message value="name" /></label>
             </div>
             <div class="full-width input-field">
-                <input id="email" type="email" name="email" value="${user.email}" />
+                <input id="email" type="email" name="email" value="<c:out value="${user.email}" />" />
                 <label for="email"><taglib:message value="email" /></label>
             </div>
             <div class="full-width input-field">

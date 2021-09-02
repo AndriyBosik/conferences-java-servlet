@@ -20,10 +20,10 @@
                 <c:forEach items="${stats.usersMeetings}" var="stat">
                     <li class="collection-item s-hflex">
                         <div class="z-depth-1 user-avatar stretch-background">
-                            <img src="/resources/images/avatars/${stat.user.imagePath}" alt="" class="circle full-width full-height" />
+                            <img src="/resources/images/avatars/<c:out value="${stat.user.imagePath}" /> " alt="" class="circle full-width full-height" />
                         </div>
                         <span class="title weight-normal s-vflex-center mx10 equal-flex">
-                            ${stat.user.name} ${stat.user.surname}
+                            <c:out value="${stat.user.name}" /> <c:out value="${stat.user.surname}" />
                         </span>
                         <span class="secondary-content s-vflex-center col s12 m3">
                             <div class="s-hflex-end">

@@ -30,10 +30,10 @@
                             <li class="collection-item s-hflex">
                                 <a href="<taglib:linkTo href="/meetings/show/${proposal.meetingId}" />" class="full-width s-hflex grey-text text-darken-3">
                                     <div class="s-vflex-center">
-                                        <span class="weight-normal" style="font-size: 22px;">${proposal.meetingTitle}</span>
+                                        <span class="weight-normal" style="font-size: 22px;"><c:out value="${proposal.meetingTitle}" /></span>
                                     </div>
                                     <div class="s-vflex-center mx10">
-                                        <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/${proposal.meetingImagePath}')"></div>
+                                        <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/<c:out value="${proposal.meetingImagePath}" />')"></div>
                                     </div>
                                     <div class="translucent s-hflex-end equal-flex">
                                         <div class="s-vflex-center fs20">
@@ -46,7 +46,7 @@
 
                         <li class="collection-item s-hflex">
                             <div class="collection-content mx20 equal-flex s-vflex-center py10">
-                                <span class="topic-title weight-normal">${proposal.reportTopicTitle}</span>
+                                <span class="topic-title weight-normal"><c:out value="${proposal.reportTopicTitle}" /></span>
                             </div>
                             <span class="secondary-content s-vflex-center">
                                 <i class="material-icons small blue-text text-darken-3 tooltipped" data-position="left" data-tooltip="<taglib:message value="processing" />">hourglass_bottom</i>
@@ -66,10 +66,10 @@
                             <li class="collection-item s-hflex">
                                 <a href="<taglib:linkTo href="/meetings/show/${proposal.meetingId}" />" class="full-width s-hflex grey-text text-darken-3">
                                     <div class="s-vflex-center">
-                                        <span class="weight-normal" style="font-size: 22px;">${proposal.meetingTitle}</span>
+                                        <span class="weight-normal" style="font-size: 22px;"><c:out value="${proposal.meetingTitle}" /></span>
                                     </div>
                                     <div class="s-vflex-center mx10">
-                                        <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/${proposal.meetingImagePath}')"></div>
+                                        <div class="circle stretch-background user-avatar z-depth-1" style="background-image: url('/resources/images/meetings/<c:out value="${proposal.meetingImagePath}" />')"></div>
                                     </div>
                                     <div class="translucent s-hflex-end equal-flex">
                                         <div class="s-vflex-center fs20">
@@ -82,7 +82,7 @@
 
                         <li class="collection-item s-hflex">
                             <div class="collection-content mx20 equal-flex s-vflex-center py10">
-                                <span class="topic-title weight-normal">${proposal.reportTopicTitle}</span>
+                                <span class="topic-title weight-normal"><c:out value="${proposal.reportTopicTitle}" /></span>
                             </div>
                             <span class="secondary-content s-vflex-center">
                                 <div class="s-hflex">

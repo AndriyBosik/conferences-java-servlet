@@ -44,10 +44,10 @@
                     <div class="card hoverable meeting-card">
                         <div class="card-header s-hflex">
                             <h6 class="py5 px10 translucent truncate" data-address>
-                                ${meeting.address}
+                                <c:out value="${meeting.address}" />
                             </h6>
                         </div>
-                        <div class="card-image stretch-background" style="background-image: url('/resources/images/meetings/${meeting.imagePath}')">
+                        <div class="card-image stretch-background" style="background-image: url('/resources/images/meetings/<c:out value="${meeting.imagePath}" />')">
                             <a href="<taglib:linkTo href="/meetings/show/${meeting.id}" />" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="view" />">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
@@ -66,7 +66,7 @@
                             </tf:forRoles>
                         </div>
                         <div class="card-content">
-                            <span class="card-title truncate" style="font-weight: 400;">${meeting.title}</span>
+                            <span class="card-title truncate" style="font-weight: 400;"><c:out value="${meeting.title}" /></span>
 
                             <div class="s-vflex mb5">
                                 <div class="s-hflex">
@@ -80,7 +80,7 @@
                             </div>
 
                             <p class="truncate-4 translucent-3p">
-                                ${meeting.description}
+                                <c:out value="${meeting.description}" />
                             </p>
                             <hr class="date-divider" />
                             <div class="s-hflex-end">
