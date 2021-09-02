@@ -140,6 +140,7 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
                 Meeting meeting = entityParser.parseToEntity(Meeting.class, result);
                 meeting.setReportTopicsCount(result.getInt("topics_count"));
                 meeting.setUsersCount(result.getInt("users_count"));
+                meeting.setPresentUsersCount(result.getInt("present_users_count"));
                 meetings.add(meeting);
             }
         } catch (SQLException exception) {
@@ -170,12 +171,19 @@ public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetin
         return queryBuilder
                 .select(
                         "meetings.*",
-                        "(SELECT COUNT(id) FROM report_topics WHERE meeting_id=meetings.id) AS topics_count",
-                        "(SELECT COUNT(id) FROM users_meetings WHERE meeting_id=meetings.id) AS users_count")
-                .from("meetings")
+                        "COALESCE(stats.users_count, 0) AS users_count",
+                        "COALESCE(stats.present_users_count, 0) AS present_users_count",
+                        "(SELECT COUNT(id) FROM report_topics WHERE meeting_id=meetings.id) AS topics_count")
+                .from("meetings LEFT JOIN (" +
+                    "SELECT " +
+                        "meeting_id," +
+                        "COUNT(id) AS users_count," +
+                        "SUM(present::int) AS present_users_count " +
+                    "FROM users_meetings GROUP BY meeting_id" +
+                ") AS stats ON stats.meeting_id=meetings.id")
                 .where(filterCondition)
-                .groupBy("meetings.id")
-                .orderBy("meetings.id")
+                .groupBy("meetings.id", "stats.users_count", "stats.present_users_count")
+                .orderBy()
                 .generateQuery();
     }
 }

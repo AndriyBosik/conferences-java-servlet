@@ -39,7 +39,8 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.UPDATE_TOPIC.toString(),
                     Pages.API_TOPIC_PROPOSE_FOR_USER.toString(),
                     Pages.ACCEPT_PROPOSED_TOPIC.toString(),
-                    Pages.REJECT_PROPOSED_TOPIC.toString())
+                    Pages.REJECT_PROPOSED_TOPIC.toString(),
+                    Pages.SAVE_USERS_PRESENCE.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString())
                 .controlUrls(

@@ -6,5 +6,6 @@
     </script>
     <script type="text/javascript" src="/resources/js/topic-updater.js"></script>
     <script type="text/javascript" src="/resources/js/topic-proposals.js"></script>
+    <script type="text/javascript" src="/resources/js/user-presence-form.js"></script>
     <script type="text/javascript" src="/resources/js/moderator-proposals.js"></script>
 </tf:forRoles>

@@ -2,8 +2,11 @@ package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
+import com.conferences.config.Roles;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
+import com.conferences.entity.UserMeeting;
+import com.conferences.model.MeetingUsersStats;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.abstraction.IUserService;
@@ -41,8 +44,11 @@ public class ShowCommand extends FrontCommand {
         request.setAttribute("meeting", meeting);
         request.setAttribute("speakers", speakers);
         request.setAttribute("isJoined", isJoined);
-        if ("speaker".equals(user.getRole().getTitle())) {
+        if (Roles.SPEAKER.toString().equals(user.getRole().getTitle())) {
             request.setAttribute("proposedTopicIds", speakerProposalService.getSpeakerProposedTopicIdsForMeeting(meeting.getId(), user.getId()));
+        } else if (Roles.MODERATOR.toString().equals(user.getRole().getTitle())) {
+            MeetingUsersStats meetingUsersStats = meetingService.getUsersWithPresenceByMeeting(id);
+            request.setAttribute("stats", meetingUsersStats);
         }
 
         forwardPartial("meeting");

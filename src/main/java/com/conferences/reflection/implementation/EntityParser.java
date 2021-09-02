@@ -57,6 +57,8 @@ public class EntityParser implements IEntityParser {
                 Timestamp ts = result.getTimestamp(columnName);
                 Date date = new Date(ts.getTime());
                 field.set(entity, date);
+            } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
+                field.set(entity, result.getBoolean(columnName));
             }
         } catch (SQLException | IllegalAccessException exception) {
             exception.printStackTrace();

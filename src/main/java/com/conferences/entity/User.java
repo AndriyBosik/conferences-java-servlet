@@ -30,6 +30,9 @@ public class User implements Serializable {
     @Column(name = "role_id")
     private int roleId;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     private Role role;
 
     public int getId() {
@@ -86,6 +89,14 @@ public class User implements Serializable {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Role getRole() {

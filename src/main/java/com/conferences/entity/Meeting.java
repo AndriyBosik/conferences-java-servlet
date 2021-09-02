@@ -32,6 +32,8 @@ public class Meeting {
 
     private int usersCount;
 
+    private int presentUsersCount;
+
     private List<ReportTopic> reportTopics;
 
     public Meeting() {
@@ -104,6 +106,14 @@ public class Meeting {
 
     public void setUsersCount(int usersCount) {
         this.usersCount = usersCount;
+    }
+
+    public int getPresentUsersCount() {
+        return presentUsersCount;
+    }
+
+    public void setPresentUsersCount(int presentUsersCount) {
+        this.presentUsersCount = presentUsersCount;
     }
 
     public List<ReportTopic> getReportTopics() {

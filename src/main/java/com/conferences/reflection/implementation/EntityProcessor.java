@@ -188,6 +188,10 @@ public class EntityProcessor implements IEntityProcessor {
             } else if (field.getType().equals(Date.class)) {
                 Date date = (Date) field.get(entity);
                 preparedStatement.setTimestamp(number, new Timestamp(date.getTime()));
+            } else if (field.getType().equals(Boolean.class)) {
+                preparedStatement.setObject(number, field.get(entity));
+            } else if (field.getType().equals(boolean.class)) {
+                preparedStatement.setBoolean(number, field.getBoolean(entity));
             }
         } catch (IllegalAccessException exception) {
             exception.printStackTrace();

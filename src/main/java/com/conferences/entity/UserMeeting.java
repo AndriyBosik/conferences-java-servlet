@@ -15,6 +15,11 @@ public class UserMeeting {
     @Column(name="meeting_id")
     private int meetingId;
 
+    @Column(name="present")
+    private boolean present;
+
+    private User user;
+
     public int getId() {
         return id;
     }
@@ -37,5 +42,21 @@ public class UserMeeting {
 
     public void setMeetingId(int meetingId) {
         this.meetingId = meetingId;
+    }
+
+    public boolean isPresent() {
+        return present;
+    }
+
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

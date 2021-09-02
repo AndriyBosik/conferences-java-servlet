@@ -23,6 +23,7 @@ public enum Pages {
     PROPOSE_TOPIC("/topics/propose"),
     PROPOSE_SPEAKER_TO_TOPIC("/topics/propose-speaker"),
     PROPOSED_TOPICS("/topics/speaker-proposed"),
+    SAVE_USERS_PRESENCE("/meetings-api/save-user-presence"),
     ACCEPT_PROPOSED_TOPIC("/topics/accept-proposed"),
     REJECT_PROPOSED_TOPIC("/topics/reject-proposed"),
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),

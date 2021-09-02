@@ -39,6 +39,30 @@
 
             <div class="separator mb10"></div>
 
+            <tf:forRoles roles="${['moderator']}">
+                <div class="full-width s-vflex my15">
+                    <div class="s-hflex-end">
+                        <div class="equal-flex s-hflex-start">
+                            <c:if test="${stats.totalUsersCount > 0}">
+                                <button type="button" class="btn btn-small waves-effect waves-light blue darken-3 modal-trigger" data-target="presence-editor">
+                                    <taglib:message value="edit" />
+                                    <i class="material-icons right">edit</i>
+                                </button>
+                            </c:if>
+                        </div>
+                        <div class="translucent s-hflex fs20 tooltipped" data-position="bottom" data-tooltip="<taglib:message value="present_users" />/<taglib:message value="joined_users" />">
+                            <span class="s-vflex-end px5">
+                                <i class="material-icons fs30">people</i>
+                            </span>
+                            <span class="s-vflex-end">${stats.presentUsersCount}/${stats.totalUsersCount}</span>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="determinate blue darken-3" style="width: ${(stats.presentUsersCount / stats.totalUsersCount)*100}%"></div>
+                    </div>
+                </div>
+            </tf:forRoles>
+
             <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/${meeting.imagePath}')"></div>
 
             <div class="full-width py15 meeting-additional-data">
@@ -211,6 +235,12 @@
     <jsp:include page="/WEB-INF/jsp/components/modals/propose-to-speakers-form.jsp" />
 
     <jsp:include page="/WEB-INF/jsp/components/modals/topic-proposals-form.jsp" />
+
+    <c:if test="${stats.totalUsersCount > 0}">
+        <jsp:include page="/WEB-INF/jsp/components/modals/presence-editor.jsp">
+            <jsp:param name="stats" value="${stats}" />
+        </jsp:include>
+    </c:if>
 </tf:forRoles>
 
 <tf:forRoles roles="${['speaker']}">

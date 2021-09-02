@@ -8,6 +8,7 @@ import com.conferences.dao.implementation.UserMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.UserMeeting;
 import com.conferences.model.MeetingSorter;
+import com.conferences.model.MeetingUsersStats;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
@@ -72,5 +73,15 @@ public class MeetingService implements IMeetingService {
     @Override
     public PageResponse<Meeting> getSpeakerMeetings(Page page, MeetingSorter sorter, int speakerId) {
         return meetingDao.findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(page, sorter, speakerId);
+    }
+
+    @Override
+    public MeetingUsersStats getUsersWithPresenceByMeeting(int meetingId) {
+        return new MeetingUsersStats(userMeetingDao.findUserWithPresenceByMeetingId(meetingId));
+    }
+
+    @Override
+    public boolean updateUserPresence(UserMeeting userMeeting) {
+        return userMeetingDao.updateUserPresenceByUserIdAndMeetingId(userMeeting);
     }
 }

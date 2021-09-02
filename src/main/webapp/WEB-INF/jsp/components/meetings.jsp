@@ -43,24 +43,28 @@
             <c:forEach items="${meetings}" var="meeting">
                 <div class="col s12 m6 l4 meetingContainer" data-id="${meeting.id}">
                     <div class="card hoverable meeting-card">
-                        <div class="card-header">
+                        <div class="card-header s-hflex">
                             <h6 class="py5 px10 translucent truncate" data-address>
                                 ${meeting.address}
                             </h6>
                         </div>
                         <div class="card-image stretch-background" style="background-image: url('/resources/images/meetings/${meeting.imagePath}')">
-                            <tf:forRoles roles="${['moderator']}">
-                                <jsp:useBean id="now" class="java.util.Date" />
-                                <c:if test="${meeting.date gt now}">
-                                    <div class="clickable tooltipped waves-light blue-text text-darken-3 top-right-element text-hoverable modal-trigger" data-position="right" data-tooltip="<taglib:message value="edit" />" data-target="edit-meeting-modal">
-                                        <i class="material-icons small">edit</i>
-                                    </div>
-                                </c:if>
-                            </tf:forRoles>
-
                             <a href="<taglib:linkTo href="/meetings/show/${meeting.id}" />" class="tooltipped btn-floating halfway-fab waves-effect waves-light blue darken-3" data-position="right" data-tooltip="<taglib:message value="view" />">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
+                            <tf:forRoles roles="${['moderator']}">
+                                <jsp:useBean id="now" class="java.util.Date" />
+                                <div class="top-right-element s-hflex">
+                                    <c:if test="${meeting.date gt now}">
+                                        <div class="clickable tooltipped waves-light blue-text text-darken-3 text-hoverable modal-trigger" data-position="right" data-tooltip="<taglib:message value="edit" />" data-target="edit-meeting-modal">
+                                            <i class="material-icons small">edit</i>
+                                        </div>
+                                    </c:if>
+                                    <div class="clickable tooltipped waves-light orange-text text-hoverable" data-position="right" data-tooltip="<taglib:message value="joined_users" />: ${meeting.usersCount}<br /><taglib:message value="was_present" />: ${meeting.presentUsersCount}">
+                                        <i class="material-icons small">help</i>
+                                    </div>
+                                </div>
+                            </tf:forRoles>
                         </div>
                         <div class="card-content">
                             <span class="card-title truncate" style="font-weight: 400;">${meeting.title}</span>
