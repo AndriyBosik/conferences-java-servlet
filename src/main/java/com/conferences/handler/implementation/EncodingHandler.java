@@ -10,7 +10,7 @@ public class EncodingHandler implements IEncodingHandler {
 
     @Override
     public String getUTF8ValueFromRequest(HttpServletRequest request, String parameterName) {
-        String value = request.getParameter("title");
+        String value = request.getParameter(parameterName);
         return new String(value.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
     }
 
