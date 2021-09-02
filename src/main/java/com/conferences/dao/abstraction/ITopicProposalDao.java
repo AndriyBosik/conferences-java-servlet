@@ -4,7 +4,7 @@ import com.conferences.entity.TopicProposal;
 
 import java.util.List;
 
-public interface ITopicProposalDao extends IDao<Integer, TopicProposal> {
+public interface ITopicProposalDao extends ICrudDao<Integer, TopicProposal> {
 
     List<TopicProposal> findAllByMeetingIdWithSpeakers(int meetingId);
 

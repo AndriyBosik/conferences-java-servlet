@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.decorator.MeetingPageQueryBuilderDecorator;
 import com.conferences.entity.Meeting;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MeetingDao extends AbstractDao<Integer, Meeting> implements IMeetingDao {
+public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMeetingDao {
 
     @Override
     public Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key) {

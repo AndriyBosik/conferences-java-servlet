@@ -1,9 +1,8 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IUserMeetingDao;
-import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
 import com.conferences.entity.UserMeeting;
 
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserMeetingDao extends AbstractDao<Integer, UserMeeting> implements IUserMeetingDao {
+public class UserMeetingDao extends AbstractCrudDao<Integer, UserMeeting> implements IUserMeetingDao {
 
     @Override
     public UserMeeting findByUserIdAndMeetingId(int userId, int meetingId) {

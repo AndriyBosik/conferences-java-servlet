@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.ITopicProposalDao;
 import com.conferences.entity.TopicProposal;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopicProposalDao extends AbstractDao<Integer, TopicProposal> implements ITopicProposalDao {
+public class TopicProposalDao extends AbstractCrudDao<Integer, TopicProposal> implements ITopicProposalDao {
 
     @Override
     public List<TopicProposal> findAllByMeetingIdWithSpeakers(int meetingId) {

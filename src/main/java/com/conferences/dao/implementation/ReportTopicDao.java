@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IReportTopicDao;
 import com.conferences.entity.ReportTopic;
 
@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ReportTopicDao extends AbstractDao<Integer, ReportTopic> implements IReportTopicDao {
+public class ReportTopicDao extends AbstractCrudDao<Integer, ReportTopic> implements IReportTopicDao {
 
     @Override
     public boolean updateWithSpeaker(ReportTopic reportTopic) {

@@ -4,7 +4,7 @@ import com.conferences.entity.UserMeeting;
 
 import java.util.List;
 
-public interface IUserMeetingDao extends IDao<Integer, UserMeeting> {
+public interface IUserMeetingDao extends ICrudDao<Integer, UserMeeting> {
 
     UserMeeting findByUserIdAndMeetingId(int userId, int meetingId);
 

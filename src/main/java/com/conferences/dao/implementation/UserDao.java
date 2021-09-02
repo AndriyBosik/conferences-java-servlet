@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
+public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao {
 
     @Override
     public User findByLoginAndPasswordWithRole(String login, String password) {

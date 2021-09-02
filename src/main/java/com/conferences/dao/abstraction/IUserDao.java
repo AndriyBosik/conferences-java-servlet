@@ -4,7 +4,7 @@ import com.conferences.entity.User;
 
 import java.util.List;
 
-public interface IUserDao extends IDao<Integer, User> {
+public interface IUserDao extends ICrudDao<Integer, User> {
 
     User findByLoginAndPasswordWithRole(String login, String password);
 

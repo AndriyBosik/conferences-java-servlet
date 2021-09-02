@@ -5,7 +5,7 @@ import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 
-public interface IMeetingDao extends IDao<Integer, Meeting> {
+public interface IMeetingDao extends ICrudDao<Integer, Meeting> {
 
     Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key);
 

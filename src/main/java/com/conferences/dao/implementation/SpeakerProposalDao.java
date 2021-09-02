@@ -1,11 +1,10 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.ISpeakerProposalDao;
 import com.conferences.entity.SpeakerProposal;
 import com.conferences.entity.User;
-import com.conferences.entity.custom.ProposalData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpeakerProposalDao extends AbstractDao<Integer, SpeakerProposal> implements ISpeakerProposalDao {
+public class SpeakerProposalDao extends AbstractCrudDao<Integer, SpeakerProposal> implements ISpeakerProposalDao {
 
     @Override
     public List<SpeakerProposal> findAllByTopicIdWithSpeaker(int topicId) {

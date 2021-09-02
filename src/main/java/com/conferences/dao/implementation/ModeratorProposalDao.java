@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IModeratorProposalDao;
 import com.conferences.entity.ModeratorProposal;
 
@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ModeratorProposalDao extends AbstractDao<Integer, ModeratorProposal> implements IModeratorProposalDao {
+public class ModeratorProposalDao extends AbstractCrudDao<Integer, ModeratorProposal> implements IModeratorProposalDao {
 
     @Override
     public boolean deleteProposal(ModeratorProposal moderatorProposal) {

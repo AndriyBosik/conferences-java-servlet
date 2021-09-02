@@ -1,7 +1,7 @@
 package com.conferences.dao.implementation;
 
 import com.conferences.config.DbManager;
-import com.conferences.dao.abstraction.AbstractDao;
+import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IRoleDao;
 import com.conferences.entity.Role;
 
@@ -9,9 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Locale;
 
-public class RoleDao extends AbstractDao<Integer, Role> implements IRoleDao {
+public class RoleDao extends AbstractCrudDao<Integer, Role> implements IRoleDao {
 
     @Override
     public Role findByTitle(String title) {
