@@ -7,7 +7,16 @@
         <meta content="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><taglib:message value="page.title.${view}" /></title>
+        <title>
+            <c:choose>
+                <c:when test="${(empty title or title eq '')}">
+                    <taglib:message value="page.title.${view}" />
+                </c:when>
+                <c:otherwise>
+                    <c:out value="${title}" />
+                </c:otherwise>
+            </c:choose>
+        </title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/resources/css/site.css" rel="stylesheet" />

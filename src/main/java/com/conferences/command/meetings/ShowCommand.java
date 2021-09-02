@@ -51,6 +51,6 @@ public class ShowCommand extends FrontCommand {
             request.setAttribute("stats", meetingUsersStats);
         }
 
-        forwardPartial("meeting");
+        forwardPartial("meeting", meeting.getTitle());
     }
 }

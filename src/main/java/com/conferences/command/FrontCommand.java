@@ -38,9 +38,14 @@ public abstract class FrontCommand {
         request.getRequestDispatcher(view).forward(request, response);
     }
 
-    protected void forwardPartial(String view) throws ServletException, IOException {
+    protected void forwardPartial(String view, String title) throws ServletException, IOException {
         request.setAttribute("view", view);
+        request.setAttribute("title", title);
         forward("layouts/" + getLayout());
+    }
+
+    protected void forwardPartial(String view) throws ServletException, IOException {
+        forwardPartial(view, "");
     }
 
     protected void redirect(String url) throws IOException {
