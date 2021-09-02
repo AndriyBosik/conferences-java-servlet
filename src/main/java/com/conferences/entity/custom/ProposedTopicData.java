@@ -2,6 +2,7 @@ package com.conferences.entity.custom;
 
 import com.conferences.annotation.Column;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ProposedTopicData {
@@ -16,7 +17,7 @@ public class ProposedTopicData {
     private String meetingTitle;
 
     @Column(name = "meeting_date")
-    private Date meetingDate;
+    private LocalDateTime meetingDate;
 
     @Column(name = "meeting_image_path")
     private String meetingImagePath;
@@ -57,11 +58,11 @@ public class ProposedTopicData {
         this.meetingTitle = meetingTitle;
     }
 
-    public Date getMeetingDate() {
+    public LocalDateTime getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(Date meetingDate) {
+    public void setMeetingDate(LocalDateTime meetingDate) {
         this.meetingDate = meetingDate;
     }
 

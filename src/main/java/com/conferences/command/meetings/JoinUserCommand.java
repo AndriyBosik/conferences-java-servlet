@@ -10,11 +10,11 @@ import com.conferences.service.implementation.MeetingService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class JoinUserCommand extends FrontCommand {
 
-    private IMeetingService meetingService;
+    private final IMeetingService meetingService;
 
     public JoinUserCommand() {
         meetingService = new MeetingService();
@@ -25,7 +25,7 @@ public class JoinUserCommand extends FrontCommand {
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));
         Meeting meeting = meetingService.getMeetingById(meetingId);
 
-        if (meeting.getDate().before(new Date())) {
+        if (meeting.getDate().isBefore(LocalDateTime.now())) {
             // TODO
             redirect(Pages.MEETING.getUrl() + meetingId);
             return;

@@ -102,7 +102,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, meeting.getAddress());
-            statement.setTimestamp(2, new Timestamp(meeting.getDate().getTime()));
+            statement.setTimestamp(2, Timestamp.valueOf(meeting.getDate()));
             statement.setInt(3, meeting.getId());
             statement.executeUpdate();
 

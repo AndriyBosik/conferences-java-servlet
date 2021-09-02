@@ -3,6 +3,7 @@ package com.conferences.entity;
 import com.conferences.annotation.Column;
 import com.conferences.annotation.Table;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Meeting {
     private String imagePath;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDateTime date;
 
     private int reportTopicsCount;
 
@@ -80,16 +81,16 @@ public class Meeting {
         this.imagePath = imagePath;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
     public boolean isOutdated() {
-        return date == null || new Date().after(date);
+        return date == null || LocalDateTime.now().isAfter(date);
     }
 
     public int getReportTopicsCount() {

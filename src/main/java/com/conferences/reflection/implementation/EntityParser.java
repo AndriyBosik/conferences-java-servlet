@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class EntityParser implements IEntityParser {
@@ -53,10 +54,9 @@ public class EntityParser implements IEntityParser {
                 field.set(entity, result.getInt(columnName));
             } else if (field.getType().equals(String.class)) {
                 field.set(entity, result.getString(columnName));
-            } else if (field.getType().equals(Date.class)) {
+            } else if (field.getType().equals(LocalDateTime.class)) {
                 Timestamp ts = result.getTimestamp(columnName);
-                Date date = new Date(ts.getTime());
-                field.set(entity, date);
+                field.set(entity, ts.toLocalDateTime());
             } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
                 field.set(entity, result.getBoolean(columnName));
             }

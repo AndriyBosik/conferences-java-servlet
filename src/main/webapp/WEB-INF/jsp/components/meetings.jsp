@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="tags" prefix="taglib" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="filters col s12">
     <form action="" method="get">
@@ -55,7 +54,7 @@
                             <tf:forRoles roles="${['moderator']}">
                                 <jsp:useBean id="now" class="java.util.Date" />
                                 <div class="top-right-element s-hflex">
-                                    <c:if test="${meeting.date gt now}">
+                                    <c:if test="${not meeting.outdated}">
                                         <div class="clickable tooltipped waves-light blue-text text-darken-3 text-hoverable modal-trigger" data-position="right" data-tooltip="<taglib:message value="edit" />" data-target="edit-meeting-modal">
                                             <i class="material-icons small">edit</i>
                                         </div>
@@ -86,7 +85,7 @@
                             <hr class="date-divider" />
                             <div class="s-hflex-end">
                                 <span class="translucent" data-date>
-                                    <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
+                                    <taglib:dateFormatter date="${meeting.date}" format="dd-MM-yyyy HH:mm" />
                                 </span>
                             </div>
                         </div>

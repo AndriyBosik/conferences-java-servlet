@@ -32,8 +32,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <jsp:useBean id="now" class="java.util.Date" />
-            <fmt:formatDate var="year" value="${now}" pattern="yyyy" /> Copyright Text
+            <taglib:dateFormatter format="yyyy" /> Copyright Text
             <a href="#" class="grey-text text-lighten-4 right">More Links</a>
         </div>
     </div>

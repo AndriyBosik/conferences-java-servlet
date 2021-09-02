@@ -8,8 +8,8 @@ import com.conferences.reflection.abstraction.IEntityProcessor;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -185,9 +185,9 @@ public class EntityProcessor implements IEntityProcessor {
                 preparedStatement.setInt(number, field.getInt(entity));
             } else if (field.getType().equals(String.class)) {
                 preparedStatement.setString(number, (String) field.get(entity));
-            } else if (field.getType().equals(Date.class)) {
-                Date date = (Date) field.get(entity);
-                preparedStatement.setTimestamp(number, new Timestamp(date.getTime()));
+            } else if (field.getType().equals(LocalDateTime.class)) {
+                LocalDateTime date = (LocalDateTime) field.get(entity);
+                preparedStatement.setTimestamp(number, Timestamp.valueOf(date));
             } else if (field.getType().equals(Boolean.class)) {
                 preparedStatement.setObject(number, field.get(entity));
             } else if (field.getType().equals(boolean.class)) {

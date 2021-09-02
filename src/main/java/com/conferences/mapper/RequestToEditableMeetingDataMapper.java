@@ -1,10 +1,13 @@
 package com.conferences.mapper;
 
+import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class RequestToEditableMeetingDataMapper implements IMapper<HttpServletRequest, Meeting> {
@@ -16,12 +19,8 @@ public class RequestToEditableMeetingDataMapper implements IMapper<HttpServletRe
         meeting.setAddress(request.getParameter("address"));
 
         String strDate = request.getParameter("date") + " " + request.getParameter("hours") + ":" + request.getParameter("minutes");
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("dd-MM-yyyy HH:mm").parse(strDate);
-        } catch (ParseException exception) {
-            exception.printStackTrace();
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString());
+        LocalDateTime date = LocalDateTime.parse(strDate, formatter);
 
         meeting.setDate(date);
         return meeting;

@@ -81,7 +81,7 @@
                         <taglib:message value="when" />:
                     </span>
                     <span class="translucent-3p px5">
-                        <fmt:formatDate value="${meeting.date}" pattern="dd-MM-yyyy HH:mm" />
+                        <taglib:dateFormatter date="${meeting.date}" format="dd-MM-yyyy HH:mm" />
                     </span>
                 </div>
                 <div class="meeting-where s-hflex my5">

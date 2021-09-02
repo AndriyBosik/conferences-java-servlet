@@ -8,9 +8,7 @@ public class DbManager {
 
     private static DbManager instance;
 
-    private DbManager() {
-
-    }
+    private DbManager() {}
 
     public static DbManager getInstance() {
         if (instance == null) {

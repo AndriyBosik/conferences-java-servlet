@@ -18,6 +18,21 @@
         </attribute>
     </tag>
     <tag>
+        <name>dateFormatter</name>
+        <tag-class>com.conferences.tag.DateFormatterTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>date</name>
+            <type>java.time.LocalDateTime</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>format</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
         <name>linkTo</name>
         <tag-class>com.conferences.tag.LinkToTag</tag-class>
         <body-content>empty</body-content>

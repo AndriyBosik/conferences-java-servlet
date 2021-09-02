@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="translucent s-hflex-end equal-flex">
                                     <div class="s-vflex-center fs20">
-                                        <fmt:formatDate value="${topic.meetingDate}" pattern="dd-MM-yyyy HH:mm" />
+                                        <taglib:dateFormatter date="${topic.meetingDate}" format="dd-MM-yyyy HH:mm" />
                                     </div>
                                 </div>
                             </a>
