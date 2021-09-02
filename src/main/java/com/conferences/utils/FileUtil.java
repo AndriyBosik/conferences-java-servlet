@@ -24,6 +24,7 @@ public class FileUtil {
     private static boolean isAllowed(char symbol) {
         return  (symbol >= 'A' && symbol <= 'Z') ||
                 (symbol >= 'a' && symbol <= 'z') ||
+                (symbol >= '0' && symbol <= '9') ||
                 symbol == '-' ||
                 symbol == '_';
     }

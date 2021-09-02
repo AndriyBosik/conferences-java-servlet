@@ -3,27 +3,24 @@ package com.conferences.model;
 import org.apache.commons.fileupload.FileItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class FileFormData {
+public class FileFormData<T> {
 
-    private Map<String, String> formData;
+    private T item;
 
     private List<FileItem> fileItems;
 
     public FileFormData() {
-        formData = new HashMap<>();
         fileItems = new ArrayList<>();
     }
 
-    public Map<String, String> getFormData() {
-        return formData;
+    public T getItem() {
+        return item;
     }
 
-    public void setFormData(Map<String, String> formData) {
-        this.formData = formData;
+    public void setItem(T item) {
+        this.item = item;
     }
 
     public List<FileItem> getFileItems() {

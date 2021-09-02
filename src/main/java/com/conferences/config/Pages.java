@@ -8,6 +8,7 @@ public enum Pages {
     SPEAKER_PROPOSALS_PAGE("/home/proposals"),
     SPEAKER_MEETINGS_DEFAULT_PAGE("/home/speaker-meetings"),
     SPEAKER_MEETINGS("/home/speaker-meetings/*"),
+    MEETINGS_CREATE("/meetings/create"),
     MEETINGS_LIST("/meetings/all"),
     MEETINGS_LIST_PAGE("/meetings/all/*"),
     JOIN_USER_TO_MEETING("/meetings/join-user"),

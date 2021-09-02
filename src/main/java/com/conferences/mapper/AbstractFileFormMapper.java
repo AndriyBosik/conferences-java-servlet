@@ -1,6 +1,7 @@
 package com.conferences.mapper;
 
 import com.conferences.config.Constants;
+import com.conferences.entity.Meeting;
 import com.conferences.model.FileFormData;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -12,12 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RequestToFileFormDataMapper implements IMapper<HttpServletRequest, FileFormData> {
+public abstract class AbstractFileFormMapper<U> implements IMapper<HttpServletRequest, FileFormData<U>> {
+
+    protected abstract U mapFormDataToReturnValue(Map<String, String> formData);
 
     @Override
-    public FileFormData map(HttpServletRequest request) {
+    public FileFormData<U> map(HttpServletRequest request) {
         if (ServletFileUpload.isMultipartContent(request)) {
-            FileFormData data = new FileFormData();
+            FileFormData<U> data = new FileFormData<>();
             Map<String, String> formData = new HashMap<>();
             ServletFileUpload upload = configureServletFileUpload();
 
@@ -32,7 +35,8 @@ public class RequestToFileFormDataMapper implements IMapper<HttpServletRequest, 
                         formData.put(fi.getFieldName(), fi.getName());
                     }
                 }
-                data.setFormData(formData);
+
+                data.setItem(mapFormDataToReturnValue(formData));
                 return data;
             } catch (Exception exception) {
                 exception.printStackTrace();

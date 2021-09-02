@@ -1,7 +1,7 @@
 <%@ taglib uri="tags" prefix="taglib" %>
 
 <div id="meeting-form" class="modal">
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="<taglib:linkTo href="/meetings/create" />" method="post" enctype="multipart/form-data">
         <div class="modal-content row">
             <h5 class="col s12"><taglib:message value="create_meeting" /></h5>
 

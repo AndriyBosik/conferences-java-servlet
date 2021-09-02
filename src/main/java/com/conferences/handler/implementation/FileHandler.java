@@ -1,8 +1,9 @@
 package com.conferences.handler.implementation;
 
+import com.conferences.entity.Meeting;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToFileFormDataMapper;
+import com.conferences.mapper.RequestToFileFormMeetingMapper;
 import com.conferences.model.FileFormData;
 import org.apache.commons.fileupload.FileItem;
 
@@ -12,15 +13,15 @@ import java.util.List;
 
 public class FileHandler implements IFileHandler {
 
-    private final IMapper<HttpServletRequest, FileFormData> mapper;
+    private final IMapper<HttpServletRequest, FileFormData<Meeting>> mapper;
 
     public FileHandler() {
-        mapper = new RequestToFileFormDataMapper();
+        mapper = new RequestToFileFormMeetingMapper();
     }
 
     @Override
     public boolean saveFile(HttpServletRequest request, String path, String filename) {
-        FileFormData data = mapper.map(request);
+        FileFormData<Meeting> data = mapper.map(request);
         return saveFile(data.getFileItems(), path, filename);
     }
 

@@ -6,7 +6,8 @@ import com.conferences.entity.User;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToFileFormDataMapper;
+import com.conferences.mapper.RequestToFileFormMeetingMapper;
+import com.conferences.mapper.SimpleFileFormMapper;
 import com.conferences.model.FileFormData;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class ChangeAvatarCommand extends FrontCommand {
 
@@ -23,19 +25,19 @@ public class ChangeAvatarCommand extends FrontCommand {
 
     private final IUserService userService;
     private final IFileHandler fileHandler;
-    private final IMapper<HttpServletRequest, FileFormData> mapper;
+    private final IMapper<HttpServletRequest, FileFormData<Map<String, String>>> mapper;
 
     public ChangeAvatarCommand() {
         userService = new UserService();
         fileHandler = new FileHandler();
-        mapper = new RequestToFileFormDataMapper();
+        mapper = new SimpleFileFormMapper();
     }
 
     @Override
     public void process() throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
-        FileFormData data = mapper.map(request);
-        String fileExtension = "." + FileUtil.getFileExtension(data.getFormData().get("avatar"));
+        FileFormData<Map<String, String>> data = mapper.map(request);
+        String fileExtension = "." + FileUtil.getFileExtension(data.getItem().get("avatar"));
         String avatarPath = generateUserAvatarName(user) + fileExtension;
         if (fileHandler.saveFile(data.getFileItems(), context.getRealPath(AVATARS_IMAGES), avatarPath)) {
             user.setImagePath(avatarPath);
