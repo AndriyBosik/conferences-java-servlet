@@ -8,6 +8,7 @@ import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 import com.conferences.handler.PermissionsHandler;
 import com.conferences.entity.User;
+import com.conferences.handler.abstraction.IPermissionsHandler;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
 
     private static final String GUEST_USER = "guest";
 
-    private PermissionsHandler permissionsHandler;
+    private IPermissionsHandler permissionsHandler;
 
     @Override
     public void init(FilterConfig filterConfig) {

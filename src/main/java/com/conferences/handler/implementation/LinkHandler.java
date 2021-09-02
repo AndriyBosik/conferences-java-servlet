@@ -1,9 +1,11 @@
-package com.conferences.handler;
+package com.conferences.handler.implementation;
 
 import com.conferences.config.Defaults;
+import com.conferences.handler.abstraction.ILinkHandler;
 
-public class LinkHandler {
+public class LinkHandler implements ILinkHandler {
 
+    @Override
     public String getLangFromUrl(String url) {
         if (url.length() == 0) {
             return Defaults.DEFAULT_LANG.toString();
@@ -17,6 +19,7 @@ public class LinkHandler {
         return Defaults.DEFAULT_LANG.toString();
     }
 
+    @Override
     public String addLangToUrl(String url, String lang) {
         StringBuilder link = new StringBuilder("/" + lang);
 

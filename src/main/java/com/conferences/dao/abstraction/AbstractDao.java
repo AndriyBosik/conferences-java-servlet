@@ -1,6 +1,7 @@
 package com.conferences.dao.abstraction;
 
-import com.conferences.handler.TransactionHandler;
+import com.conferences.handler.abstraction.ITransactionHandler;
+import com.conferences.handler.implementation.TransactionHandler;
 import com.conferences.reflection.abstraction.IEntityParser;
 import com.conferences.reflection.abstraction.IEntityProcessor;
 import com.conferences.reflection.implementation.EntityParser;
@@ -10,7 +11,7 @@ public class AbstractDao<K, T> implements IDao<K, T> {
 
     protected final IEntityParser entityParser;
     protected final IEntityProcessor entityProcessor;
-    protected final TransactionHandler transactionHandler;
+    protected final ITransactionHandler transactionHandler;
 
     public AbstractDao() {
         entityParser = new EntityParser();

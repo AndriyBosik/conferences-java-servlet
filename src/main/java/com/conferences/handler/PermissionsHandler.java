@@ -1,13 +1,14 @@
 package com.conferences.handler;
 
 import com.conferences.config.HttpMethod;
+import com.conferences.handler.abstraction.IPermissionsHandler;
 
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class PermissionsHandler {
+public class PermissionsHandler implements IPermissionsHandler {
 
     private static final String ALL_ROLES_KEY = "";
 
@@ -17,6 +18,7 @@ public class PermissionsHandler {
         allowed = new HashMap<>();
     }
 
+    @Override
     public boolean isAllowed(String role, HttpMethod method, String url) {
         return checkForRole(role, method, url) || checkForRole(ALL_ROLES_KEY, method, url);
     }

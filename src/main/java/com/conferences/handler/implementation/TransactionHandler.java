@@ -1,10 +1,13 @@
-package com.conferences.handler;
+package com.conferences.handler.implementation;
+
+import com.conferences.handler.abstraction.ITransactionHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class TransactionHandler {
+public class TransactionHandler implements ITransactionHandler {
 
+    @Override
     public void closeResource(AutoCloseable closeable) {
         if (closeable != null) {
             try {
@@ -15,6 +18,7 @@ public class TransactionHandler {
         }
     }
 
+    @Override
     public void rollbackTransaction(Connection connection) {
         if (connection != null) {
             try {
@@ -25,6 +29,7 @@ public class TransactionHandler {
         }
     }
 
+    @Override
     public void setAutoCommit(Connection connection, boolean value) {
         if (connection != null) {
             try {

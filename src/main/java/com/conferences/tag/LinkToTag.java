@@ -1,7 +1,8 @@
 package com.conferences.tag;
 
 import com.conferences.config.Defaults;
-import com.conferences.handler.LinkHandler;
+import com.conferences.handler.abstraction.ILinkHandler;
+import com.conferences.handler.implementation.LinkHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
@@ -14,7 +15,7 @@ public class LinkToTag extends TagSupport {
     private String toLang;
     private Boolean saveQueryString;
 
-    private final LinkHandler linkHandler;
+    private final ILinkHandler linkHandler;
 
     public LinkToTag() {
         this.linkHandler = new LinkHandler();

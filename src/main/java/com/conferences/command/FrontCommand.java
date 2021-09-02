@@ -1,22 +1,21 @@
 package com.conferences.command;
 
 import com.conferences.config.Defaults;
-import com.conferences.handler.LinkHandler;
+import com.conferences.handler.abstraction.ILinkHandler;
+import com.conferences.handler.implementation.LinkHandler;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class FrontCommand {
 
     protected ServletContext context;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
-    protected LinkHandler linkHandler;
+    protected ILinkHandler linkHandler;
     protected String currentLang;
 
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
