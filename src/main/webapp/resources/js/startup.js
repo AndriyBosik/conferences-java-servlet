@@ -40,6 +40,22 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location = url;
         });
     }
+
+    let clickForwarders = document.querySelectorAll("[data-forward-click]");
+    for (let clickForward of clickForwarders) {
+        clickForward.addEventListener("click", function() {
+            let element = document.getElementById(clickForward.getAttribute("data-forward-click"));
+            element.click();
+        });
+    }
+
+    let onchangeSubmitters = document.querySelectorAll("[submit-onchange]");
+    for (let submitter of onchangeSubmitters) {
+        submitter.onchange = function() {
+            let form = submitter.closest("form");
+            form.submit();
+        }
+    }
 });
 
 function initSelectedOption(select) {

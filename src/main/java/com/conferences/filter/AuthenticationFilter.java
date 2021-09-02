@@ -6,7 +6,7 @@ import com.conferences.config.Pages;
 import com.conferences.config.Roles;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
-import com.conferences.handler.PermissionsHandler;
+import com.conferences.handler.implementation.PermissionsHandler;
 import com.conferences.entity.User;
 import com.conferences.handler.abstraction.IPermissionsHandler;
 
@@ -34,6 +34,10 @@ public class AuthenticationFilter extends UrlDividerFilter {
                     Pages.MEETINGS_LIST_PAGE.toString(),
                     Pages.MEETING.toString())
                         .withMethods(HttpMethod.GET)
+                            .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
+                .controlUrls(
+                    Pages.CHANGE_USER_AVATAR.toString())
+                        .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
                     Pages.MEETINGS_LIST.toString(),

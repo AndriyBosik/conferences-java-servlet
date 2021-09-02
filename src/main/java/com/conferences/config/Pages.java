@@ -28,6 +28,7 @@ public enum Pages {
     REJECT_PROPOSED_TOPIC("/topics/reject-proposed"),
     SET_SPEAKER_FROM_PROPOSALS("/topics/set-speaker-from-proposals"),
     SIGN_UP_USER("/users/sign-up"),
+    CHANGE_USER_AVATAR("/users/change-avatar"),
     API_TOPIC_PROPOSALS("/topics-api/get-topic-proposals/") {
         @Override
         public String toString() {

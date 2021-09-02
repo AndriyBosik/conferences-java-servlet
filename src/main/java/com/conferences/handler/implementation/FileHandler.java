@@ -1,64 +1,48 @@
 package com.conferences.handler.implementation;
 
 import com.conferences.handler.abstraction.IFileHandler;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToFileFormDataMapper;
+import com.conferences.model.FileFormData;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FileHandler implements IFileHandler {
 
-    private static final int THRESHOLD = 1024 * 1024;
-    private static final long MAX_SIZE = 1024 * 1024 * 10L;
-    private static final String REPOSITORY = "D:\\files";
+    private final IMapper<HttpServletRequest, FileFormData> mapper;
+
+    public FileHandler() {
+        mapper = new RequestToFileFormDataMapper();
+    }
+
+    @Override
+    public boolean saveFile(HttpServletRequest request, String path, String filename) {
+        FileFormData data = mapper.map(request);
+        return saveFile(data.getFileItems(), path, filename);
+    }
 
     // Returns null when there was an error during file saving
     // Map with form fields otherwise
     @Override
-    public Map<String, String> saveFile(HttpServletRequest request, String path) {
-        Map<String, String> formData = new HashMap<>();
-
-        if (ServletFileUpload.isMultipartContent(request)) {
-            ServletFileUpload upload = configureServletFileUpload();
-
-            try {
-                List<FileItem> fileItems = upload.parseRequest(request);
-
-                for (FileItem fi : fileItems) {
-                    if (!fi.isFormField()) {
-                        String filename = extractFilename(fi.getName());
-
-                        formData.put(fi.getFieldName(), filename);
-
-                        File file = new File(path + filename);
-
-                        fi.write(file);
-                    } else {
-                        formData.put(fi.getFieldName(), fi.getString());
-                    }
+    public boolean saveFile(List<FileItem> fileItems, String path, String filename) {
+        for (FileItem fi : fileItems) {
+            if (!fi.isFormField()) {
+                if (filename == null || filename.trim().isEmpty()) {
+                    filename = extractFilename(fi.getName());
                 }
-
-                return formData;
-            } catch (Exception exception) {
-                exception.printStackTrace();
+                File file = new File(path + filename);
+                try {
+                    fi.write(file);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                return true;
             }
         }
-        return null;
-    }
-
-    private ServletFileUpload configureServletFileUpload() {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        factory.setSizeThreshold(THRESHOLD);
-        factory.setRepository(new File(REPOSITORY));
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        upload.setSizeMax(MAX_SIZE);
-
-        return upload;
+        return false;
     }
 
     private String extractFilename(String fullFilename) {

@@ -1,10 +1,14 @@
 package com.conferences.handler.abstraction;
 
+import org.apache.commons.fileupload.FileItem;
+
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.List;
 
 public interface IFileHandler {
 
-    Map<String, String> saveFile(HttpServletRequest request, String path);
+    boolean saveFile(HttpServletRequest request, String path, String filename);
+
+    boolean saveFile(List<FileItem> fileItems, String path, String filename);
 
 }

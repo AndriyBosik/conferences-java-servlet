@@ -13,4 +13,6 @@ public interface IUserDao extends ICrudDao<Integer, User> {
     List<User> findAllByRole(String role);
 
     List<User> findAvailableSpeakersForProposalByTopic(int topicId);
+
+    boolean updateUserImagePath(User user);
 }

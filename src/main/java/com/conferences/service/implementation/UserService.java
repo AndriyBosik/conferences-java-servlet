@@ -43,6 +43,11 @@ public class UserService implements IUserService {
         return false;
     }
 
+    @Override
+    public boolean updateUserImagePath(User user) {
+        return userDao.updateUserImagePath(user);
+    }
+
     private boolean hasAllowedRole(User user) {
         return user.getRole() != null && !"moderator".equals(user.getRole().getTitle());
     }

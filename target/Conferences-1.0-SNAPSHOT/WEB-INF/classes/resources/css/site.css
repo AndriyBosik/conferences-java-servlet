@@ -1,6 +1,7 @@
 :root {
     --user-avatar-size: 50px;
     --proposal-avatar-size: 80px;
+    --user-profile-avatar-size: 150px;
 }
 
 body {
@@ -74,4 +75,10 @@ ul.languages-list li {
 
 .speaker-proposals-collection .topic-title {
     font-size: 18px;
+}
+
+.user-profile-avatar {
+    height: var(--user-profile-avatar-size);
+    width: var(--user-profile-avatar-size);
+    border: 5px solid white;
 }

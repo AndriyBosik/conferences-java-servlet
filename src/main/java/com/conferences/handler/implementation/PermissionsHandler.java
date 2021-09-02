@@ -1,4 +1,4 @@
-package com.conferences.handler;
+package com.conferences.handler.implementation;
 
 import com.conferences.config.HttpMethod;
 import com.conferences.handler.abstraction.IPermissionsHandler;

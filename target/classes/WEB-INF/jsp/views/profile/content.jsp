@@ -4,6 +4,25 @@
 
 <div class="container">
     <div class="row">
+        <div class="col s12 my20">
+            <div class="s-vflex m-hflex">
+                <div class="equal-flex s-hflex-center m-hflex-end px10">
+                    <div class="z-depth-1 user-profile-avatar stretch-background border50p" style="background-image: url('/resources/images/avatars/${user.imagePath}')"></div>
+                </div>
+                <div class="equal-flex s-hflex-center m-hflex-start px10">
+                    <div class="s-vflex-center">
+                        <form action="<taglib:linkTo href="/users/change-avatar" />" method="post" enctype="multipart/form-data">
+                            <div class="file-field input-field">
+                                <div class="btn waves-effect waves-light">
+                                    <span data-forward-click="user-avatar"><taglib:message value="change_photo" /></span>
+                                    <input id="user-avatar" type="file" name="avatar" accept="image/*" class="hidden" submit-onchange />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col s12">
             <div class="s-hflex">
                 <div class="equal-flex">

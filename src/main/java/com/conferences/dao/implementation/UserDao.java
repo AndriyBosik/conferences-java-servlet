@@ -108,4 +108,21 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         return speakers;
     }
 
+    @Override
+    public boolean updateUserImagePath(User user) {
+        String sql = "UPDATE users SET image_path=? WHERE id=?";
+        try (Connection connection = DbManager.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, user.getImagePath());
+            statement.setInt(2, user.getId());
+            statement.executeUpdate();
+
+            return true;
+        } catch (SQLException exception) {
+
+        }
+        return false;
+    }
+
 }
