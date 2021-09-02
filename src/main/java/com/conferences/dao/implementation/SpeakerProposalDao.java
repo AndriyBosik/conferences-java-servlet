@@ -42,13 +42,12 @@ public class SpeakerProposalDao extends AbstractCrudDao<Integer, SpeakerProposal
 
     @Override
     public List<Integer> findAllSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId) {
-        String sql = "SELECT sp.report_topic_id " +
+        String sql =
+                "SELECT sp.report_topic_id " +
                 "FROM speaker_proposals sp " +
-                "WHERE speaker_id=? AND sp.report_topic_id IN (" +
-                    "SELECT rt.id " +
-                    "FROM report_topics rt " +
-                    "LEFT JOIN meetings m ON m.id=rt.meeting_id " +
-                    "WHERE m.id=?)";
+                "WHERE speaker_id=? AND EXISTS (" +
+                    "SELECT NULL FROM report_topics rt WHERE rt.meeting_id=? AND rt.id=sp.report_topic_id" +
+                ")";
         List<Integer> ids = new ArrayList<>();
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
