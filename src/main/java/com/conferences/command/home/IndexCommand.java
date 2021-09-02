@@ -31,6 +31,12 @@ public class IndexCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         String requestMethod = request.getMethod();
         if (requestMethod.equals(HttpMethod.GET.toString())) {
+            User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
+            if (user != null) {
+                redirect(Pages.PROFILE.toString());
+                return;
+            }
+
             forward("login");
         } else if (requestMethod.equals(HttpMethod.POST.toString())) {
             processLogin();
