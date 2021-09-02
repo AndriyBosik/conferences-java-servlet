@@ -4,7 +4,6 @@ import com.conferences.command.FrontCommand;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.entity.ReportTopic;
-import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToReportTopicWithSpeakerMapper;
 import com.conferences.service.abstraction.IReportTopicService;

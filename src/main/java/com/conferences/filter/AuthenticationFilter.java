@@ -1,5 +1,6 @@
 package com.conferences.filter;
 
+import com.conferences.config.Defaults;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Pages;
 import com.conferences.config.Roles;
@@ -74,7 +75,7 @@ public class AuthenticationFilter extends UrlDividerFilter {
     @Override
     public void handleFilter(ServletData servletData, UrlData urlData, FilterChain filterChain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) servletData.getServletRequest();
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
         String url = urlData.getPath();
         String httpMethod = request.getMethod();
         String userRole = GUEST_USER;

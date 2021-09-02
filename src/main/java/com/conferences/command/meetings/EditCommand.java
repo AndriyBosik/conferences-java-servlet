@@ -12,8 +12,6 @@ import com.conferences.validator.MeetingEditableDataValidator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 public class EditCommand extends FrontCommand {
 

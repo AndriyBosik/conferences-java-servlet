@@ -1,6 +1,7 @@
 package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.config.Defaults;
 import com.conferences.config.Roles;
 import com.conferences.entity.User;
 import com.conferences.service.abstraction.ITopicProposalService;
@@ -19,7 +20,7 @@ public class ProfileCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
 
         request.setAttribute("user", user);
 
