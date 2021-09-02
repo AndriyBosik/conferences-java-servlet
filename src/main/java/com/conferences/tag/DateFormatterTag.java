@@ -18,7 +18,7 @@ public class DateFormatterTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         initDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         String formattedDate = date.format(formatter);
         JspWriter out = pageContext.getOut();
         try {
