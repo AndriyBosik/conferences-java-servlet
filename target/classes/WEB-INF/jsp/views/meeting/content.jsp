@@ -151,7 +151,7 @@
                                             <c:when test="${not empty topic.reportTopicSpeaker}">
                                                 <div class="s-hflex" data-speaker-id="${topic.reportTopicSpeaker.speakerId}">
                                                     <div class="z-depth-1 user-avatar stretch-background">
-                                                        <img src="/resources/images/avatars/${topic.reportTopicSpeaker.speaker.login}.png" alt="" class="full-width full-height" data-error="avatarDefault" />
+                                                        <img src="/resources/images/avatars/${topic.reportTopicSpeaker.speaker.imagePath}" alt="" class="full-width full-height" data-error="avatarDefault" />
                                                     </div>
                                                     <div class="s-vflex-center px10 weight-normal">
                                                         ${topic.reportTopicSpeaker.speaker.name} ${topic.reportTopicSpeaker.speaker.surname}

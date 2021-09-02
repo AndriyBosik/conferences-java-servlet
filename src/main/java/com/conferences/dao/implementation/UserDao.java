@@ -60,9 +60,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
 
     @Override
     public List<User> findAllByRole(String role) {
-        String sql = "SELECT " + dbTable.getName() + ".*," +
+        String sql = "SELECT users.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
-                "FROM " + dbTable.getName() + " LEFT JOIN roles r ON r.id=" + dbTable.getName() + ".role_id WHERE r.title=?";
+                "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE r.title=?";
 
         List<User> users = new ArrayList<>();
 

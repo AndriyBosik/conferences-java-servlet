@@ -31,7 +31,7 @@ function getTopicProposalComponent(topicProposal) {
                     <div class="z-depth-1">
                         <div class="s-hflex">
                             <div class="proposal-avatar">
-                                <img src="/resources/images/avatars/${topicProposal.speaker.login}.png" alt="" class="full-width full-height" data-error="avatarDefault" />
+                                <img src="/resources/images/avatars/${topicProposal.speaker.imagePath}" alt="" class="full-width full-height" data-error="avatarDefault" />
                             </div>
                             <span class="username s-vflex-center mx10 weight-strong">${topicProposal.speaker.name} ${topicProposal.speaker.surname}</span>
                         </div>

@@ -23,12 +23,11 @@
 
             <div class="input-field col m6 s12">
                 <select name="speaker_id" class="icons">
-                    <option value="" selected>Choose speaker</option>
+                    <option value="" selected><taglib:message value="choose_speaker" /></option>
                     <c:forEach items="${speakers}" var="speaker">
-                        <option value="${speaker.id}" data-icon="/resources/images/avatars/${speaker.login}.png">
+                        <option value="${speaker.id}" data-icon="/resources/images/avatars/${speaker.imagePath}">
                             ${speaker.name} ${speaker.surname}
                         </option>
-                        <label>Assign speaker</label>
                     </c:forEach>
                 </select>
             </div>
