@@ -1,5 +1,8 @@
 package com.conferences.utils;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 public class StringUtils {
 
     private StringUtils() {}
@@ -16,6 +19,10 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    public static String convertStringToUTF8(String value, Charset charset) {
+        return new String(value.getBytes(charset), StandardCharsets.UTF_8);
     }
 
 }

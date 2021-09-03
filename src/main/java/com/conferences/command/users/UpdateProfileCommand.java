@@ -4,28 +4,30 @@ import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.config.Errors;
 import com.conferences.entity.User;
-import com.conferences.handler.abstraction.IEncodingHandler;
 import com.conferences.handler.abstraction.IUserDataSaver;
-import com.conferences.handler.implementation.EncodingHandler;
 import com.conferences.handler.implementation.UserDataSaver;
+import com.conferences.mapper.IMapper;
+import com.conferences.mapper.RequestToPasswordDataMapper;
+import com.conferences.model.PasswordData;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
 import com.conferences.utils.StringUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class UpdateProfileCommand extends FrontCommand {
 
     private final IUserService userService;
-    private final IEncodingHandler encodingHandler;
     private final IUserDataSaver userDataSaver;
+    private final IMapper<HttpServletRequest, PasswordData> mapper;
 
     public UpdateProfileCommand() {
         userService = new UserService();
-        encodingHandler = new EncodingHandler();
         userDataSaver = new UserDataSaver();
+        mapper = new RequestToPasswordDataMapper();
     }
 
     @Override
@@ -33,16 +35,14 @@ public class UpdateProfileCommand extends FrontCommand {
         User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
         UserData data = userDataSaver.saveUserData(user);
         String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
-        String password = encodingHandler.getUTF8ValueFromRequest(request, "password");
-        String newPassword = encodingHandler.getUTF8ValueFromRequest(request, "new-password");
-        String confirmPassword = encodingHandler.getUTF8ValueFromRequest(request, "confirm-password");
-        if (!StringUtils.isNullOrEmptyAll(password, newPassword, confirmPassword)) {
-            Errors error = validatePasswords(user.getPassword(), password, newPassword, confirmPassword);
+        PasswordData passwordData = mapper.map(request);
+        if (!StringUtils.isNullOrEmptyAll(passwordData.getPassword(), passwordData.getNewPassword(), passwordData.getConfirmPassword())) {
+            Errors error = validatePasswords(user.getPassword(), passwordData);
             if (error != Errors.OK) {
                 request.setAttribute("error", error.getByLang(lang));
                 return;
             }
-            user.setPassword(newPassword);
+            user.setPassword(passwordData.getNewPassword());
         }
         updateUserWithRequestValues(user);
         if (userService.updateUser(user)) {
@@ -53,20 +53,20 @@ public class UpdateProfileCommand extends FrontCommand {
         }
     }
 
-    private Errors validatePasswords(String userPassword, String password, String newPassword, String confirmPassword) {
-        if (!userPassword.equals(password)) {
+    private Errors validatePasswords(String userPassword, PasswordData passwordData) {
+        if (!userPassword.equals(passwordData.getPassword())) {
             return Errors.INVALID_OLD_PASSWORD;
         }
-        if (!newPassword.equals(confirmPassword)) {
+        if (!passwordData.getNewPassword().equals(passwordData.getConfirmPassword())) {
             return Errors.PASSWORDS_ARE_NOT_EQUAL;
         }
         return Errors.OK;
     }
 
     private void updateUserWithRequestValues(User user) {
-        user.setLogin(encodingHandler.getUTF8ValueFromRequest(request, "login"));
-        user.setSurname(encodingHandler.getUTF8ValueFromRequest(request, "surname"));
-        user.setName(encodingHandler.getUTF8ValueFromRequest(request, "name"));
-        user.setEmail(encodingHandler.getUTF8ValueFromRequest(request, "email"));
+        user.setLogin(request.getParameter("login"));
+        user.setSurname(request.getParameter("surname"));
+        user.setName(request.getParameter("name"));
+        user.setEmail(request.getParameter("email"));
     }
 }

@@ -2,18 +2,10 @@ package com.conferences.mapper;
 
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.ReportTopicSpeaker;
-import com.conferences.handler.abstraction.IEncodingHandler;
-import com.conferences.handler.implementation.EncodingHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestToReportTopicWithSpeakerMapper implements IMapper<HttpServletRequest, ReportTopic> {
-
-    private final IEncodingHandler encodingHandler;
-
-    public RequestToReportTopicWithSpeakerMapper() {
-        encodingHandler = new EncodingHandler();
-    }
 
     @Override
     public ReportTopic map(HttpServletRequest request) {
@@ -24,7 +16,7 @@ public class RequestToReportTopicWithSpeakerMapper implements IMapper<HttpServle
             reportTopic.setId(Integer.parseInt(idParameter));
         }
 
-        reportTopic.setTitle(encodingHandler.getUTF8ValueFromRequest(request, "title"));
+        reportTopic.setTitle(request.getParameter("title"));
 
         reportTopic.setMeetingId(Integer.parseInt(request.getParameter("meeting_id")));
 
