@@ -2,11 +2,10 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
 import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.entity.User;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IReportTopicService;
-import com.conferences.service.implementation.ReportTopicService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
     private final IReportTopicService reportTopicService;
 
     public SetSpeakerFromProposalsCommand() {
-        reportTopicService = new ReportTopicService();
+        reportTopicService = ServiceFactory.getInstance().getReportTopicService();
     }
 
     @Override

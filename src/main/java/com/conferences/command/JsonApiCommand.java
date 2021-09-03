@@ -1,5 +1,6 @@
 package com.conferences.command;
 
+import com.conferences.factory.HandlerFactory;
 import com.conferences.handler.abstraction.IJsonHandler;
 import com.conferences.handler.implementation.JsonHandler;
 import com.google.gson.Gson;
@@ -20,7 +21,7 @@ public abstract class JsonApiCommand extends FrontCommand {
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
         gson = new Gson();
-        jsonHandler = new JsonHandler();
+        jsonHandler = HandlerFactory.getInstance().getJsonHandler();
         response.setContentType("application/json");
     }
 

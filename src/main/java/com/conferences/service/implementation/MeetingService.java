@@ -1,21 +1,17 @@
 package com.conferences.service.implementation;
 
-import com.conferences.config.MeetingFilterSelector;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.dao.abstraction.IUserMeetingDao;
-import com.conferences.dao.implementation.MeetingDao;
-import com.conferences.dao.implementation.UserMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.UserMeeting;
+import com.conferences.factory.DaoFactory;
+import com.conferences.factory.ValidatorFactory;
 import com.conferences.model.MeetingSorter;
 import com.conferences.model.MeetingUsersStats;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.validator.IValidator;
-import com.conferences.validator.MeetingValidator;
-
-import java.util.List;
 
 public class MeetingService implements IMeetingService {
 
@@ -24,9 +20,9 @@ public class MeetingService implements IMeetingService {
     private final IValidator<Meeting> meetingValidator;
 
     public MeetingService() {
-        this.meetingDao = new MeetingDao();
-        this.userMeetingDao = new UserMeetingDao();
-        this.meetingValidator = new MeetingValidator();
+        this.meetingDao = DaoFactory.getInstance().getMeetingDao();
+        this.userMeetingDao = DaoFactory.getInstance().getUserMeetingDao();
+        this.meetingValidator = ValidatorFactory.getInstance().getMeetingValidator();
     }
 
     @Override

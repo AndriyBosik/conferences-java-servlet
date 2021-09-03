@@ -1,6 +1,7 @@
 package com.conferences.command.topics.api;
 
 import com.conferences.command.JsonApiCommand;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IModeratorProposalService;
 import com.conferences.service.implementation.ModeratorProposalService;
 
@@ -13,7 +14,7 @@ public class GetAvailableSpeakersForProposalCommand extends JsonApiCommand {
 
     public GetAvailableSpeakersForProposalCommand(List<String> urlParams) {
         topicId = Integer.parseInt(urlParams.get(0));
-        this.moderatorProposalService = new ModeratorProposalService();
+        moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 
     @Override

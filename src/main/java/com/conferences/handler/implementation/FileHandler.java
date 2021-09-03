@@ -1,6 +1,7 @@
 package com.conferences.handler.implementation;
 
 import com.conferences.entity.Meeting;
+import com.conferences.factory.MapperFactory;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToFileFormMeetingMapper;
@@ -16,7 +17,7 @@ public class FileHandler implements IFileHandler {
     private final IMapper<HttpServletRequest, FileFormData<Meeting>> mapper;
 
     public FileHandler() {
-        mapper = new RequestToFileFormMeetingMapper();
+        mapper = MapperFactory.getInstance().getRequestToFileFormMeetingMapper();
     }
 
     @Override

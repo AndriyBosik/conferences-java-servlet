@@ -1,7 +1,7 @@
 package com.conferences.filter;
 
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 
@@ -26,7 +26,7 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
     protected abstract void handleFilter(ServletData servletData, UrlData urlData, FilterChain filterChain) throws ServletException, IOException;
 
     private UrlData extractLanguage(String currentUrl) {
-        if (Pages.HOME.toString().equals(currentUrl)) {
+        if (Page.HOME.toString().equals(currentUrl)) {
             return new UrlData(Defaults.DEFAULT_LANG.toString(), currentUrl);
         }
 

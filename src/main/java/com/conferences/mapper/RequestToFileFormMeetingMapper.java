@@ -1,6 +1,7 @@
 package com.conferences.mapper;
 
 import com.conferences.entity.Meeting;
+import com.conferences.factory.MapperFactory;
 
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class RequestToFileFormMeetingMapper extends AbstractFileFormMapper<Meeti
     private final IMapper<Map<String, String>, Meeting> meetingMapper;
 
     public RequestToFileFormMeetingMapper() {
-        meetingMapper = new FormDataToMeetingMapper();
+        meetingMapper = MapperFactory.getInstance().getFormDataToMeetingMapper();
     }
 
     @Override

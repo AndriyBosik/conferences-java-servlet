@@ -1,6 +1,7 @@
 package com.conferences.command;
 
 import com.conferences.config.Defaults;
+import com.conferences.factory.HandlerFactory;
 import com.conferences.handler.abstraction.ILinkHandler;
 import com.conferences.handler.implementation.LinkHandler;
 
@@ -22,7 +23,7 @@ public abstract class FrontCommand {
         this.context = context;
         this.request = request;
         this.response = response;
-        this.linkHandler = new LinkHandler();
+        this.linkHandler = HandlerFactory.getInstance().getLinkHandler();
         this.currentLang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
     }
 

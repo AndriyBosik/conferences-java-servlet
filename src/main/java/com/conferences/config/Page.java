@@ -1,6 +1,6 @@
 package com.conferences.config;
 
-public enum Pages {
+public enum Page {
     HOME("/"),
     LOGIN("/home/login"),
     LOGOUT("/home/logout"),
@@ -48,7 +48,7 @@ public enum Pages {
 
     protected final String url;
 
-    Pages(String url) {
+    Page(String url) {
         this.url = url;
     }
 

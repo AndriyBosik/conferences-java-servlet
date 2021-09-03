@@ -2,6 +2,7 @@ package com.conferences.command.topics.api;
 
 import com.conferences.command.JsonApiCommand;
 import com.conferences.entity.ModeratorProposal;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.model.SimpleResponse;
 import com.conferences.service.abstraction.IModeratorProposalService;
 import com.conferences.service.implementation.ModeratorProposalService;
@@ -16,7 +17,7 @@ public class ProposeTopicForUserCommand extends JsonApiCommand {
     private final IModeratorProposalService moderatorProposalService;
 
     public ProposeTopicForUserCommand() {
-        moderatorProposalService = new ModeratorProposalService();
+        moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 
     @Override

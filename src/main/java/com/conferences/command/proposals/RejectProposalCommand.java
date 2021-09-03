@@ -2,11 +2,11 @@ package com.conferences.command.proposals;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.ModeratorProposal;
 import com.conferences.entity.User;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IModeratorProposalService;
-import com.conferences.service.implementation.ModeratorProposalService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class RejectProposalCommand extends FrontCommand {
     private final IModeratorProposalService moderatorProposalService;
 
     public RejectProposalCommand() {
-        moderatorProposalService = new ModeratorProposalService();
+        moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RejectProposalCommand extends FrontCommand {
         moderatorProposal.setSpeakerId(speakerId);
 
         if (moderatorProposalService.deleteModeratorProposal(moderatorProposal)) {
-            redirect(Pages.SPEAKER_PROPOSALS_PAGE.toString());
+            redirect(Page.SPEAKER_PROPOSALS_PAGE.toString());
         } else {
             // TODO(bad request)
         }

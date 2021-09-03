@@ -3,6 +3,9 @@ package com.conferences.command.users;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.entity.User;
+import com.conferences.factory.HandlerFactory;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.handler.implementation.FileHandler;
 import com.conferences.mapper.IMapper;
@@ -28,9 +31,9 @@ public class ChangeAvatarCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, FileFormData<Map<String, String>>> mapper;
 
     public ChangeAvatarCommand() {
-        userService = new UserService();
-        fileHandler = new FileHandler();
-        mapper = new SimpleFileFormMapper();
+        userService = ServiceFactory.getInstance().getUserService();
+        fileHandler = HandlerFactory.getInstance().getFileHandler();
+        mapper = MapperFactory.getInstance().getSimpleFileFormMapper();
     }
 
     @Override

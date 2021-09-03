@@ -1,6 +1,7 @@
 package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IProposedTopicDataService;
 import com.conferences.service.implementation.ProposedTopicDataService;
 
@@ -12,7 +13,7 @@ public class SpeakerProposedCommand extends FrontCommand {
     private final IProposedTopicDataService proposedTopicDataService;
 
     public SpeakerProposedCommand() {
-        proposedTopicDataService = new ProposedTopicDataService();
+        proposedTopicDataService = ServiceFactory.getInstance().getProposedTopicDataService();
     }
 
     @Override

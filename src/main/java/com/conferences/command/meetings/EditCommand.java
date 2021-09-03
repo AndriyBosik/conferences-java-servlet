@@ -2,6 +2,9 @@ package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.entity.Meeting;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
+import com.conferences.factory.ValidatorFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToEditableMeetingDataMapper;
 import com.conferences.service.abstraction.IMeetingService;
@@ -16,13 +19,11 @@ import java.io.IOException;
 public class EditCommand extends FrontCommand {
 
     private final IMeetingService meetingService;
-    private final IMapper<HttpServletRequest, Meeting> meetingMapper;
-    private final IValidator<Meeting> validator;
+    private final IMapper<HttpServletRequest, Meeting> meetingMapper;;
 
     public EditCommand() {
-        meetingService = new MeetingService();
-        meetingMapper = new RequestToEditableMeetingDataMapper();
-        validator = new MeetingEditableDataValidator();
+        meetingService = ServiceFactory.getInstance().getMeetingService();
+        meetingMapper = MapperFactory.getInstance().getRequestToEditableMeetingDataMapper();
     }
 
     @Override

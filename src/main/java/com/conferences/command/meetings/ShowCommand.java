@@ -6,6 +6,7 @@ import com.conferences.config.Roles;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
 import com.conferences.entity.UserMeeting;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.model.MeetingUsersStats;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
@@ -27,9 +28,9 @@ public class ShowCommand extends FrontCommand {
 
     public ShowCommand(List<String> urlParams) {
         id = Integer.parseInt(urlParams.get(0));
-        meetingService = new MeetingService();
-        userService = new UserService();
-        speakerProposalService = new SpeakerProposalService();
+        meetingService = ServiceFactory.getInstance().getMeetingService();
+        userService = ServiceFactory.getInstance().getUserService();
+        speakerProposalService = ServiceFactory.getInstance().getSpeakerProposalService();
     }
 
     @Override

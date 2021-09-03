@@ -1,14 +1,11 @@
 package com.conferences.service.implementation;
 
-import com.conferences.dao.abstraction.IRoleDao;
 import com.conferences.dao.abstraction.IUserDao;
-import com.conferences.dao.implementation.RoleDao;
-import com.conferences.dao.implementation.UserDao;
 import com.conferences.entity.User;
+import com.conferences.factory.DaoFactory;
+import com.conferences.factory.ValidatorFactory;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.validator.IValidator;
-import com.conferences.validator.UserRequiredForUpdateDataValidator;
-import com.conferences.validator.UserValidator;
 
 import java.util.List;
 
@@ -19,9 +16,9 @@ public class UserService implements IUserService {
     private final IValidator<User> userRequiredForUpdateDataValidator;
 
     public UserService() {
-        userDao = new UserDao();
-        userValidator = new UserValidator();
-        userRequiredForUpdateDataValidator = new UserRequiredForUpdateDataValidator();
+        userDao = DaoFactory.getInstance().getUserDao();
+        userValidator = ValidatorFactory.getInstance().getUserValidator();
+        userRequiredForUpdateDataValidator = ValidatorFactory.getInstance().getUserRequiredForUpdateDataValidator();
     }
 
     @Override

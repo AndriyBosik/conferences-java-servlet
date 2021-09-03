@@ -2,6 +2,8 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.entity.TopicProposal;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToTopicProposalMapper;
 import com.conferences.service.abstraction.ITopicProposalService;
@@ -17,8 +19,8 @@ public class ProposeCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, TopicProposal> mapper;
 
     public ProposeCommand() {
-        topicProposalService = new TopicProposalService();
-        mapper = new RequestToTopicProposalMapper();
+        topicProposalService = ServiceFactory.getInstance().getTopicProposalService();
+        mapper = MapperFactory.getInstance().getRequestToTopicProposalMapper();
 
     }
 

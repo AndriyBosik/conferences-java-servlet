@@ -2,15 +2,15 @@ package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Errors;
+import com.conferences.config.Error;
 import com.conferences.config.HttpMethod;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.User;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToLoginDataMapper;
 import com.conferences.model.LoginData;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +23,8 @@ public class IndexCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, LoginData> mapper;
 
     public IndexCommand() {
-        this.userService = new UserService();
-        this.mapper = new RequestToLoginDataMapper();
+        this.userService = ServiceFactory.getInstance().getUserService();
+        this.mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class IndexCommand extends FrontCommand {
         if (requestMethod.equals(HttpMethod.GET.toString())) {
             User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
             if (user != null) {
-                redirect(Pages.PROFILE.toString());
+                redirect(Page.PROFILE.toString());
                 return;
             }
 
@@ -57,9 +57,9 @@ public class IndexCommand extends FrontCommand {
             HttpSession session = request.getSession();
             session.setAttribute(Defaults.USER.toString(), user);
 
-            redirect(Pages.PROFILE.toString());
+            redirect(Page.PROFILE.toString());
         } else {
-            request.setAttribute("errorMessage", Errors.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
+            request.setAttribute("errorMessage", Error.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
 
             forward("login");
         }

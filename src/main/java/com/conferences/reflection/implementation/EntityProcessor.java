@@ -2,6 +2,7 @@ package com.conferences.reflection.implementation;
 
 import com.conferences.annotation.Column;
 import com.conferences.annotation.Table;
+import com.conferences.factory.ReflectionFactory;
 import com.conferences.model.DbTable;
 import com.conferences.reflection.abstraction.IEntityParser;
 import com.conferences.reflection.abstraction.IEntityProcessor;
@@ -22,7 +23,7 @@ public class EntityProcessor implements IEntityProcessor {
     private final IEntityParser entityParser;
 
     public EntityProcessor() {
-        entityParser = new EntityParser();
+        entityParser = ReflectionFactory.getInstance().getEntityParser();
     }
 
     @Override

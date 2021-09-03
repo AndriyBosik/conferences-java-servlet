@@ -1,6 +1,7 @@
 package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IProposedTopicDataService;
 import com.conferences.service.abstraction.ITopicProposalService;
 import com.conferences.service.implementation.TopicProposalService;
@@ -13,7 +14,7 @@ public class RejectProposedCommand extends FrontCommand {
     private final ITopicProposalService topicProposalService;
 
     public RejectProposedCommand() {
-        topicProposalService = new TopicProposalService();
+        topicProposalService = ServiceFactory.getInstance().getTopicProposalService();
     }
 
     @Override

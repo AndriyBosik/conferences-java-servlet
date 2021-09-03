@@ -3,16 +3,15 @@ package com.conferences.command.users;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.config.HttpMethod;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToUserDataMapper;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IRoleService;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.RoleService;
-import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +24,9 @@ public class SignUpCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, UserData> mapper;
 
     public SignUpCommand() {
-        userService = new UserService();
-        roleService = new RoleService();
-        mapper = new RequestToUserDataMapper();
+        userService = ServiceFactory.getInstance().getUserService();
+        roleService = ServiceFactory.getInstance().getRoleService();
+        mapper = MapperFactory.getInstance().getRequestToUserDataMapper();
     }
 
     @Override
@@ -52,14 +51,14 @@ public class SignUpCommand extends FrontCommand {
         user.setRole(role);
 
         if (!data.getConfirmPassword().equals(user.getPassword())) {
-            redirect(Pages.SIGN_UP_USER.toString());
+            redirect(Page.SIGN_UP_USER.toString());
             return;
         }
 
         if (userService.signUpUser(user)) {
             request.getSession().setAttribute(Defaults.USER.toString(), user);
 
-            redirect(Pages.PROFILE.toString());
+            redirect(Page.PROFILE.toString());
         } else {
             // TODO
         }

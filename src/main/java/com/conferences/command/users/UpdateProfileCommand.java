@@ -2,16 +2,16 @@ package com.conferences.command.users;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Errors;
+import com.conferences.config.Error;
 import com.conferences.entity.User;
+import com.conferences.factory.HandlerFactory;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.handler.abstraction.IUserDataSaver;
-import com.conferences.handler.implementation.UserDataSaver;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToPasswordDataMapper;
 import com.conferences.model.PasswordData;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.UserService;
 import com.conferences.utils.StringUtils;
 
 import javax.servlet.ServletException;
@@ -25,9 +25,9 @@ public class UpdateProfileCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, PasswordData> mapper;
 
     public UpdateProfileCommand() {
-        userService = new UserService();
-        userDataSaver = new UserDataSaver();
-        mapper = new RequestToPasswordDataMapper();
+        userService = ServiceFactory.getInstance().getUserService();
+        userDataSaver = HandlerFactory.getInstance().getUserDataSaver();
+        mapper = MapperFactory.getInstance().getRequestToPasswordDataMapper();
     }
 
     @Override
@@ -37,8 +37,8 @@ public class UpdateProfileCommand extends FrontCommand {
         String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
         PasswordData passwordData = mapper.map(request);
         if (!StringUtils.isNullOrEmptyAll(passwordData.getPassword(), passwordData.getNewPassword(), passwordData.getConfirmPassword())) {
-            Errors error = validatePasswords(user.getPassword(), passwordData);
-            if (error != Errors.OK) {
+            Error error = validatePasswords(user.getPassword(), passwordData);
+            if (error != Error.OK) {
                 request.setAttribute("error", error.getByLang(lang));
                 return;
             }
@@ -53,14 +53,14 @@ public class UpdateProfileCommand extends FrontCommand {
         }
     }
 
-    private Errors validatePasswords(String userPassword, PasswordData passwordData) {
+    private Error validatePasswords(String userPassword, PasswordData passwordData) {
         if (!userPassword.equals(passwordData.getPassword())) {
-            return Errors.INVALID_OLD_PASSWORD;
+            return Error.INVALID_OLD_PASSWORD;
         }
         if (!passwordData.getNewPassword().equals(passwordData.getConfirmPassword())) {
-            return Errors.PASSWORDS_ARE_NOT_EQUAL;
+            return Error.PASSWORDS_ARE_NOT_EQUAL;
         }
-        return Errors.OK;
+        return Error.OK;
     }
 
     private void updateUserWithRequestValues(User user) {

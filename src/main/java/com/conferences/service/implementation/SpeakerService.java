@@ -3,6 +3,7 @@ package com.conferences.service.implementation;
 import com.conferences.dao.abstraction.ISpeakerProposalDao;
 import com.conferences.dao.implementation.SpeakerProposalDao;
 import com.conferences.entity.SpeakerProposal;
+import com.conferences.factory.DaoFactory;
 import com.conferences.service.abstraction.ISpeakerService;
 
 public class SpeakerService implements ISpeakerService {
@@ -10,7 +11,7 @@ public class SpeakerService implements ISpeakerService {
     private final ISpeakerProposalDao speakerProposalDao;
 
     public SpeakerService() {
-        speakerProposalDao = new SpeakerProposalDao();
+        speakerProposalDao = DaoFactory.getInstance().getSpeakerProposalDao();
     }
 
     @Override

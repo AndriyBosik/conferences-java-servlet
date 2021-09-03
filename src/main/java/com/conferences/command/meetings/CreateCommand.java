@@ -2,16 +2,16 @@ package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
+import com.conferences.factory.HandlerFactory;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.handler.abstraction.IFileHandler;
-import com.conferences.handler.implementation.FileHandler;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToFileFormMeetingMapper;
 import com.conferences.model.FileFormData;
 import com.conferences.service.abstraction.IMeetingService;
-import com.conferences.service.implementation.MeetingService;
 import com.conferences.utils.FileUtil;
 
 import javax.servlet.ServletException;
@@ -28,9 +28,9 @@ public class CreateCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, FileFormData<Meeting>> fileFormMeetingMapper;
 
     public CreateCommand() {
-        this.fileHandler = new FileHandler();
-        this.meetingService = new MeetingService();
-        this.fileFormMeetingMapper = new RequestToFileFormMeetingMapper();
+        this.fileHandler = HandlerFactory.getInstance().getFileHandler();
+        this.meetingService = ServiceFactory.getInstance().getMeetingService();
+        this.fileFormMeetingMapper = MapperFactory.getInstance().getRequestToFileFormMeetingMapper();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class CreateCommand extends FrontCommand {
                 if (!fileHandler.saveFile(data.getFileItems(), context.getRealPath(MEETINGS_IMAGES), meeting.getImagePath())) {
                     // TODO(update meeting image_path to default image)
                 }
-                redirect(Pages.MEETING.getUrl() + meeting.getId());
+                redirect(Page.MEETING.getUrl() + meeting.getId());
             } else {
                 // TODO(fill cookies with inputted data and redirect with error message)
             }

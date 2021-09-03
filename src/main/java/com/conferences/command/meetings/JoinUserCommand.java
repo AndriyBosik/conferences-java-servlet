@@ -2,11 +2,11 @@ package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IMeetingService;
-import com.conferences.service.implementation.MeetingService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class JoinUserCommand extends FrontCommand {
     private final IMeetingService meetingService;
 
     public JoinUserCommand() {
-        meetingService = new MeetingService();
+        meetingService = ServiceFactory.getInstance().getMeetingService();
     }
 
     @Override
@@ -27,13 +27,13 @@ public class JoinUserCommand extends FrontCommand {
 
         if (meeting.getDate().isBefore(LocalDateTime.now())) {
             // TODO
-            redirect(Pages.MEETING.getUrl() + meetingId);
+            redirect(Page.MEETING.getUrl() + meetingId);
             return;
         }
 
         User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
         if (meetingService.joinUser(meetingId, user.getId())) {
-            redirect(Pages.MEETING.getUrl() + meetingId);
+            redirect(Page.MEETING.getUrl() + meetingId);
         } else {
             // TODO
         }

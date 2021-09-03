@@ -7,6 +7,7 @@ import com.conferences.dao.implementation.UserDao;
 import com.conferences.entity.ModeratorProposal;
 import com.conferences.entity.User;
 import com.conferences.entity.custom.ProposalData;
+import com.conferences.factory.DaoFactory;
 import com.conferences.service.abstraction.IModeratorProposalService;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class ModeratorProposalService implements IModeratorProposalService {
     private final IModeratorProposalDao moderatorProposalDao;
 
     public ModeratorProposalService() {
-        this.userDao = new UserDao();
-        this.moderatorProposalDao = new ModeratorProposalDao();
+        this.userDao = DaoFactory.getInstance().getUserDao();
+        this.moderatorProposalDao = DaoFactory.getInstance().getModeratorProposalDao();
     }
 
     @Override

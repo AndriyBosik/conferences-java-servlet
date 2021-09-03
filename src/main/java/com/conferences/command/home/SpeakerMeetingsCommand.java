@@ -2,16 +2,15 @@ package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToMeetingSorterMapper;
 import com.conferences.model.MeetingSorter;
-import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
-import com.conferences.service.implementation.MeetingService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +22,14 @@ public class SpeakerMeetingsCommand extends FrontCommand {
 
     private static final int ITEMS_COUNT = 12;
 
-    private final Page page;
+    private final com.conferences.model.Page page;
     private final IMeetingService meetingService;
     private final IMapper<HttpServletRequest, MeetingSorter> mapper;
 
     public SpeakerMeetingsCommand() {
-        this.page = new Page(ITEMS_COUNT, 1);
-        meetingService = new MeetingService();
-        mapper = new RequestToMeetingSorterMapper();
+        this.page = new com.conferences.model.Page(ITEMS_COUNT, 1);
+        meetingService = ServiceFactory.getInstance().getMeetingService();
+        mapper = MapperFactory.getInstance().getRequestToMeetingSorterMapper();
     }
 
     public SpeakerMeetingsCommand(List<String> urlParams) {
@@ -56,7 +55,7 @@ public class SpeakerMeetingsCommand extends FrontCommand {
     private List<String> getLinkToMeetingsPages(int pagesCount) {
         List<String> links = new ArrayList<>();
         for (int i = 1; i <= pagesCount; i++) {
-            links.add(Pages.SPEAKER_MEETINGS_DEFAULT_PAGE + "/" + i);
+            links.add(Page.SPEAKER_MEETINGS_DEFAULT_PAGE + "/" + i);
         }
         return links;
     }

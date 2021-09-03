@@ -2,7 +2,7 @@ package com.conferences.filter;
 
 import com.conferences.config.Defaults;
 import com.conferences.config.HttpMethod;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.config.Roles;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
@@ -25,55 +25,55 @@ public class AuthenticationFilter extends UrlDividerFilter {
         PermissionsHandler.Builder builder = new PermissionsHandler.Builder();
         permissionsHandler = builder
                 .init()
-                .controlUrls(Pages.HOME.toString(), Pages.LOGOUT.toString(), Pages.SIGN_UP_USER.toString())
+                .controlUrls(Page.HOME.toString(), Page.LOGOUT.toString(), Page.SIGN_UP_USER.toString())
                     .withMethods(HttpMethod.GET, HttpMethod.POST)
                         .allowAllRoles()
                 .controlUrls(
-                    Pages.PROFILE.toString(),
-                    Pages.MEETINGS_LIST.toString(),
-                    Pages.MEETINGS_LIST_PAGE.toString(),
-                    Pages.MEETING.toString())
+                    Page.PROFILE.toString(),
+                    Page.MEETINGS_LIST.toString(),
+                    Page.MEETINGS_LIST_PAGE.toString(),
+                    Page.MEETING.toString())
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
-                    Pages.CHANGE_USER_AVATAR.toString(),
-                    Pages.UPDATE_USER_PROFILE.toString())
+                    Page.CHANGE_USER_AVATAR.toString(),
+                    Page.UPDATE_USER_PROFILE.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString(), Roles.USER.toString())
                 .controlUrls(
-                    Pages.MEETINGS_CREATE.toString(),
-                    Pages.CREATE_TOPIC.toString(),
-                    Pages.UPDATE_TOPIC.toString(),
-                    Pages.API_TOPIC_PROPOSE_FOR_USER.toString(),
-                    Pages.ACCEPT_PROPOSED_TOPIC.toString(),
-                    Pages.REJECT_PROPOSED_TOPIC.toString(),
-                    Pages.SAVE_USERS_PRESENCE.toString())
+                    Page.MEETINGS_CREATE.toString(),
+                    Page.CREATE_TOPIC.toString(),
+                    Page.UPDATE_TOPIC.toString(),
+                    Page.API_TOPIC_PROPOSE_FOR_USER.toString(),
+                    Page.ACCEPT_PROPOSED_TOPIC.toString(),
+                    Page.REJECT_PROPOSED_TOPIC.toString(),
+                    Page.SAVE_USERS_PRESENCE.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.MODERATOR.toString())
                 .controlUrls(
-                        Pages.SET_SPEAKER_FROM_PROPOSALS.toString(),
-                        Pages.MEETING_EDIT.toString())
+                        Page.SET_SPEAKER_FROM_PROPOSALS.toString(),
+                        Page.MEETING_EDIT.toString())
                     .withMethods(HttpMethod.POST)
                         .allowAnyRoleOf(Roles.MODERATOR.toString(), Roles.SPEAKER.toString())
                 .controlUrls(
-                    Pages.API_TOPIC_PROPOSALS.toString(),
-                    Pages.API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL.toString(),
-                    Pages.PROPOSED_TOPICS.toString())
+                    Page.API_TOPIC_PROPOSALS.toString(),
+                    Page.API_TOPIC_AVAILABLE_SPEAKERS_FOR_PROPOSAL.toString(),
+                    Page.PROPOSED_TOPICS.toString())
                         .withMethods(HttpMethod.GET)
                             .allowAnyRoleOf(Roles.MODERATOR.toString())
-                .controlUrls(Pages.JOIN_USER_TO_MEETING.toString())
+                .controlUrls(Page.JOIN_USER_TO_MEETING.toString())
                     .withMethods(HttpMethod.POST)
                         .allowAnyRoleOf(Roles.USER.toString())
                 .controlUrls(
-                    Pages.PROPOSE_SPEAKER_TO_TOPIC.toString(),
-                    Pages.REJECT_PROPOSAL.toString(),
-                    Pages.PROPOSE_TOPIC.toString())
+                    Page.PROPOSE_SPEAKER_TO_TOPIC.toString(),
+                    Page.REJECT_PROPOSAL.toString(),
+                    Page.PROPOSE_TOPIC.toString())
                         .withMethods(HttpMethod.POST)
                             .allowAnyRoleOf(Roles.SPEAKER.toString())
                 .controlUrls(
-                    Pages.SPEAKER_PROPOSALS_PAGE.toString(),
-                    Pages.SPEAKER_MEETINGS_DEFAULT_PAGE.toString(),
-                    Pages.SPEAKER_MEETINGS.toString())
+                    Page.SPEAKER_PROPOSALS_PAGE.toString(),
+                    Page.SPEAKER_MEETINGS_DEFAULT_PAGE.toString(),
+                    Page.SPEAKER_MEETINGS.toString())
                         .allowAnyRoleOf(Roles.SPEAKER.toString())
                 .build();
     }

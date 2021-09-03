@@ -1,6 +1,7 @@
 package com.conferences.command.topics.api;
 
 import com.conferences.command.JsonApiCommand;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.implementation.SpeakerProposalService;
 
@@ -12,7 +13,7 @@ public class GetTopicProposalsCommand extends JsonApiCommand {
     private final ISpeakerProposalService speakerProposalService;
 
     public GetTopicProposalsCommand(List<String> urlParams) {
-        speakerProposalService = new SpeakerProposalService();
+        speakerProposalService = ServiceFactory.getInstance().getSpeakerProposalService();
 
         topicId = Integer.parseInt(urlParams.get(0));
     }

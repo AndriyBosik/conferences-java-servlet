@@ -4,6 +4,9 @@ import com.conferences.dao.abstraction.ITopicProposalDao;
 import com.conferences.dao.implementation.TopicProposalDao;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.TopicProposal;
+import com.conferences.factory.DaoFactory;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ValidatorFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.mapper.TopicProposalToReportTopicMapper;
 import com.conferences.service.abstraction.ITopicProposalService;
@@ -19,9 +22,9 @@ public class TopicProposalService implements ITopicProposalService {
     private final IValidator<ReportTopic> validator;
 
     public TopicProposalService() {
-        topicProposalDao = new TopicProposalDao();
-        mapper = new TopicProposalToReportTopicMapper();
-        validator = new ReportTopicValidator();
+        topicProposalDao = DaoFactory.getInstance().getTopicProposalDao();
+        mapper = MapperFactory.getInstance().getTopicProposalToReportTopicMapper();
+        validator = ValidatorFactory.getInstance().getReportTopicValidator();
     }
 
     @Override

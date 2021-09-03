@@ -2,12 +2,12 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.HttpMethod;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.ReportTopic;
+import com.conferences.factory.MapperFactory;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToReportTopicWithSpeakerMapper;
 import com.conferences.service.abstraction.IReportTopicService;
-import com.conferences.service.implementation.ReportTopicService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +19,8 @@ public class CreateCommand extends FrontCommand {
     private final IMapper<HttpServletRequest, ReportTopic> mapper;
 
     public CreateCommand() {
-        reportTopicService = new ReportTopicService();
-        mapper = new RequestToReportTopicWithSpeakerMapper();
+        reportTopicService = ServiceFactory.getInstance().getReportTopicService();
+        mapper = MapperFactory.getInstance().getRequestToReportTopicWithSpeakerMapper();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CreateCommand extends FrontCommand {
         ReportTopic reportTopic = mapper.map(request);
 
         if (reportTopicService.saveWithSpeaker(reportTopic)) {
-            redirect(Pages.MEETING.getUrl() + reportTopic.getMeetingId());
+            redirect(Page.MEETING.getUrl() + reportTopic.getMeetingId());
         } else {
             // TODO(Process saving error)
         }

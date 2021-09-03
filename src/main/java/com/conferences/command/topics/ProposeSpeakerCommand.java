@@ -3,20 +3,20 @@ package com.conferences.command.topics;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.config.HttpMethod;
-import com.conferences.config.Pages;
+import com.conferences.config.Page;
 import com.conferences.entity.User;
+import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.ISpeakerService;
-import com.conferences.service.implementation.SpeakerService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class ProposeSpeakerCommand extends FrontCommand {
 
-    private ISpeakerService speakerService;
+    private final ISpeakerService speakerService;
 
     public ProposeSpeakerCommand() {
-        speakerService = new SpeakerService();
+        speakerService = ServiceFactory.getInstance().getSpeakerService();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ProposeSpeakerCommand extends FrontCommand {
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));
 
         if (speakerService.proposeSpeaker(reportTopicId, userId)) {
-            redirect(Pages.MEETING.getUrl() + meetingId);
+            redirect(Page.MEETING.getUrl() + meetingId);
         } else {
             // TODO
         }
