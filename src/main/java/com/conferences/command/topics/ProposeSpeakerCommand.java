@@ -20,7 +20,7 @@ public class ProposeSpeakerCommand extends FrontCommand {
     private ISpeakerService speakerService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         speakerService = ServiceFactory.getInstance().getSpeakerService();
     }

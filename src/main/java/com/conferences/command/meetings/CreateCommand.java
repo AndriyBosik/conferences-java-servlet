@@ -41,7 +41,7 @@ public class CreateCommand extends FrontCommand {
     private IMapper<HttpServletRequest, FileFormData<Meeting>> fileFormMeetingMapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         this.fileHandler = HandlerFactory.getInstance().getFileHandler();
         this.meetingService = ServiceFactory.getInstance().getMeetingService();

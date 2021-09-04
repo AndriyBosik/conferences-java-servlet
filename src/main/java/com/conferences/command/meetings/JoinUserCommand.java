@@ -25,7 +25,7 @@ public class JoinUserCommand extends FrontCommand {
     private IMeetingService meetingService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }

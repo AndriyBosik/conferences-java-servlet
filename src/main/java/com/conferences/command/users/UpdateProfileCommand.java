@@ -30,7 +30,7 @@ public class UpdateProfileCommand extends FrontCommand {
     private IMapper<HttpServletRequest, PasswordData> mapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         userService = ServiceFactory.getInstance().getUserService();
         userDataSaver = HandlerFactory.getInstance().getUserDataSaver();

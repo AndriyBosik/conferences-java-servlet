@@ -11,6 +11,8 @@ import java.util.*;
 public class PermissionsHandler implements IPermissionsHandler {
 
     private static final String ALL_ROLES_KEY = "";
+    private static final int ERROR_OK = 200;
+    private static final int ERROR_FORBIDDEN = 403;
 
     private final Map<String, Map<HttpMethod, List<String>>> allowed;
 
@@ -19,23 +21,23 @@ public class PermissionsHandler implements IPermissionsHandler {
     }
 
     @Override
-    public boolean isAllowed(String role, HttpMethod method, String url) {
-        return checkForRole(role, method, url) || checkForRole(ALL_ROLES_KEY, method, url);
+    public int checkPermission(String url, HttpMethod method, String role) {
+        return checkForRole(role, method, url) == ERROR_OK || checkForRole(ALL_ROLES_KEY, method, url) == ERROR_OK ? ERROR_OK : ERROR_FORBIDDEN;
     }
 
-    private boolean checkForRole(String role, HttpMethod method, String url) {
+    private int checkForRole(String role, HttpMethod method, String url) {
         role = role.toLowerCase();
         if (!allowed.containsKey(role) || !allowed.get(role).containsKey(method)) {
-            return false;
+            return ERROR_FORBIDDEN;
         }
         List<String> allowedUrlPatterns = allowed.get(role).get(method);
         for (String pattern: allowedUrlPatterns) {
             PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
             if (matcher.matches(Paths.get(url))) {
-                return true;
+                return ERROR_OK;
             }
         }
-        return false;
+        return ERROR_FORBIDDEN;
     }
 
     public static class Builder {
@@ -71,7 +73,7 @@ public class PermissionsHandler implements IPermissionsHandler {
                 addAllHttpMethods();
             }
             Arrays.stream(roles)
-                .map(role -> role.toLowerCase())
+                .map(String::toLowerCase)
                 .forEach(this::addForRole);
             initData();
             return this;

@@ -25,7 +25,7 @@ public abstract class FrontCommand {
     protected ILinkHandler linkHandler;
     protected IMapper<FormError, String> formErrorMapper;
 
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         this.context = context;
         this.request = request;
         this.response = response;

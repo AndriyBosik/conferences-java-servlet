@@ -5,12 +5,11 @@ import com.conferences.config.Page;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public abstract class UrlDividerFilter extends DispatcherFilter {
     @Override
@@ -19,6 +18,11 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         UrlData urlData = extractLanguage(request.getRequestURI().substring(request.getContextPath().length()));
+        if (!checkLanguage(request, urlData.getLang())) {
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
 
         handleFilter(servletData, urlData, filterChain);
     }
@@ -44,5 +48,11 @@ public abstract class UrlDividerFilter extends DispatcherFilter {
             url.append("/");
         }
         return new UrlData(parts[0].toLowerCase(), url.toString());
+    }
+
+    private boolean checkLanguage(ServletRequest request, String language) {
+        ServletContext context = request.getServletContext();
+        List<String> languages = (List<String>) context.getAttribute("languages");
+        return languages.contains(language.toLowerCase());
     }
 }

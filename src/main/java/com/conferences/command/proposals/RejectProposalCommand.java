@@ -24,7 +24,7 @@ public class RejectProposalCommand extends FrontCommand {
     private IModeratorProposalService moderatorProposalService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }

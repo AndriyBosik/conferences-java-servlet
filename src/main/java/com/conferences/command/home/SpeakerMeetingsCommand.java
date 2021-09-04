@@ -29,13 +29,17 @@ public class SpeakerMeetingsCommand extends FrontCommand {
     private IMapper<HttpServletRequest, MeetingSorter> mapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
         mapper = MapperFactory.getInstance().getRequestToMeetingSorterMapper();
         int pageNumber = 1;
         if (!urlParams.isEmpty()) {
-            pageNumber = Integer.parseInt(urlParams.get(0));
+            try {
+                pageNumber = Integer.parseInt(urlParams.get(0));
+            } catch (NumberFormatException exception) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
         }
         page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);
     }

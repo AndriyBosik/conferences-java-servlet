@@ -29,7 +29,7 @@ public class EditCommand extends FrontCommand {
     private IMapper<HttpServletRequest, Meeting> meetingMapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
         meetingMapper = MapperFactory.getInstance().getRequestToEditableMeetingDataMapper();

@@ -41,8 +41,12 @@ public class FrontController extends HttpServlet {
 
         FrontCommand command = getCommand(commandInfo);
 
-        command.init(getServletContext(), request, response, commandInfo.getUrlParams());
-        command.process();
+        try {
+            command.init(getServletContext(), request, response, commandInfo.getUrlParams());
+            command.process();
+        } catch (Exception exception) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
 
     private FrontCommand getCommand(CommandInfo commandInfo) {

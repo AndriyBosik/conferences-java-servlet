@@ -17,7 +17,7 @@ public class SpeakerProposedCommand extends FrontCommand {
     private IProposedTopicDataService proposedTopicDataService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         proposedTopicDataService = ServiceFactory.getInstance().getProposedTopicDataService();
     }

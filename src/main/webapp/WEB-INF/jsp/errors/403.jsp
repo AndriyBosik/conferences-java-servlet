@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>401 Error</title>
+        <title>403 Error</title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/resources/css/common.css" rel="stylesheet" />
@@ -16,8 +16,8 @@
         <link href="/resources/css/error-pages.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="error-code">401</div>
-        <div class="error-message">Unauthorized</div>
+        <div class="error-code">403</div>
+        <div class="error-message">Forbidden</div>
         <div>
             <a href="<taglib:linkTo href="/" />" class="btn waves-effect waves-light"><i class="material-icons left">chevron_left</i>Go Home</a>
         </div>

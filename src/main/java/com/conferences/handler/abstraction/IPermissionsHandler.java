@@ -4,6 +4,6 @@ import com.conferences.config.HttpMethod;
 
 public interface IPermissionsHandler {
 
-    boolean isAllowed(String role, HttpMethod method, String url);
+    int checkPermission(String url, HttpMethod method, String role);
 
 }

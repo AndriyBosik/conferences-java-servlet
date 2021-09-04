@@ -1,9 +1,6 @@
 package com.conferences.filter;
 
-import com.conferences.config.Defaults;
-import com.conferences.config.HttpMethod;
-import com.conferences.config.Page;
-import com.conferences.config.Roles;
+import com.conferences.config.*;
 import com.conferences.filter.model.ServletData;
 import com.conferences.filter.model.UrlData;
 import com.conferences.handler.implementation.PermissionsHandler;
@@ -12,6 +9,7 @@ import com.conferences.handler.abstraction.IPermissionsHandler;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AuthenticationFilter extends UrlDividerFilter {
@@ -89,12 +87,14 @@ public class AuthenticationFilter extends UrlDividerFilter {
             userRole = user.getRole().getTitle();
         }
 
-        if (permissionsHandler.isAllowed(userRole, HttpMethod.fromString(httpMethod), url)) {
+        int errorCode = permissionsHandler.checkPermission(url, HttpMethod.fromString(httpMethod), userRole);
+        if (errorCode == HttpServletResponse.SC_OK) {
             filterChain.doFilter(servletData.getServletRequest(), servletData.getServletResponse());
             return;
         }
 
-        request.getRequestDispatcher("/WEB-INF/jsp/errors/401.jsp").forward(servletData.getServletRequest(), servletData.getServletResponse());
+        HttpServletResponse response = (HttpServletResponse) servletData.getServletResponse();
+        response.sendError(errorCode);
     }
 
 }

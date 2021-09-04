@@ -27,9 +27,13 @@ public class ShowCommand extends FrontCommand {
     private ISpeakerProposalService speakerProposalService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
-        id = Integer.parseInt(urlParams.get(0));
+        try {
+            id = Integer.parseInt(urlParams.get(0));
+        } catch (NumberFormatException exception) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        }
         meetingService = ServiceFactory.getInstance().getMeetingService();
         userService = ServiceFactory.getInstance().getUserService();
         speakerProposalService = ServiceFactory.getInstance().getSpeakerProposalService();
@@ -38,6 +42,10 @@ public class ShowCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         Meeting meeting = meetingService.getMeetingWithTopicsAndSpeakersAndUsersCount(id);
+        if (meeting == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
 
         List<User> speakers = userService.getUsersByRoleTitleWithRole("speaker");
 

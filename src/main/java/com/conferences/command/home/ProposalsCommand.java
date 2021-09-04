@@ -19,7 +19,7 @@ public class ProposalsCommand extends FrontCommand {
     private IProposalDataService proposalDataService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         proposalDataService = ServiceFactory.getInstance().getProposalDataService();
     }

@@ -27,13 +27,17 @@ public class AllCommand extends FrontCommand {
     private com.conferences.model.Page page;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         this.meetingService = ServiceFactory.getInstance().getMeetingService();
         this.meetingSorterMapper = MapperFactory.getInstance().getRequestToMeetingSorterMapper();
         int pageNumber = 1;
         if (!urlParams.isEmpty()) {
-            pageNumber = Integer.parseInt(urlParams.get(0));
+            try {
+                pageNumber = Integer.parseInt(urlParams.get(0));
+            } catch (NumberFormatException exception) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
         }
         this.page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);
     }

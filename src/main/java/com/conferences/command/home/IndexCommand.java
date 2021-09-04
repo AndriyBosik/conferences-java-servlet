@@ -26,7 +26,7 @@ public class IndexCommand extends FrontCommand {
     private IMapper<HttpServletRequest, LoginData> mapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         this.userService = ServiceFactory.getInstance().getUserService();
         this.mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();

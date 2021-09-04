@@ -12,6 +12,7 @@ import com.conferences.service.abstraction.IMeetingService;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 public class SaveUserPresenceCommand extends JsonApiCommand {
@@ -19,7 +20,7 @@ public class SaveUserPresenceCommand extends JsonApiCommand {
     private IMeetingService meetingService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }

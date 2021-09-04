@@ -8,6 +8,7 @@ import com.conferences.service.implementation.ModeratorProposalService;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 public class GetAvailableSpeakersForProposalCommand extends JsonApiCommand {
@@ -16,7 +17,7 @@ public class GetAvailableSpeakersForProposalCommand extends JsonApiCommand {
     private IModeratorProposalService moderatorProposalService;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         topicId = Integer.parseInt(urlParams.get(0));
         moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();

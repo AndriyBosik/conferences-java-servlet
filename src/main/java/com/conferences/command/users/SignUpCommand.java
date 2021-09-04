@@ -29,7 +29,7 @@ public class SignUpCommand extends FrontCommand {
     private IMapper<HttpServletRequest, UserData> mapper;
 
     @Override
-    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         userService = ServiceFactory.getInstance().getUserService();
         roleService = ServiceFactory.getInstance().getRoleService();
