@@ -28,6 +28,9 @@ for (let proposalTrigger of proposalTriggers) {
                 if (response.status === "success") {
                     preloaderClone.replaceWith(getSuccessResultComponent());
                 } else {
+                    M.toast({
+                        html: response.message
+                    });
                     preloaderClone.replaceWith(button);
                 }
             });

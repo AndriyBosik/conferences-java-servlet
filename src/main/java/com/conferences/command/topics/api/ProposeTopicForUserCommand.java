@@ -27,11 +27,15 @@ public class ProposeTopicForUserCommand extends JsonApiCommand {
     protected Object getJsonObject() {
         ModeratorProposal proposal = jsonHandler.parseJsonRequestBodyToObject(request, ModeratorProposal.class);
 
-        if (moderatorProposalService.saveModeratorProposal(proposal)) {
-            return new SimpleResponse("success", "");
-        } else {
-            FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
-            return new SimpleResponse("error", errorMapper.map(error));
-        }
+        response.setCharacterEncoding("UTF-8");
+        FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
+        return new SimpleResponse("error", errorMapper.map(error));
+
+//        if (moderatorProposalService.saveModeratorProposal(proposal)) {
+//            return new SimpleResponse("success", "");
+//        } else {
+//            FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
+//            return new SimpleResponse("error", errorMapper.map(error));
+//        }
     }
 }

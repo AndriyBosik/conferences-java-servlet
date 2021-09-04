@@ -207,7 +207,7 @@
                                     <tf:forRoles roles="${['moderator']}">
                                         <td class="px20">
                                             <div class="s-hflex-end">
-                                                <c:if test="${empty topic.reportTopicSpeaker}">
+                                                <c:if test="${empty topic.reportTopicSpeaker and not meeting.outdated}">
                                                     <span class="clickable proposalTrigger modal-trigger tooltipped px5" data-target="propose-to-speakers-form" data-position="bottom" data-tooltip="<taglib:message value="propose_to_speakers" />">
                                                         <i class="material-icons orange-text">person_add</i>
                                                     </span>

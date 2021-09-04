@@ -4,11 +4,11 @@ public class SimpleResponse {
 
     private String status;
 
-    private String error;
+    private String message;
 
-    public SimpleResponse(String status, String error) {
+    public SimpleResponse(String status, String message) {
         this.status = status;
-        this.error = error;
+        this.message = message;
     }
 
     public String getStatus() {
@@ -19,11 +19,11 @@ public class SimpleResponse {
         this.status = status;
     }
 
-    public String getError() {
-        return error;
+    public String getMessage() {
+        return message;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

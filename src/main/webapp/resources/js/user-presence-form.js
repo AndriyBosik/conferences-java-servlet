@@ -50,7 +50,12 @@ function getIsNotPresentButton(statData) {
         preloaderClone.classList.remove(HIDDEN_CLASS);
         button.replaceWith(preloaderClone);
 
-        await sendRequest(statData);
+        const response = await sendRequest(statData);
+        if (response.message !== "") {
+            M.toast({
+                html: response.message
+            });
+        }
 
         statData.present = true;
         preloaderClone.replaceWith(getIsPresentButton(statData));
