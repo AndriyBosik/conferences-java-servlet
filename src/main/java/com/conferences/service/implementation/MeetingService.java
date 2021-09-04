@@ -1,28 +1,30 @@
 package com.conferences.service.implementation;
 
+import com.conferences.config.ErrorKey;
 import com.conferences.dao.abstraction.IMeetingDao;
 import com.conferences.dao.abstraction.IUserMeetingDao;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.UserMeeting;
 import com.conferences.factory.DaoFactory;
 import com.conferences.factory.ValidatorFactory;
-import com.conferences.model.MeetingSorter;
-import com.conferences.model.MeetingUsersStats;
-import com.conferences.model.Page;
-import com.conferences.model.PageResponse;
+import com.conferences.model.*;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.validator.IValidator;
+
+import java.util.List;
 
 public class MeetingService implements IMeetingService {
 
     private final IMeetingDao meetingDao;
     private final IUserMeetingDao userMeetingDao;
     private final IValidator<Meeting> meetingValidator;
+    private final IValidator<Meeting> meetingEditableDataValidator;
 
     public MeetingService() {
         this.meetingDao = DaoFactory.getInstance().getMeetingDao();
         this.userMeetingDao = DaoFactory.getInstance().getUserMeetingDao();
         this.meetingValidator = ValidatorFactory.getInstance().getMeetingValidator();
+        this.meetingEditableDataValidator = ValidatorFactory.getInstance().getMeetingEditableDataValidator();
     }
 
     @Override
@@ -36,11 +38,12 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public boolean saveMeeting(Meeting meeting) {
-        if (meetingValidator.isValid(meeting)) {
-            return meetingDao.create(meeting);
+    public List<FormError> saveMeeting(Meeting meeting) {
+        List<FormError> errors = meetingValidator.validate(meeting);
+        if (errors.isEmpty() && !meetingDao.create(meeting)) {
+            errors.add(new FormError(ErrorKey.CREATION_ERROR));
         }
-        return false;
+        return errors;
     }
 
     @Override
@@ -62,8 +65,12 @@ public class MeetingService implements IMeetingService {
     }
 
     @Override
-    public boolean updateMeetingEditableData(Meeting meeting) {
-        return meetingDao.updateMeetingEditableData(meeting);
+    public List<FormError> updateMeetingEditableData(Meeting meeting) {
+        List<FormError> errors = meetingEditableDataValidator.validate(meeting);
+        if (errors.isEmpty() && !meetingDao.updateMeetingEditableData(meeting)) {
+            errors.add(new FormError(ErrorKey.UPDATING_ERROR));
+        }
+        return errors;
     }
 
     @Override

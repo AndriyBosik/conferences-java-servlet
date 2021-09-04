@@ -1,15 +1,21 @@
 package com.conferences.validator;
 
 import com.conferences.entity.Meeting;
+import com.conferences.model.FormError;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MeetingEditableDataValidator implements IValidator<Meeting> {
+public class MeetingEditableDataValidator extends AbstractValidator<Meeting> {
+    private static final String ADDRESS = "address";
+    private static final String DATE = "date";
 
     @Override
-    public boolean isValid(Meeting model) {
-        return  model.getAddress() != null && model.getAddress().trim().length() >= 5 &&
-                model.getDate() != null && model.getDate().isAfter(LocalDateTime.now());
+    public List<FormError> validate(Meeting model) {
+        List<FormError> formErrors = new ArrayList<>();
+        addIfNotRequired(formErrors, model.getAddress(), ADDRESS);
+        addIfNotHasMinimumLength(formErrors, model.getAddress(), 5, ADDRESS);
+        addIfDateIsNotAfterNow(formErrors, model.getDate(), DATE);
+        return formErrors;
     }
 }

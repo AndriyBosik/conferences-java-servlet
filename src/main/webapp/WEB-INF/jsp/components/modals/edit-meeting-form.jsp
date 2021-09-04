@@ -1,4 +1,5 @@
 <%@ taglib uri="tags" prefix="taglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div id="edit-meeting-modal" class="modal height-70">
     <jsp:include page="/WEB-INF/jsp/components/preloaders/circle-preloader.jsp">
@@ -11,7 +12,7 @@
             <h5 class="col s12"><taglib:message value="edit_meeting" /></h5>
 
             <div class="input-field col s12">
-                <input id="address" name="address" type="text">
+                <input id="address" name="address" type="text" value="<c:out value="${updatedMeetingFields.address}" />">
                 <label for="address"><taglib:message value="address" /></label>
             </div>
 

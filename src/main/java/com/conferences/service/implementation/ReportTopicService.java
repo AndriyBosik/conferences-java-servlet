@@ -1,16 +1,17 @@
 package com.conferences.service.implementation;
 
+import com.conferences.config.ErrorKey;
 import com.conferences.dao.abstraction.IReportTopicDao;
 import com.conferences.dao.abstraction.IReportTopicSpeakerDao;
-import com.conferences.dao.implementation.ReportTopicDao;
-import com.conferences.dao.implementation.ReportTopicSpeakerDao;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.factory.DaoFactory;
 import com.conferences.factory.ValidatorFactory;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IReportTopicService;
 import com.conferences.validator.IValidator;
-import com.conferences.validator.ReportTopicValidator;
+
+import java.util.List;
 
 public class ReportTopicService implements IReportTopicService {
 
@@ -25,29 +26,25 @@ public class ReportTopicService implements IReportTopicService {
     }
 
     @Override
-    public boolean save(ReportTopic reportTopic) {
-        if (reportTopicValidator.isValid(reportTopic)) {
-            return reportTopicDao.create(reportTopic);
+    public List<FormError> updateTopicWithSpeaker(ReportTopic reportTopic) {
+        List<FormError> errors = reportTopicValidator.validate(reportTopic);
+        if (errors.isEmpty() && !reportTopicDao.updateWithSpeaker(reportTopic)) {
+            errors.add(new FormError(ErrorKey.UPDATING_ERROR));
         }
-        return false;
-    }
-
-    @Override
-    public boolean updateTopicWithSpeaker(ReportTopic reportTopic) {
-        if (reportTopicValidator.isValid(reportTopic)) {
-            return reportTopicDao.updateWithSpeaker(reportTopic);
-        }
-        return false;
+        return errors;
     }
 
     @Override
     public boolean setSpeakerForTopic(ReportTopicSpeaker reportTopicSpeaker) {
-
         return reportTopicSpeakerDao.saveWithProposalsDeletionTable(reportTopicSpeaker);
     }
 
     @Override
-    public boolean saveWithSpeaker(ReportTopic reportTopic) {
-        return reportTopicDao.saveWithSpeaker(reportTopic);
+    public List<FormError> saveWithSpeaker(ReportTopic reportTopic) {
+        List<FormError> errors = reportTopicValidator.validate(reportTopic);
+        if (errors.isEmpty() && !reportTopicDao.saveWithSpeaker(reportTopic)) {
+            errors.add(new FormError(ErrorKey.CREATION_ERROR));
+        }
+        return errors;
     }
 }

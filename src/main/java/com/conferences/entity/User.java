@@ -2,6 +2,7 @@ package com.conferences.entity;
 
 import com.conferences.annotation.Column;
 import com.conferences.annotation.Table;
+import com.conferences.config.Constants;
 
 import java.io.Serializable;
 
@@ -34,6 +35,10 @@ public class User implements Serializable {
     private String imagePath;
 
     private Role role;
+
+    public User() {
+        setImagePath(Constants.DEFAULT_AVATAR_IMAGE);
+    }
 
     public int getId() {
         return id;

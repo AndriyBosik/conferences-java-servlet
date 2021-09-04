@@ -14,7 +14,12 @@ public class PropertiesHandler implements IPropertiesHandler {
         Properties properties = new Properties();
         try {
             properties.load(new InputStreamReader(PropertiesHandler.class.getClassLoader().getResourceAsStream(propertiesFilename), "UTF-8"));
-            return properties.getProperty(key);
+
+            String value = properties.getProperty(key);
+            if (value == null) {
+                return key;
+            }
+            return value;
         } catch (IOException exception) {
             exception.printStackTrace();
         }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="taglib" uri="tags" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
     <head>
@@ -16,7 +17,7 @@
         <link href="/resources/css/materialize.min.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="window-height window-width yellow lighten-5 s-vflex-center">
+        <div class="yellow lighten-5 s-vflex-center">
             <div class="container">
                 <div class="row">
                     <div class="col s12 m8 push-m2 my20">
@@ -27,6 +28,9 @@
                             <div class="sign-up-form-header s-hflex px10">
                                 <h4 class="equal-flex"><taglib:message value="sign_up" /></h4>
                             </div>
+
+                            <tf:errors errors="${registrationErrors}" />
+                            
                             <form action="" method="post">
                                 <div class="full-width s-hflex px5 my10">
                                     <label class="equal-flex">
@@ -39,22 +43,22 @@
                                     </label>
                                 </div>
                                 <div class="full-width input-field col s12 m6">
-                                    <input id="login" type="text" name="login" />
+                                    <input id="login" type="text" name="login" value="<c:out value="${registrationFields.login}" />" />
                                     <label for="login"><taglib:message value="login" /></label>
                                     <span class="helper-text"><taglib:message value="required_field" /></span>
                                 </div>
                                 <div class="full-width input-field col s12 m6">
-                                    <input id="email" type="email" name="email" />
+                                    <input id="email" type="email" name="email" value="<c:out value="${registrationFields.email}" />" />
                                     <label for="email"><taglib:message value="email" /></label>
                                     <span class="helper-text"><taglib:message value="required_field" /></span>
                                 </div>
                                 <div class="full-width input-field col s12 m6">
-                                    <input id="name" type="text" name="name" />
+                                    <input id="name" type="text" name="name" value="<c:out value="${registrationFields.name}" />" />
                                     <label for="name"><taglib:message value="name" /></label>
                                     <span class="helper-text"><taglib:message value="required_field" /></span>
                                 </div>
                                 <div class="full-width input-field col s12 m6">
-                                    <input id="surname" type="text" name="surname" />
+                                    <input id="surname" type="text" name="surname" value="<c:out value="${registrationFields.surname}" />" />
                                     <label for="surname"><taglib:message value="surname" /></label>
                                     <span class="helper-text"><taglib:message value="required_field" /></span>
                                 </div>

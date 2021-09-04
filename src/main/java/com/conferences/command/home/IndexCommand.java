@@ -2,7 +2,7 @@ package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Error;
+import com.conferences.config.ErrorKey;
 import com.conferences.config.HttpMethod;
 import com.conferences.config.Page;
 import com.conferences.entity.User;
@@ -59,7 +59,7 @@ public class IndexCommand extends FrontCommand {
 
             redirect(Page.PROFILE.toString());
         } else {
-            request.setAttribute("errorMessage", Error.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
+            request.setAttribute("errorMessage", ErrorKey.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
 
             forward("login");
         }

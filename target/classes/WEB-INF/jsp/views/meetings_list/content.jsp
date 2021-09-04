@@ -22,6 +22,18 @@
             <hr />
         </div>
 
+        <c:if test="${updatedMeetingErrors.size() > 0}">
+            <div class="col s12">
+                <tf:errors errors="${updatedMeetingErrors}" />
+            </div>
+        </c:if>
+
+        <c:if test="${meetingErrors.size() > 0}">
+            <div class="col s12">
+                <tf:errors errors="${meetingErrors}" />
+            </div>
+        </c:if>
+
         <jsp:include page="/WEB-INF/jsp/components/meetings.jsp" />
 
     </div>

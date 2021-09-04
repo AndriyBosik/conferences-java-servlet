@@ -2,7 +2,7 @@ package com.conferences.command.users;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
-import com.conferences.config.Error;
+import com.conferences.config.ErrorKey;
 import com.conferences.entity.User;
 import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
@@ -37,9 +37,9 @@ public class UpdateProfileCommand extends FrontCommand {
         String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
         PasswordData passwordData = mapper.map(request);
         if (!StringUtils.isNullOrEmptyAll(passwordData.getPassword(), passwordData.getNewPassword(), passwordData.getConfirmPassword())) {
-            Error error = validatePasswords(user.getPassword(), passwordData);
-            if (error != Error.OK) {
-                request.setAttribute("error", error.getByLang(lang));
+            ErrorKey errorKey = validatePasswords(user.getPassword(), passwordData);
+            if (errorKey != ErrorKey.OK) {
+                request.setAttribute("error", errorKey.getByLang(lang));
                 return;
             }
             user.setPassword(passwordData.getNewPassword());
@@ -53,14 +53,14 @@ public class UpdateProfileCommand extends FrontCommand {
         }
     }
 
-    private Error validatePasswords(String userPassword, PasswordData passwordData) {
+    private ErrorKey validatePasswords(String userPassword, PasswordData passwordData) {
         if (!userPassword.equals(passwordData.getPassword())) {
-            return Error.INVALID_OLD_PASSWORD;
+            return ErrorKey.INVALID_OLD_PASSWORD;
         }
         if (!passwordData.getNewPassword().equals(passwordData.getConfirmPassword())) {
-            return Error.PASSWORDS_ARE_NOT_EQUAL;
+            return ErrorKey.PASSWORDS_ARE_NOT_EQUAL;
         }
-        return Error.OK;
+        return ErrorKey.OK;
     }
 
     private void updateUserWithRequestValues(User user) {

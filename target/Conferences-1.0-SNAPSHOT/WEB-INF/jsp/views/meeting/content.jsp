@@ -63,6 +63,11 @@
                 </div>
             </tf:forRoles>
 
+            <div class="col s12">
+                <tf:errors errors="${updatedTopicErrors}"></tf:errors>
+                <tf:errors errors="${createdTopicErrors}"></tf:errors>
+            </div>
+
             <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/<c:out value="${meeting.imagePath}" />')"></div>
 
             <div class="full-width py15 meeting-additional-data">
@@ -151,7 +156,7 @@
                                             <c:when test="${not empty topic.reportTopicSpeaker}">
                                                 <div class="s-hflex" data-speaker-id="${topic.reportTopicSpeaker.speakerId}">
                                                     <div class="z-depth-1 user-avatar stretch-background">
-                                                        <img src="/resources/images/avatars/<c:out value="${topic.reportTopicSpeaker.speaker.imagePath}" />" alt="" class="full-width full-height" data-error="avatarDefault" />
+                                                        <img src="/resources/images/avatars/<c:out value="${topic.reportTopicSpeaker.speaker.imagePath}" />" alt="" class="full-width full-height" data-errorKey="avatarDefault" />
                                                     </div>
                                                     <div class="s-vflex-center px10 weight-normal">
                                                         <c:out value="${topic.reportTopicSpeaker.speaker.name}" /> <c:out value="${topic.reportTopicSpeaker.speaker.surname}" />

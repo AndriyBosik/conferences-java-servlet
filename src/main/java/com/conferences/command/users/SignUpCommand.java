@@ -1,14 +1,13 @@
 package com.conferences.command.users;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.config.Defaults;
-import com.conferences.config.HttpMethod;
-import com.conferences.config.Page;
+import com.conferences.config.*;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
+import com.conferences.model.FormError;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IRoleService;
 import com.conferences.service.abstraction.IUserService;
@@ -16,6 +15,10 @@ import com.conferences.service.abstraction.IUserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SignUpCommand extends FrontCommand {
 
@@ -32,13 +35,16 @@ public class SignUpCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         if (request.getMethod().equals(HttpMethod.GET.toString())) {
+            extractErrorsFromSession(FormKeys.REGISTRATION_ERRORS);
+            extractFieldValuesFromSession(FormKeys.REGISTRATION_FIELDS);
+
             forward("sign_up");
             return;
         }
         signUp();
     }
 
-    private void signUp() throws IOException {
+    private void signUp() throws IOException, ServletException {
         User user = new User();
         Role role = roleService.getRoleByTitle(request.getParameter("role"));
 
@@ -50,17 +56,37 @@ public class SignUpCommand extends FrontCommand {
         user.setEmail(data.getEmail());
         user.setRole(role);
 
+        data.setConfirmPassword(request.getParameter("confirm_password"));
+
+        List<FormError> errors = new ArrayList<>();
+        if (data.getConfirmPassword() == null || data.getConfirmPassword().trim().isEmpty()) {
+            errors.add(new FormError(ErrorKey.EMPTY_PASSWORD_FIELD));
+            saveErrorsToSession(FormKeys.REGISTRATION_ERRORS, errors);
+            redirect(Page.SIGN_UP_USER.toString());
+            return;
+        }
         if (!data.getConfirmPassword().equals(user.getPassword())) {
+            errors.add(new FormError(ErrorKey.PASSWORDS_ARE_NOT_EQUAL));
+            saveErrorsToSession(FormKeys.REGISTRATION_ERRORS, errors);
             redirect(Page.SIGN_UP_USER.toString());
             return;
         }
 
-        if (userService.signUpUser(user)) {
+        errors = userService.signUpUser(user);
+        if (errors.isEmpty()) {
             request.getSession().setAttribute(Defaults.USER.toString(), user);
-
             redirect(Page.PROFILE.toString());
         } else {
-            // TODO
+            saveErrorsToSession(FormKeys.REGISTRATION_ERRORS, errors);
+            System.out.println(errors);
+            Map<String, String> values = new HashMap<>();
+            values.put("login", user.getLogin());
+            values.put("email", user.getEmail());
+            values.put("name", user.getName());
+            values.put("surname", user.getSurname());
+            saveFieldValuesToSession(FormKeys.REGISTRATION_FIELDS, values);
+
+            redirect(Page.SIGN_UP_USER.toString());
         }
     }
 }

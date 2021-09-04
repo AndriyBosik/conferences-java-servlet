@@ -2,18 +2,15 @@ package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
+import com.conferences.config.FormKeys;
 import com.conferences.config.Roles;
 import com.conferences.entity.Meeting;
 import com.conferences.entity.User;
-import com.conferences.entity.UserMeeting;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.model.MeetingUsersStats;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.MeetingService;
-import com.conferences.service.implementation.SpeakerProposalService;
-import com.conferences.service.implementation.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -50,6 +47,8 @@ public class ShowCommand extends FrontCommand {
         } else if (Roles.MODERATOR.toString().equals(user.getRole().getTitle())) {
             MeetingUsersStats meetingUsersStats = meetingService.getUsersWithPresenceByMeeting(id);
             request.setAttribute("stats", meetingUsersStats);
+            extractErrorsFromSession(FormKeys.UPDATED_TOPIC_ERRORS);
+            extractErrorsFromSession(FormKeys.CREATED_TOPIC_ERRORS);
         }
 
         forwardPartial("meeting", meeting.getTitle());

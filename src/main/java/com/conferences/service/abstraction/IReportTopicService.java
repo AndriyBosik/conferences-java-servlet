@@ -2,15 +2,16 @@ package com.conferences.service.abstraction;
 
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.ReportTopicSpeaker;
+import com.conferences.model.FormError;
+
+import java.util.List;
 
 public interface IReportTopicService {
 
-    boolean save(ReportTopic reportTopic);
-
-    boolean updateTopicWithSpeaker(ReportTopic reportTopic);
+    List<FormError> updateTopicWithSpeaker(ReportTopic reportTopic);
 
     boolean setSpeakerForTopic(ReportTopicSpeaker reportTopicSpeaker);
 
-    boolean saveWithSpeaker(ReportTopic reportTopic);
+    List<FormError> saveWithSpeaker(ReportTopic reportTopic);
 
 }

@@ -41,7 +41,7 @@
                                 </div>
                                 <c:if test="${not empty errorMessage}">
                                     <div class="full-width col s12">
-                                        <p class="center-align pink-text text-lighten-1 weight-normal login-error-message">
+                                        <p class="center-align pink-text text-lighten-1 weight-normal login-errorKey-message">
                                             <c:out value="${errorMessage}" />
                                         </p>
                                     </div>

@@ -1,12 +1,15 @@
 package com.conferences.service.implementation;
 
+import com.conferences.config.ErrorKey;
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.entity.User;
 import com.conferences.factory.DaoFactory;
 import com.conferences.factory.ValidatorFactory;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.validator.IValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -32,15 +35,24 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean signUpUser(User user) {
+    public List<FormError> signUpUser(User user) {
+        List<FormError> errors = new ArrayList<>();
         User dbUser = userDao.findByLoginOrEmail(user.getLogin(), user.getEmail());
-        if (!userValidator.isValid(user) || dbUser != null || !hasAllowedRole(user)) {
-            return false;
+        if (dbUser != null) {
+            errors.add(new FormError(ErrorKey.EXISTING_USER));
         }
-        if (userValidator.isValid(user)) {
-            return userDao.create(user);
+        if (!hasAllowedRole(user)) {
+            errors.add(new FormError(ErrorKey.INVALID_ROLE));
         }
-        return false;
+        List<FormError> validationErrors = userValidator.validate(user);
+        errors.addAll(validationErrors);
+        if (!errors.isEmpty()) {
+            return errors;
+        }
+        if (!userDao.create(user)) {
+            errors.add(new FormError(ErrorKey.REGISTRATION_ERROR));
+        }
+        return errors;
     }
 
     @Override
@@ -50,7 +62,7 @@ public class UserService implements IUserService {
 
     @Override
     public boolean updateUser(User user) {
-        if (!userRequiredForUpdateDataValidator.isValid(user)) {
+        if (userRequiredForUpdateDataValidator.validate(user) != null) {
             return false;
         }
         return userDao.update(user);

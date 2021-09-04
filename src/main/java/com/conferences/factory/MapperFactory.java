@@ -14,6 +14,7 @@ public class MapperFactory {
     private static MapperFactory instance;
 
     private IMapper<Map<String, String>, Meeting> formDataToMeetingMapper;
+    private IMapper<FormError, String> formErrorToStringMapper;
     private IMapper<HttpServletRequest, Meeting> requestToEditableMeetingDataMapper;
     private IMapper<HttpServletRequest, FileFormData<Meeting>> requestToFileFormMeetingMapper;
     private IMapper<HttpServletRequest, LoginData> requestToLoginDataMapper;
@@ -39,6 +40,13 @@ public class MapperFactory {
             formDataToMeetingMapper = new FormDataToMeetingMapper();
         }
         return formDataToMeetingMapper;
+    }
+
+    public synchronized IMapper<FormError, String> getFormErrorToStringMapper() {
+        if (formErrorToStringMapper == null) {
+            formErrorToStringMapper = new FormErrorToStringMapper();
+        }
+        return formErrorToStringMapper;
     }
 
     public synchronized IMapper<HttpServletRequest, Meeting> getRequestToEditableMeetingDataMapper() {

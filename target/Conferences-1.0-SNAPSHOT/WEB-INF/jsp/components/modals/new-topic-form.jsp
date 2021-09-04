@@ -17,12 +17,12 @@
             <h5 class="col s12"><taglib:message value="create_topic" /></h5>
 
             <div class="input-field col m6 s12">
-                <input id="topic-title" name="title" type="text">
+                <input id="topic-title" name="title" type="text" />
                 <label for="topic-title"><taglib:message value="title" /></label>
             </div>
 
             <div class="input-field col m6 s12">
-                <select name="speaker_id" class="icons">
+                <select name="speaker_id" class="icons" initial-value="${createdTopicFields.speakerId}">
                     <option value="" selected><taglib:message value="choose_speaker" /></option>
                     <c:forEach items="${speakers}" var="speaker">
                         <option value="${speaker.id}" data-icon="/resources/images/avatars/${speaker.imagePath}">

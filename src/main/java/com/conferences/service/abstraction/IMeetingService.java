@@ -2,12 +2,10 @@ package com.conferences.service.abstraction;
 
 import com.conferences.entity.Meeting;
 import com.conferences.entity.UserMeeting;
-import com.conferences.model.MeetingSorter;
-import com.conferences.model.MeetingUsersStats;
-import com.conferences.model.Page;
-import com.conferences.model.PageResponse;
+import com.conferences.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IMeetingService {
 
@@ -15,7 +13,7 @@ public interface IMeetingService {
 
     Meeting getMeetingWithTopicsAndSpeakersAndUsersCount(int id);
 
-    boolean saveMeeting(Meeting meeting);
+    List<FormError> saveMeeting(Meeting meeting);
 
     boolean joinUser(int meetingId, int userId);
 
@@ -23,7 +21,7 @@ public interface IMeetingService {
 
     Meeting getMeetingById(int meetingId);
 
-    boolean updateMeetingEditableData(Meeting meeting);
+    List<FormError> updateMeetingEditableData(Meeting meeting);
 
     PageResponse<Meeting> getSpeakerMeetings(Page page, MeetingSorter sorter, int speakerId);
 

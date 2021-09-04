@@ -1,4 +1,5 @@
 <%@ taglib uri="tags" prefix="taglib" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div id="meeting-form" class="modal">
     <form action="<taglib:linkTo href="/meetings/create" />" method="post" enctype="multipart/form-data">
@@ -6,12 +7,12 @@
             <h5 class="col s12"><taglib:message value="create_meeting" /></h5>
 
             <div class="input-field col s12 m6">
-                <input id="meeting-title" name="title" type="text">
+                <input id="meeting-title" name="title" type="text" value="<c:out value="${requestScope.meetingFields.title}" />">
                 <label for="meeting-title"><taglib:message value="title" /></label>
             </div>
 
             <div class="input-field col s12 m6">
-                <input id="meeting-address" name="address" type="text">
+                <input id="meeting-address" name="address" type="text" value="<c:out value="${requestScope.meetingFields.address}" />">
                 <label for="meeting-address"><taglib:message value="address" /></label>
             </div>
 
@@ -39,7 +40,7 @@
             </div>
 
             <div class="input-field col s12">
-                <textarea id="meeting-description" class="materialize-textarea" name="description"></textarea>
+                <textarea id="meeting-description" class="materialize-textarea" name="description"><c:out value="${requestScope.meetingFields.description}" /></textarea>
                 <label for="meeting-description"><taglib:message value="description" /></label>
             </div>
 

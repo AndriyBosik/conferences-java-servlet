@@ -1,6 +1,7 @@
 package com.conferences.command.meetings;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.config.FormKeys;
 import com.conferences.config.Page;
 import com.conferences.entity.Meeting;
 import com.conferences.factory.MapperFactory;
@@ -43,9 +44,13 @@ public class AllCommand extends FrontCommand {
         PageResponse<Meeting> meetingsPage = meetingService.getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(page, meetingSorter);
 
         initPageFilters(meetingSorter);
+
         request.setAttribute("meetings", meetingsPage.getItems());
         request.setAttribute("currentPage", page.getPageNumber());
         request.setAttribute("pagesLinks", getLinkToMeetingsPages(meetingsPage.getPagesCount()));
+        extractErrorsFromSession(FormKeys.MEETING_ERRORS);
+        extractFieldValuesFromSession(FormKeys.MEETING_FIELDS);
+        extractFieldValuesFromSession(FormKeys.UPDATED_MEETING_FIELDS);
         forwardPartial("meetings_list");
     }
 

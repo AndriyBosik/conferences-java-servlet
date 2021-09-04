@@ -7,6 +7,7 @@ public class HandlerFactory {
 
     private static HandlerFactory instance;
 
+    private IFieldValidationHandler fieldValidationHandler;
     private IFileHandler fileHandler;
     private IJsonHandler jsonHandler;
     private ILinkHandler linkHandler;
@@ -21,6 +22,13 @@ public class HandlerFactory {
             instance = new HandlerFactory();
         }
         return instance;
+    }
+
+    public synchronized IFieldValidationHandler getFieldValidationHandler() {
+        if (fieldValidationHandler == null) {
+            fieldValidationHandler = new FieldValidationHandler();
+        }
+        return fieldValidationHandler;
     }
 
     public synchronized IFileHandler getFileHandler() {

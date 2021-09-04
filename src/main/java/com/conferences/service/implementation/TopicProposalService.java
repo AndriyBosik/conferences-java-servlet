@@ -1,17 +1,14 @@
 package com.conferences.service.implementation;
 
 import com.conferences.dao.abstraction.ITopicProposalDao;
-import com.conferences.dao.implementation.TopicProposalDao;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.TopicProposal;
 import com.conferences.factory.DaoFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ValidatorFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.TopicProposalToReportTopicMapper;
 import com.conferences.service.abstraction.ITopicProposalService;
 import com.conferences.validator.IValidator;
-import com.conferences.validator.ReportTopicValidator;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class TopicProposalService implements ITopicProposalService {
 
     @Override
     public boolean addTopicProposal(TopicProposal topicProposal) {
-        if (!validator.isValid(mapper.map(topicProposal))) {
+        if (validator.validate(mapper.map(topicProposal)) != null) {
             return false;
         }
         return topicProposalDao.create(topicProposal);
