@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IUserDao extends ICrudDao<Integer, User> {
 
-    User findByLoginAndPasswordWithRole(String login, String password);
+    User findByLoginWithRole(String login, String password);
 
     User findByLoginOrEmail(String login, String email);
 

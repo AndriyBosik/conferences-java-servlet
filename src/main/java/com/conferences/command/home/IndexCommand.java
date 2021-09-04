@@ -10,6 +10,7 @@ import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.model.LoginData;
+import com.conferences.service.abstraction.IAuthenticationService;
 import com.conferences.service.abstraction.IUserService;
 
 import javax.servlet.ServletContext;
@@ -23,13 +24,15 @@ import java.util.List;
 public class IndexCommand extends FrontCommand {
 
     private IUserService userService;
+    private IAuthenticationService authenticationService;
     private IMapper<HttpServletRequest, LoginData> mapper;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
-        this.userService = ServiceFactory.getInstance().getUserService();
-        this.mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();
+        userService = ServiceFactory.getInstance().getUserService();
+        authenticationService = ServiceFactory.getInstance().getAuthenticationService();
+        mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();
     }
 
     @Override
@@ -56,7 +59,7 @@ public class IndexCommand extends FrontCommand {
 
         LoginData loginData = mapper.map(request);
 
-        User user = userService.getByLoginAndPasswordWithRole(loginData.getLogin(), loginData.getPassword());
+        User user = authenticationService.getByLoginAndPasswordWithRole(loginData.getLogin(), loginData.getPassword());
 
         if (user != null) {
             HttpSession session = request.getSession();

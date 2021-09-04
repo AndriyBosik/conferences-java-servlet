@@ -9,8 +9,8 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.model.FormError;
 import com.conferences.model.UserData;
+import com.conferences.service.abstraction.IAuthenticationService;
 import com.conferences.service.abstraction.IRoleService;
-import com.conferences.service.abstraction.IUserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -24,14 +24,14 @@ import java.util.Map;
 
 public class SignUpCommand extends FrontCommand {
 
-    private IUserService userService;
+    private IAuthenticationService authenticationService;
     private IRoleService roleService;
     private IMapper<HttpServletRequest, UserData> mapper;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
-        userService = ServiceFactory.getInstance().getUserService();
+        authenticationService = ServiceFactory.getInstance().getAuthenticationService();
         roleService = ServiceFactory.getInstance().getRoleService();
         mapper = MapperFactory.getInstance().getRequestToUserDataMapper();
     }
@@ -76,13 +76,12 @@ public class SignUpCommand extends FrontCommand {
             return;
         }
 
-        errors = userService.signUpUser(user);
+        errors = authenticationService.signUpUser(user);
         if (errors.isEmpty()) {
             request.getSession().setAttribute(Defaults.USER.toString(), user);
             redirect(Page.PROFILE.toString());
         } else {
             saveErrorsToSession(FormKeys.REGISTRATION_ERRORS, errors);
-            System.out.println(errors);
             Map<String, String> values = new HashMap<>();
             values.put("login", user.getLogin());
             values.put("email", user.getEmail());

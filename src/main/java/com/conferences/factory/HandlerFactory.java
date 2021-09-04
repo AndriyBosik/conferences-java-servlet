@@ -7,6 +7,7 @@ public class HandlerFactory {
 
     private static HandlerFactory instance;
 
+    private IEncryptor encryptor;
     private IFieldValidationHandler fieldValidationHandler;
     private IFileHandler fileHandler;
     private IJsonHandler jsonHandler;
@@ -22,6 +23,13 @@ public class HandlerFactory {
             instance = new HandlerFactory();
         }
         return instance;
+    }
+
+    public synchronized IEncryptor getEncryptor() {
+        if (encryptor == null) {
+            encryptor = new Encryptor();
+        }
+        return encryptor;
     }
 
     public synchronized IFieldValidationHandler getFieldValidationHandler() {

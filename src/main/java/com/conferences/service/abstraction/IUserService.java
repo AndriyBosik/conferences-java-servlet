@@ -7,11 +7,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    User getByLoginAndPasswordWithRole(String login, String password);
-
     List<User> getUsersByRoleTitleWithRole(String roleTitle);
-
-    List<FormError> signUpUser(User user);
 
     boolean updateUserImagePath(User user);
 

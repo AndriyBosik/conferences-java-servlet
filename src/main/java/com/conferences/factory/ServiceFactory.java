@@ -7,6 +7,7 @@ public class ServiceFactory {
 
     private static ServiceFactory instance;
 
+    private IAuthenticationService authenticationService;
     private IMeetingService meetingService;
     private IModeratorProposalService moderatorProposalService;
     private IProposalDataService proposalDataService;
@@ -25,6 +26,13 @@ public class ServiceFactory {
             instance = new ServiceFactory();
         }
         return instance;
+    }
+
+    public synchronized IAuthenticationService getAuthenticationService() {
+        if (authenticationService == null) {
+            authenticationService = new AuthenticationService();
+        }
+        return authenticationService;
     }
 
     public synchronized IMeetingService getMeetingService() {

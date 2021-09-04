@@ -13,15 +13,14 @@ import java.util.List;
 public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao {
 
     @Override
-    public User findByLoginAndPasswordWithRole(String login, String password) {
-        String sql = "SELECT " + dbTable.getName() + ".*," +
+    public User findByLoginWithRole(String login, String password) {
+        String sql = "SELECT users.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
-                "FROM " + dbTable.getName() + " LEFT JOIN roles r ON r.id=" + dbTable.getName() + ".role_id WHERE " + dbTable.getName() + ".login=? AND " + dbTable.getName() + ".password=?";
+                "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE users.login=?";
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, login);
-            statement.setString(2, password);
 
             ResultSet result = statement.executeQuery();
 
