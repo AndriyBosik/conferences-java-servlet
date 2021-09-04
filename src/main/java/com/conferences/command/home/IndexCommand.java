@@ -12,17 +12,22 @@ import com.conferences.mapper.IMapper;
 import com.conferences.model.LoginData;
 import com.conferences.service.abstraction.IUserService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class IndexCommand extends FrontCommand {
 
-    private final IUserService userService;
-    private final IMapper<HttpServletRequest, LoginData> mapper;
+    private IUserService userService;
+    private IMapper<HttpServletRequest, LoginData> mapper;
 
-    public IndexCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         this.userService = ServiceFactory.getInstance().getUserService();
         this.mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();
     }

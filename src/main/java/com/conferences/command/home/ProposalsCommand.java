@@ -7,14 +7,20 @@ import com.conferences.entity.User;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IProposalDataService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class ProposalsCommand extends FrontCommand {
 
-    private final IProposalDataService proposalDataService;
+    private IProposalDataService proposalDataService;
 
-    public ProposalsCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         proposalDataService = ServiceFactory.getInstance().getProposalDataService();
     }
 

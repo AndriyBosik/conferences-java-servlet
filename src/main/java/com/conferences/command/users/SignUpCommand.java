@@ -12,8 +12,10 @@ import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IRoleService;
 import com.conferences.service.abstraction.IUserService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,11 +24,13 @@ import java.util.Map;
 
 public class SignUpCommand extends FrontCommand {
 
-    private final IUserService userService;
-    private final IRoleService roleService;
-    private final IMapper<HttpServletRequest, UserData> mapper;
+    private IUserService userService;
+    private IRoleService roleService;
+    private IMapper<HttpServletRequest, UserData> mapper;
 
-    public SignUpCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         userService = ServiceFactory.getInstance().getUserService();
         roleService = ServiceFactory.getInstance().getRoleService();
         mapper = MapperFactory.getInstance().getRequestToUserDataMapper();

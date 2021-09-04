@@ -16,18 +16,22 @@ import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.utils.StringUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 public class UpdateProfileCommand extends FrontCommand {
 
-    private final IUserService userService;
-    private final IUserDataSaver userDataSaver;
-    private final IMapper<HttpServletRequest, PasswordData> mapper;
+    private IUserService userService;
+    private IUserDataSaver userDataSaver;
+    private IMapper<HttpServletRequest, PasswordData> mapper;
 
-    public UpdateProfileCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         userService = ServiceFactory.getInstance().getUserService();
         userDataSaver = HandlerFactory.getInstance().getUserDataSaver();
         mapper = MapperFactory.getInstance().getRequestToPasswordDataMapper();

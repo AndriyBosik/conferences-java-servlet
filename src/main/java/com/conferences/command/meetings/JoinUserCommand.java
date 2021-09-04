@@ -11,7 +11,10 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IMeetingService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,9 +22,11 @@ import java.util.List;
 
 public class JoinUserCommand extends FrontCommand {
 
-    private final IMeetingService meetingService;
+    private IMeetingService meetingService;
 
-    public JoinUserCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }
 

@@ -11,8 +11,10 @@ import com.conferences.model.MeetingSorter;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
@@ -20,22 +22,20 @@ public class AllCommand extends FrontCommand {
 
     private static final int ITEMS_COUNT = 12;
 
-    private final IMeetingService meetingService;
-    private final IMapper<HttpServletRequest, MeetingSorter> meetingSorterMapper;
+    private IMeetingService meetingService;
+    private IMapper<HttpServletRequest, MeetingSorter> meetingSorterMapper;
+    private com.conferences.model.Page page;
 
-    private final com.conferences.model.Page page;
-
-    public AllCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         this.meetingService = ServiceFactory.getInstance().getMeetingService();
         this.meetingSorterMapper = MapperFactory.getInstance().getRequestToMeetingSorterMapper();
-
-        this.page = new com.conferences.model.Page(ITEMS_COUNT, 1);
-    }
-
-    public AllCommand(List<String> urlParams) {
-        this();
-        int pageNumber = Integer.parseInt(urlParams.get(0));
-        page.setPageNumber(pageNumber);
+        int pageNumber = 1;
+        if (!urlParams.isEmpty()) {
+            pageNumber = Integer.parseInt(urlParams.get(0));
+        }
+        this.page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);
     }
 
     @Override

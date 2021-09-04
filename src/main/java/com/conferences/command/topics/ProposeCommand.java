@@ -11,20 +11,23 @@ import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ITopicProposalService;
 import com.conferences.service.implementation.TopicProposalService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 public class ProposeCommand extends FrontCommand {
 
-    private final ITopicProposalService topicProposalService;
-    private final IMapper<HttpServletRequest, TopicProposal> mapper;
+    private ITopicProposalService topicProposalService;
+    private IMapper<HttpServletRequest, TopicProposal> mapper;
 
-    public ProposeCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         topicProposalService = ServiceFactory.getInstance().getTopicProposalService();
         mapper = MapperFactory.getInstance().getRequestToTopicProposalMapper();
-
     }
 
     @Override

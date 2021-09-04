@@ -5,16 +5,20 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.implementation.SpeakerProposalService;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class GetTopicProposalsCommand extends JsonApiCommand {
 
-    private final int topicId;
-    private final ISpeakerProposalService speakerProposalService;
+    private int topicId;
+    private ISpeakerProposalService speakerProposalService;
 
-    public GetTopicProposalsCommand(List<String> urlParams) {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         speakerProposalService = ServiceFactory.getInstance().getSpeakerProposalService();
-
         topicId = Integer.parseInt(urlParams.get(0));
     }
 

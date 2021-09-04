@@ -14,8 +14,10 @@ import com.conferences.service.implementation.MeetingService;
 import com.conferences.validator.IValidator;
 import com.conferences.validator.MeetingEditableDataValidator;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -23,10 +25,12 @@ import java.util.Map;
 
 public class EditCommand extends FrontCommand {
 
-    private final IMeetingService meetingService;
-    private final IMapper<HttpServletRequest, Meeting> meetingMapper;;
+    private IMeetingService meetingService;
+    private IMapper<HttpServletRequest, Meeting> meetingMapper;
 
-    public EditCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
         meetingMapper = MapperFactory.getInstance().getRequestToEditableMeetingDataMapper();
     }

@@ -5,14 +5,20 @@ import com.conferences.config.FormKeys;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IProposedTopicDataService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class SpeakerProposedCommand extends FrontCommand {
 
-    private final IProposedTopicDataService proposedTopicDataService;
+    private IProposedTopicDataService proposedTopicDataService;
 
-    public SpeakerProposedCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         proposedTopicDataService = ServiceFactory.getInstance().getProposedTopicDataService();
     }
 

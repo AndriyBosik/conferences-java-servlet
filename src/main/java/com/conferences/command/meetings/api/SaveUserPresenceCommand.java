@@ -9,11 +9,18 @@ import com.conferences.model.FormError;
 import com.conferences.model.SimpleResponse;
 import com.conferences.service.abstraction.IMeetingService;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 public class SaveUserPresenceCommand extends JsonApiCommand {
 
-    private final IMeetingService meetingService;
+    private IMeetingService meetingService;
 
-    public SaveUserPresenceCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }
 

@@ -11,19 +11,21 @@ import com.conferences.mapper.IMapper;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IReportTopicService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CreateCommand extends FrontCommand {
 
-    private final IReportTopicService reportTopicService;
-    private final IMapper<HttpServletRequest, ReportTopic> mapper;
+    private IReportTopicService reportTopicService;
+    private IMapper<HttpServletRequest, ReportTopic> mapper;
 
-    public CreateCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         reportTopicService = ServiceFactory.getInstance().getReportTopicService();
         mapper = MapperFactory.getInstance().getRequestToReportTopicWithSpeakerMapper();
     }

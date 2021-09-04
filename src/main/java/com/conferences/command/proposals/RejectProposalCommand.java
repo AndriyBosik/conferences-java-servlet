@@ -11,16 +11,21 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IModeratorProposalService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RejectProposalCommand extends FrontCommand {
 
-    private final IModeratorProposalService moderatorProposalService;
+    private IModeratorProposalService moderatorProposalService;
 
-    public RejectProposalCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 

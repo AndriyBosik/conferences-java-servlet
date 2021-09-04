@@ -41,18 +41,14 @@ public class FrontController extends HttpServlet {
 
         FrontCommand command = getCommand(commandInfo);
 
-        command.init(getServletContext(), request, response);
+        command.init(getServletContext(), request, response, commandInfo.getUrlParams());
         command.process();
     }
 
     private FrontCommand getCommand(CommandInfo commandInfo) {
         try {
             Class<?> type = Class.forName(String.format("com.conferences.command.%s.%sCommand", commandInfo.getPackageName(), mapToClassName(commandInfo.getCommandName())));
-            if (commandInfo.getUrlParams().isEmpty()) {
-                return type.asSubclass(FrontCommand.class).newInstance();
-            } else {
-                return type.asSubclass(FrontCommand.class).getConstructor(List.class).newInstance(commandInfo.getUrlParams());
-            }
+            return type.asSubclass(FrontCommand.class).newInstance();
         } catch (Exception exception) {
             exception.printStackTrace();
             return new UnknownCommand();

@@ -19,8 +19,10 @@ import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
 import com.conferences.utils.FileUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,11 +33,13 @@ public class ChangeAvatarCommand extends FrontCommand {
 
     private static final String AVATARS_IMAGES = "/resources/images/avatars/";
 
-    private final IUserService userService;
-    private final IFileHandler fileHandler;
-    private final IMapper<HttpServletRequest, FileFormData<Map<String, String>>> mapper;
+    private IUserService userService;
+    private IFileHandler fileHandler;
+    private IMapper<HttpServletRequest, FileFormData<Map<String, String>>> mapper;
 
-    public ChangeAvatarCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         userService = ServiceFactory.getInstance().getUserService();
         fileHandler = HandlerFactory.getInstance().getFileHandler();
         mapper = MapperFactory.getInstance().getSimpleFileFormMapper();

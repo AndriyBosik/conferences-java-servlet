@@ -19,8 +19,10 @@ import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.utils.FileUtil;
 import com.conferences.validator.IValidator;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -34,11 +36,13 @@ public class CreateCommand extends FrontCommand {
     private static final String MEETINGS_IMAGES = "/resources/images/meetings/";
     private static final String DEFAULT_IMAGE_PATH = "__default__.jpg";
 
-    private final IFileHandler fileHandler;
-    private final IMeetingService meetingService;
-    private final IMapper<HttpServletRequest, FileFormData<Meeting>> fileFormMeetingMapper;
+    private IFileHandler fileHandler;
+    private IMeetingService meetingService;
+    private IMapper<HttpServletRequest, FileFormData<Meeting>> fileFormMeetingMapper;
 
-    public CreateCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         this.fileHandler = HandlerFactory.getInstance().getFileHandler();
         this.meetingService = ServiceFactory.getInstance().getMeetingService();
         this.fileFormMeetingMapper = MapperFactory.getInstance().getRequestToFileFormMeetingMapper();

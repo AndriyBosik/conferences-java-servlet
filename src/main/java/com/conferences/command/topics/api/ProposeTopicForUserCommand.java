@@ -8,18 +8,19 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.model.SimpleResponse;
 import com.conferences.service.abstraction.IModeratorProposalService;
-import com.conferences.service.implementation.ModeratorProposalService;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class ProposeTopicForUserCommand extends JsonApiCommand {
 
-    private final IModeratorProposalService moderatorProposalService;
+    private IModeratorProposalService moderatorProposalService;
 
-    public ProposeTopicForUserCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 
@@ -27,15 +28,11 @@ public class ProposeTopicForUserCommand extends JsonApiCommand {
     protected Object getJsonObject() {
         ModeratorProposal proposal = jsonHandler.parseJsonRequestBodyToObject(request, ModeratorProposal.class);
 
-        response.setCharacterEncoding("UTF-8");
-        FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
-        return new SimpleResponse("error", errorMapper.map(error));
-
-//        if (moderatorProposalService.saveModeratorProposal(proposal)) {
-//            return new SimpleResponse("success", "");
-//        } else {
-//            FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
-//            return new SimpleResponse("error", errorMapper.map(error));
-//        }
+        if (moderatorProposalService.saveModeratorProposal(proposal)) {
+            return new SimpleResponse("success", "");
+        } else {
+            FormError error = new FormError((String) request.getAttribute(Defaults.CURRENT_LANG.toString()), ErrorKey.SAVING_PROPOSAL_ERROR);
+            return new SimpleResponse("error", errorMapper.map(error));
+        }
     }
 }

@@ -12,18 +12,23 @@ import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.abstraction.IUserService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 public class ShowCommand extends FrontCommand {
 
-    private final int id;
-    private final IMeetingService meetingService;
-    private final IUserService userService;
-    private final ISpeakerProposalService speakerProposalService;
+    private int id;
+    private IMeetingService meetingService;
+    private IUserService userService;
+    private ISpeakerProposalService speakerProposalService;
 
-    public ShowCommand(List<String> urlParams) {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         id = Integer.parseInt(urlParams.get(0));
         meetingService = ServiceFactory.getInstance().getMeetingService();
         userService = ServiceFactory.getInstance().getUserService();

@@ -7,16 +7,21 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ISpeakerService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProposeSpeakerCommand extends FrontCommand {
 
-    private final ISpeakerService speakerService;
+    private ISpeakerService speakerService;
 
-    public ProposeSpeakerCommand() {
+    @Override
+    public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) {
+        super.init(context, request, response, urlParams);
         speakerService = ServiceFactory.getInstance().getSpeakerService();
     }
 
