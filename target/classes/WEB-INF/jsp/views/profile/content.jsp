@@ -24,6 +24,9 @@
             </div>
         </div>
         <div class="col s12">
+            <tf:errors errors="${avatarErrors}" />
+        </div>
+        <div class="col s12">
             <div class="s-hflex">
                 <div class="equal-flex">
                     <h4 class="grey-text text-darken-2 mb0"><taglib:message value="header.profile" /></h4>
@@ -50,6 +53,9 @@
                 </div>
             </div>
             <hr />
+        </div>
+        <div class="col s12">
+            <tf:errors errors="${profileErrors}" />
         </div>
         <form action="<taglib:linkTo href="/users/update-profile" />" method="post" class="col s12">
             <div class="full-width input-field">

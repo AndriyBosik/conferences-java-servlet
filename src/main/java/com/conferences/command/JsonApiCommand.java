@@ -1,8 +1,10 @@
 package com.conferences.command;
 
 import com.conferences.factory.HandlerFactory;
+import com.conferences.factory.MapperFactory;
 import com.conferences.handler.abstraction.IJsonHandler;
-import com.conferences.handler.implementation.JsonHandler;
+import com.conferences.mapper.IMapper;
+import com.conferences.model.FormError;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletContext;
@@ -16,12 +18,14 @@ public abstract class JsonApiCommand extends FrontCommand {
 
     protected Gson gson;
     protected IJsonHandler jsonHandler;
+    protected IMapper<FormError, String> errorMapper;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
         gson = new Gson();
         jsonHandler = HandlerFactory.getInstance().getJsonHandler();
+        errorMapper = MapperFactory.getInstance().getFormErrorToStringMapper();
         response.setContentType("application/json");
     }
 

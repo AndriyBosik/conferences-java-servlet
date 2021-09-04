@@ -64,8 +64,12 @@
             </tf:forRoles>
 
             <div class="col s12">
-                <tf:errors errors="${updatedTopicErrors}"></tf:errors>
-                <tf:errors errors="${createdTopicErrors}"></tf:errors>
+                <tf:errors errors="${proposalErrors}" />
+                <tf:errors errors="${joiningErrors}" />
+                <tf:errors errors="${updatedTopicErrors}" />
+                <tf:errors errors="${createdTopicErrors}" />
+                <tf:errors errors="${speakerProposalErrors}" />
+                <tf:errors errors="${topicProposalErrors}" />
             </div>
 
             <div class="z-depth-2 stretch-background" style="height: 300px; background-image: url('/resources/images/meetings/<c:out value="${meeting.imagePath}" />')"></div>

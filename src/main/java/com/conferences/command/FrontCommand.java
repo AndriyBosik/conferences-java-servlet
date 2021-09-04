@@ -4,13 +4,11 @@ import com.conferences.config.Defaults;
 import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.handler.abstraction.ILinkHandler;
-import com.conferences.handler.implementation.LinkHandler;
 import com.conferences.mapper.IMapper;
 import com.conferences.model.FormError;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,13 +23,13 @@ public abstract class FrontCommand {
     protected HttpServletResponse response;
     protected String currentLang;
     protected ILinkHandler linkHandler;
-    protected IMapper<FormError, String> mapper;
+    protected IMapper<FormError, String> formErrorMapper;
 
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         this.context = context;
         this.request = request;
         this.response = response;
-        this.mapper = MapperFactory.getInstance().getFormErrorToStringMapper();
+        this.formErrorMapper = MapperFactory.getInstance().getFormErrorToStringMapper();
         this.linkHandler = HandlerFactory.getInstance().getLinkHandler();
         this.currentLang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
     }
@@ -47,7 +45,7 @@ public abstract class FrontCommand {
         List<String> errors = formErrors.stream()
                 .map(error -> {
                     error.setLang(lang);
-                    return mapper.map(error);})
+                    return formErrorMapper.map(error);})
                 .collect(Collectors.toList());
         request.getSession().setAttribute(key, errors);
     }

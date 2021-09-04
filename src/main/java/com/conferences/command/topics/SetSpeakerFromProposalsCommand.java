@@ -2,13 +2,18 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
+import com.conferences.config.ErrorKey;
+import com.conferences.config.FormKeys;
 import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.entity.User;
 import com.conferences.factory.ServiceFactory;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IReportTopicService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SetSpeakerFromProposalsCommand extends FrontCommand {
 
@@ -31,11 +36,12 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
         ReportTopicSpeaker reportTopicSpeaker = new ReportTopicSpeaker();
         reportTopicSpeaker.setReportTopicId(topicId);
         reportTopicSpeaker.setSpeakerId(speakerId);
-        if (reportTopicService.setSpeakerForTopic(reportTopicSpeaker)) {
-            redirectBack();
-        } else {
-            // TODO(another speaker already accept moderator proposal)
+        if (!reportTopicService.setSpeakerForTopic(reportTopicSpeaker)) {
+            List<FormError> errors = new ArrayList<>();
+            errors.add(new FormError(ErrorKey.UPDATING_ERROR));
+            saveErrorsToSession(FormKeys.PROPOSAL_ERRORS, errors);
         }
+        redirectBack();
     }
 
     private boolean validSpeaker(int speakerId) {

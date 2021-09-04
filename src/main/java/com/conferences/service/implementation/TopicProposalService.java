@@ -1,5 +1,6 @@
 package com.conferences.service.implementation;
 
+import com.conferences.config.ErrorKey;
 import com.conferences.dao.abstraction.ITopicProposalDao;
 import com.conferences.entity.ReportTopic;
 import com.conferences.entity.TopicProposal;
@@ -7,6 +8,7 @@ import com.conferences.factory.DaoFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ValidatorFactory;
 import com.conferences.mapper.IMapper;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ITopicProposalService;
 import com.conferences.validator.IValidator;
 
@@ -25,11 +27,12 @@ public class TopicProposalService implements ITopicProposalService {
     }
 
     @Override
-    public boolean addTopicProposal(TopicProposal topicProposal) {
-        if (validator.validate(mapper.map(topicProposal)) != null) {
-            return false;
+    public List<FormError> addTopicProposal(TopicProposal topicProposal) {
+        List<FormError> errors = validator.validate(mapper.map(topicProposal));
+        if (errors.isEmpty() && !topicProposalDao.create(topicProposal)) {
+            errors.add(new FormError(ErrorKey.CREATION_ERROR));
         }
-        return topicProposalDao.create(topicProposal);
+        return errors;
     }
 
     @Override
@@ -40,11 +43,6 @@ public class TopicProposalService implements ITopicProposalService {
     @Override
     public boolean acceptTopicProposal(int topicProposalId) {
         return topicProposalDao.createReportTopicWithProposalDeletion(topicProposalId);
-    }
-
-    @Override
-    public List<TopicProposal> getAllByMeetingWithSpeakers(int meetingId) {
-        return topicProposalDao.findAllByMeetingIdWithSpeakers(meetingId);
     }
 
     @Override

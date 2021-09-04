@@ -1,9 +1,9 @@
 package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
+import com.conferences.config.FormKeys;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.service.abstraction.IProposedTopicDataService;
-import com.conferences.service.implementation.ProposedTopicDataService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -19,6 +19,7 @@ public class SpeakerProposedCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         request.setAttribute("proposedTopics", proposedTopicDataService.getProposedTopicsOrderByMeeting());
+        extractErrorsFromSession(FormKeys.ACCEPT_PROPOSAL_ERRORS);
 
         forwardPartial("proposed_topics");
     }

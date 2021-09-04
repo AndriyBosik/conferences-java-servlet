@@ -47,10 +47,18 @@ public class ShowCommand extends FrontCommand {
         } else if (Roles.MODERATOR.toString().equals(user.getRole().getTitle())) {
             MeetingUsersStats meetingUsersStats = meetingService.getUsersWithPresenceByMeeting(id);
             request.setAttribute("stats", meetingUsersStats);
-            extractErrorsFromSession(FormKeys.UPDATED_TOPIC_ERRORS);
-            extractErrorsFromSession(FormKeys.CREATED_TOPIC_ERRORS);
+            extractErrors();
         }
 
         forwardPartial("meeting", meeting.getTitle());
+    }
+
+    private void extractErrors() {
+        extractErrorsFromSession(FormKeys.PROPOSAL_ERRORS);
+        extractErrorsFromSession(FormKeys.JOINING_ERRORS);
+        extractErrorsFromSession(FormKeys.UPDATED_TOPIC_ERRORS);
+        extractErrorsFromSession(FormKeys.CREATED_TOPIC_ERRORS);
+        extractErrorsFromSession(FormKeys.SPEAKER_PROPOSAL_ERRORS);
+        extractErrorsFromSession(FormKeys.TOPIC_PROPOSAL_ERRORS);
     }
 }

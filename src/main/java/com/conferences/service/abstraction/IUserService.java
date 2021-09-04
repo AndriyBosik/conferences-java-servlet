@@ -15,6 +15,6 @@ public interface IUserService {
 
     boolean updateUserImagePath(User user);
 
-    boolean updateUser(User user);
+    List<FormError> updateUser(User user);
 
 }

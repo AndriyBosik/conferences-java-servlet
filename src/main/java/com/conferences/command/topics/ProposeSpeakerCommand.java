@@ -1,15 +1,16 @@
 package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
-import com.conferences.config.Defaults;
-import com.conferences.config.HttpMethod;
-import com.conferences.config.Page;
+import com.conferences.config.*;
 import com.conferences.entity.User;
 import com.conferences.factory.ServiceFactory;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ISpeakerService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProposeSpeakerCommand extends FrontCommand {
 
@@ -29,10 +30,11 @@ public class ProposeSpeakerCommand extends FrontCommand {
         int reportTopicId = Integer.parseInt(request.getParameter("report_topic_id"));
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));
 
-        if (speakerService.proposeSpeaker(reportTopicId, userId)) {
-            redirect(Page.MEETING.getUrl() + meetingId);
-        } else {
-            // TODO
+        if (!speakerService.proposeSpeaker(reportTopicId, userId)) {
+            List<FormError> errors = new ArrayList<>();
+            errors.add(new FormError(ErrorKey.PROPOSE_SPEAKER_ERROR));
+            saveErrorsToSession(FormKeys.SPEAKER_PROPOSAL_ERRORS, errors);
         }
+        redirect(Page.MEETING.getUrl() + meetingId);
     }
 }

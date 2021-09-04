@@ -61,11 +61,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean updateUser(User user) {
-        if (userRequiredForUpdateDataValidator.validate(user) != null) {
-            return false;
+    public List<FormError> updateUser(User user) {
+        List<FormError> errors = userRequiredForUpdateDataValidator.validate(user);
+        if (errors.isEmpty() && !userDao.update(user)) {
+            errors.add(new FormError(ErrorKey.UPDATING_ERROR));
         }
-        return userDao.update(user);
+        return errors;
     }
 
     private boolean hasAllowedRole(User user) {

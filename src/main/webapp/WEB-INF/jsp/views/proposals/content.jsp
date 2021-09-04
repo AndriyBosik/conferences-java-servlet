@@ -10,6 +10,10 @@
             <hr />
         </div>
         <div class="col s12">
+            <tf:errors errors="${rejectionErrors}" />
+            <tf:errors errors="${proposalErrors}" />
+        </div>
+        <div class="col s12">
             <ul class="tabs m-blue m-darken-3">
                 <li class="tab col s6">
                     <a href="#my" class="blue-text text-darken-3">My</a>

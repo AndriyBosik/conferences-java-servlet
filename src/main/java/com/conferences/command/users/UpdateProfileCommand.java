@@ -3,12 +3,14 @@ package com.conferences.command.users;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
 import com.conferences.config.ErrorKey;
+import com.conferences.config.FormKeys;
 import com.conferences.entity.User;
 import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.handler.abstraction.IUserDataSaver;
 import com.conferences.mapper.IMapper;
+import com.conferences.model.FormError;
 import com.conferences.model.PasswordData;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IUserService;
@@ -17,6 +19,7 @@ import com.conferences.utils.StringUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 public class UpdateProfileCommand extends FrontCommand {
 
@@ -45,12 +48,12 @@ public class UpdateProfileCommand extends FrontCommand {
             user.setPassword(passwordData.getNewPassword());
         }
         updateUserWithRequestValues(user);
-        if (userService.updateUser(user)) {
-            redirectBack();
-        } else {
+        List<FormError> errors = userService.updateUser(user);
+        if (!errors.isEmpty()) {
             userDataSaver.restoreUserData(user, data);
-            // TODO(unsuccessful update)
+            saveErrorsToSession(FormKeys.PROFILE_ERRORS, errors);
         }
+        redirectBack();
     }
 
     private ErrorKey validatePasswords(String userPassword, PasswordData passwordData) {

@@ -2,6 +2,7 @@ package com.conferences.command.home;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
+import com.conferences.config.FormKeys;
 import com.conferences.config.Roles;
 import com.conferences.entity.User;
 import com.conferences.factory.ServiceFactory;
@@ -29,6 +30,8 @@ public class ProfileCommand extends FrontCommand {
             addModeratorDataToRequest();
         }
 
+        extractErrorsFromSession(FormKeys.AVATAR_ERRORS);
+        extractErrorsFromSession(FormKeys.PROFILE_ERRORS);
         forwardPartial("profile");
     }
 

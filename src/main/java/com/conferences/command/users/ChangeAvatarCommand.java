@@ -2,6 +2,8 @@ package com.conferences.command.users;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.Defaults;
+import com.conferences.config.ErrorKey;
+import com.conferences.config.FormKeys;
 import com.conferences.entity.User;
 import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
@@ -12,6 +14,7 @@ import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToFileFormMeetingMapper;
 import com.conferences.mapper.SimpleFileFormMapper;
 import com.conferences.model.FileFormData;
+import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.service.implementation.UserService;
 import com.conferences.utils.FileUtil;
@@ -20,6 +23,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ChangeAvatarCommand extends FrontCommand {
@@ -42,17 +47,17 @@ public class ChangeAvatarCommand extends FrontCommand {
         FileFormData<Map<String, String>> data = mapper.map(request);
         String fileExtension = "." + FileUtil.getFileExtension(data.getItem().get("avatar"));
         String avatarPath = generateUserAvatarName(user) + fileExtension;
+        List<FormError> errors = new ArrayList<>();
         if (fileHandler.saveFile(data.getFileItems(), context.getRealPath(AVATARS_IMAGES), avatarPath)) {
             user.setImagePath(avatarPath);
-            if (userService.updateUserImagePath(user)) {
-                redirectBack();
-            } else {
-                // TODO(Something wrong with request)
+            if (!userService.updateUserImagePath(user)) {
+                errors.add(new FormError(ErrorKey.IMAGE_LOADING_FAILED));
             }
         } else {
-            System.out.println("File not saved");
-            // TODO(file not saved)
+            errors.add(new FormError(ErrorKey.IMAGE_LOADING_FAILED));
         }
+        saveErrorsToSession(FormKeys.AVATAR_ERRORS, errors);
+        redirectBack();
     }
 
     private String generateUserAvatarName(User user) {

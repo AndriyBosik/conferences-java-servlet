@@ -13,6 +13,10 @@
             </div>
             <hr />
         </div>
+        <div class="col s12">
+            <tf:errors errors="${rejectionErrors}" />
+            <tf:errors errors="${proposalAcceptedErrors}" />
+        </div>
         <div class="col s12 py10">
             <ul class="collection speaker-proposals-collection">
                 <c:set var="lastMeetingId" value="0" />
