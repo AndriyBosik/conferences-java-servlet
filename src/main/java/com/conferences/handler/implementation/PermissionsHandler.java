@@ -22,7 +22,9 @@ public class PermissionsHandler implements IPermissionsHandler {
 
     @Override
     public int checkPermission(String url, HttpMethod method, String role) {
-        return checkForRole(role, method, url) == ERROR_OK || checkForRole(ALL_ROLES_KEY, method, url) == ERROR_OK ? ERROR_OK : ERROR_FORBIDDEN;
+        System.out.println(checkForRole(role, method, url));
+        System.out.println(checkForRole(ALL_ROLES_KEY, method, url));
+        return (checkForRole(role, method, url) == ERROR_OK || checkForRole(ALL_ROLES_KEY, method, url) == ERROR_OK) ? ERROR_OK : ERROR_FORBIDDEN;
     }
 
     private int checkForRole(String role, HttpMethod method, String url) {
