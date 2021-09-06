@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface ITopicProposalDao extends ICrudDao<Integer, TopicProposal> {
 
-    List<TopicProposal> findAllByMeetingIdWithSpeakers(int meetingId);
-
     boolean createReportTopicWithProposalDeletion(int topicProposalId);
 }

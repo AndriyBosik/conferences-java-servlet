@@ -4,6 +4,6 @@ import com.conferences.entity.ReportTopicSpeaker;
 
 public interface IReportTopicSpeakerDao extends ICrudDao<Integer, ReportTopicSpeaker> {
 
-    boolean saveWithProposalsDeletionTable(ReportTopicSpeaker reportTopicSpeaker);
+    boolean saveWithProposalsDeletion(ReportTopicSpeaker reportTopicSpeaker);
 
 }

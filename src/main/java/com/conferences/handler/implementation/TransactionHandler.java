@@ -1,11 +1,15 @@
 package com.conferences.handler.implementation;
 
 import com.conferences.handler.abstraction.ITransactionHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class TransactionHandler implements ITransactionHandler {
+
+    private static final Logger LOGGER = LogManager.getLogger(TransactionHandler.class);
 
     @Override
     public void closeResource(AutoCloseable closeable) {
@@ -24,7 +28,7 @@ public class TransactionHandler implements ITransactionHandler {
             try {
                 connection.rollback();
             } catch (SQLException exception) {
-                exception.printStackTrace();
+                LOGGER.error("Unable to rollback transaction", exception);
             }
         }
     }
@@ -35,7 +39,7 @@ public class TransactionHandler implements ITransactionHandler {
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException exception) {
-                exception.printStackTrace();
+                LOGGER.error("Unable to set autocommit to {}", value, exception);
             }
         }
     }

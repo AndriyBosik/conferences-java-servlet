@@ -6,10 +6,8 @@ import com.conferences.entity.TopicProposal;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToTopicProposalMapper;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ITopicProposalService;
-import com.conferences.service.implementation.TopicProposalService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

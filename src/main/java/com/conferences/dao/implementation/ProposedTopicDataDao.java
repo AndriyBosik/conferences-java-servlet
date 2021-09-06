@@ -4,6 +4,8 @@ import com.conferences.config.DbManager;
 import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IProposedTopicDataDao;
 import com.conferences.entity.custom.ProposedTopicData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProposedTopicDataDao extends AbstractDao<Integer, ProposedTopicData> implements IProposedTopicDataDao {
+
+    private static final Logger LOGGER = LogManager.getLogger(ProposedTopicDataDao.class);
 
     @Override
     public List<ProposedTopicData> findAllProposedTopicsOrderByMeetingId() {
@@ -35,13 +39,15 @@ public class ProposedTopicDataDao extends AbstractDao<Integer, ProposedTopicData
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
+            LOGGER.info("Fetching all proposed topics. Sql: {}", sql);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
+                LOGGER.info("Parsing ProposedTopicData");
                 proposedTopics.add(entityParser.parseToEntity(ProposedTopicData.class, result));
             }
         } catch (SQLException exception) {
+            LOGGER.error("Unable to fetch", exception);
             proposedTopics.clear();
-            exception.printStackTrace();
         }
         return proposedTopics;
     }

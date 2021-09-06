@@ -1,7 +1,5 @@
 package com.conferences.utils;
 
-import java.util.stream.Collectors;
-
 public class FileUtil {
 
     private FileUtil() {}

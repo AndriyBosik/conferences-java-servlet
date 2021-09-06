@@ -5,6 +5,8 @@ import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.IUserDao;
 import com.conferences.entity.Role;
 import com.conferences.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,11 +14,14 @@ import java.util.List;
 
 public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao {
 
+    private static final Logger LOGGER = LogManager.getLogger(UserDao.class);
+
     @Override
     public User findByLoginWithRole(String login, String password) {
         String sql = "SELECT users.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
                 "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE users.login=?";
+        LOGGER.info("Selecting user with role by login. Sql: {}", sql);
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -25,12 +30,13 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
+                LOGGER.info("Parsing user");
                 User user = entityParser.parseToEntity(User.class, result);
                 user.setRole(entityParser.parseToEntity(Role.class, result, "role_"));
                 return user;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            LOGGER.error("Unable to select");
         }
         return null;
     }

@@ -4,19 +4,16 @@ import com.conferences.config.DbManager;
 import com.conferences.dao.abstraction.AbstractCrudDao;
 import com.conferences.dao.abstraction.ITopicProposalDao;
 import com.conferences.entity.TopicProposal;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TopicProposalDao extends AbstractCrudDao<Integer, TopicProposal> implements ITopicProposalDao {
 
-    @Override
-    public List<TopicProposal> findAllByMeetingIdWithSpeakers(int meetingId) {
-        return new ArrayList<>();
-    }
+    private static final Logger LOGGER = LogManager.getLogger(TopicProposalDao.class);
 
     @Override
     public boolean createReportTopicWithProposalDeletion(int topicProposalId) {
@@ -32,23 +29,30 @@ public class TopicProposalDao extends AbstractCrudDao<Integer, TopicProposal> im
         PreparedStatement deleteStatement = null;
         try {
             connection = DbManager.getInstance().getConnection();
+            transactionHandler.setAutoCommit(connection, false);
 
+            LOGGER.info("Transaction started");
+            LOGGER.info("Inserting ReportTopic. Sql: {}", insertSql);
             insertStatement = connection.prepareStatement(insertSql);
             insertStatement.setInt(1, topicProposalId);
             insertStatement.executeUpdate();
 
+            LOGGER.info("Deleting ReportTopic. Sql: {}", deleteSql);
             deleteStatement = connection.prepareStatement(deleteSql);
             deleteStatement.setInt(1, topicProposalId);
             deleteStatement.executeUpdate();
 
+            connection.commit();
+            LOGGER.info("Transaction committed");
             return true;
         } catch (SQLException exception) {
+            LOGGER.error("Unable to process transaction", exception);
+            LOGGER.info("Rolling back transaction");
             transactionHandler.rollbackTransaction(connection);
-
-            exception.printStackTrace();
         } finally {
             transactionHandler.setAutoCommit(connection, true);
 
+            LOGGER.info("Closing resources");
             transactionHandler.closeResource(deleteStatement);
             transactionHandler.closeResource(insertStatement);
             transactionHandler.closeResource(connection);

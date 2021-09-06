@@ -9,15 +9,13 @@ import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.handler.abstraction.IFileHandler;
-import com.conferences.handler.implementation.FileHandler;
 import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToFileFormMeetingMapper;
-import com.conferences.mapper.SimpleFileFormMapper;
 import com.conferences.model.FileFormData;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.service.implementation.UserService;
 import com.conferences.utils.FileUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -31,6 +29,7 @@ import java.util.Map;
 
 public class ChangeAvatarCommand extends FrontCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger(ChangeAvatarCommand.class);
     private static final String AVATARS_IMAGES = "/resources/images/avatars/";
 
     private IUserService userService;
@@ -52,12 +51,15 @@ public class ChangeAvatarCommand extends FrontCommand {
         String fileExtension = "." + FileUtil.getFileExtension(data.getItem().get("avatar"));
         String avatarPath = generateUserAvatarName(user) + fileExtension;
         List<FormError> errors = new ArrayList<>();
+        LOGGER.info("Saving user avatar");
         if (fileHandler.saveFile(data.getFileItems(), context.getRealPath(AVATARS_IMAGES), avatarPath)) {
+            LOGGER.info("Avatar saved");
             user.setImagePath(avatarPath);
             if (!userService.updateUserImagePath(user)) {
                 errors.add(new FormError(ErrorKey.IMAGE_LOADING_FAILED));
             }
         } else {
+            LOGGER.info("Avatar did not save");
             errors.add(new FormError(ErrorKey.IMAGE_LOADING_FAILED));
         }
         saveErrorsToSession(FormKeys.AVATAR_ERRORS, errors);

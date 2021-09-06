@@ -1,6 +1,6 @@
 package com.conferences.controller;
 
-import com.conferences.command.CommandInfo;
+import com.conferences.model.CommandInfo;
 import com.conferences.command.FrontCommand;
 import com.conferences.command.UnknownCommand;
 import org.apache.logging.log4j.LogManager;
@@ -48,8 +48,13 @@ public class FrontController extends HttpServlet {
 
         try {
             command.init(getServletContext(), request, response, commandInfo.getUrlParams());
+            LOGGER.info("Processing request");
             command.process();
+        } catch (NumberFormatException exception) {
+            LOGGER.error("Unable to process request", exception);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } catch (Exception exception) {
+            LOGGER.error("Unable to process request", exception);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }

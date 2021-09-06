@@ -17,5 +17,4 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
         entityProcessor = ReflectionFactory.getInstance().getEntityProcessor();
         transactionHandler = HandlerFactory.getInstance().getTransactionHandler();
     }
-
 }

@@ -2,6 +2,8 @@ package com.conferences.handler.implementation;
 
 import com.conferences.config.HttpMethod;
 import com.conferences.handler.abstraction.IPermissionsHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
@@ -10,6 +12,7 @@ import java.util.*;
 
 public class PermissionsHandler implements IPermissionsHandler {
 
+    private static final Logger LOGGER = LogManager.getLogger(PermissionsHandler.class);
     private static final String ALL_ROLES_KEY = "";
     private static final int ERROR_OK = 200;
     private static final int ERROR_FORBIDDEN = 403;
@@ -22,7 +25,9 @@ public class PermissionsHandler implements IPermissionsHandler {
 
     @Override
     public int checkPermission(String url, HttpMethod method, String role) {
-        return (checkForRole(role, method, url) == ERROR_OK || checkForRole(ALL_ROLES_KEY, method, url) == ERROR_OK) ? ERROR_OK : ERROR_FORBIDDEN;
+        int result = (checkForRole(role, method, url) == ERROR_OK || checkForRole(ALL_ROLES_KEY, method, url) == ERROR_OK) ? ERROR_OK : ERROR_FORBIDDEN;
+        LOGGER.info("Checking permission for {} role, {} method, {} url. Result: {}", role, method, url, result);
+        return result;
     }
 
     private int checkForRole(String role, HttpMethod method, String url) {

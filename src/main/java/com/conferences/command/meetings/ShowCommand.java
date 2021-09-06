@@ -11,6 +11,8 @@ import com.conferences.model.MeetingUsersStats;
 import com.conferences.service.abstraction.IMeetingService;
 import com.conferences.service.abstraction.ISpeakerProposalService;
 import com.conferences.service.abstraction.IUserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,6 +23,8 @@ import java.util.List;
 
 public class ShowCommand extends FrontCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger(ShowCommand.class);
+
     private int id;
     private IMeetingService meetingService;
     private IUserService userService;
@@ -30,8 +34,10 @@ public class ShowCommand extends FrontCommand {
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
         try {
+            LOGGER.info("Getting meeting id from url");
             id = Integer.parseInt(urlParams.get(0));
         } catch (NumberFormatException exception) {
+            LOGGER.error("Bad request. Unable to parse url parameter", exception);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }

@@ -75,7 +75,7 @@ public class CreateCommand extends FrontCommand {
 
             redirect(Page.MEETING.getUrl() + meeting.getId());
         } else {
-            forwardBadRequest();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 

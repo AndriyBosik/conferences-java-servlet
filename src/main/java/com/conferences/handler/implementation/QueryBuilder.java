@@ -1,12 +1,14 @@
 package com.conferences.handler.implementation;
 
 import com.conferences.handler.abstraction.IQueryBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class QueryBuilder implements IQueryBuilder {
 
+    private static final Logger LOGGER = LogManager.getLogger(QueryBuilder.class);
     private static final String AND_WHERE_SEPARATOR = " AND ";
 
     protected StringBuilder query;
@@ -102,6 +104,8 @@ public class QueryBuilder implements IQueryBuilder {
 
     @Override
     public String generateQuery() {
-        return query.toString();
+        String sql = query.toString();
+        LOGGER.info("Generated query: {}", sql);
+        return sql;
     }
 }

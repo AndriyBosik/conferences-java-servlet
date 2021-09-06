@@ -6,6 +6,8 @@ import com.conferences.factory.ReflectionFactory;
 import com.conferences.model.DbTable;
 import com.conferences.reflection.abstraction.IEntityParser;
 import com.conferences.reflection.abstraction.IEntityProcessor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -17,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class EntityProcessor implements IEntityProcessor {
 
+    private static final Logger LOGGER = LogManager.getLogger(EntityProcessor.class);
     private static final Map<Class<?>, DbTable> dbTables = new ConcurrentHashMap<>();
     private static final Map<Class<?>, List<EntityFieldData>> entityFieldsData = new ConcurrentHashMap<>();
 
@@ -103,6 +106,7 @@ public class EntityProcessor implements IEntityProcessor {
         values.deleteCharAt(values.length() - 1);
 
         String sql = "INSERT INTO " + dbTable.getName() + "(" + columns + ") VALUES (" +values + ")";
+        LOGGER.info("Preparing insert statement for {} table. Sql: {}", dbTable.getName(), sql);
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql, keys.toArray(new String[0]));
 
@@ -142,6 +146,7 @@ public class EntityProcessor implements IEntityProcessor {
         sqlBody.deleteCharAt(sqlBody.length() - 1);
 
         String sql = "UPDATE " + dbTable.getName() + " SET " + sqlBody + " WHERE " + dbTable.getKey() + "=?";
+        LOGGER.info("Preparing update statement for {} table. Sql: {}", dbTable.getName(), sql);
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -156,6 +161,7 @@ public class EntityProcessor implements IEntityProcessor {
         DbTable dbTable = getEntityFieldsList(entity.getClass());
         List<EntityFieldData> entityFields = getEntityFieldsByClass(entity.getClass());
         String sql = "DELETE * FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + "=?";
+        LOGGER.info("Preparing delete statement for {} table. Sql: {}", dbTable.getName(), sql);
         for (EntityFieldData entityField: entityFields) {
             if (entityField.column.key()) {
                 PreparedStatement statement = connection.prepareStatement(sql);

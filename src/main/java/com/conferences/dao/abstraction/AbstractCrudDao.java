@@ -62,13 +62,14 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
     @Override
     public boolean update(T model) {
         int numberOfUpdatedRows = 0;
+        LOGGER.info("Updating an entity");
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = entityProcessor.prepareUpdateStatement(connection, model)) {
 
             numberOfUpdatedRows = statement.executeUpdate();
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.error("Unable to update", exception);
         }
         return numberOfUpdatedRows > 0;
     }
@@ -76,13 +77,14 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
     @Override
     public boolean delete(K key) {
         String deleteSql = "DELETE FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + " = " + key;
+        LOGGER.info("Deleting an entity with sql: {}", deleteSql);
         int numberOfDeletedRows = 0;
         try (Connection connection = DbManager.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
 
             numberOfDeletedRows = statement.executeUpdate(deleteSql);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.error("Unable to delete", exception);
         }
         return numberOfDeletedRows > 0;
     }
@@ -91,6 +93,7 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
     public List<T> findAll() {
         List<T> collection = new ArrayList<>();
         String selectSql = "SELECT * FROM " + dbTable.getName() + " ORDER BY " + dbTable.getKey();
+        LOGGER.info("Executing SELECT query for {} table", dbTable.getName());
         try (Connection connection = DbManager.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -98,8 +101,8 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
             while (result.next()) {
                 collection.add(entityParser.parseToEntity(entityClass, result));
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.error("Unable to select", exception);
         }
         return collection;
     }
@@ -113,6 +116,7 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
     }
 
     protected int getRecordsCountBySql(String sql, String resultColumn) {
+        LOGGER.info("Getting records count from {} table with sql: {}", dbTable.getName(), sql);
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -121,7 +125,7 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
                 return result.getInt(resultColumn);
             }
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to fetch records count");
         }
         return 0;
     }

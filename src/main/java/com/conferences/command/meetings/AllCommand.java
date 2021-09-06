@@ -10,6 +10,8 @@ import com.conferences.mapper.IMapper;
 import com.conferences.model.MeetingSorter;
 import com.conferences.model.PageResponse;
 import com.conferences.service.abstraction.IMeetingService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,6 +22,7 @@ import java.util.*;
 
 public class AllCommand extends FrontCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger(AllCommand.class);
     private static final int ITEMS_COUNT = 12;
 
     private IMeetingService meetingService;
@@ -34,9 +37,12 @@ public class AllCommand extends FrontCommand {
         int pageNumber = 1;
         if (!urlParams.isEmpty()) {
             try {
+                LOGGER.info("Getting page number from url");
                 pageNumber = Integer.parseInt(urlParams.get(0));
             } catch (NumberFormatException exception) {
+                LOGGER.error("Unable to get page number", exception);
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                return;
             }
         }
         this.page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);

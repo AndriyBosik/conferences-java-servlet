@@ -7,12 +7,16 @@ import com.conferences.mapper.IMapper;
 import com.conferences.mapper.RequestToFileFormMeetingMapper;
 import com.conferences.model.FileFormData;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
 public class FileHandler implements IFileHandler {
+
+    private static final Logger LOGGER = LogManager.getLogger(FileHandler.class);
 
     private final IMapper<HttpServletRequest, FileFormData<Meeting>> mapper;
 
@@ -32,6 +36,7 @@ public class FileHandler implements IFileHandler {
     public boolean saveFile(List<FileItem> fileItems, String path, String filename) {
         for (FileItem fi : fileItems) {
             if (!fi.isFormField()) {
+                LOGGER.info("Saving file");
                 if (filename == null || filename.trim().isEmpty()) {
                     filename = extractFilename(fi.getName());
                 }
@@ -39,7 +44,7 @@ public class FileHandler implements IFileHandler {
                 try {
                     fi.write(file);
                 } catch (Exception exception) {
-                    exception.printStackTrace();
+                    LOGGER.error("Unable to save file", exception);
                 }
                 return true;
             }

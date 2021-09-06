@@ -4,6 +4,8 @@ import com.conferences.config.DbManager;
 import com.conferences.dao.abstraction.AbstractDao;
 import com.conferences.dao.abstraction.IProposalDataDao;
 import com.conferences.entity.custom.ProposalData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.util.List;
 
 public class ProposalDataDao extends AbstractDao<Integer, ProposalData> implements IProposalDataDao {
 
+    private static final Logger LOGGER = LogManager.getLogger(ProposalDataDao.class);
     private static final String MODERATOR_PROPOSALS_QUERY =
             "SELECT " +
                 "mp.id AS id," +
@@ -64,14 +67,16 @@ public class ProposalDataDao extends AbstractDao<Integer, ProposalData> implemen
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, speakerId);
+            LOGGER.info("Searching for proposals by speaker id. Sql: {}", sql);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
+                LOGGER.info("Parsing ProposalData");
                 proposals.add(entityParser.parseToEntity(ProposalData.class, result));
             }
 
         } catch (SQLException exception) {
+            LOGGER.error("Unable to find", exception);
             proposals.clear();
-            exception.printStackTrace();
         }
         return proposals;
     }

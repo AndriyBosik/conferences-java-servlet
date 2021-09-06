@@ -35,8 +35,7 @@ public class JoinUserCommand extends FrontCommand {
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));
         Meeting meeting = meetingService.getMeetingById(meetingId);
 
-        if (meeting.getDate().isBefore(LocalDateTime.now())) {
-            // TODO
+        if (meeting.isOutdated()) {
             redirect(Page.MEETING.getUrl() + meetingId);
             return;
         }

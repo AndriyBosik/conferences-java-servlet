@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class EntityParser implements IEntityParser {
 
@@ -21,13 +20,8 @@ public class EntityParser implements IEntityParser {
 
             for (Field field: fields) {
                 Column column = field.getAnnotation(Column.class);
-                if (column == null) {
-                    continue;
-                }
-
                 field.setAccessible(true);
-
-                if (!columnExists(result, columnPrefix + column.name())) {
+                if (column == null || !columnExists(result, columnPrefix + column.name())) {
                     continue;
                 }
 

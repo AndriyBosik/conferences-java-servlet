@@ -36,7 +36,7 @@ public class ReportTopicService implements IReportTopicService {
 
     @Override
     public boolean setSpeakerForTopic(ReportTopicSpeaker reportTopicSpeaker) {
-        return reportTopicSpeakerDao.saveWithProposalsDeletionTable(reportTopicSpeaker);
+        return reportTopicSpeakerDao.saveWithProposalsDeletion(reportTopicSpeaker);
     }
 
     @Override

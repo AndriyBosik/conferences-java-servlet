@@ -8,11 +8,14 @@ import com.conferences.factory.ValidatorFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IUserService;
 import com.conferences.validator.IValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements IUserService {
+
+    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
 
     private final IUserDao userDao;
     private final IValidator<User> userRequiredForUpdateDataValidator;

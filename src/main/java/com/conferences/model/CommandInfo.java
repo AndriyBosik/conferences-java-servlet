@@ -1,4 +1,4 @@
-package com.conferences.command;
+package com.conferences.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,6 @@ package com.conferences.command.topics;
 
 import com.conferences.command.FrontCommand;
 import com.conferences.config.FormKeys;
-import com.conferences.config.HttpMethod;
 import com.conferences.config.Page;
 import com.conferences.entity.ReportTopic;
 import com.conferences.factory.MapperFactory;

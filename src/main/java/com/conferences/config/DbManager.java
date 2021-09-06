@@ -38,7 +38,7 @@ public class DbManager {
         return DriverManager.getConnection(getPropertiesValue(DB_CONNECTION_URL), getPropertiesValue(DB_USERNAME), getPropertiesValue(DB_PASSWORD));
     }
 
-    public String getPropertiesValue(String key) {
+    private String getPropertiesValue(String key) {
         if (dbProperties != null) {
             return dbProperties.get(key);
         }

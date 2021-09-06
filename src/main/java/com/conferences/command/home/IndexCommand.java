@@ -12,6 +12,8 @@ import com.conferences.mapper.IMapper;
 import com.conferences.model.LoginData;
 import com.conferences.service.abstraction.IAuthenticationService;
 import com.conferences.service.abstraction.IUserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class IndexCommand extends FrontCommand {
+
+    private static final Logger LOGGER = LogManager.getLogger(IndexCommand.class);
 
     private IUserService userService;
     private IAuthenticationService authenticationService;
@@ -67,6 +71,7 @@ public class IndexCommand extends FrontCommand {
 
             redirect(Page.PROFILE.toString());
         } else {
+            LOGGER.info("User not found. Redirecting to login page");
             request.setAttribute("errorMessage", ErrorKey.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
 
             forward("login");
