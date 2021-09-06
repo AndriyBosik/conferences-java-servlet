@@ -2,8 +2,10 @@ package com.conferences.filter;
 
 import com.conferences.config.Defaults;
 import com.conferences.config.Page;
-import com.conferences.filter.model.ServletData;
-import com.conferences.filter.model.UrlData;
+import com.conferences.model.ServletData;
+import com.conferences.model.UrlData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +14,21 @@ import java.io.IOException;
 import java.util.List;
 
 public abstract class UrlDividerFilter extends DispatcherFilter {
+
+    private static final Logger LOGGER = LogManager.getLogger(UrlDividerFilter.class);
+
     @Override
     public void processApp(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
         ServletData servletData = new ServletData(servletRequest, servletResponse);
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        UrlData urlData = extractLanguage(request.getRequestURI().substring(request.getContextPath().length()));
+        String url = request.getRequestURI().substring(request.getContextPath().length());
+        UrlData urlData = extractLanguage(url);
+        LOGGER.info("Dividing url into parts: lang - {}, path - {}", urlData.getLang(), urlData.getPath());
         if (!checkLanguage(request, urlData.getLang())) {
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            LOGGER.error("Page not found");
             return;
         }
 

@@ -14,6 +14,8 @@ import com.conferences.handler.abstraction.IQueryBuilder;
 import com.conferences.model.MeetingSorter;
 import com.conferences.model.Page;
 import com.conferences.model.PageResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMeetingDao {
+
+    private static final Logger LOGGER = LogManager.getLogger(MeetingDao.class);
 
     @Override
     public Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key) {
@@ -40,6 +44,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                 "WHERE meetings.id=? " +
                 "GROUP BY meetings.id, rt.id, rts.id, u.id " +
                 "ORDER BY meetings.id, rt.id";
+        LOGGER.info("Searching for meeting. Sql query: {}", sql);
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -67,8 +72,8 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                 meeting.setReportTopics(reportTopics);
             }
             return meeting;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.error("Error during query executing", exception);
         }
         return null;
     }
@@ -98,6 +103,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
     @Override
     public boolean updateMeetingEditableData(Meeting meeting) {
         String sql = "UPDATE meetings SET address=?, date=? WHERE id=?";
+        LOGGER.info("Updating meeting with sql: {}", sql);
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -108,7 +114,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
 
             return true;
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Exception during updating", exception);
         }
         return false;
     }
@@ -128,6 +134,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
 
         String sql = buildMeetingPageSqlQuery(queryBuilder, filterCondition);
 
+        LOGGER.info("Searching for meetings for specific page. Sql: {}", sql);
         List<Meeting> meetings = new ArrayList<>();
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -144,7 +151,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                 meetings.add(meeting);
             }
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to get page", exception);
         }
         pageResponse.setItems(meetings);
         return pageResponse;
@@ -164,6 +171,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                 .from("meetings")
                 .where(filterCondition)
                 .generateQuery();
+        LOGGER.info("Getting count of meetings: {}", sql);
         return getRecordsCountBySql(sql, "meetings_count");
     }
 

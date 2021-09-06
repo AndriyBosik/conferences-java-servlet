@@ -22,3 +22,4 @@
 
     const HIDDEN_CLASS = "hidden";
 </script>
+

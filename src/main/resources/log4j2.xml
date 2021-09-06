@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn" name="FileLogger" packages="">
     <appenders>
-        <File name="FileAppender" fileName="C:/logs/app.log">
+        <File name="FileAppender" fileName="logs/app.log">
             <PatternLayout>
                 <pattern>%d %p %c{10} - %m%n</pattern>
             </PatternLayout>

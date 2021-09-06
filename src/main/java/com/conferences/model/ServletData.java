@@ -1,4 +1,4 @@
-package com.conferences.filter.model;
+package com.conferences.model;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

@@ -2,6 +2,8 @@ package com.conferences.dao.abstraction;
 
 import com.conferences.config.DbManager;
 import com.conferences.model.DbTable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.*;
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements ICrudDao<K, T> {
+
+    private static final Logger LOGGER = LogManager.getLogger(AbstractCrudDao.class);
 
     private final Class<T> entityClass;
 
@@ -23,6 +27,7 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
     @Override
     public boolean create(T model) {
         int numberOfInsertedRows = 0;
+        LOGGER.info("Creating an entity of {} class", model.getClass());
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = entityProcessor.prepareInsertStatement(connection, model)) {
 
@@ -31,23 +36,25 @@ public abstract class AbstractCrudDao<K, T> extends AbstractDao<K, T> implements
             setGeneratedFields(statement, model);
 
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to create entity of {} class", model.getClass(), exception);
         }
         return numberOfInsertedRows > 0;
     }
 
     @Override
     public T find(K key) {
-        String selectSql = "SELECT * FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + "=" + key;
+        String selectSql = "SELECT * FROM " + dbTable.getName() + " WHERE " + dbTable.getKey() + "=?";
+        LOGGER.info("Searching for entity with sql: {}", selectSql);
         try (Connection connection = DbManager.getInstance().getConnection();
-             Statement statement = connection.createStatement()) {
+             PreparedStatement statement = connection.prepareStatement(selectSql)) {
 
-            ResultSet result = statement.executeQuery(selectSql);
+            statement.setObject(1, key);
+            ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return entityParser.parseToEntity(entityClass, result);
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.error("Unable to find", exception);
         }
         return null;
     }

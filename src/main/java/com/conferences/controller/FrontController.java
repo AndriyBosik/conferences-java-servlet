@@ -35,6 +35,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LOGGER.info("{} request processing started", request.getMethod());
         int contextPathLength = request.getContextPath().length();
         if (contextPathLength != request.getRequestURI().length()) {
             contextPathLength++;
@@ -43,6 +44,7 @@ public class FrontController extends HttpServlet {
         CommandInfo commandInfo = getCommandInfo(path);
 
         FrontCommand command = getCommand(commandInfo);
+        LOGGER.info("Request path: {}; Command: {}.{}; urlParams: {}", path, commandInfo.getPackageName(), commandInfo.getCommandName(), commandInfo.getUrlParams());
 
         try {
             command.init(getServletContext(), request, response, commandInfo.getUrlParams());

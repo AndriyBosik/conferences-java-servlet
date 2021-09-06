@@ -1,11 +1,13 @@
 package com.conferences.filter;
 
 import com.conferences.config.*;
-import com.conferences.filter.model.ServletData;
-import com.conferences.filter.model.UrlData;
+import com.conferences.model.ServletData;
+import com.conferences.model.UrlData;
 import com.conferences.handler.implementation.PermissionsHandler;
 import com.conferences.entity.User;
 import com.conferences.handler.abstraction.IPermissionsHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import java.io.IOException;
 
 public class AuthenticationFilter extends UrlDividerFilter {
 
+    private static final Logger LOGGER = LogManager.getLogger(AuthenticationFilter.class);
     private static final String GUEST_USER = "guest";
 
     private IPermissionsHandler permissionsHandler;
@@ -90,9 +93,11 @@ public class AuthenticationFilter extends UrlDividerFilter {
         int errorCode = permissionsHandler.checkPermission(url, HttpMethod.fromString(httpMethod), userRole);
         if (errorCode == HttpServletResponse.SC_OK) {
             filterChain.doFilter(servletData.getServletRequest(), servletData.getServletResponse());
+            LOGGER.info("Filtering request path {} with method {} for user {}: {}", url, httpMethod, userRole, "FORBIDDEN");
             return;
         }
 
+        LOGGER.info("Filtering request path {} with method {} for user {}: {}", url, httpMethod, userRole, "ALLOWED");
         HttpServletResponse response = (HttpServletResponse) servletData.getServletResponse();
         response.sendError(errorCode);
     }

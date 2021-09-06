@@ -1,4 +1,4 @@
-package com.conferences.filter.model;
+package com.conferences.model;
 
 public class UrlData {
 

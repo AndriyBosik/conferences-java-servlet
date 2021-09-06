@@ -30,13 +30,12 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        int speakerId = Integer.parseInt(request.getParameter("speaker_id"));
-        int topicId = Integer.parseInt(request.getParameter("topic_id"));
-
-        if (!validSpeaker(speakerId)) {
-            // TODO(speakers try to assign propose to another speaker)
+        int speakerId = getSpeakerFromRequest();
+        if (speakerId <= 0) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+        int topicId = Integer.parseInt(request.getParameter("topic_id"));
 
         ReportTopicSpeaker reportTopicSpeaker = new ReportTopicSpeaker();
         reportTopicSpeaker.setReportTopicId(topicId);
@@ -49,8 +48,12 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
         redirectBack();
     }
 
-    private boolean validSpeaker(int speakerId) {
-        User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
-        return "moderator".equals(user.getRole().getTitle()) || user.getId() == speakerId;
+    private int getSpeakerFromRequest() {
+        String strSpeakerId = request.getParameter("speaker_id");
+        if (strSpeakerId == null) {
+            User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
+            return user.getId();
+        }
+        return Integer.parseInt(strSpeakerId);
     }
 }

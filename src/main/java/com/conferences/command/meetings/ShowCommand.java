@@ -33,6 +33,7 @@ public class ShowCommand extends FrontCommand {
             id = Integer.parseInt(urlParams.get(0));
         } catch (NumberFormatException exception) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
         }
         meetingService = ServiceFactory.getInstance().getMeetingService();
         userService = ServiceFactory.getInstance().getUserService();

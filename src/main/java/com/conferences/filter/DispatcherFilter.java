@@ -19,7 +19,7 @@ public abstract class DispatcherFilter implements Filter {
         }
     }
 
-    public void processResources(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
+    protected void processResources(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

@@ -1,8 +1,8 @@
 package com.conferences.filter;
 
 import com.conferences.config.Defaults;
-import com.conferences.filter.model.ServletData;
-import com.conferences.filter.model.UrlData;
+import com.conferences.model.ServletData;
+import com.conferences.model.UrlData;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

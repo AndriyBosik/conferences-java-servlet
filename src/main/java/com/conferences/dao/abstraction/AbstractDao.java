@@ -12,7 +12,7 @@ public abstract class AbstractDao<K, T> implements IDao<K, T> {
     protected final IEntityProcessor entityProcessor;
     protected final ITransactionHandler transactionHandler;
 
-    public AbstractDao() {
+    protected AbstractDao() {
         entityParser = ReflectionFactory.getInstance().getEntityParser();
         entityProcessor = ReflectionFactory.getInstance().getEntityProcessor();
         transactionHandler = HandlerFactory.getInstance().getTransactionHandler();

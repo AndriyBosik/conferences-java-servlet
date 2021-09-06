@@ -15,7 +15,7 @@
                         <c:choose>
                             <c:when test="${not isJoined}">
                                 <jsp:useBean id="now" class="java.util.Date" />
-                                <c:if test="${meeting.date gt now}">
+                                <c:if test="${meeting.outdated}">
                                     <form class="m0" action="<taglib:linkTo href="/meetings/join-user" />" method="post">
                                         <input type="hidden" name="meeting_id" value="${meeting.id}">
                                         <button type="submit" class="btn waves-effect waves-light light-blue darken-4">
