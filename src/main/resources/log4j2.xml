@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" name="FileLogger" packages="">
+    <appenders>
+        <File name="FileAppender" fileName="C:/logs/app.log">
+            <PatternLayout>
+                <pattern>%d %p %c{10} - %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </appenders>
+    <loggers>
+        <root level="all">
+            <appender-ref ref="FileAppender"/>
+        </root>
+    </loggers>
+</configuration>

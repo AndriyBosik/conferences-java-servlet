@@ -3,6 +3,8 @@ package com.conferences.controller;
 import com.conferences.command.CommandInfo;
 import com.conferences.command.FrontCommand;
 import com.conferences.command.UnknownCommand;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,6 +21,8 @@ import java.util.List;
     maxRequestSize = 1024 * 1024 * 100
 )
 public class FrontController extends HttpServlet {
+
+    private static final Logger LOGGER = LogManager.getLogger(FrontController.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
