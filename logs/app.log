@@ -1,0 +1,1178 @@
+2021-09-07 11:17:12,535 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowException(TransactionHandlerTest.java:25) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 11:24:48,449 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 11:24:48,503 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 11:24:48,507 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 11:43:40,067 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table WHERE (meetings.date > current_timestamp) AND (date > current_timestamp)
+2021-09-07 11:45:10,696 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table WHERE (date > current_timestamp) AND (date > current_timestamp)
+2021-09-07 11:46:12,600 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table WHERE (date > current_timestamp)
+2021-09-07 11:50:53,602 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM user
+2021-09-07 11:51:14,649 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:08:39,659 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:08:39,714 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:08:39,716 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON role.id=role_id
+2021-09-07 12:08:39,719 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:10:09,108 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:10:09,142 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:10:09,143 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON role.id=role_id
+2021-09-07 12:10:09,158 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:10:34,140 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:10:34,174 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:10:34,176 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:10:34,177 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:17:12,063 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:17:12,099 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:17:12,100 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 12:17:12,102 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:17:12,103 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:17:12,105 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 12:23:15,086 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:23:15,121 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:23:15,123 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 12:23:15,125 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:23:15,128 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:23:15,129 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 12:23:15,133 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 12:23:15,177 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 12:23:41,321 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:23:41,352 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:23:41,354 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 12:23:41,355 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:23:41,356 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:23:41,358 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 12:23:41,359 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 12:23:41,398 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 12:24:04,871 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:24:04,918 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:24:04,921 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 12:24:04,924 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:24:04,926 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:24:04,933 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 12:24:04,935 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 12:24:04,936 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 12:27:17,824 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) GROUP BY id ORDER BY id
+2021-09-07 12:36:07,049 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 12:40:32,041 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 12:45:47,745 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (date < current_timestamp) GROUP BY title ORDER BY title
+2021-09-07 12:46:21,333 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 12:47:17,614 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 12:47:49,482 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 12:47:49,541 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 12:47:49,548 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 12:47:49,586 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 12:47:49,623 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 12:47:49,630 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 12:47:49,646 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 12:47:49,661 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 12:47:49,665 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 12:47:49,668 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 12:47:49,672 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 12:47:50,946 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 12:47:51,086 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 12:47:51,110 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 13:48:02,457 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 13:48:02,507 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 13:48:02,508 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 13:48:02,509 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 14:42:25,080 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:61) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:36) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:44) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:43:54,901 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:63) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:37) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:44) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:44:25,204 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:62) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:36) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:44) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:44:52,158 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:62) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:36) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:44) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:46:20,758 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:63) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:36) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:45) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:47:37,328 ERROR com.conferences.reflection.implementation.EntityParser - Unable to parse entity
+java.lang.NullPointerException: null
+	at com.conferences.reflection.implementation.EntityParser.setValueForField(EntityParser.java:62) ~[classes/:?]
+	at com.conferences.reflection.implementation.EntityParser.parseToEntity(EntityParser.java:36) [classes/:?]
+	at reflection.EntityParserTest.shouldParseMeetingEntity(EntityParserTest.java:45) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:54:17,429 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 14:54:17,500 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 14:54:17,500 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 14:54:17,501 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 14:54:21,352 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 14:54:21,362 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 14:54:21,375 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 14:54:21,476 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 14:54:21,485 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 14:54:21,488 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 14:54:21,493 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 14:54:21,496 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 14:54:21,499 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 14:54:21,502 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 14:54:21,509 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 14:54:22,414 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:54:22,514 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 14:54:22,539 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 15:26:10,674 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:26:10,730 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:26:10,731 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:26:10,731 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:26:16,444 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:34:50,865 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:34:50,937 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:34:50,938 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:34:50,939 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:34:55,415 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:35:55,310 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:35:55,358 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:35:55,359 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:35:55,387 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:35:59,352 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:36:20,488 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:36:20,568 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:36:20,596 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:36:20,597 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:36:25,037 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:41:21,987 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:41:22,028 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:41:22,029 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:41:22,029 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:41:25,736 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 15:42:39,392 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:42:39,430 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:42:39,431 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:42:39,431 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:42:42,669 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 15:42:42,732 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:42:42,738 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:42:42,739 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:42:42,739 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:42:42,910 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for roles table. Sql: UPDATE roles SET title=? WHERE id=?
+2021-09-07 15:43:47,422 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:43:47,464 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:43:47,465 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:43:47,466 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:43:53,362 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 15:43:53,432 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:43:53,433 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:43:53,434 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:43:53,434 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:43:53,704 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for roles table. Sql: UPDATE roles SET title=? WHERE id=?
+2021-09-07 15:44:28,515 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:44:28,593 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:44:28,594 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:44:28,594 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:44:33,479 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 15:44:33,529 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:44:33,529 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:44:33,530 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:44:33,530 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:44:33,828 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:46:15,149 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:46:15,210 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:46:15,211 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:46:15,211 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:46:20,505 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing delete statement for users table. Sql: DELETE * FROM users WHERE id=?
+2021-09-07 15:47:11,023 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:47:11,151 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:47:11,152 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:47:11,152 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:47:16,066 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing delete statement for users table. Sql: DELETE * FROM users WHERE id=?
+2021-09-07 15:47:40,661 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:47:40,813 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:47:40,817 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:47:40,817 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:47:47,281 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 15:47:47,341 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 15:47:47,357 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 15:47:47,550 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 15:47:47,553 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 15:47:47,557 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 15:47:47,561 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 15:47:47,565 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 15:47:47,568 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 15:47:47,571 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 15:47:47,575 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 15:47:49,236 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 15:47:49,452 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 15:47:49,462 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 15:47:51,066 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:47:51,067 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:47:51,069 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:47:51,070 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:47:51,398 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing delete statement for users table. Sql: DELETE * FROM users WHERE id=?
+2021-09-07 15:47:51,519 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:47:51,522 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:47:51,524 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:47:51,524 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:47:51,669 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 15:47:51,673 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:47:51,675 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:47:51,676 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:47:51,676 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:47:51,871 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 15:51:10,542 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:51:10,585 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:51:10,590 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:51:10,623 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:54:32,835 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:54:32,900 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:54:32,907 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:54:32,911 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:56:28,805 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:56:28,849 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:56:28,850 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:56:28,851 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 15:57:01,536 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 15:57:01,641 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 15:57:01,645 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 15:57:01,646 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 20:54:28,301 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 20:54:28,353 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 20:54:28,354 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 20:54:28,355 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 20:54:31,657 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 20:55:49,077 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 20:55:49,133 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 20:55:49,134 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 20:55:49,134 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 20:55:51,910 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 21:45:30,561 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 21:45:30,672 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 21:45:30,672 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 21:45:30,674 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 21:45:34,464 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for users_meetings table. Sql: UPDATE users_meetings SET user_id=?,meeting_id=?,present=? WHERE id=?
+2021-09-07 21:46:35,844 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 21:46:35,888 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 21:46:35,888 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 21:46:35,889 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 21:46:39,159 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for users_meetings table. Sql: UPDATE users_meetings SET user_id=?,meeting_id=?,present=? WHERE id=?
+2021-09-07 21:49:37,356 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 21:49:37,405 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 21:49:37,406 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 21:49:37,408 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 21:49:40,900 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 21:51:04,626 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 21:51:04,671 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 21:51:04,672 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 21:51:04,672 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 21:51:08,030 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 21:55:41,537 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 21:55:41,585 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 21:55:41,585 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 21:55:41,586 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 21:55:45,484 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:03:07,479 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:03:07,531 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:03:07,531 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:03:07,532 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:03:11,318 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:04:31,745 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:04:31,815 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:04:31,816 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:04:31,818 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:04:35,261 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:17:34,508 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:17:34,567 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:17:34,568 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:17:34,569 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:17:38,191 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:18:11,431 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:11,483 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:11,485 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:11,486 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:14,837 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:18:32,286 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:32,487 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:32,491 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:32,494 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:35,878 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 22:18:35,885 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 22:18:35,910 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 22:18:35,994 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 22:18:35,998 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 22:18:36,003 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 22:18:36,005 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 22:18:36,008 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 22:18:36,011 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 22:18:36,014 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 22:18:36,022 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 22:18:36,860 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:18:36,958 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:18:36,984 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:18:37,586 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:37,588 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:37,589 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:37,590 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:37,824 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:37,829 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:37,830 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:37,830 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:38,095 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:18:38,175 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:38,178 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:38,178 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:38,179 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:38,392 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing delete statement for users table. Sql: DELETE * FROM users WHERE id=?
+2021-09-07 22:18:38,413 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:38,417 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:38,417 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:38,418 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:38,603 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 22:18:38,610 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:38,610 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:38,611 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:38,612 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:38,887 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:38,891 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:38,892 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:38,893 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:39,047 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:39,050 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:39,052 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:39,052 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:39,182 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 22:18:39,191 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:18:39,193 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:18:39,193 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:18:39,194 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:18:39,323 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for users_meetings table. Sql: UPDATE users_meetings SET user_id=?,meeting_id=?,present=? WHERE id=?
+2021-09-07 22:26:09,466 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:09,534 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:09,535 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:09,536 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:12,827 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM test_table LEFT JOIN test t ON t.id=test_id WHERE (date > current_timestamp) AND (id>5) GROUP BY id ORDER BY id
+2021-09-07 22:26:12,834 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meeting LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (id>5) AND (id<100) GROUP BY title ORDER BY title
+2021-09-07 22:26:12,864 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM meetings LEFT JOIN report_topics rt ON rt.meeting_id=id WHERE (date < current_timestamp) AND (id>5) GROUP BY title ORDER BY title
+2021-09-07 22:26:12,936 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE id=5
+2021-09-07 22:26:12,942 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users WHERE (id=5) AND (login='login')
+2021-09-07 22:26:12,945 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users ORDER BY id,login,email
+2021-09-07 22:26:12,948 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users LEFT JOIN roles r ON r.id=role_id
+2021-09-07 22:26:12,951 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users
+2021-09-07 22:26:12,957 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users GROUP BY id,login,email
+2021-09-07 22:26:12,961 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT users.*,roles.* FROM users,roles
+2021-09-07 22:26:12,966 INFO com.conferences.handler.implementation.QueryBuilder - Generated query: SELECT * FROM users,roles
+2021-09-07 22:26:13,935 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to set autocommit to true
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.setAutoCommit(TransactionHandler.java:40) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenSettingAutoCommit(TransactionHandlerTest.java:73) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:26:14,058 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to rollback transaction
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.rollbackTransaction(TransactionHandler.java:29) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenRollingBackTransaction(TransactionHandlerTest.java:53) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:26:14,087 ERROR com.conferences.handler.implementation.TransactionHandler - Unable to close
+java.sql.SQLException: null
+	at com.conferences.handler.implementation.TransactionHandler.closeResource(TransactionHandler.java:18) [classes/:?]
+	at handler.TransactionHandlerTest.shouldNotThrowExceptionWhenClosingResource(TransactionHandlerTest.java:33) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78) [junit-4.12.jar:4.12]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:128) [junit-4.12.jar:4.12]
+	at org.junit.runners.Suite.runChild(Suite.java:27) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.12.jar:4.12]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+2021-09-07 22:26:14,702 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:14,706 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:14,706 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:14,707 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:14,934 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:14,936 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:14,938 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:14,938 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:15,158 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for meetings table. Sql: UPDATE meetings SET title=?,description=?,address=?,image_path=?,date=? WHERE id=?
+2021-09-07 22:26:15,229 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:15,232 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:15,233 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:15,235 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:15,447 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing delete statement for users table. Sql: DELETE * FROM users WHERE id=?
+2021-09-07 22:26:15,458 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:15,459 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:15,460 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:15,460 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:15,620 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for report_topics table. Sql: UPDATE report_topics SET title=?,meeting_id=? WHERE id=?
+2021-09-07 22:26:15,626 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:15,627 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:15,628 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:15,628 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:15,788 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:15,790 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:15,791 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:15,792 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:15,981 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:15,983 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:15,984 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:15,985 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:16,144 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing insert statement for roles table. Sql: INSERT INTO roles(title) VALUES (?)
+2021-09-07 22:26:16,152 INFO com.conferences.config.DbManager - Getting db.driver property value
+2021-09-07 22:26:16,153 INFO com.conferences.config.DbManager - Getting db.connection.url property value
+2021-09-07 22:26:16,154 INFO com.conferences.config.DbManager - Getting db.username property value
+2021-09-07 22:26:16,155 INFO com.conferences.config.DbManager - Getting db.password property value
+2021-09-07 22:26:16,296 INFO com.conferences.reflection.implementation.EntityProcessor - Preparing update statement for users_meetings table. Sql: UPDATE users_meetings SET user_id=?,meeting_id=?,present=? WHERE id=?

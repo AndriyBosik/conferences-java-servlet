@@ -1,8 +1,8 @@
-package com.conferences.utils;
+package com.conferences.util;
 
-public class TimeUtils {
+public class TimeUtil {
 
-    private TimeUtils() {}
+    private TimeUtil() {}
 
     public static String addZeroToBegin(String value) {
         if (value.length() < 2) {

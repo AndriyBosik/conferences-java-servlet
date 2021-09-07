@@ -1,9 +1,8 @@
 package com.conferences.mapper;
 
 import com.conferences.config.Constants;
-import com.conferences.entity.Meeting;
 import com.conferences.model.FileFormData;
-import com.conferences.utils.StringUtils;
+import com.conferences.util.StringUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -33,9 +32,9 @@ public abstract class AbstractFileFormMapper<U> implements IMapper<HttpServletRe
 
                 for (FileItem fi : fileItems) {
                     if (fi.isFormField()) {
-                        formData.put(fi.getFieldName(), StringUtils.convertStringToUTF8(fi.getString(), StandardCharsets.ISO_8859_1));
+                        formData.put(fi.getFieldName(), StringUtil.convertStringToUTF8(fi.getString(), StandardCharsets.ISO_8859_1));
                     } else {
-                        formData.put(fi.getFieldName(), StringUtils.convertStringToUTF8(fi.getName(), StandardCharsets.ISO_8859_1));
+                        formData.put(fi.getFieldName(), StringUtil.convertStringToUTF8(fi.getName(), StandardCharsets.ISO_8859_1));
                     }
                 }
 

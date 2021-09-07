@@ -1,5 +1,8 @@
 package com.conferences.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,6 +14,7 @@ import java.util.Properties;
 
 public class DbManager {
 
+    private static final Logger LOGGER = LogManager.getLogger(DbManager.class);
     private static final String DB_DRIVER = "db.driver";
     private static final String DB_CONNECTION_URL = "db.connection.url";
     private static final String DB_USERNAME = "db.username";
@@ -33,12 +37,13 @@ public class DbManager {
         try {
             Class.forName(getPropertiesValue(DB_DRIVER));
         } catch (ClassNotFoundException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to register database driver", exception);
         }
         return DriverManager.getConnection(getPropertiesValue(DB_CONNECTION_URL), getPropertiesValue(DB_USERNAME), getPropertiesValue(DB_PASSWORD));
     }
 
     private String getPropertiesValue(String key) {
+        LOGGER.info("Getting {} property value", key);
         if (dbProperties != null) {
             return dbProperties.get(key);
         }
@@ -51,7 +56,7 @@ public class DbManager {
             }
             return dbProperties.get(key);
         } catch (IOException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to get property value", exception);
         }
         return null;
     }

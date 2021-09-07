@@ -13,7 +13,7 @@ import com.conferences.mapper.IMapper;
 import com.conferences.model.FileFormData;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.utils.FileUtil;
+import com.conferences.util.FileUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

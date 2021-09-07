@@ -2,6 +2,8 @@ package com.conferences.reflection.implementation;
 
 import com.conferences.annotation.Column;
 import com.conferences.reflection.abstraction.IEntityParser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
@@ -10,6 +12,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class EntityParser implements IEntityParser {
+
+    private static final Logger LOGGER = LogManager.getLogger(EntityParser.class);
 
     @Override
     public <T> T parseToEntity(Class<T> entityClass, ResultSet result, String columnPrefix) throws SQLException {
@@ -34,7 +38,7 @@ public class EntityParser implements IEntityParser {
 
             return entity;
         } catch (Exception exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to parse entity", exception);
         }
         return null;
     }
@@ -54,12 +58,13 @@ public class EntityParser implements IEntityParser {
                 field.set(entity, result.getString(columnName));
             } else if (field.getType().equals(LocalDateTime.class)) {
                 Timestamp ts = result.getTimestamp(columnName);
+                System.out.println(ts);
                 field.set(entity, ts.toLocalDateTime());
             } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
                 field.set(entity, result.getBoolean(columnName));
             }
         } catch (SQLException | IllegalAccessException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to set value for '{}' field", field.getName(), exception);
         }
     }
 
@@ -68,7 +73,7 @@ public class EntityParser implements IEntityParser {
             result.findColumn(columnName);
             return true;
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Column {} not found", columnName, exception);
         }
         return false;
     }

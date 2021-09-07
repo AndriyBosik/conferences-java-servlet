@@ -9,6 +9,7 @@ import com.conferences.entity.User;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
+import com.conferences.model.FormError;
 import com.conferences.model.LoginData;
 import com.conferences.service.abstraction.IAuthenticationService;
 import com.conferences.service.abstraction.IUserService;
@@ -27,14 +28,14 @@ public class IndexCommand extends FrontCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(IndexCommand.class);
 
-    private IUserService userService;
+    private IMapper<FormError, String> formErrorMapper;
     private IAuthenticationService authenticationService;
     private IMapper<HttpServletRequest, LoginData> mapper;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
         super.init(context, request, response, urlParams);
-        userService = ServiceFactory.getInstance().getUserService();
+        formErrorMapper = MapperFactory.getInstance().getFormErrorToStringMapper();
         authenticationService = ServiceFactory.getInstance().getAuthenticationService();
         mapper = MapperFactory.getInstance().getRequestToLoginDataMapper();
     }
@@ -72,7 +73,7 @@ public class IndexCommand extends FrontCommand {
             redirect(Page.PROFILE.toString());
         } else {
             LOGGER.info("User not found. Redirecting to login page");
-            request.setAttribute("errorMessage", ErrorKey.INVALID_LOGIN_OR_PASSWORD.getByLang(lang));
+            request.setAttribute("errorMessage", formErrorMapper.map(new FormError(lang, ErrorKey.INVALID_LOGIN_OR_PASSWORD)));
 
             forward("login");
         }

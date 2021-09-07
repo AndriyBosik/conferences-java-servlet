@@ -18,6 +18,6 @@ public class FieldValidationHandler implements IFieldValidationHandler {
 
     @Override
     public boolean checkDateIsAfterNow(LocalDateTime dateTime) {
-        return dateTime.isAfter(LocalDateTime.now());
+        return dateTime != null && dateTime.isAfter(LocalDateTime.now());
     }
 }

@@ -35,10 +35,6 @@ public enum ErrorKey {
         propertiesHandler = new PropertiesHandler();
     }
 
-    public String getByLang(String lang) {
-        return propertiesHandler.getPropertyValue("messages", lang, key);
-    }
-
     @Override
     public String toString() {
         return key;

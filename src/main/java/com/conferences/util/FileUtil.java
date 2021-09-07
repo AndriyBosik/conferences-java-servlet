@@ -1,4 +1,4 @@
-package com.conferences.utils;
+package com.conferences.util;
 
 public class FileUtil {
 

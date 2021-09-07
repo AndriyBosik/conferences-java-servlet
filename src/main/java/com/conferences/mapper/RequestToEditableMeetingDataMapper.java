@@ -2,7 +2,7 @@ package com.conferences.mapper;
 
 import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
-import com.conferences.utils.TimeUtils;
+import com.conferences.util.TimeUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -18,8 +18,8 @@ public class RequestToEditableMeetingDataMapper implements IMapper<HttpServletRe
 
         String strDate =
                 request.getParameter("date") + " " +
-                TimeUtils.addZeroToBegin(request.getParameter("hours")) + ":" +
-                TimeUtils.addZeroToBegin(request.getParameter("minutes"));
+                TimeUtil.addZeroToBegin(request.getParameter("hours")) + ":" +
+                TimeUtil.addZeroToBegin(request.getParameter("minutes"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString());
         LocalDateTime date = LocalDateTime.parse(strDate, formatter);
 

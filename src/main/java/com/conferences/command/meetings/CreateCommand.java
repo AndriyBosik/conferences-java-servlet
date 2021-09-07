@@ -10,14 +10,12 @@ import com.conferences.entity.User;
 import com.conferences.factory.HandlerFactory;
 import com.conferences.factory.MapperFactory;
 import com.conferences.factory.ServiceFactory;
-import com.conferences.factory.ValidatorFactory;
 import com.conferences.handler.abstraction.IFileHandler;
 import com.conferences.mapper.IMapper;
 import com.conferences.model.FileFormData;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IMeetingService;
-import com.conferences.utils.FileUtil;
-import com.conferences.validator.IValidator;
+import com.conferences.util.FileUtil;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -29,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class CreateCommand extends FrontCommand {
 

@@ -17,7 +17,7 @@ public class TransactionHandler implements ITransactionHandler {
             try {
                 closeable.close();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                LOGGER.error("Unable to close", exception);
             }
         }
     }

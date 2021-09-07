@@ -1,11 +1,11 @@
-package com.conferences.utils;
+package com.conferences.util;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-public class StringUtils {
+public class StringUtil {
 
-    private StringUtils() {}
+    private StringUtil() {}
 
     public static boolean isNullOrEmpty(String value) {
         return  value == null ||

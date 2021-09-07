@@ -2,7 +2,7 @@ package com.conferences.mapper;
 
 import com.conferences.config.Defaults;
 import com.conferences.entity.Meeting;
-import com.conferences.utils.TimeUtils;
+import com.conferences.util.TimeUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,8 +15,8 @@ public class FormDataToMeetingMapper implements IMapper<Map<String, String>, Mee
     public Meeting map(Map<String, String> formData) {
         String strDate =
                 formData.get("date") + " " +
-                TimeUtils.addZeroToBegin(formData.get("hours")) + ":" +
-                TimeUtils.addZeroToBegin(formData.get("minutes"));
+                TimeUtil.addZeroToBegin(formData.get("hours")) + ":" +
+                TimeUtil.addZeroToBegin(formData.get("minutes"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString(), Locale.UK);
         LocalDateTime date = LocalDateTime.parse(strDate, formatter);
 

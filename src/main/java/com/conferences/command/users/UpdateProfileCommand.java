@@ -14,7 +14,7 @@ import com.conferences.model.FormError;
 import com.conferences.model.PasswordData;
 import com.conferences.model.UserData;
 import com.conferences.service.abstraction.IUserService;
-import com.conferences.utils.StringUtils;
+import com.conferences.util.StringUtil;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,6 +28,7 @@ public class UpdateProfileCommand extends FrontCommand {
     private IUserService userService;
     private IUserDataSaver userDataSaver;
     private IMapper<HttpServletRequest, PasswordData> mapper;
+    private IMapper<FormError, String> formErrorMapper;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response, List<String> urlParams) throws IOException {
@@ -35,6 +36,7 @@ public class UpdateProfileCommand extends FrontCommand {
         userService = ServiceFactory.getInstance().getUserService();
         userDataSaver = HandlerFactory.getInstance().getUserDataSaver();
         mapper = MapperFactory.getInstance().getRequestToPasswordDataMapper();
+        formErrorMapper = MapperFactory.getInstance().getFormErrorToStringMapper();
     }
 
     @Override
@@ -43,10 +45,10 @@ public class UpdateProfileCommand extends FrontCommand {
         UserData data = userDataSaver.saveUserData(user);
         String lang = (String) request.getAttribute(Defaults.CURRENT_LANG.toString());
         PasswordData passwordData = mapper.map(request);
-        if (!StringUtils.isNullOrEmptyAll(passwordData.getPassword(), passwordData.getNewPassword(), passwordData.getConfirmPassword())) {
+        if (!StringUtil.isNullOrEmptyAll(passwordData.getPassword(), passwordData.getNewPassword(), passwordData.getConfirmPassword())) {
             ErrorKey errorKey = validatePasswords(user.getPassword(), passwordData);
             if (errorKey != ErrorKey.OK) {
-                request.setAttribute("error", errorKey.getByLang(lang));
+                request.setAttribute("error", formErrorMapper.map(new FormError(lang, errorKey)));
                 return;
             }
             user.setPassword(passwordData.getNewPassword());
