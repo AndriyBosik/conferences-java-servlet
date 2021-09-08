@@ -28,7 +28,7 @@ public class AuthenticationService implements IAuthenticationService {
 
     @Override
     public User getByLoginAndPasswordWithRole(String login, String password) {
-        User user = userDao.findByLoginWithRole(login, password);
+        User user = userDao.findByLoginWithRole(login);
         if (user != null && encryptor.check(password, user.getPassword())) {
             return user;
         }

@@ -17,7 +17,7 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
     private static final Logger LOGGER = LogManager.getLogger(UserDao.class);
 
     @Override
-    public User findByLoginWithRole(String login, String password) {
+    public User findByLoginWithRole(String login) {
         String sql = "SELECT users.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
                 "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE users.login=?";
@@ -57,7 +57,7 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
             }
 
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to find", exception);
         }
 
         return null;
@@ -83,8 +83,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
                 user.setRole(entityParser.parseToEntity(Role.class, result, "role_"));
                 users.add(user);
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            users.clear();
+            LOGGER.error("Unable to find", exception);
         }
 
         return users;
@@ -107,7 +108,7 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
                 speakers.add(entityParser.parseToEntity(User.class, resultSet));
             }
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Unable to find", exception);
         }
 
         return speakers;
@@ -125,7 +126,7 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
 
             return true;
         } catch (SQLException exception) {
-
+            LOGGER.error("Unable to update user image path", exception);
         }
         return false;
     }

@@ -80,7 +80,6 @@ public class EntityProcessorTest {
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = entityProcessor.prepareInsertStatement(connection, role)) {
 
-            System.out.println(statement);
             assertTrue(statement.toString().toLowerCase().startsWith("insert into roles(title) values ('guest')"));
         }
     }

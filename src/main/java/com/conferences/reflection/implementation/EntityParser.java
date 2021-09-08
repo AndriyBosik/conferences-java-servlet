@@ -58,7 +58,6 @@ public class EntityParser implements IEntityParser {
                 field.set(entity, result.getString(columnName));
             } else if (field.getType().equals(LocalDateTime.class)) {
                 Timestamp ts = result.getTimestamp(columnName);
-                System.out.println(ts);
                 field.set(entity, ts.toLocalDateTime());
             } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
                 field.set(entity, result.getBoolean(columnName));

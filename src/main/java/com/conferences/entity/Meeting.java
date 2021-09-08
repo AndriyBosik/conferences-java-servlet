@@ -122,8 +122,13 @@ public class Meeting {
     }
 
     public void setReportTopics(List<ReportTopic> reportTopics) {
-        this.reportTopicsCount = reportTopics.size();
-        this.reportTopics = reportTopics;
+        if (reportTopics == null) {
+            this.reportTopicsCount = 0;
+            this.reportTopics = new ArrayList<>();
+        } else {
+            this.reportTopics = reportTopics;
+            this.reportTopicsCount = reportTopics.size();
+        }
     }
 
     @Override

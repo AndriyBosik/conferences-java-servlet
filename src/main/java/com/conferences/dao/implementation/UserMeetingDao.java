@@ -34,6 +34,7 @@ public class UserMeetingDao extends AbstractCrudDao<Integer, UserMeeting> implem
                 return entityParser.parseToEntity(UserMeeting.class, result);
             }
         } catch (SQLException exception) {
+            exception.printStackTrace();
             LOGGER.error("Unable to find", exception);
         }
         return null;

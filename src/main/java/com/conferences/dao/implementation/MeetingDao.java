@@ -40,7 +40,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                     "LEFT JOIN report_topics rt ON meetings.id=rt.meeting_id " +
                     "LEFT JOIN users_meetings um ON um.meeting_id=meetings.id " +
                     "LEFT JOIN report_topics_speakers rts ON rts.report_topic_id=rt.id " +
-                "   LEFT JOIN users u ON u.id=rts.speaker_id " +
+                    "LEFT JOIN users u ON u.id=rts.speaker_id " +
                 "WHERE meetings.id=? " +
                 "GROUP BY meetings.id, rt.id, rts.id, u.id " +
                 "ORDER BY meetings.id, rt.id";
@@ -191,7 +191,7 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
                 ") AS stats ON stats.meeting_id=meetings.id")
                 .where(filterCondition)
                 .groupBy("meetings.id", "stats.users_count", "stats.present_users_count")
-                .orderBy()
+                .orderBy("meetings.id")
                 .generateQuery();
     }
 }

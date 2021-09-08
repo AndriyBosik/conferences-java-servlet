@@ -15,8 +15,6 @@ import java.util.List;
 
 public class UserService implements IUserService {
 
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
-
     private final IUserDao userDao;
     private final IValidator<User> userRequiredForUpdateDataValidator;
 
