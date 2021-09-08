@@ -14,10 +14,7 @@ import custom.util.Generator;
 import custom.util.RandomUtil;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MeetingInitializer {
@@ -70,6 +67,10 @@ public class MeetingInitializer {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public List<User> getSpeakers() {
+        return speakers;
     }
 
     public List<Meeting> getMeetings() {
@@ -162,23 +163,35 @@ public class MeetingInitializer {
     }
 
     public PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter) {
+        return findPageMeetings(page, sorter, 0);
+    }
+
+    public PageResponse<Meeting> findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter, int speakerId) {
+        return findPageMeetings(page, sorter, speakerId);
+    }
+
+    private PageResponse<Meeting> findPageMeetings(Page page, MeetingSorter sorter, int speakerId) {
         PageResponse<Meeting> response = new PageResponse<>();
         List<Meeting> meetingsList = meetings.values().stream()
+                .sorted(Comparator.comparingInt(Meeting::getId))
+                .filter(meeting -> filterBySpeakerId(meeting, speakerId))
                 .filter(meeting -> filterMeeting(meeting, sorter.getFilterSelector()))
                 .sorted((first, second) -> sortBySortOption(first, second, sorter.getSortOption(), sorter.getSortOrder()))
-                .skip((long)(page.getPageNumber() - 1)*page.getItemsCount())
-                .limit(page.getItemsCount())
                 .collect(Collectors.toList());
+        response.setTotalItems(meetingsList.size());
+        meetingsList = meetingsList.stream()
+            .skip((long)(page.getPageNumber() - 1)*page.getItemsCount())
+            .limit(page.getItemsCount())
+            .collect(Collectors.toList());
         for (Meeting meeting: meetingsList) {
             meeting.setReportTopics(reportTopics.get(meeting.getId()));
             meeting.setUsersCount((int) usersMeetings.stream()
-                .filter(userMeeting -> userMeeting.getMeetingId() == meeting.getId())
-                .count());
+                    .filter(userMeeting -> userMeeting.getMeetingId() == meeting.getId())
+                    .count());
         }
 
         response.setItems(meetingsList);
         response.setPageSize(page.getItemsCount());
-        response.setTotalItems(meetings.values().size());
         return response;
     }
 
@@ -196,6 +209,25 @@ public class MeetingInitializer {
                 return k*(first.getDate().compareTo(second.getDate()));
         }
         return 0;
+    }
+
+    private boolean filterBySpeakerId(Meeting meeting, int speakerId) {
+        if (speakerId < 1) {
+            return true;
+        }
+        List<ReportTopic> reportTopicsList = reportTopics.get(meeting.getId());
+        if (reportTopicsList == null) {
+            return false;
+        }
+        for (ReportTopic reportTopic: reportTopicsList) {
+            if (reportTopic.getReportTopicSpeaker() != null &&
+                reportTopic.getReportTopicSpeaker().getSpeaker() != null &&
+                reportTopic.getReportTopicSpeaker().getSpeaker().getId() == speakerId) {
+
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean filterMeeting(Meeting meeting, MeetingFilterSelector selector) {

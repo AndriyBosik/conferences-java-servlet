@@ -12,7 +12,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -83,6 +82,31 @@ public class MeetingDaoTest {
             assertEquals(
                 meetings.getItems().get(i).getId(),
                 databaseMeetings.getItems().get(i).getId());
+            assertEquals(
+                    meetings.getItems().get(i).getReportTopicsCount(),
+                    databaseMeetings.getItems().get(i).getReportTopicsCount());
+            assertEquals(
+                    meetings.getItems().get(i).getUsersCount(),
+                    databaseMeetings.getItems().get(i).getUsersCount());
+            assertEquals(
+                    meetings.getItems().get(i).getTitle(),
+                    databaseMeetings.getItems().get(i).getTitle());
+        }
+    }
+
+    @Test
+    public void shouldFindAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount() {
+        int speakersSize = initializer.getSpeakers().size();
+        int speakerId = initializer.getSpeakers().get(RandomUtil.generateInt(speakersSize)).getId();
+        Page page = new Page(2, 2);
+        MeetingSorter sorter = new MeetingSorter();
+        PageResponse<Meeting> meetings = initializer.findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(page, sorter, speakerId);
+        PageResponse<Meeting> databaseMeetings = meetingDao.findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(page, sorter, speakerId);
+        assertEquals(meetings.getPagesCount(), databaseMeetings.getPagesCount());
+        for (int i = 0; i < meetings.getItems().size(); i++) {
+            assertEquals(
+                    meetings.getItems().get(i).getId(),
+                    databaseMeetings.getItems().get(i).getId());
             assertEquals(
                     meetings.getItems().get(i).getReportTopicsCount(),
                     databaseMeetings.getItems().get(i).getReportTopicsCount());

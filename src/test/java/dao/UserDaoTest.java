@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,7 +77,10 @@ public class UserDaoTest {
 
     @Test
     public void shouldFindAllUsersByRole() {
-        List<User> usersRole = users.stream().filter(user -> user.getRoleId() == userRoleId).collect(Collectors.toList());
+        List<User> usersRole = users.stream()
+            .filter(user -> user.getRoleId() == userRoleId)
+            .sorted(Comparator.comparingInt(User::getId))
+            .collect(Collectors.toList());
         List<User> databaseUsers = userDao.findAllByRole("user");
         for (int i = 0; i < usersRole.size(); i++) {
             assertEquals(usersRole.get(i).getLogin(), databaseUsers.get(i).getLogin());
@@ -92,7 +96,11 @@ public class UserDaoTest {
     @Test
     public void shouldReturnAvailableSpeakersForProposalByTopic() {
         List<User> availableSpeakers = userDao.findAvailableSpeakersForProposalByTopic(1);
-        List<User> speakers = users.stream().filter(user -> user.getRoleId() == speakerRoleId).collect(Collectors.toList());
+        List<User> speakers = users.stream()
+            .filter(user -> user.getRoleId() == speakerRoleId)
+            .sorted(Comparator.comparingInt(User::getId))
+            .collect(Collectors.toList());
+
         for (int i = 0; i < speakers.size(); i++) {
             assertEquals(speakers.get(i).getId(), availableSpeakers.get(i).getId());
         }

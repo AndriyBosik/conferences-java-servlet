@@ -67,7 +67,7 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
     public List<User> findAllByRole(String role) {
         String sql = "SELECT users.*," +
                 entityProcessor.getEntityFieldsWithPrefixes(Role.class, "r.", "role_") + " " +
-                "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE r.title=?";
+                "FROM users LEFT JOIN roles r ON r.id=users.role_id WHERE r.title=? ORDER BY users.id";
 
         List<User> users = new ArrayList<>();
 
@@ -96,7 +96,8 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         String sql = "SELECT users.* FROM users WHERE NOT EXISTS " +
                 "(SELECT NULL FROM moderator_proposals mp WHERE mp.speaker_id=users.id AND mp.report_topic_id=?)" +
                 "AND EXISTS" +
-                "(SELECT NULL FROM roles r WHERE r.title='speaker' AND r.id=users.role_id)";
+                "(SELECT NULL FROM roles r WHERE r.title='speaker' AND r.id=users.role_id)" +
+                "ORDER BY users.id";
         List<User> speakers = new ArrayList<>();
         try (Connection connection = DbManager.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
