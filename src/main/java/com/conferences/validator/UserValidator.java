@@ -5,10 +5,16 @@ import com.conferences.model.FormError;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserValidator extends UserRequiredForUpdateDataValidator {
 
     private static final String PASSWORD = "password";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> validate(User model) {
         List<FormError> formErrors = super.validate(model);

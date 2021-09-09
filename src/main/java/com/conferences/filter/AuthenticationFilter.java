@@ -14,6 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * <p>
+ *     Filters access to resources
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class AuthenticationFilter extends UrlDividerFilter {
 
     private static final Logger LOGGER = LogManager.getLogger(AuthenticationFilter.class);
@@ -21,6 +30,12 @@ public class AuthenticationFilter extends UrlDividerFilter {
 
     private IPermissionsHandler permissionsHandler;
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     *     Configures {@link PermissionsHandler}
+     * </p>
+     */
     @Override
     public void init(FilterConfig filterConfig) {
         PermissionsHandler.Builder builder = new PermissionsHandler.Builder();
@@ -79,6 +94,16 @@ public class AuthenticationFilter extends UrlDividerFilter {
                 .build();
     }
 
+    /**
+     * <p>
+     *    Forwards user to error page if access is denied
+     * </p>
+     * @param servletData data about request, response and context
+     * @param urlData data about URL
+     * @param filterChain {@link FilterChain}
+     * @throws ServletException exception while may occur during filter processing
+     * @throws IOException exception while may occur during filter processing
+     */
     @Override
     public void handleFilter(ServletData servletData, UrlData urlData, FilterChain filterChain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) servletData.getServletRequest();

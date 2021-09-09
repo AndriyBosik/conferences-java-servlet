@@ -20,6 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * <p>
+ *     Responds to /meetings/all/{pageNumber} page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class AllCommand extends FrontCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(AllCommand.class);
@@ -48,6 +57,13 @@ public class AllCommand extends FrontCommand {
         this.page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);
     }
 
+    /**
+     * <p>
+     *     Forwards meetings for current page to partial view
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         MeetingSorter meetingSorter = meetingSorterMapper.map(request);

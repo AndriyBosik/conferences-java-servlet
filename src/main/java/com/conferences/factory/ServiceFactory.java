@@ -3,11 +3,20 @@ package com.conferences.factory;
 import com.conferences.service.abstraction.*;
 import com.conferences.service.implementation.*;
 
+/**
+ * <p>
+ *     Defines methods to instantiate services
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ServiceFactory {
 
     private static ServiceFactory instance;
 
-    private IAuthenticationService authenticationService;
+    private IAuthService authenticationService;
     private IMeetingService meetingService;
     private IModeratorProposalService moderatorProposalService;
     private IProposalDataService proposalDataService;
@@ -28,9 +37,9 @@ public class ServiceFactory {
         return instance;
     }
 
-    public synchronized IAuthenticationService getAuthenticationService() {
+    public synchronized IAuthService getAuthenticationService() {
         if (authenticationService == null) {
-            authenticationService = new AuthenticationService();
+            authenticationService = new AuthService();
         }
         return authenticationService;
     }

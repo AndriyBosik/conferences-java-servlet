@@ -5,8 +5,16 @@ import com.conferences.entity.ReportTopicSpeaker;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * {@inheritDoc}
+ */
 public class RequestToReportTopicWithSpeakerMapper implements IMapper<HttpServletRequest, ReportTopic> {
 
+    /**
+     * <p>
+     *     Maps {@link HttpServletRequest} to {@link ReportTopic}
+     * </p>
+     */
     @Override
     public ReportTopic map(HttpServletRequest request) {
         ReportTopic reportTopic = new ReportTopic();

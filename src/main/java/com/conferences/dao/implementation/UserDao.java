@@ -12,10 +12,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao {
 
     private static final Logger LOGGER = LogManager.getLogger(UserDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User findByLoginWithRole(String login) {
         String sql = "SELECT users.*," +
@@ -41,6 +47,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User findByLoginOrEmail(String login, String email) {
         String sql = "SELECT * FROM users WHERE login=? OR email=?";
@@ -63,6 +72,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> findAllByRole(String role) {
         String sql = "SELECT users.*," +
@@ -91,6 +103,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         return users;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> findAvailableSpeakersForProposalByTopic(int topicId) {
         String sql = "SELECT users.* FROM users WHERE NOT EXISTS " +
@@ -115,6 +130,9 @@ public class UserDao extends AbstractCrudDao<Integer, User> implements IUserDao 
         return speakers;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateUserImagePath(User user) {
         String sql = "UPDATE users SET image_path=? WHERE id=?";

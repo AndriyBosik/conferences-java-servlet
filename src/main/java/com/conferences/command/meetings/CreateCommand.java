@@ -28,6 +28,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ *     Responds to /meetings/create page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class CreateCommand extends FrontCommand {
 
     private static final String MEETINGS_IMAGES = "/resources/images/meetings/";
@@ -45,13 +54,20 @@ public class CreateCommand extends FrontCommand {
         this.fileFormMeetingMapper = MapperFactory.getInstance().getRequestToFileFormMeetingMapper();
     }
 
+    /**
+     * <p>
+     *     Creates meeting with data received from request
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         FileFormData<Meeting> data = fileFormMeetingMapper.map(request);
         if (data != null) {
             Meeting meeting = data.getItem();
             String imageExtension = "." + FileUtil.getFileExtension(meeting.getImagePath());
-            meeting.setImagePath(generateMeetingImagePath() + imageExtension);
+            meeting.setImagePath(generateMeetingImageName() + imageExtension);
             List<FormError> errors = new ArrayList<>();
             if (!fileHandler.saveFile(data.getFileItems(), context.getRealPath(MEETINGS_IMAGES), meeting.getImagePath())) {
                 meeting.setImagePath(DEFAULT_IMAGE_PATH);
@@ -76,7 +92,13 @@ public class CreateCommand extends FrontCommand {
         }
     }
 
-    private String generateMeetingImagePath() {
+    /**
+     * <p>
+     *     Generates meeting's image name
+     * </p>
+     * @return string representing image name
+     */
+    private String generateMeetingImageName() {
         User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
         String filename = Defaults.MEETING_IMAGE_PREFIX + "_" + LocalDateTime.now() + "_" + user.getId();
         return FileUtil.removeFileForbiddenSymbols(filename);

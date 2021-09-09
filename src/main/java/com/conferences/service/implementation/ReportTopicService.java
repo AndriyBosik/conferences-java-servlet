@@ -13,6 +13,9 @@ import com.conferences.validator.IValidator;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ReportTopicService implements IReportTopicService {
 
     private final IReportTopicDao reportTopicDao;
@@ -25,6 +28,9 @@ public class ReportTopicService implements IReportTopicService {
         reportTopicValidator = ValidatorFactory.getInstance().getReportTopicValidator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> updateTopicWithSpeaker(ReportTopic reportTopic) {
         List<FormError> errors = reportTopicValidator.validate(reportTopic);
@@ -34,11 +40,17 @@ public class ReportTopicService implements IReportTopicService {
         return errors;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean setSpeakerForTopic(ReportTopicSpeaker reportTopicSpeaker) {
         return reportTopicSpeakerDao.saveWithProposalsDeletion(reportTopicSpeaker);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> saveWithSpeaker(ReportTopic reportTopic) {
         List<FormError> errors = reportTopicValidator.validate(reportTopic);

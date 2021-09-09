@@ -6,10 +6,16 @@ import com.conferences.model.FormError;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class MeetingEditableDataValidator extends AbstractValidator<Meeting> {
     private static final String ADDRESS = "address";
     private static final String DATE = "date";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> validate(Meeting model) {
         List<FormError> formErrors = new ArrayList<>();

@@ -12,10 +12,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * {@inheritDoc}
+ */
 public class RoleDao extends AbstractCrudDao<Integer, Role> implements IRoleDao {
 
     private static final Logger LOGGER = LogManager.getLogger(RoleDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Role findByTitle(String title) {
         String sql = "SELECT * FROM roles WHERE title=?";

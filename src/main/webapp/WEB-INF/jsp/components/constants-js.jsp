@@ -6,7 +6,7 @@
     const SET_TOPIC_SPEAKER_FROM_PROPOSALS_ACTION = "<taglib:linkTo href="/topics/set-speaker-from-proposals" />";
     const GET_TOPIC_PROPOSALS_ACTION = "<taglib:linkTo href="/topics-api/get-topic-proposals/" />";
     const GET_TOPIC_AVAILABLE_SPEAKERS_TO_PROPOSE = "<taglib:linkTo href="/topics-api/get-available-speakers-for-proposal/" />";
-    const PROPOSE_TOPIC_FOR_USER = "<taglib:linkTo href="/topics-api/propose-topic-for-user" />";
+    const PROPOSE_TOPIC_FOR_SPEAKER = "<taglib:linkTo href="/topics-api/propose-topic-for-speaker" />";
     const SAVE_USER_PRESENCE = "<taglib:linkTo href="/meetings-api/save-user-presence" />";
 
     const PROPOSE_MESSAGE = "<taglib:message value="propose" />";

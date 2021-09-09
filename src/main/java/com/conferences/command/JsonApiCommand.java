@@ -15,6 +15,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * <p>
+ *     Represents command which can receive and send JSON objects
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public abstract class JsonApiCommand extends FrontCommand {
 
     protected Gson gson;
@@ -30,6 +39,13 @@ public abstract class JsonApiCommand extends FrontCommand {
         response.setContentType("application/json");
     }
 
+    /**
+     * <p>
+     *     Receives object from abstract {@code getJsonObject()} method and maps it to JSON string
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         Object model = getJsonObject();
@@ -37,5 +53,11 @@ public abstract class JsonApiCommand extends FrontCommand {
         out.write(gson.toJson(model));
     }
 
+    /**
+     * <p>
+     *     Returns object which will be mapped to JSON string
+     * </p>
+     * @return object of any class
+     */
     protected abstract Object getJsonObject();
 }

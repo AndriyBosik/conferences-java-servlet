@@ -8,8 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@inheritDoc}
+ */
 public class RequestToEditableMeetingDataMapper implements IMapper<HttpServletRequest, Meeting> {
 
+    /**
+     * <p>
+     *     Maps {@link HttpServletRequest} to editable {@link Meeting} data that contains meeting address and date
+     * </p>
+     */
     @Override
     public Meeting map(HttpServletRequest request) {
         Meeting meeting = new Meeting();
@@ -18,8 +26,8 @@ public class RequestToEditableMeetingDataMapper implements IMapper<HttpServletRe
 
         String strDate =
                 request.getParameter("date") + " " +
-                TimeUtil.addZeroToBegin(request.getParameter("hours")) + ":" +
-                TimeUtil.addZeroToBegin(request.getParameter("minutes"));
+                TimeUtil.addZeroToBegin(Integer.parseInt(request.getParameter("hours"))) + ":" +
+                TimeUtil.addZeroToBegin(Integer.parseInt(request.getParameter("minutes")));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString());
         LocalDateTime date = LocalDateTime.parse(strDate, formatter);
 

@@ -8,6 +8,9 @@ import com.conferences.service.abstraction.IProposedTopicDataService;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ProposedTopicDataService implements IProposedTopicDataService {
 
     private final IProposedTopicDataDao proposedTopicDataDao;
@@ -16,6 +19,9 @@ public class ProposedTopicDataService implements IProposedTopicDataService {
         proposedTopicDataDao = DaoFactory.getInstance().getProposedTopicDataDao();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ProposedTopicData> getProposedTopicsOrderByMeeting() {
         return proposedTopicDataDao.findAllProposedTopicsOrderByMeetingId();

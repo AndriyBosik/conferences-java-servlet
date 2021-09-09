@@ -4,8 +4,14 @@ import com.conferences.entity.User;
 import com.conferences.handler.abstraction.IUserDataSaver;
 import com.conferences.model.UserData;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserDataSaver implements IUserDataSaver {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserData saveUserData(User user) {
         UserData data = new UserData();
@@ -17,6 +23,9 @@ public class UserDataSaver implements IUserDataSaver {
         return data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void restoreUserData(User user, UserData data) {
         user.setLogin(data.getLogin());

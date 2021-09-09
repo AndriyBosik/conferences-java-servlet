@@ -5,6 +5,15 @@ import com.conferences.entity.ReportTopic;
 import com.conferences.entity.User;
 import com.conferences.validator.*;
 
+/**
+ * <p>
+ *     Defines methods to instantiate validators
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ValidatorFactory {
 
     private static ValidatorFactory instance;

@@ -13,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserService implements IUserService {
 
     private final IUserDao userDao;
@@ -23,16 +26,25 @@ public class UserService implements IUserService {
         userRequiredForUpdateDataValidator = ValidatorFactory.getInstance().getUserRequiredForUpdateDataValidator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> getUsersByRoleTitleWithRole(String roleTitle) {
         return userDao.findAllByRole(roleTitle);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateUserImagePath(User user) {
         return userDao.updateUserImagePath(user);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> updateUser(User user) {
         List<FormError> errors = userRequiredForUpdateDataValidator.validate(user);

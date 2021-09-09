@@ -12,6 +12,9 @@ import com.conferences.service.abstraction.IModeratorProposalService;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ModeratorProposalService implements IModeratorProposalService {
 
     private final IUserDao userDao;
@@ -22,16 +25,25 @@ public class ModeratorProposalService implements IModeratorProposalService {
         this.moderatorProposalDao = DaoFactory.getInstance().getModeratorProposalDao();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean saveModeratorProposal(ModeratorProposal moderatorProposal) {
         return moderatorProposalDao.create(moderatorProposal);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> getAvailableSpeakersForProposalByTopic(int topicId) {
         return userDao.findAvailableSpeakersForProposalByTopic(topicId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean deleteModeratorProposal(ModeratorProposal moderatorProposal) {
         return moderatorProposalDao.deleteProposal(moderatorProposal);

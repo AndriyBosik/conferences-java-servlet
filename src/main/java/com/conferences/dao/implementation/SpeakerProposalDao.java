@@ -15,10 +15,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class SpeakerProposalDao extends AbstractCrudDao<Integer, SpeakerProposal> implements ISpeakerProposalDao {
 
     private static final Logger LOGGER = LogManager.getLogger(SpeakerProposalDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<SpeakerProposal> findAllByTopicIdWithSpeaker(int topicId) {
         List<SpeakerProposal> speakerProposals = new ArrayList<>();
@@ -47,6 +53,9 @@ public class SpeakerProposalDao extends AbstractCrudDao<Integer, SpeakerProposal
         return speakerProposals;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Integer> findAllSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId) {
         String sql =

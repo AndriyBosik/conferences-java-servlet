@@ -6,6 +6,8 @@ import com.conferences.util.StringUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -14,10 +16,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * {@inheritDoc}
+ */
 public abstract class AbstractFileFormMapper<U> implements IMapper<HttpServletRequest, FileFormData<U>> {
+
+    private static final Logger LOGGER = LogManager.getLogger(AbstractFileFormMapper.class);
 
     protected abstract U mapFormDataToReturnValue(Map<String, String> formData);
 
+    /**
+     * <p>
+     *     Maps {@link HttpServletRequest} to {@link FileFormData} that container simple fields and file fields
+     * </p>
+     */
     @Override
     public FileFormData<U> map(HttpServletRequest request) {
         if (ServletFileUpload.isMultipartContent(request)) {
@@ -41,7 +53,7 @@ public abstract class AbstractFileFormMapper<U> implements IMapper<HttpServletRe
                 data.setItem(mapFormDataToReturnValue(formData));
                 return data;
             } catch (Exception exception) {
-                exception.printStackTrace();
+                LOGGER.error("Unable to parse request", exception);
             }
         }
         return null;

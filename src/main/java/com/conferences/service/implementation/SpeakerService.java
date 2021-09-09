@@ -6,6 +6,9 @@ import com.conferences.entity.SpeakerProposal;
 import com.conferences.factory.DaoFactory;
 import com.conferences.service.abstraction.ISpeakerService;
 
+/**
+ * {@inheritDoc}
+ */
 public class SpeakerService implements ISpeakerService {
 
     private final ISpeakerProposalDao speakerProposalDao;
@@ -14,6 +17,9 @@ public class SpeakerService implements ISpeakerService {
         speakerProposalDao = DaoFactory.getInstance().getSpeakerProposalDao();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean proposeSpeaker(int reportTopicId, int userId) {
         SpeakerProposal speakerProposal = new SpeakerProposal();

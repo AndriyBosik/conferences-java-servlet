@@ -23,10 +23,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * {@inheritDoc}
+ */
 public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMeetingDao {
 
     private static final Logger LOGGER = LogManager.getLogger(MeetingDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Meeting findByKeyWithReportTopicsAndSpeakersAndUsersCount(Integer key) {
         String sql =
@@ -78,11 +84,17 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter) {
         return findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(page, sorter, "");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PageResponse<Meeting> findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter, int speakerId) {
         final String OPEN_EXISTS = "EXISTS (";
@@ -100,6 +112,9 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(page, sorter, filterCondition);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateMeetingEditableData(Meeting meeting) {
         String sql = "UPDATE meetings SET address=?, date=? WHERE id=?";
@@ -119,6 +134,15 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return false;
     }
 
+    /**
+     * <p>
+     *     Retrieves sorted and filtered meetings with users count and topics count with custom SQL filter condition
+     * </p>
+     * @param page model which contains data about page
+     * @param sorter model which contains sort and filter options
+     * @param filterCondition SQL condition to filter by
+     * @return {@link PageResponse} which contains list of {@link Meeting} objects and other page data
+     */
     private PageResponse<Meeting> findAllPageBySorterWithUsersCountAndTopicsCountAndFilter(Page page, MeetingSorter sorter, String filterCondition) {
         PageResponse<Meeting> pageResponse = new PageResponse<>();
         pageResponse.setPageSize(page.getItemsCount());
@@ -157,6 +181,9 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return pageResponse;
     }
 
+    /**
+     * @return returns map which contains information about column names and prefixes
+     */
     private Map<String, String> getMeetingPageColumns() {
         Map<String, String> columns = new HashMap<>();
         columns.put(MeetingSorterQueryBuilderFactory.MEETINGS_KEY, "meetings.");
@@ -165,6 +192,14 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return columns;
     }
 
+    /**
+     * <p>
+     *     Builds SQL query to execute and retrieve items count from
+     * </p>
+     * @param queryBuilder builder used to generate SQL query
+     * @param filterCondition SQL condition to filter by
+     * @return number representing count of retrieved items
+     */
     private int getItemsCount(IQueryBuilder queryBuilder, String filterCondition) {
         String sql = queryBuilder
                 .select("COUNT(meetings.id) AS meetings_count")
@@ -175,6 +210,14 @@ public class MeetingDao extends AbstractCrudDao<Integer, Meeting> implements IMe
         return getRecordsCountBySql(sql, "meetings_count");
     }
 
+    /**
+     * <p>
+     *     Uses {@link IQueryBuilder} to build SQL query to get list of {@link Meeting} objects for specified page
+     * </p>
+     * @param queryBuilder builder used to build SQL query
+     * @param filterCondition additional SQL condition to filter by
+     * @return SQL query
+     */
     private String buildMeetingPageSqlQuery(IQueryBuilder queryBuilder, String filterCondition) {
         return queryBuilder
                 .select(

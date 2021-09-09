@@ -5,6 +5,9 @@ import com.conferences.handler.abstraction.IQueryBuilder;
 
 import java.util.Arrays;
 
+/**
+ * {@inheritDoc}
+ */
 public class MeetingDateQueryBuilder extends QueryBuilder {
 
     private final SortOrder sortOrder;
@@ -16,6 +19,9 @@ public class MeetingDateQueryBuilder extends QueryBuilder {
         this.meetingsTablePrefix = meetingsTablePrefix;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder orderBy(String... columns) {
         String[] newColumns = Arrays.copyOf(columns, columns.length + 1);

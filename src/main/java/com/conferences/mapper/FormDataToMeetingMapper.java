@@ -9,14 +9,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * {@inheritDoc}
+ */
 public class FormDataToMeetingMapper implements IMapper<Map<String, String>, Meeting> {
 
+    /**
+     * <p>
+     *     Maps {@code formData} to {@link Meeting}
+     * </p>
+     * @param formData form data where key is name of field and value is value of that field
+     */
     @Override
     public Meeting map(Map<String, String> formData) {
         String strDate =
                 formData.get("date") + " " +
-                TimeUtil.addZeroToBegin(formData.get("hours")) + ":" +
-                TimeUtil.addZeroToBegin(formData.get("minutes"));
+                TimeUtil.addZeroToBegin(Integer.parseInt(formData.get("hours"))) + ":" +
+                TimeUtil.addZeroToBegin(Integer.parseInt(formData.get("minutes")));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Defaults.DATE_FORMAT.toString(), Locale.UK);
         LocalDateTime date = LocalDateTime.parse(strDate, formatter);
 

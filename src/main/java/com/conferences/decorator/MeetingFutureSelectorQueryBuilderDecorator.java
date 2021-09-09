@@ -2,6 +2,15 @@ package com.conferences.decorator;
 
 import com.conferences.handler.abstraction.IQueryBuilder;
 
+/**
+ * <p>
+ *     Decorates {@link IQueryBuilder} to get only future meetings from database
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class MeetingFutureSelectorQueryBuilderDecorator implements IQueryBuilder {
 
     private final IQueryBuilder wrapped;

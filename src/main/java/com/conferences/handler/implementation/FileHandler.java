@@ -1,37 +1,23 @@
 package com.conferences.handler.implementation;
 
-import com.conferences.entity.Meeting;
-import com.conferences.factory.MapperFactory;
 import com.conferences.handler.abstraction.IFileHandler;
-import com.conferences.mapper.IMapper;
-import com.conferences.mapper.RequestToFileFormMeetingMapper;
-import com.conferences.model.FileFormData;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class FileHandler implements IFileHandler {
 
     private static final Logger LOGGER = LogManager.getLogger(FileHandler.class);
 
-    private final IMapper<HttpServletRequest, FileFormData<Meeting>> mapper;
-
-    public FileHandler() {
-        mapper = MapperFactory.getInstance().getRequestToFileFormMeetingMapper();
-    }
-
-    @Override
-    public boolean saveFile(HttpServletRequest request, String path, String filename) {
-        FileFormData<Meeting> data = mapper.map(request);
-        return saveFile(data.getFileItems(), path, filename);
-    }
-
-    // Returns null when there was an error during file saving
-    // Map with form fields otherwise
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean saveFile(List<FileItem> fileItems, String path, String filename) {
         for (FileItem fi : fileItems) {

@@ -3,8 +3,14 @@ package com.conferences.handler.implementation;
 import com.conferences.config.Defaults;
 import com.conferences.handler.abstraction.ILinkHandler;
 
+/**
+ * {@inheritDoc}
+ */
 public class LinkHandler implements ILinkHandler {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLangFromUrl(String url) {
         if (url.length() == 0) {
@@ -19,6 +25,9 @@ public class LinkHandler implements ILinkHandler {
         return Defaults.DEFAULT_LANG.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String addLangToUrl(String url, String lang) {
         StringBuilder link = new StringBuilder("/" + lang);

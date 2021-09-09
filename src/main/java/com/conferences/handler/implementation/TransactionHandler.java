@@ -7,10 +7,16 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * {@inheritDoc}
+ */
 public class TransactionHandler implements ITransactionHandler {
 
     private static final Logger LOGGER = LogManager.getLogger(TransactionHandler.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void closeResource(AutoCloseable closeable) {
         if (closeable != null) {
@@ -22,6 +28,9 @@ public class TransactionHandler implements ITransactionHandler {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void rollbackTransaction(Connection connection) {
         if (connection != null) {
@@ -33,6 +42,9 @@ public class TransactionHandler implements ITransactionHandler {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAutoCommit(Connection connection, boolean value) {
         if (connection != null) {

@@ -20,6 +20,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /meetings/join-user page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class JoinUserCommand extends FrontCommand {
 
     private IMeetingService meetingService;
@@ -30,6 +39,13 @@ public class JoinUserCommand extends FrontCommand {
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }
 
+    /**
+     * <p>
+     *     Tries to join user for meeting. Redirects to /meetings/show/{id} page if fails
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         int meetingId = Integer.parseInt(request.getParameter("meeting_id"));

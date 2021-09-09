@@ -4,8 +4,14 @@ import com.conferences.model.UserData;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * {@inheritDoc}
+ */
 public class RequestToUserDataMapper implements IMapper<HttpServletRequest, UserData> {
 
+    /**
+     * Map {@link HttpServletRequest} to {@link UserData}
+     */
     @Override
     public UserData map(HttpServletRequest request) {
         UserData data = new UserData();

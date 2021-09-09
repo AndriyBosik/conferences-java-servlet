@@ -43,7 +43,7 @@ public enum Page {
             return url + "*";
         }
     },
-    API_TOPIC_PROPOSE_FOR_USER("/topics-api/propose-topic-for-user"),
+    API_TOPIC_PROPOSE_FOR_USER("/topics-api/propose-topic-for-speaker"),
     REJECT_PROPOSAL("/proposals/reject-proposal");
 
     protected final String url;

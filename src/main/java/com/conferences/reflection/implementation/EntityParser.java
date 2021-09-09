@@ -11,10 +11,16 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * {@inheritDoc}
+ */
 public class EntityParser implements IEntityParser {
 
     private static final Logger LOGGER = LogManager.getLogger(EntityParser.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T parseToEntity(Class<T> entityClass, ResultSet result, String columnPrefix) throws SQLException {
         try {
@@ -43,13 +49,19 @@ public class EntityParser implements IEntityParser {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T parseToEntity(Class<T> entityClass, ResultSet result) throws SQLException {
         return parseToEntity(entityClass, result, "");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public <T> void setValueForField(Field field, T entity, ResultSet result, String columnName) {
+    public void setValueForField(Field field, Object entity, ResultSet result, String columnName) {
         try {
             field.setAccessible(true);
             if (field.getType().equals(Integer.class) || field.getType().equals(int.class)) {
@@ -67,6 +79,14 @@ public class EntityParser implements IEntityParser {
         }
     }
 
+    /**
+     * <p>
+     *     Checks whatever column with {@code columnName} exists in passed {@link ResultSet}
+     * </p>
+     * @param result {@link ResultSet} to check column existing in
+     * @param columnName name of column to be checked
+     * @return true if column exists, false otherwise
+     */
     private boolean columnExists(ResultSet result, String columnName) {
         try {
             result.findColumn(columnName);

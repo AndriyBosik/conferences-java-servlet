@@ -9,7 +9,7 @@ import com.conferences.factory.ServiceFactory;
 import com.conferences.mapper.IMapper;
 import com.conferences.model.FormError;
 import com.conferences.model.UserData;
-import com.conferences.service.abstraction.IAuthenticationService;
+import com.conferences.service.abstraction.IAuthService;
 import com.conferences.service.abstraction.IRoleService;
 
 import javax.servlet.ServletContext;
@@ -22,9 +22,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ *     Responds to /users/sign-up page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class SignUpCommand extends FrontCommand {
 
-    private IAuthenticationService authenticationService;
+    private IAuthService authenticationService;
     private IRoleService roleService;
     private IMapper<HttpServletRequest, UserData> mapper;
 
@@ -36,6 +45,13 @@ public class SignUpCommand extends FrontCommand {
         mapper = MapperFactory.getInstance().getRequestToUserDataMapper();
     }
 
+    /**
+     * <p>
+     *     Checks whatever HTTP method is GET method. Redirects to sign_up partial view, tries to sign up user otherwise
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         if (request.getMethod().equals(HttpMethod.GET.toString())) {
@@ -48,6 +64,13 @@ public class SignUpCommand extends FrontCommand {
         signUp();
     }
 
+    /**
+     * <p>
+     *     Processes user signing up
+     * </p>
+     * @throws IOException an exception which may occur during saving errors to session
+     * @throws ServletException an exception which may occur during saving errors to session
+     */
     private void signUp() throws IOException, ServletException {
         User user = new User();
         Role role = roleService.getRoleByTitle(request.getParameter("role"));

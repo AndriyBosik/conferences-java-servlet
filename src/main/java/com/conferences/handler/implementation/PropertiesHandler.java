@@ -8,10 +8,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+/**
+ * {@inheritDoc}
+ */
 public class PropertiesHandler implements IPropertiesHandler {
 
     private static final Logger LOGGER = LogManager.getLogger(PropertiesHandler.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPropertyValue(String filename, String lang, String key) {
         String propertiesFilename = filename + "_" + lang + ".properties";

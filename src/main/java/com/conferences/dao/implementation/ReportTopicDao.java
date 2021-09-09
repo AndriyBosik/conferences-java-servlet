@@ -11,10 +11,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * {@inheritDoc}
+ */
 public class ReportTopicDao extends AbstractCrudDao<Integer, ReportTopic> implements IReportTopicDao {
 
     private static final Logger LOGGER = LogManager.getLogger(ReportTopicDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateWithSpeaker(ReportTopic reportTopic) {
         Connection connection = null;
@@ -60,6 +66,9 @@ public class ReportTopicDao extends AbstractCrudDao<Integer, ReportTopic> implem
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean saveWithSpeaker(ReportTopic reportTopic) {
         Connection connection = null;

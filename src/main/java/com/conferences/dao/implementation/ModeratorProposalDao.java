@@ -11,10 +11,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * {@inheritDoc}
+ */
 public class ModeratorProposalDao extends AbstractCrudDao<Integer, ModeratorProposal> implements IModeratorProposalDao {
 
     private static final Logger LOGGER = LogManager.getLogger(ModeratorProposalDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean deleteProposal(ModeratorProposal moderatorProposal) {
         String sql = "DELETE FROM moderator_proposals WHERE speaker_id=? AND report_topic_id=?";

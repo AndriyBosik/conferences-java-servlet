@@ -5,6 +5,9 @@ import com.conferences.factory.HandlerFactory;
 import com.conferences.handler.abstraction.IPropertiesHandler;
 import com.conferences.model.FormError;
 
+/**
+ * {@inheritDoc}
+ */
 public class FormErrorToStringMapper implements IMapper<FormError, String> {
 
     private static final String FIELDS_MESSAGES_PREFIX = "fields.";
@@ -15,6 +18,12 @@ public class FormErrorToStringMapper implements IMapper<FormError, String> {
         handler = HandlerFactory.getInstance().getPropertiesHandler();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     *     Localize error message
+     * </p>
+     */
     @Override
     public String map(FormError model) {
         String lang = model.getLang();

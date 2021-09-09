@@ -14,6 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /home/proposals page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ProposalsCommand extends FrontCommand {
 
     private IProposalDataService proposalDataService;
@@ -24,6 +33,13 @@ public class ProposalsCommand extends FrontCommand {
         proposalDataService = ServiceFactory.getInstance().getProposalDataService();
     }
 
+    /**
+     * <p>
+     *     Adds speaker's and moderator's proposals to request and forwards it to proposals page
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());

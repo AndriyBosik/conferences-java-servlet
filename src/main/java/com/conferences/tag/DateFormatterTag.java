@@ -1,7 +1,5 @@
 package com.conferences.tag;
 
-import com.conferences.config.Defaults;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -9,14 +7,35 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * <p>
+ *     Defines tag that can be used to print object of {@link LocalDateTime} class to custom format
+ * </p>
+ */
 public class DateFormatterTag extends TagSupport {
 
+    /**
+     * <p>
+     *     Date that will be formatted
+     * </p>
+     */
     private LocalDateTime date;
 
+    /**
+     * <p>
+     *     Date format
+     * </p>
+     */
     private String format;
 
+    /**
+     * <p>
+     *     Formats date
+     * </p>
+     * @return SKIP_BODY
+     */
     @Override
-    public int doStartTag() throws JspException {
+    public int doStartTag() {
         initDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         String formattedDate = date.format(formatter);
@@ -30,12 +49,22 @@ public class DateFormatterTag extends TagSupport {
         return SKIP_BODY;
     }
 
+    /**
+     * <p>
+     *     Inits optional parameters
+     * </p>
+     */
     private void initDate() {
         if (date == null) {
             date = LocalDateTime.now();
         }
     }
 
+    /**
+     * <p>
+     *     Resets optional parameters to their initial values
+     * </p>
+     */
     private void resetData() {
         date = null;
     }

@@ -9,6 +9,15 @@ import com.conferences.model.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * <p>
+ *     Defines methods to instantiate mappers
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class MapperFactory {
 
     private static MapperFactory instance;
@@ -25,6 +34,7 @@ public class MapperFactory {
     private IMapper<HttpServletRequest, UserData> requestToUserDataMapper;
     private IMapper<HttpServletRequest, FileFormData<Map<String, String>>> simpleFileFormMapper;
     private IMapper<TopicProposal, ReportTopic> topicProposalToReportTopicMapper;
+    private IMapper<String, String> urlToJavaCommandNameMapper;
 
     private MapperFactory() {}
 
@@ -117,5 +127,12 @@ public class MapperFactory {
             topicProposalToReportTopicMapper = new TopicProposalToReportTopicMapper();
         }
         return topicProposalToReportTopicMapper;
+    }
+
+    public synchronized IMapper<String, String> getUrlToJavaCommandNameMapper() {
+        if (urlToJavaCommandNameMapper == null) {
+            urlToJavaCommandNameMapper = new UrlToJavaCommandNameMapper();
+        }
+        return urlToJavaCommandNameMapper;
     }
 }

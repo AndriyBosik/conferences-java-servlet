@@ -21,6 +21,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /meetings/show page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ShowCommand extends FrontCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(ShowCommand.class);
@@ -46,6 +55,13 @@ public class ShowCommand extends FrontCommand {
         speakerProposalService = ServiceFactory.getInstance().getSpeakerProposalService();
     }
 
+    /**
+     * <p>
+     *     Gets meeting by meetingId passed as URL param and forwards it to view
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         Meeting meeting = meetingService.getMeetingWithTopicsAndSpeakersAndUsersCount(id);
@@ -73,6 +89,11 @@ public class ShowCommand extends FrontCommand {
         forwardPartial("meeting", meeting.getTitle());
     }
 
+    /**
+     * <p>
+     *     Gets errors from session
+     * </p>
+     */
     private void extractErrors() {
         extractErrorsFromSession(FormKeys.PROPOSAL_ERRORS);
         extractErrorsFromSession(FormKeys.JOINING_ERRORS);

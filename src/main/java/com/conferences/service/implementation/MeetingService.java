@@ -13,6 +13,9 @@ import com.conferences.validator.IValidator;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class MeetingService implements IMeetingService {
 
     private final IMeetingDao meetingDao;
@@ -27,16 +30,25 @@ public class MeetingService implements IMeetingService {
         this.meetingEditableDataValidator = ValidatorFactory.getInstance().getMeetingEditableDataValidator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PageResponse<Meeting> getAllMeetingsByPageAndSorterWithUsersCountAndTopicsCount(Page page, MeetingSorter sorter) {
         return meetingDao.findAllPageBySorterWithUsersCountAndTopicsCount(page, sorter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Meeting getMeetingWithTopicsAndSpeakersAndUsersCount(int id) {
         return meetingDao.findByKeyWithReportTopicsAndSpeakersAndUsersCount(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> saveMeeting(Meeting meeting) {
         List<FormError> errors = meetingValidator.validate(meeting);
@@ -46,6 +58,9 @@ public class MeetingService implements IMeetingService {
         return errors;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean joinUser(int meetingId, int userId) {
         UserMeeting userMeeting = new UserMeeting();
@@ -54,16 +69,25 @@ public class MeetingService implements IMeetingService {
         return userMeetingDao.create(userMeeting);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasJoinedUser(int meetingId, int userId) {
         return userMeetingDao.findByUserIdAndMeetingId(userId, meetingId) != null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Meeting getMeetingById(int meetingId) {
         return meetingDao.find(meetingId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> updateMeetingEditableData(Meeting meeting) {
         List<FormError> errors = meetingEditableDataValidator.validate(meeting);
@@ -73,16 +97,25 @@ public class MeetingService implements IMeetingService {
         return errors;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PageResponse<Meeting> getSpeakerMeetings(Page page, MeetingSorter sorter, int speakerId) {
         return meetingDao.findAllSpeakerMeetingsPageBySorterWithUsersCountAndTopicsCount(page, sorter, speakerId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MeetingUsersStats getUsersWithPresenceByMeeting(int meetingId) {
-        return new MeetingUsersStats(userMeetingDao.findUserWithPresenceByMeetingId(meetingId));
+        return new MeetingUsersStats(userMeetingDao.findUsersWithPresenceByMeetingId(meetingId));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateUserPresence(UserMeeting userMeeting) {
         return userMeetingDao.updateUserPresenceByUserIdAndMeetingId(userMeeting);

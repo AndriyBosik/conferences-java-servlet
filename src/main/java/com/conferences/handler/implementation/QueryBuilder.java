@@ -6,6 +6,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
+/**
+ * {@inheritDoc}
+ */
 public class QueryBuilder implements IQueryBuilder {
 
     private static final Logger LOGGER = LogManager.getLogger(QueryBuilder.class);
@@ -13,6 +16,9 @@ public class QueryBuilder implements IQueryBuilder {
 
     protected StringBuilder query;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder select(String... columns) {
         query = new StringBuilder("");
@@ -24,6 +30,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder from(String... tables) {
         query.append(" FROM ");
@@ -34,6 +43,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder where(String condition) {
         if (condition != null && condition.length() > 0) {
@@ -44,6 +56,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String and(String... conditions) {
         conditions = Arrays.stream(conditions)
@@ -63,6 +78,9 @@ public class QueryBuilder implements IQueryBuilder {
         return totalCondition.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder leftJoin(String tableName, String condition) {
         if (tableName == null || tableName.trim().isEmpty()  || condition == null || condition.trim().isEmpty()) {
@@ -76,6 +94,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder groupBy(String... columns) {
         if (columns.length == 0) {
@@ -89,6 +110,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IQueryBuilder orderBy(String... columns) {
         if (columns.length == 0) {
@@ -102,6 +126,9 @@ public class QueryBuilder implements IQueryBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String generateQuery() {
         String sql = query.toString();

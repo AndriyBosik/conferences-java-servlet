@@ -46,7 +46,7 @@ async function getAvailableSpeakersByTopicId(topicId) {
 }
 
 async function sendProposal(speakerId, topicId) {
-    const response = await fetch(PROPOSE_TOPIC_FOR_USER, {
+    const response = await fetch(PROPOSE_TOPIC_FOR_SPEAKER, {
         method: "POST",
         body: JSON.stringify({
             speakerId: speakerId,

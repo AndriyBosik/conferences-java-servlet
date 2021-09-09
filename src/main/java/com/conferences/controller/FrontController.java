@@ -1,8 +1,8 @@
 package com.conferences.controller;
 
-import com.conferences.model.CommandInfo;
+import com.conferences.factory.HandlerFactory;
+import com.conferences.handler.abstraction.ICommandHandler;
 import com.conferences.command.FrontCommand;
-import com.conferences.command.UnknownCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,9 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * <p>
+ *     {@link HttpServlet} representing Front Controller pattern
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 1,
     maxFileSize = 1024 * 1024 * 10,
@@ -23,6 +30,13 @@ import java.util.List;
 public class FrontController extends HttpServlet {
 
     private static final Logger LOGGER = LogManager.getLogger(FrontController.class);
+
+    private ICommandHandler commandHandler;
+
+    @Override
+    public void init() throws ServletException {
+        commandHandler = HandlerFactory.getInstance().getCommandHandler();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,20 +48,19 @@ public class FrontController extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * <p>
+     *      Delegates request to command
+     * </p>
+     * @param request {@link HttpServletRequest}
+     * @param response {@link HttpServletResponse}
+     * @throws IOException exception may occur during processing request
+     */
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LOGGER.info("{} request processing started", request.getMethod());
-        int contextPathLength = request.getContextPath().length();
-        if (contextPathLength != request.getRequestURI().length()) {
-            contextPathLength++;
-        }
-        String path = request.getPathInfo().substring(contextPathLength);
-        CommandInfo commandInfo = getCommandInfo(path);
-
-        FrontCommand command = getCommand(commandInfo);
-        LOGGER.info("Request path: {}; Command: {}.{}; urlParams: {}", path, commandInfo.getPackageName(), commandInfo.getCommandName(), commandInfo.getUrlParams());
 
         try {
-            command.init(getServletContext(), request, response, commandInfo.getUrlParams());
+            FrontCommand command = commandHandler.getCommand(request, response);
             LOGGER.info("Processing request");
             command.process();
         } catch (NumberFormatException exception) {
@@ -57,53 +70,5 @@ public class FrontController extends HttpServlet {
             LOGGER.error("Unable to process request", exception);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
-    }
-
-    private FrontCommand getCommand(CommandInfo commandInfo) {
-        try {
-            Class<?> type = Class.forName(String.format("com.conferences.command.%s.%sCommand", commandInfo.getPackageName(), mapToClassName(commandInfo.getCommandName())));
-            return type.asSubclass(FrontCommand.class).newInstance();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return new UnknownCommand();
-        }
-    }
-
-    private CommandInfo getCommandInfo(String path) {
-        if (path.length() == 0) {
-            return new CommandInfo("home", "index");
-        }
-        String[] parts = path.split("/");
-        if (parts.length == 1) {
-            return new CommandInfo("home", parts[0]);
-        }
-
-        List<String> urlParams = new ArrayList<>();
-        for (int i = 2; i < parts.length; i++) {
-            urlParams.add(parts[i]);
-        }
-        return new CommandInfo(parts[0].replace("-", "."), parts[1], urlParams);
-    }
-
-    private String mapToClassName(String commandName) {
-        StringBuilder sb = new StringBuilder();
-        int index = 0;
-        while (index < commandName.length()) {
-            char character = commandName.charAt(index);
-            if (character != '-') {
-                sb.append(character);
-            } else {
-                if (index + 1 < commandName.length()) {
-                    sb.append(Character.toUpperCase(commandName.charAt(index + 1)));
-                }
-                index++;
-            }
-            index++;
-        }
-        if (sb.length() > 0) {
-            char firstCharUppercase = Character.toUpperCase(sb.charAt(0));
-            sb.setCharAt(0, firstCharUppercase);
-        }
-        return sb.toString();
     }
 }

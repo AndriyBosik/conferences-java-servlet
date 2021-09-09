@@ -7,8 +7,16 @@ import com.conferences.model.MeetingSorter;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * {@inheritDoc}
+ */
 public class RequestToMeetingSorterMapper implements IMapper<HttpServletRequest, MeetingSorter> {
 
+    /**
+     * <p>
+     *     Maps {@link HttpServletRequest} to {@link MeetingSorter}
+     * </p>
+     */
     @Override
     public MeetingSorter map(HttpServletRequest request) {
         MeetingSorter meetingSorter = new MeetingSorter();

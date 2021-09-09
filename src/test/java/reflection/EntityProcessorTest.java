@@ -37,7 +37,7 @@ public class EntityProcessorTest {
 
     @Test
     public void shouldReturnDbDataForEntity() {
-        DbTable table = entityProcessor.getEntityFieldsList(User.class);
+        DbTable table = entityProcessor.getDbTableData(User.class);
         assertEquals("users", table.getName());
         assertEquals("id", table.getKey());
         assertEquals(USERS_TABLE_COLUMNS.length, table.getFields().size());
@@ -48,7 +48,7 @@ public class EntityProcessorTest {
 
     @Test
     public void shouldReturnNullForEntityWithoutTableAnnotation() {
-        DbTable table = entityProcessor.getEntityFieldsList(NoTableAnnotation.class);
+        DbTable table = entityProcessor.getDbTableData(NoTableAnnotation.class);
         assertNull(table);
     }
 

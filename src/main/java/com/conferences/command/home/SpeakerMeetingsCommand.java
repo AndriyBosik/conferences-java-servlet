@@ -22,6 +22,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /home/speaker-meetings page request
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class SpeakerMeetingsCommand extends FrontCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(SpeakerMeetingsCommand.class);
@@ -50,6 +59,13 @@ public class SpeakerMeetingsCommand extends FrontCommand {
         page = new com.conferences.model.Page(ITEMS_COUNT, pageNumber);
     }
 
+    /**
+     * <p>
+     *     Forwards request to partial view
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());

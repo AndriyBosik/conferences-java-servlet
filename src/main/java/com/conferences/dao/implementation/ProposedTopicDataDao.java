@@ -14,10 +14,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ProposedTopicDataDao extends AbstractDao<Integer, ProposedTopicData> implements IProposedTopicDataDao {
 
     private static final Logger LOGGER = LogManager.getLogger(ProposedTopicDataDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ProposedTopicData> findAllProposedTopicsOrderByMeetingId() {
         String sql =

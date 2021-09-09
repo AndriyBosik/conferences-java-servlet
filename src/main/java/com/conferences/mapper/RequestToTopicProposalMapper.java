@@ -6,8 +6,16 @@ import com.conferences.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * {@inheritDoc}
+ */
 public class RequestToTopicProposalMapper implements IMapper<HttpServletRequest, TopicProposal> {
 
+    /**
+     * <p>
+     *     Maps {@link HttpServletRequest} to {@link TopicProposal}
+     * </p>
+     */
     @Override
     public TopicProposal map(HttpServletRequest request) {
         User speaker = (User) request.getSession().getAttribute(Defaults.USER.toString());

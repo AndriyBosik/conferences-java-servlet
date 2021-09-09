@@ -6,10 +6,16 @@ import com.conferences.model.FormError;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ReportTopicValidator extends AbstractValidator<ReportTopic> {
 
     private static final String TITLE = "title";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> validate(ReportTopic model) {
         List<FormError> formErrors = new ArrayList<>();

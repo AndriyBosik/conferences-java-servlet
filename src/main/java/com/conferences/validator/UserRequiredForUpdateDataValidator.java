@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserRequiredForUpdateDataValidator extends AbstractValidator<User> {
 
     private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
@@ -18,6 +21,9 @@ public class UserRequiredForUpdateDataValidator extends AbstractValidator<User> 
     private static final String NAME = "name";
     private static final String EMAIL = "email";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> validate(User model) {
         List<FormError> formErrors = new ArrayList<>();
@@ -38,6 +44,13 @@ public class UserRequiredForUpdateDataValidator extends AbstractValidator<User> 
         return formErrors;
     }
 
+    /**
+     * <p>
+     *     Validates email
+     * </p>
+     * @param email email to be validated
+     * @return true if email is valid, false otherwise
+     */
     private boolean isCorrectEmail(String email) {
         return EMAIL_PATTERN.matcher(email).matches();
     }

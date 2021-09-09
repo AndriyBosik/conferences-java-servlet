@@ -15,7 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class ProposeTopicForUserCommand extends JsonApiCommand {
+/**
+ * <p>
+ *     Responds to /topics-api/propose-topic-for-speaker page requests
+ * </p>
+ *
+ * @author Andriy
+ * @vesion 1.0
+ * @since 2021/09/09
+ */
+public class ProposeTopicForSpeakerCommand extends JsonApiCommand {
 
     private IModeratorProposalService moderatorProposalService;
 
@@ -25,6 +34,12 @@ public class ProposeTopicForUserCommand extends JsonApiCommand {
         moderatorProposalService = ServiceFactory.getInstance().getModeratorProposalService();
     }
 
+    /**
+     * <p>
+     *     Proposes topic for speaker
+     * </p>
+     * @return result status represented by an instance of {@link SimpleResponse} class
+     */
     @Override
     protected Object getJsonObject() {
         ModeratorProposal proposal = jsonHandler.parseJsonRequestBodyToObject(request, ModeratorProposal.class);

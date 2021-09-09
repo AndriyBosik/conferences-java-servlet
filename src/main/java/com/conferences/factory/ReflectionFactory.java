@@ -5,6 +5,15 @@ import com.conferences.reflection.abstraction.IEntityProcessor;
 import com.conferences.reflection.implementation.EntityParser;
 import com.conferences.reflection.implementation.EntityProcessor;
 
+/**
+ * <p>
+ *     Defines methods to instantiate reflection utils
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ReflectionFactory {
 
     private static ReflectionFactory instance;

@@ -8,10 +8,30 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+/**
+ * <p>
+ *     Defines custom jstl tag that can be used to localize messages
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class MessageTag extends TagSupport {
 
+    /**
+     * <p>
+     *     Key from properties file
+     * </p>
+     */
     private String value;
 
+    /**
+     * <p>
+     *     Gets value from properties file and prints it
+     * </p>
+     * @return SKIP_BODY
+     */
     @Override
     public int doStartTag() {
         String lang = (String) pageContext.getRequest().getAttribute(Defaults.CURRENT_LANG.toString());

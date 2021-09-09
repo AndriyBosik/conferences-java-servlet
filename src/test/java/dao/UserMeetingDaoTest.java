@@ -75,7 +75,7 @@ public class UserMeetingDaoTest {
 
             userMeetingDao.create(userMeeting);
         }
-        List<UserMeeting> databaseUsersMeetings = userMeetingDao.findUserWithPresenceByMeetingId(meetingId);
+        List<UserMeeting> databaseUsersMeetings = userMeetingDao.findUsersWithPresenceByMeetingId(meetingId);
         for (int i = 0; i < usersMeetings.size(); i++) {
             assertEquals(usersMeetings.get(i).getId(), databaseUsersMeetings.get(i).getId());
             assertEquals(usersMeetings.get(i).getMeetingId(), meetingId);

@@ -6,6 +6,7 @@ import com.conferences.config.ErrorKey;
 import com.conferences.config.FormKeys;
 import com.conferences.entity.ReportTopicSpeaker;
 import com.conferences.entity.User;
+import com.conferences.entity.ReportTopic;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.IReportTopicService;
@@ -18,6 +19,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /topics/set-speaker-from-proposals page requests
+ * </p>
+ */
 public class SetSpeakerFromProposalsCommand extends FrontCommand {
 
     private IReportTopicService reportTopicService;
@@ -28,6 +34,13 @@ public class SetSpeakerFromProposalsCommand extends FrontCommand {
         reportTopicService = ServiceFactory.getInstance().getReportTopicService();
     }
 
+    /**
+     * <p>
+     *     Assigns speaker for {@link ReportTopic}
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         int speakerId = getSpeakerFromRequest();

@@ -10,6 +10,15 @@ import com.conferences.model.MeetingSorter;
 
 import java.util.Map;
 
+/**
+ * <p>
+ *     Instantiates IQueryBuilder sorted by {@link MeetingSorter}
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class MeetingSorterQueryBuilderFactory {
 
     public static final String MEETINGS_KEY = "meetings";
@@ -36,6 +45,8 @@ public class MeetingSorterQueryBuilderFactory {
                 return new MeetingUsersQueryBuilder(sorter.getSortOrder(), columns.get(USERS_COUNT_KEY));
             case TOPICS:
                 return new MeetingTopicsQueryBuilder(sorter.getSortOrder(), columns.get(TOPICS_COUNT_KEY));
+            default:
+                new QueryBuilder();
         }
         return new QueryBuilder();
     }

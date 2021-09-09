@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /meetings-api/save-user-presence page requests
+ * </p>
+ */
 public class SaveUserPresenceCommand extends JsonApiCommand {
 
     private IMeetingService meetingService;
@@ -25,6 +30,12 @@ public class SaveUserPresenceCommand extends JsonApiCommand {
         meetingService = ServiceFactory.getInstance().getMeetingService();
     }
 
+    /**
+     * <p>
+     *     Tries to save user presence received as JSON object from request body and sends JSON response
+     * </p>
+     * @return
+     */
     @Override
     protected Object getJsonObject() {
         UserMeeting userMeeting = jsonHandler.parseJsonRequestBodyToObject(request, UserMeeting.class);

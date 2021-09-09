@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * {@inheritDoc}
+ */
 public class JsonHandler implements IJsonHandler {
 
     private static final Logger LOGGER = LogManager.getLogger(JsonHandler.class);
@@ -21,6 +24,9 @@ public class JsonHandler implements IJsonHandler {
         gson = new Gson();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T parseJsonRequestBodyToObject(HttpServletRequest request, Class<T> objectClass) {
         StringBuilder sb = new StringBuilder();

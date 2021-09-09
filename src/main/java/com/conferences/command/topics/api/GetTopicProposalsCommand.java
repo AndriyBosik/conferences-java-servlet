@@ -11,6 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /topics-api/get-topic-proposals page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class GetTopicProposalsCommand extends JsonApiCommand {
 
     private int topicId;
@@ -23,6 +32,9 @@ public class GetTopicProposalsCommand extends JsonApiCommand {
         topicId = Integer.parseInt(urlParams.get(0));
     }
 
+    /**
+     * @return list of proposed speaker for topic
+     */
     @Override
     protected Object getJsonObject() {
         return speakerProposalService.getTopicProposals(topicId);

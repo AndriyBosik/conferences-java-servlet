@@ -9,6 +9,9 @@ import com.conferences.service.abstraction.ISpeakerProposalService;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class SpeakerProposalService implements ISpeakerProposalService {
 
     private final ISpeakerProposalDao speakerProposalDao;
@@ -17,11 +20,17 @@ public class SpeakerProposalService implements ISpeakerProposalService {
         this.speakerProposalDao = DaoFactory.getInstance().getSpeakerProposalDao();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<SpeakerProposal> getTopicProposals(int topicId) {
         return speakerProposalDao.findAllByTopicIdWithSpeaker(topicId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Integer> getSpeakerProposedTopicIdsForMeeting(int meetingId, int speakerId) {
         return speakerProposalDao.findAllSpeakerProposedTopicIdsForMeeting(meetingId, speakerId);

@@ -23,6 +23,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ *     Responds to /meetings/edit page requests
+ * </p>
+ */
 public class EditCommand extends FrontCommand {
 
     private IMeetingService meetingService;
@@ -35,6 +40,13 @@ public class EditCommand extends FrontCommand {
         meetingMapper = MapperFactory.getInstance().getRequestToEditableMeetingDataMapper();
     }
 
+    /**
+     * <p>
+     *     Edits meeting
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         Meeting meeting = meetingMapper.map(request);

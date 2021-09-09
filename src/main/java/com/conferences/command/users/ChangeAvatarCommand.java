@@ -27,6 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ *     Responds to /users/change-avatar page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ChangeAvatarCommand extends FrontCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(ChangeAvatarCommand.class);
@@ -44,6 +53,13 @@ public class ChangeAvatarCommand extends FrontCommand {
         mapper = MapperFactory.getInstance().getSimpleFileFormMapper();
     }
 
+    /**
+     * <p>
+     *     Processes user's avatar updating
+     * </p>
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void process() throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute(Defaults.USER.toString());
@@ -66,6 +82,13 @@ public class ChangeAvatarCommand extends FrontCommand {
         redirectBack();
     }
 
+    /**
+     * <p>
+     *     Generates name for user's avatar
+     * </p>
+     * @param user user to get data for file name from
+     * @return string representing user's avatar name
+     */
     private String generateUserAvatarName(User user) {
         String filename = Defaults.USER_AVATAR_PREFIX + "_" + LocalDateTime.now() + "_" + user.getId();
         return FileUtil.removeFileForbiddenSymbols(filename);

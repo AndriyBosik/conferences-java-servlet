@@ -14,6 +14,9 @@ import com.conferences.validator.IValidator;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class TopicProposalService implements ITopicProposalService {
 
     private final ITopicProposalDao topicProposalDao;
@@ -26,6 +29,9 @@ public class TopicProposalService implements ITopicProposalService {
         validator = ValidatorFactory.getInstance().getReportTopicValidator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> addTopicProposal(TopicProposal topicProposal) {
         List<FormError> errors = validator.validate(mapper.map(topicProposal));
@@ -35,16 +41,25 @@ public class TopicProposalService implements ITopicProposalService {
         return errors;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean rejectTopicProposal(int topicProposalId) {
         return topicProposalDao.delete(topicProposalId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean acceptTopicProposal(int topicProposalId) {
         return topicProposalDao.createReportTopicWithProposalDeletion(topicProposalId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getProposedTopicsCount() {
         return topicProposalDao.getRecordsCount();

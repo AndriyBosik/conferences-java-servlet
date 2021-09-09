@@ -15,6 +15,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ *      Responds to /topics/accept-proposed
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class AcceptProposedCommand extends FrontCommand {
 
     private ITopicProposalService topicProposalService;
@@ -25,6 +34,13 @@ public class AcceptProposedCommand extends FrontCommand {
         topicProposalService = ServiceFactory.getInstance().getTopicProposalService();
     }
 
+    /**
+     * <p>
+     *     Accepts moderator proposal
+     * </p>
+     * @throws ServletException an exception which may occur during saving errors to session
+     * @throws IOException an exception which may occur during saving errors to session
+     */
     @Override
     public void process() throws ServletException, IOException {
         int topicProposalId = Integer.parseInt(request.getParameter("id"));

@@ -1,12 +1,13 @@
 package com.conferences.validator;
 
-import com.conferences.config.ErrorKey;
 import com.conferences.entity.Meeting;
 import com.conferences.model.FormError;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * {@inheritDoc}
+ */
 public class MeetingValidator extends AbstractValidator<Meeting> {
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
@@ -14,6 +15,9 @@ public class MeetingValidator extends AbstractValidator<Meeting> {
     private static final String DATE = "date";
     private static final String IMAGE_PATH = "image_path";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<FormError> validate(Meeting model) {
         List<FormError> formErrors = new ArrayList<>();

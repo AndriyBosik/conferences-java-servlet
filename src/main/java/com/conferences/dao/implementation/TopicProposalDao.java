@@ -11,10 +11,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * {@inheritDoc}
+ */
 public class TopicProposalDao extends AbstractCrudDao<Integer, TopicProposal> implements ITopicProposalDao {
 
     private static final Logger LOGGER = LogManager.getLogger(TopicProposalDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean createReportTopicWithProposalDeletion(int topicProposalId) {
         Connection connection = null;

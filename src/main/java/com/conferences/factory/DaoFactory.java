@@ -3,6 +3,15 @@ package com.conferences.factory;
 import com.conferences.dao.abstraction.*;
 import com.conferences.dao.implementation.*;
 
+/**
+ * <p>
+ *     Defines methods to instantiate DAOs
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class DaoFactory {
 
     private static DaoFactory instance;

@@ -15,10 +15,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class UserMeetingDao extends AbstractCrudDao<Integer, UserMeeting> implements IUserMeetingDao {
 
     private static final Logger LOGGER = LogManager.getLogger(UserMeetingDao.class);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserMeeting findByUserIdAndMeetingId(int userId, int meetingId) {
         String sql = "SELECT * FROM users_meetings WHERE user_id=? AND meeting_id=?";
@@ -40,8 +46,11 @@ public class UserMeetingDao extends AbstractCrudDao<Integer, UserMeeting> implem
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public List<UserMeeting> findUserWithPresenceByMeetingId(int meetingId) {
+    public List<UserMeeting> findUsersWithPresenceByMeetingId(int meetingId) {
         String sql = "SELECT " +
                 entityProcessor.getEntityFieldsWithPrefixes(User.class, "u.", "user_") + "," +
                 "um.* FROM users u " +
@@ -70,6 +79,9 @@ public class UserMeetingDao extends AbstractCrudDao<Integer, UserMeeting> implem
         return userMeetings;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateUserPresenceByUserIdAndMeetingId(UserMeeting userMeeting) {
         String sql = "UPDATE users_meetings SET present=? WHERE user_id=? AND meeting_id=?";

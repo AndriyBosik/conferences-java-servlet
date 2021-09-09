@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 public class ProposalDataDao extends AbstractDao<Integer, ProposalData> implements IProposalDataDao {
 
     private static final Logger LOGGER = LogManager.getLogger(ProposalDataDao.class);
@@ -51,16 +54,30 @@ public class ProposalDataDao extends AbstractDao<Integer, ProposalData> implemen
                 "SELECT NULL FROM report_topics_speakers rts WHERE rts.report_topic_id=rt.id)" +
             "ORDER BY meetings.id, rt.id";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ProposalData> findActiveModeratorProposalsForSpeakerOrderByMeeting(int speakerId) {
         return findProposalsBySqlAndSpeakerId(MODERATOR_PROPOSALS_QUERY, speakerId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ProposalData> findActiveSpeakerProposalsOrderByMeeting(int speakerId) {
         return findProposalsBySqlAndSpeakerId(SPEAKER_PROPOSALS_QUERY, speakerId);
     }
 
+    /**
+     * <p>
+     *     Retrieves proposals fetched by passed SQL query for concrete speaker
+     * </p>
+     * @param sql SQL query
+     * @param speakerId id of speaker
+     * @return list of {@link ProposalData}
+     */
     private List<ProposalData> findProposalsBySqlAndSpeakerId(String sql, int speakerId) {
         List<ProposalData> proposals = new ArrayList<>();
         try (Connection connection = DbManager.getInstance().getConnection();

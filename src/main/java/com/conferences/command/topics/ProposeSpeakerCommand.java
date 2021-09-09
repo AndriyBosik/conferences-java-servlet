@@ -3,6 +3,7 @@ package com.conferences.command.topics;
 import com.conferences.command.FrontCommand;
 import com.conferences.config.*;
 import com.conferences.entity.User;
+import com.conferences.entity.ReportTopic;
 import com.conferences.factory.ServiceFactory;
 import com.conferences.model.FormError;
 import com.conferences.service.abstraction.ISpeakerService;
@@ -15,6 +16,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ *     Responds to /topics/propose-speaker page requests
+ * </p>
+ *
+ * @author Andriy
+ * @version 1.0
+ * @since 2021/09/09
+ */
 public class ProposeSpeakerCommand extends FrontCommand {
 
     private ISpeakerService speakerService;
@@ -25,6 +35,13 @@ public class ProposeSpeakerCommand extends FrontCommand {
         speakerService = ServiceFactory.getInstance().getSpeakerService();
     }
 
+    /**
+     * <p>
+     *     Proposes speaker for {@link ReportTopic}
+     * </p>
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void process() throws ServletException, IOException {
         if (!request.getMethod().equals(HttpMethod.POST.toString())) {
