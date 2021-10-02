@@ -16,10 +16,10 @@
         <div class="col s12">
             <ul class="tabs m-blue m-darken-3">
                 <li class="tab col s6">
-                    <a href="#my" class="blue-text text-darken-3">My</a>
+                    <a href="#my" class="blue-text text-darken-3"><taglib:message value="my" /></a>
                 </li>
                 <li class="tab col s6">
-                    <a href="#for-me" class="blue-text text-darken-3">For me</a>
+                    <a href="#for-me" class="blue-text text-darken-3"><taglib:message value="for_me" /></a>
                 </li>
                 <li class="indicator"></li>
             </ul>
