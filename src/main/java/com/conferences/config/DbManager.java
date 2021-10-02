@@ -3,6 +3,9 @@ package com.conferences.config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -15,16 +18,22 @@ import java.util.Properties;
 public class DbManager {
 
     private static final Logger LOGGER = LogManager.getLogger(DbManager.class);
-    private static final String DB_DRIVER = "db.driver";
-    private static final String DB_CONNECTION_URL = "db.connection.url";
-    private static final String DB_USERNAME = "db.username";
-    private static final String DB_PASSWORD = "db.password";
 
     private static DbManager instance;
 
+    private final DataSource dataSource;
+
     private Map<String, String> dbProperties;
 
-    private DbManager() {}
+    private DbManager() {
+        try {
+            InitialContext context = new InitialContext();
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/conferences");
+        } catch (Exception exception) {
+            LOGGER.error("Unable to register database driver", exception);
+            throw new IllegalStateException("Cannot init DbManager", exception);
+        }
+    }
 
     public static DbManager getInstance() {
         if (instance == null) {
@@ -34,12 +43,7 @@ public class DbManager {
     }
 
     public Connection getConnection() throws SQLException {
-        try {
-            Class.forName(getPropertiesValue(DB_DRIVER));
-        } catch (ClassNotFoundException exception) {
-            LOGGER.error("Unable to register database driver", exception);
-        }
-        return DriverManager.getConnection(getPropertiesValue(DB_CONNECTION_URL), getPropertiesValue(DB_USERNAME), getPropertiesValue(DB_PASSWORD));
+        return dataSource.getConnection();
     }
 
     private String getPropertiesValue(String key) {
